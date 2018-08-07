@@ -39,7 +39,7 @@ public class MainLogin extends javax.swing.JInternalFrame {
 
     public MainLogin() {
         initComponents();
-        conn = (Connection) MyDBConnection.Myconnect();
+        //conn = (Connection) MyDBConnection.Myconnect();
     }
 
     @SuppressWarnings("unchecked")
@@ -188,296 +188,296 @@ public class MainLogin extends javax.swing.JInternalFrame {
         Date stdat = new Date();
         UserManagement m1 = new UserManagement();
         MHome h = new MHome();
-        try {
-           String sql = "SELECT * from employee where userName='" + txt_loginuserName.getText() + "' and Password='" + txt_loginpassword.getText() + "'";
-            pst = conn.prepareStatement(sql);
-            rs = pst.executeQuery();
-            while (rs.next()) {
-
-                eid = rs.getString("Emp_ID");
-                user = rs.getString("userName");
-                pwd = rs.getString("Password");
-                fname = rs.getString("full_name");
-                job = rs.getString("designation");
-                gender= rs.getString("gender");
-                nic = rs.getString("NIC");
-                birthday = rs.getString("birthday");
-                add = rs.getString("address");
-                hno = rs.getString("homenumber");
-                mno = rs.getString("mobile");
-                email = rs.getString("email");
-                dpt = rs.getString("Department");
-                iname = rs.getString("name_with_Initial");
-                stdat = rs.getDate("startdate");
-            }
-            if (txt_loginuserName.getText().equals(user) && txt_loginpassword.getText().equals(pwd)) {
-
-                if (job.equals("Admin")) {
+//        try {
+//           String sql = "SELECT * from employee where userName='" + txt_loginuserName.getText() + "' and Password='" + txt_loginpassword.getText() + "'";
+//            pst = conn.prepareStatement(sql);
+//            rs = pst.executeQuery();
+//            while (rs.next()) {
+//
+//                eid = rs.getString("Emp_ID");
+//                user = rs.getString("userName");
+//                pwd = rs.getString("Password");
+//                fname = rs.getString("full_name");
+//                job = rs.getString("designation");
+//                gender= rs.getString("gender");
+//                nic = rs.getString("NIC");
+//                birthday = rs.getString("birthday");
+//                add = rs.getString("address");
+//                hno = rs.getString("homenumber");
+//                mno = rs.getString("mobile");
+//                email = rs.getString("email");
+//                dpt = rs.getString("Department");
+//                iname = rs.getString("name_with_Initial");
+//                stdat = rs.getDate("startdate");
+//            }
+//            if (txt_loginuserName.getText().equals(user) && txt_loginpassword.getText().equals(pwd)) {
+//
+//                if (job.equals("Admin")) {
+//                    
+//                    JDesktopPane desktopPane = getDesktopPane();
+//                    m1.btn_jobMain.setEnabled(false);
+//                    m1.btn_UserMain.setEnabled(false);
+//                    m1.btn_attendeceMain.setEnabled(false);
+//                    m1.btn_interviewMain.setEnabled(false);
+//                    m1.btn_payrollMain.setEnabled(false);
+//                    m1.btn_EmployeeMain.setEnabled(false);
+//                    m1.jButton5.setEnabled(false);
+//                    m1.txt_empID.setText(eid);
+//                    m1.txtA_address.setText(add);
+//                    m1.txt_dob.setText(birthday);
+//                    m1.txt_dptn.setText(dpt);
+//                    m1.txt_dsgn.setText(job);
+//                    m1.txt_fname.setText(fname);
+//                    m1.txt_gender.setText(gender);
+//                    m1.txt_hno.setText(hno);
+//                    m1.txt_initialName.setText(iname);
+//                    m1.txt_mail.setText(email);
+//                    m1.txt_mno.setText(mno);
+//                    m1.txt_nic.setText(nic);
+//                    m1.txt_usrnme.setText(user);
+//                    m1.pwd_password.setText(pwd);
+//                    m1.dc_startdate.setDate(stdat);
+//                    h.btn_beverage.setEnabled(true);
+//                    h.btn_custBooking.setEnabled(true);
+//                    h.btn_event.setEnabled(true);
+//                    h.btn_finance.setEnabled(true);
+//                    h.btn_hr.setEnabled(true);
+//                    h.btn_stock.setEnabled(true);
+//                    h.btn_transport.setEnabled(true);
+//                    desktopPane.add(h).setVisible(true);
+//                    this.dispose();
+//                } else if (job.equals("HR Manager")) {
+//                    JDesktopPane desktopPane = getDesktopPane();
+//                    m1.btn_jobMain.setEnabled(false);
+//                    m1.btn_UserMain.setEnabled(false);
+//                    m1.btn_attendeceMain.setEnabled(false);
+//                    m1.btn_interviewMain.setEnabled(false);
+//                    m1.btn_payrollMain.setEnabled(false);
+//                    m1.btn_EmployeeMain.setEnabled(false);
+//                    m1.jButton5.setEnabled(false);
+//                    m1.txt_empID.setText(eid);
+//                    m1.txtA_address.setText(add);
+//                    m1.txt_dob.setText(birthday);
+//                    m1.txt_dptn.setText(dpt);
+//                    m1.txt_dsgn.setText(job);
+//                    m1.txt_fname.setText(fname);
+//                    m1.txt_gender.setText(gender);
+//                    m1.txt_hno.setText(hno);
+//                    m1.txt_initialName.setText(iname);
+//                    m1.txt_mail.setText(email);
+//                    m1.txt_mno.setText(mno);
+//                    m1.txt_nic.setText(nic);
+//                    m1.txt_usrnme.setText(user);
+//                    m1.pwd_password.setText(pwd);
+//                    m1.dc_startdate.setDate(stdat);
+//                    h.btn_hr.setEnabled(true);
+//                    desktopPane.add(h).setVisible(true);
+//                    
+//                    this.dispose();
+//                } else if (job.equals("Stock Manager")) {
+//                    Food m12 = new Food();
+//                    JDesktopPane desktopPane = getDesktopPane();
+//                    m1.btn_jobMain.setEnabled(false);
+//                    m1.btn_UserMain.setEnabled(false);
+//                    m1.btn_attendeceMain.setEnabled(false);
+//                    m1.btn_interviewMain.setEnabled(false);
+//                    m1.btn_payrollMain.setEnabled(false);
+//                    m1.btn_EmployeeMain.setEnabled(false);
+//                    m1.jButton5.setEnabled(false);
+//                    m1.txt_empID.setText(eid);
+//                    m1.txtA_address.setText(add);
+//                    m1.txt_dob.setText(birthday);
+//                    m1.txt_dptn.setText(dpt);
+//                    m1.txt_dsgn.setText(job);
+//                    m1.txt_fname.setText(fname);
+//                    m1.txt_gender.setText(gender);
+//                    m1.txt_hno.setText(hno);
+//                    m1.txt_initialName.setText(iname);
+//                    m1.txt_mail.setText(email);
+//                    m1.txt_mno.setText(mno);
+//                    m1.txt_nic.setText(nic);
+//                    m1.txt_usrnme.setText(user);
+//                    m1.pwd_password.setText(pwd);
+//                    m1.dc_startdate.setDate(stdat);
+//                    h.btn_stock.setEnabled(true);
+//                    desktopPane.add(h).setVisible(true);
+//                    this.dispose();
+//                } else if (job.equals("Finance Manager")) {
+//                    FMS_Home1 m3 = new FMS_Home1();
+//                    JDesktopPane desktopPane = getDesktopPane();
+//                    m1.btn_jobMain.setEnabled(false);
+//                    m1.btn_UserMain.setEnabled(false);
+//                    m1.btn_attendeceMain.setEnabled(false);
+//                    m1.btn_interviewMain.setEnabled(false);
+//                    m1.btn_payrollMain.setEnabled(false);
+//                    m1.btn_EmployeeMain.setEnabled(false);
+//                    m1.jButton5.setEnabled(false);
+//                    m1.txt_empID.setText(eid);
+//                    m1.txtA_address.setText(add);
+//                    m1.txt_dob.setText(birthday);
+//                    m1.txt_dptn.setText(dpt);
+//                    m1.txt_dsgn.setText(job);
+//                    m1.txt_fname.setText(fname);
+//                    m1.txt_gender.setText(gender);
+//                    m1.txt_hno.setText(hno);
+//                    m1.txt_initialName.setText(iname);
+//                    m1.txt_mail.setText(email);
+//                    m1.txt_mno.setText(mno);
+//                    m1.txt_nic.setText(nic);
+//                    m1.txt_usrnme.setText(user);
+//                    m1.pwd_password.setText(pwd);
+//                    m1.dc_startdate.setDate(stdat);
+//                    h.btn_finance.setEnabled(true);
+//                    desktopPane.add(h).setVisible(true);
+//                    this.dispose();
+//                } else if (job.equals("Transport Manager")) {
+//                    TransportMain m4 = new TransportMain();
+//                    JDesktopPane desktopPane = getDesktopPane();
+//                    m1.btn_jobMain.setEnabled(false);
+//                    m1.btn_UserMain.setEnabled(false);
+//                    m1.btn_attendeceMain.setEnabled(false);
+//                    m1.btn_interviewMain.setEnabled(false);
+//                    m1.btn_payrollMain.setEnabled(false);
+//                    m1.btn_EmployeeMain.setEnabled(false);
+//                    m1.jButton5.setEnabled(false);
+//                    m1.txt_empID.setText(eid);
+//                    m1.txtA_address.setText(add);
+//                    m1.txt_dob.setText(birthday);
+//                    m1.txt_dptn.setText(dpt);
+//                    m1.txt_dsgn.setText(job);
+//                    m1.txt_fname.setText(fname);
+//                    m1.txt_gender.setText(gender);
+//                    m1.txt_hno.setText(hno);
+//                    m1.txt_initialName.setText(iname);
+//                    m1.txt_mail.setText(email);
+//                    m1.txt_mno.setText(mno);
+//                    m1.txt_nic.setText(nic);
+//                    m1.txt_usrnme.setText(user);
+//                    m1.pwd_password.setText(pwd);
+//                    m1.dc_startdate.setDate(stdat);
+//                    h.btn_transport.setEnabled(true);
+//                    desktopPane.add(h).setVisible(true);
+//                    this.dispose();
+//                } else if (job.equals("Bar Manager")) {
+//                    BeverageHome m5 = new BeverageHome();
+//                    JDesktopPane desktopPane = getDesktopPane();
+//                    m1.btn_jobMain.setEnabled(false);
+//                    m1.btn_UserMain.setEnabled(false);
+//                    m1.btn_attendeceMain.setEnabled(false);
+//                    m1.btn_interviewMain.setEnabled(false);
+//                    m1.btn_payrollMain.setEnabled(false);
+//                    m1.btn_EmployeeMain.setEnabled(false);
+//                    m1.jButton5.setEnabled(false);
+//                    m1.txt_empID.setText(eid);
+//                    m1.txtA_address.setText(add);
+//                    m1.txt_dob.setText(birthday);
+//                    m1.txt_dptn.setText(dpt);
+//                    m1.txt_dsgn.setText(job);
+//                    m1.txt_fname.setText(fname);
+//                    m1.txt_gender.setText(gender);
+//                    m1.txt_hno.setText(hno);
+//                    m1.txt_initialName.setText(iname);
+//                    m1.txt_mail.setText(email);
+//                    m1.txt_mno.setText(mno);
+//                    m1.txt_nic.setText(nic);
+//                    m1.txt_usrnme.setText(user);
+//                    m1.pwd_password.setText(pwd);
+//                    m1.dc_startdate.setDate(stdat);
+//                    h.btn_beverage.setEnabled(true);
+//                    desktopPane.add(h).setVisible(true);
+//                    this.dispose();
+//                } else if (job.equals("Front Office Manager")) {
+//                    frmHome m6 = new frmHome();
+//                    JDesktopPane desktopPane = getDesktopPane();
+//                    m1.btn_jobMain.setEnabled(false);
+//                    m1.btn_UserMain.setEnabled(false);
+//                    m1.btn_attendeceMain.setEnabled(false);
+//                    m1.btn_interviewMain.setEnabled(false);
+//                    m1.btn_payrollMain.setEnabled(false);
+//                    m1.btn_EmployeeMain.setEnabled(false);
+//                    m1.jButton5.setEnabled(false);
+//                    m1.txt_empID.setText(eid);
+//                    m1.txtA_address.setText(add);
+//                    m1.txt_dob.setText(birthday);
+//                    m1.txt_dptn.setText(dpt);
+//                    m1.txt_dsgn.setText(job);
+//                    m1.txt_fname.setText(fname);
+//                    m1.txt_gender.setText(gender);
+//                    m1.txt_hno.setText(hno);
+//                    m1.txt_initialName.setText(iname);
+//                    m1.txt_mail.setText(email);
+//                    m1.txt_mno.setText(mno);
+//                    m1.txt_nic.setText(nic);
+//                    m1.txt_usrnme.setText(user);
+//                    m1.pwd_password.setText(pwd);
+//                    m1.dc_startdate.setDate(stdat);
+//                    h.btn_custBooking.setEnabled(true);
+//                    desktopPane.add(h).setVisible(true);
+//                    this.dispose();
+//                } else if (job.equals("Event Manager")) {
+                    JDesktopPane desktopPane = getDesktopPane();
+//                    m1.btn_jobMain.setEnabled(false);
+//                    m1.btn_UserMain.setEnabled(false);
+//                    m1.btn_attendeceMain.setEnabled(false);
+//                    m1.btn_interviewMain.setEnabled(false);
+//                    m1.btn_payrollMain.setEnabled(false);
+//                    m1.btn_EmployeeMain.setEnabled(false);
+//                    m1.jButton5.setEnabled(false);
+//                    m1.txt_empID.setText(eid);
+//                    m1.txtA_address.setText(add);
+//                    m1.txt_dob.setText(birthday);
+//                    m1.txt_dptn.setText(dpt);
+//                    m1.txt_dsgn.setText(job);
+//                    m1.txt_fname.setText(fname);
+//                    m1.txt_gender.setText(gender);
+//                    m1.txt_hno.setText(hno);
+//                    m1.txt_initialName.setText(iname);
+//                    m1.txt_mail.setText(email);
+//                    m1.txt_mno.setText(mno);
+//                    m1.txt_nic.setText(nic);
+//                    m1.txt_usrnme.setText(user);
+//                    m1.pwd_password.setText(pwd);
+//                    m1.dc_startdate.setDate(stdat);
+//                    h.btn_event.setEnabled(true);
+                    desktopPane.add(h).setVisible(true);
                     
-                    JDesktopPane desktopPane = getDesktopPane();
-                    m1.btn_jobMain.setEnabled(false);
-                    m1.btn_UserMain.setEnabled(false);
-                    m1.btn_attendeceMain.setEnabled(false);
-                    m1.btn_interviewMain.setEnabled(false);
-                    m1.btn_payrollMain.setEnabled(false);
-                    m1.btn_EmployeeMain.setEnabled(false);
-                    m1.jButton5.setEnabled(false);
-                    m1.txt_empID.setText(eid);
-                    m1.txtA_address.setText(add);
-                    m1.txt_dob.setText(birthday);
-                    m1.txt_dptn.setText(dpt);
-                    m1.txt_dsgn.setText(job);
-                    m1.txt_fname.setText(fname);
-                    m1.txt_gender.setText(gender);
-                    m1.txt_hno.setText(hno);
-                    m1.txt_initialName.setText(iname);
-                    m1.txt_mail.setText(email);
-                    m1.txt_mno.setText(mno);
-                    m1.txt_nic.setText(nic);
-                    m1.txt_usrnme.setText(user);
-                    m1.pwd_password.setText(pwd);
-                    m1.dc_startdate.setDate(stdat);
-                    h.btn_beverage.setEnabled(true);
-                    h.btn_custBooking.setEnabled(true);
-                    h.btn_event.setEnabled(true);
-                    h.btn_finance.setEnabled(true);
-                    h.btn_hr.setEnabled(true);
-                    h.btn_stock.setEnabled(true);
-                    h.btn_transport.setEnabled(true);
-                    desktopPane.add(h).setVisible(true);
                     this.dispose();
-                } else if (job.equals("HR Manager")) {
-                    JDesktopPane desktopPane = getDesktopPane();
-                    m1.btn_jobMain.setEnabled(false);
-                    m1.btn_UserMain.setEnabled(false);
-                    m1.btn_attendeceMain.setEnabled(false);
-                    m1.btn_interviewMain.setEnabled(false);
-                    m1.btn_payrollMain.setEnabled(false);
-                    m1.btn_EmployeeMain.setEnabled(false);
-                    m1.jButton5.setEnabled(false);
-                    m1.txt_empID.setText(eid);
-                    m1.txtA_address.setText(add);
-                    m1.txt_dob.setText(birthday);
-                    m1.txt_dptn.setText(dpt);
-                    m1.txt_dsgn.setText(job);
-                    m1.txt_fname.setText(fname);
-                    m1.txt_gender.setText(gender);
-                    m1.txt_hno.setText(hno);
-                    m1.txt_initialName.setText(iname);
-                    m1.txt_mail.setText(email);
-                    m1.txt_mno.setText(mno);
-                    m1.txt_nic.setText(nic);
-                    m1.txt_usrnme.setText(user);
-                    m1.pwd_password.setText(pwd);
-                    m1.dc_startdate.setDate(stdat);
-                    h.btn_hr.setEnabled(true);
-                    desktopPane.add(h).setVisible(true);
-                    
-                    this.dispose();
-                } else if (job.equals("Stock Manager")) {
-                    Food m12 = new Food();
-                    JDesktopPane desktopPane = getDesktopPane();
-                    m1.btn_jobMain.setEnabled(false);
-                    m1.btn_UserMain.setEnabled(false);
-                    m1.btn_attendeceMain.setEnabled(false);
-                    m1.btn_interviewMain.setEnabled(false);
-                    m1.btn_payrollMain.setEnabled(false);
-                    m1.btn_EmployeeMain.setEnabled(false);
-                    m1.jButton5.setEnabled(false);
-                    m1.txt_empID.setText(eid);
-                    m1.txtA_address.setText(add);
-                    m1.txt_dob.setText(birthday);
-                    m1.txt_dptn.setText(dpt);
-                    m1.txt_dsgn.setText(job);
-                    m1.txt_fname.setText(fname);
-                    m1.txt_gender.setText(gender);
-                    m1.txt_hno.setText(hno);
-                    m1.txt_initialName.setText(iname);
-                    m1.txt_mail.setText(email);
-                    m1.txt_mno.setText(mno);
-                    m1.txt_nic.setText(nic);
-                    m1.txt_usrnme.setText(user);
-                    m1.pwd_password.setText(pwd);
-                    m1.dc_startdate.setDate(stdat);
-                    h.btn_stock.setEnabled(true);
-                    desktopPane.add(h).setVisible(true);
-                    this.dispose();
-                } else if (job.equals("Finance Manager")) {
-                    FMS_Home1 m3 = new FMS_Home1();
-                    JDesktopPane desktopPane = getDesktopPane();
-                    m1.btn_jobMain.setEnabled(false);
-                    m1.btn_UserMain.setEnabled(false);
-                    m1.btn_attendeceMain.setEnabled(false);
-                    m1.btn_interviewMain.setEnabled(false);
-                    m1.btn_payrollMain.setEnabled(false);
-                    m1.btn_EmployeeMain.setEnabled(false);
-                    m1.jButton5.setEnabled(false);
-                    m1.txt_empID.setText(eid);
-                    m1.txtA_address.setText(add);
-                    m1.txt_dob.setText(birthday);
-                    m1.txt_dptn.setText(dpt);
-                    m1.txt_dsgn.setText(job);
-                    m1.txt_fname.setText(fname);
-                    m1.txt_gender.setText(gender);
-                    m1.txt_hno.setText(hno);
-                    m1.txt_initialName.setText(iname);
-                    m1.txt_mail.setText(email);
-                    m1.txt_mno.setText(mno);
-                    m1.txt_nic.setText(nic);
-                    m1.txt_usrnme.setText(user);
-                    m1.pwd_password.setText(pwd);
-                    m1.dc_startdate.setDate(stdat);
-                    h.btn_finance.setEnabled(true);
-                    desktopPane.add(h).setVisible(true);
-                    this.dispose();
-                } else if (job.equals("Transport Manager")) {
-                    TransportMain m4 = new TransportMain();
-                    JDesktopPane desktopPane = getDesktopPane();
-                    m1.btn_jobMain.setEnabled(false);
-                    m1.btn_UserMain.setEnabled(false);
-                    m1.btn_attendeceMain.setEnabled(false);
-                    m1.btn_interviewMain.setEnabled(false);
-                    m1.btn_payrollMain.setEnabled(false);
-                    m1.btn_EmployeeMain.setEnabled(false);
-                    m1.jButton5.setEnabled(false);
-                    m1.txt_empID.setText(eid);
-                    m1.txtA_address.setText(add);
-                    m1.txt_dob.setText(birthday);
-                    m1.txt_dptn.setText(dpt);
-                    m1.txt_dsgn.setText(job);
-                    m1.txt_fname.setText(fname);
-                    m1.txt_gender.setText(gender);
-                    m1.txt_hno.setText(hno);
-                    m1.txt_initialName.setText(iname);
-                    m1.txt_mail.setText(email);
-                    m1.txt_mno.setText(mno);
-                    m1.txt_nic.setText(nic);
-                    m1.txt_usrnme.setText(user);
-                    m1.pwd_password.setText(pwd);
-                    m1.dc_startdate.setDate(stdat);
-                    h.btn_transport.setEnabled(true);
-                    desktopPane.add(h).setVisible(true);
-                    this.dispose();
-                } else if (job.equals("Bar Manager")) {
-                    BeverageHome m5 = new BeverageHome();
-                    JDesktopPane desktopPane = getDesktopPane();
-                    m1.btn_jobMain.setEnabled(false);
-                    m1.btn_UserMain.setEnabled(false);
-                    m1.btn_attendeceMain.setEnabled(false);
-                    m1.btn_interviewMain.setEnabled(false);
-                    m1.btn_payrollMain.setEnabled(false);
-                    m1.btn_EmployeeMain.setEnabled(false);
-                    m1.jButton5.setEnabled(false);
-                    m1.txt_empID.setText(eid);
-                    m1.txtA_address.setText(add);
-                    m1.txt_dob.setText(birthday);
-                    m1.txt_dptn.setText(dpt);
-                    m1.txt_dsgn.setText(job);
-                    m1.txt_fname.setText(fname);
-                    m1.txt_gender.setText(gender);
-                    m1.txt_hno.setText(hno);
-                    m1.txt_initialName.setText(iname);
-                    m1.txt_mail.setText(email);
-                    m1.txt_mno.setText(mno);
-                    m1.txt_nic.setText(nic);
-                    m1.txt_usrnme.setText(user);
-                    m1.pwd_password.setText(pwd);
-                    m1.dc_startdate.setDate(stdat);
-                    h.btn_beverage.setEnabled(true);
-                    desktopPane.add(h).setVisible(true);
-                    this.dispose();
-                } else if (job.equals("Front Office Manager")) {
-                    frmHome m6 = new frmHome();
-                    JDesktopPane desktopPane = getDesktopPane();
-                    m1.btn_jobMain.setEnabled(false);
-                    m1.btn_UserMain.setEnabled(false);
-                    m1.btn_attendeceMain.setEnabled(false);
-                    m1.btn_interviewMain.setEnabled(false);
-                    m1.btn_payrollMain.setEnabled(false);
-                    m1.btn_EmployeeMain.setEnabled(false);
-                    m1.jButton5.setEnabled(false);
-                    m1.txt_empID.setText(eid);
-                    m1.txtA_address.setText(add);
-                    m1.txt_dob.setText(birthday);
-                    m1.txt_dptn.setText(dpt);
-                    m1.txt_dsgn.setText(job);
-                    m1.txt_fname.setText(fname);
-                    m1.txt_gender.setText(gender);
-                    m1.txt_hno.setText(hno);
-                    m1.txt_initialName.setText(iname);
-                    m1.txt_mail.setText(email);
-                    m1.txt_mno.setText(mno);
-                    m1.txt_nic.setText(nic);
-                    m1.txt_usrnme.setText(user);
-                    m1.pwd_password.setText(pwd);
-                    m1.dc_startdate.setDate(stdat);
-                    h.btn_custBooking.setEnabled(true);
-                    desktopPane.add(h).setVisible(true);
-                    this.dispose();
-                } else if (job.equals("Event Manager")) {
-                    JDesktopPane desktopPane = getDesktopPane();
-                    m1.btn_jobMain.setEnabled(false);
-                    m1.btn_UserMain.setEnabled(false);
-                    m1.btn_attendeceMain.setEnabled(false);
-                    m1.btn_interviewMain.setEnabled(false);
-                    m1.btn_payrollMain.setEnabled(false);
-                    m1.btn_EmployeeMain.setEnabled(false);
-                    m1.jButton5.setEnabled(false);
-                    m1.txt_empID.setText(eid);
-                    m1.txtA_address.setText(add);
-                    m1.txt_dob.setText(birthday);
-                    m1.txt_dptn.setText(dpt);
-                    m1.txt_dsgn.setText(job);
-                    m1.txt_fname.setText(fname);
-                    m1.txt_gender.setText(gender);
-                    m1.txt_hno.setText(hno);
-                    m1.txt_initialName.setText(iname);
-                    m1.txt_mail.setText(email);
-                    m1.txt_mno.setText(mno);
-                    m1.txt_nic.setText(nic);
-                    m1.txt_usrnme.setText(user);
-                    m1.pwd_password.setText(pwd);
-                    m1.dc_startdate.setDate(stdat);
-                    h.btn_event.setEnabled(true);
-                    desktopPane.add(h).setVisible(true);
-                    
-                    this.dispose();
-                } else {
-                    
-                    JDesktopPane desktopPane = getDesktopPane();
-                    m1.btn_jobMain.setEnabled(false);
-                    m1.btn_UserMain.setEnabled(false);
-                    m1.btn_attendeceMain.setEnabled(false);
-                    m1.btn_interviewMain.setEnabled(false);
-                    m1.btn_payrollMain.setEnabled(false);
-                    m1.btn_EmployeeMain.setEnabled(false);
-                    m1.jButton5.setEnabled(false);
-                    m1.txt_empID.setText(eid);
-                    m1.txtA_address.setText(add);
-                    m1.txt_dob.setText(birthday);
-                    m1.txt_dptn.setText(dpt);
-                    m1.txt_dsgn.setText(job);
-                    m1.txt_fname.setText(fname);
-                    m1.txt_gender.setText(gender);
-                    m1.txt_hno.setText(hno);
-                    m1.txt_initialName.setText(iname);
-                    m1.txt_mail.setText(email);
-                    m1.txt_mno.setText(mno);
-                    m1.txt_nic.setText(nic);
-                    m1.txt_usrnme.setText(user);
-                    m1.pwd_password.setText(pwd);
-                    m1.dc_startdate.setDate(stdat);
-                    
-                    desktopPane.add(m1).setVisible(true);
-                    this.dispose();
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "enter valid user name and password");
-                txt_loginuserName.setText(null);
-                txt_loginpassword.setText(null);
-            }
-        } catch (SQLException e) {
-        }
+//                } else {
+//                    
+//                    JDesktopPane desktopPane = getDesktopPane();
+//                    m1.btn_jobMain.setEnabled(false);
+//                    m1.btn_UserMain.setEnabled(false);
+//                    m1.btn_attendeceMain.setEnabled(false);
+//                    m1.btn_interviewMain.setEnabled(false);
+//                    m1.btn_payrollMain.setEnabled(false);
+//                    m1.btn_EmployeeMain.setEnabled(false);
+//                    m1.jButton5.setEnabled(false);
+//                    m1.txt_empID.setText(eid);
+//                    m1.txtA_address.setText(add);
+//                    m1.txt_dob.setText(birthday);
+//                    m1.txt_dptn.setText(dpt);
+//                    m1.txt_dsgn.setText(job);
+//                    m1.txt_fname.setText(fname);
+//                    m1.txt_gender.setText(gender);
+//                    m1.txt_hno.setText(hno);
+//                    m1.txt_initialName.setText(iname);
+//                    m1.txt_mail.setText(email);
+//                    m1.txt_mno.setText(mno);
+//                    m1.txt_nic.setText(nic);
+//                    m1.txt_usrnme.setText(user);
+//                    m1.pwd_password.setText(pwd);
+//                    m1.dc_startdate.setDate(stdat);
+//                    
+//                    desktopPane.add(m1).setVisible(true);
+//                    this.dispose();
+//                }
+//            } else {
+//                JOptionPane.showMessageDialog(null, "enter valid user name and password");
+//                txt_loginuserName.setText(null);
+//                txt_loginpassword.setText(null);
+//            }
+//        } catch (SQLException e) {
+//        }
 
     }//GEN-LAST:event_btn_loginActionPerformed
 

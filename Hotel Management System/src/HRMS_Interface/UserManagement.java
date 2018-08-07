@@ -32,10 +32,10 @@ public class UserManagement extends javax.swing.JInternalFrame {
 
     public UserManagement() {
         initComponents();
-        conn = (Connection) MyDBConnection.Myconnect();
+        //conn = (Connection) MyDBConnection.Myconnect();
         HMS_Methods hm = new HMS_Methods();
         hm.unmovableInternal(this);
-        hrm.LoadEmployeeTableToForm(txt_empID, txt_fname, txt_initialName, txt_gender, txt_nic, txt_dob, txtA_address, txt_hno, txt_mno, txt_mail, dc_startdate, txt_dptn, txt_dsgn, txt_usrnme, pwd_password);
+        //hrm.LoadEmployeeTableToForm(txt_empID, txt_fname, txt_initialName, txt_gender, txt_nic, txt_dob, txtA_address, txt_hno, txt_mno, txt_mail, dc_startdate, txt_dptn, txt_dsgn, txt_usrnme, pwd_password);
 
     }
 
