@@ -27,7 +27,7 @@ import net.sf.jasperreports.view.JasperViewer;
  *
  * @author Prabas Gayadeeptha
  */
-public class PayRoll extends javax.swing.JInternalFrame {
+public class Payroll extends javax.swing.JInternalFrame {
 
     Connection conn = null;
     PreparedStatement pst = null;
@@ -36,9 +36,9 @@ public class PayRoll extends javax.swing.JInternalFrame {
     HR_Methods hrm = new HR_Methods();
     java.util.Date date;
 
-    public PayRoll() {
+    public Payroll() {
         initComponents();
-        conn = (Connection) MyDBConnection.Myconnect();
+        conn = (Connection) MyDBConnection.connectDB();
 
         HMS_Methods hm = new HMS_Methods();
         hm.unmovableInternal(this);
@@ -770,7 +770,7 @@ public class PayRoll extends javax.swing.JInternalFrame {
 
     private void btn_payrollMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_payrollMainActionPerformed
         // TODO add your handling code here:
-        PayRoll pr = new PayRoll();
+        Payroll pr = new Payroll();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(pr).setVisible(true);
         this.dispose();
@@ -793,7 +793,7 @@ public class PayRoll extends javax.swing.JInternalFrame {
 
     private void btn_attendeceMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_attendeceMainActionPerformed
         // TODO add your handling code here:
-        AttendenceManagement am = new AttendenceManagement();
+        AttendanceManagement am = new AttendanceManagement();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(am).setVisible(true);
         this.dispose();

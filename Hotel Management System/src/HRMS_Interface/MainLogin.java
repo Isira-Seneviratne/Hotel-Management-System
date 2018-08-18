@@ -6,7 +6,7 @@
 package HRMS_Interface;
 
 import Beverage_Interface.BeverageHome;
-import Customer_intaface.frmHome;
+import Customer_Interface.frmHome;
 import Event_Interface.EventManagement;
 import FMS_Interface.FMS_Home1;
 

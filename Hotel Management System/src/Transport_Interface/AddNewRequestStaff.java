@@ -33,7 +33,7 @@ public class AddNewRequestStaff extends javax.swing.JInternalFrame {
     public AddNewRequestStaff() {
         initComponents();
         
-        con = MyDBConnection.Myconnect();
+        con = MyDBConnection.connectDB();
     }
 
     /**

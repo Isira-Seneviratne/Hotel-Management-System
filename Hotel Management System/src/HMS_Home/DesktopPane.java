@@ -6,7 +6,6 @@
 package HMS_Home;
 
 import HRMS_Interface.MainLogin;
-import javax.swing.JDesktopPane;
 import org.apache.log4j.BasicConfigurator;
 
 /**
@@ -20,12 +19,10 @@ public class DesktopPane extends javax.swing.JFrame {
      */
     public DesktopPane() {
         initComponents();
-        this.setLocationRelativeTo(null);
-        this.setTitle("Hotel Management System");
+        setLocationRelativeTo(null);
+        setTitle("Hotel Management System");
         MainLogin ml = new MainLogin();
         jDesktopPane1.add(ml).setVisible(true);
-        
-        
     }
     
     /**

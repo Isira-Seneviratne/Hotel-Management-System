@@ -32,7 +32,7 @@ public class AllRequests extends javax.swing.JInternalFrame {
     ResultSet rs = null;
     
     public AllRequests() {
-        con = MyDBConnection.Myconnect();
+        con = MyDBConnection.connectDB();
         initComponents();
     }
 

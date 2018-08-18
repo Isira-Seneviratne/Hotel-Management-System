@@ -22,13 +22,9 @@ public class Validation {
         Matcher matcher = pattern.matcher(email);
         status = matcher.matches();
         return status;
-                
     }
     
     public static boolean nicValidation(String nic){
         return nic.length() == 10 && nic.matches("^[0-9]{9}[Vv]$");
-        
     }
-    
-    
 }

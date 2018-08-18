@@ -6,7 +6,8 @@
 package Transport_Interface;
 
 import HMS_Database.MyDBConnection;
-import com.mysql.jdbc.PreparedStatement;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Date;
 import javax.swing.JDesktopPane;
@@ -24,14 +25,14 @@ public class Repair extends javax.swing.JInternalFrame {
     /**
      * Creates new form Repair
      */
-    com.mysql.jdbc.Connection con = null;
+    Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
 
     public Repair() {
         initComponents();
 
-        con = MyDBConnection.Myconnect();
+        con = MyDBConnection.connectDB();
 
         tableload();
     }

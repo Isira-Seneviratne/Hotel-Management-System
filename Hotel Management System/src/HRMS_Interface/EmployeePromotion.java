@@ -9,12 +9,12 @@ package HRMS_Interface;
  *
  * @author Prabas Gayadeeptha
  */
-public class EmployeePramotion extends javax.swing.JFrame {
+public class EmployeePromotion extends javax.swing.JFrame {
 
     /**
      * Creates new form EmployeePramotion
      */
-    public EmployeePramotion() {
+    public EmployeePromotion() {
         initComponents();
         this.setLocationRelativeTo(null);
         
@@ -156,20 +156,21 @@ public class EmployeePramotion extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EmployeePramotion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EmployeePromotion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EmployeePramotion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EmployeePromotion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EmployeePramotion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EmployeePromotion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EmployeePramotion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EmployeePromotion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EmployeePramotion().setVisible(true);
+                new EmployeePromotion().setVisible(true);
             }
         });
     }

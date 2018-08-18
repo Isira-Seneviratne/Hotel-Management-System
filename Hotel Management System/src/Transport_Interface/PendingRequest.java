@@ -6,14 +6,11 @@
 package Transport_Interface;
 
 import HMS_Database.MyDBConnection;
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.PreparedStatement;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
-import javax.swing.JTextField;
-import javax.swing.JTextField;
-import java.util.Date;
 import javax.swing.JDesktopPane;
 
 /**
@@ -31,7 +28,7 @@ public class PendingRequest extends javax.swing.JInternalFrame {
      */
     public PendingRequest() {
         initComponents();
-        con = MyDBConnection.Myconnect();
+        con = MyDBConnection.connectDB();
 
         //this.setLocationRelativeTo(null);
         tableload();

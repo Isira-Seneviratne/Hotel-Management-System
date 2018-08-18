@@ -7,7 +7,7 @@ package Beverage_Interface;
 
 import HMS_Database.MyDBConnection;
 import HMS_Home.MHome;
-import com.mysql.jdbc.Connection;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,7 +25,7 @@ import net.proteanit.sql.DbUtils;
  *
  * @author Prabas Gayadeeptha
  */
-public class Bevarage_Order extends javax.swing.JInternalFrame {
+public class Beverage_Order extends javax.swing.JInternalFrame {
 
     /**
      * 
@@ -34,20 +34,20 @@ public class Bevarage_Order extends javax.swing.JInternalFrame {
     PreparedStatement pst = null;
     ResultSet rst = null;
 
-    public Bevarage_Order() {
+    public Beverage_Order() {
         initComponents();
-        conn =  MyDBConnection.Myconnect();
-         tableLoad();
-         tableLoad1();
-         // tableLoad3();
-           tableLoad4();
+        conn =  MyDBConnection.connectDB();
+        tableLoad();
+        tableLoad1();
+        // tableLoad3();
+        tableLoad4();
     }
     
       public void tableLoad() {
 
         // Bname,tibrand,qphone,bpay,brprice
-        try {
-
+        try 
+        {
             String q = "SELECT * FROM order_table ";
             pst = conn.prepareStatement(q);
             rst = pst.executeQuery();
@@ -399,10 +399,10 @@ public class Bevarage_Order extends javax.swing.JInternalFrame {
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 490, 770, 80));
 
-        jLabel5.setFont(new java.awt.Font("Stencil", 2, 48)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Stencil", 1, 48)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 51, 204));
-        jLabel5.setText("Orders");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, 50));
+        jLabel5.setText("<html>Beverage<br>Orders</html>");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, 100));
 
         das.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

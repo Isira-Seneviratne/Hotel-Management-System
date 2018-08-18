@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Customer_intaface;
+package Customer_Interface;
 
 import HMS_Database.MyDBConnection;
 import java.sql.Connection;
@@ -44,7 +44,7 @@ public class frmHall extends javax.swing.JInternalFrame {
         jpanelHUpdate.setVisible(false);
         jpanelHDelete.setVisible(false);
         
-          conn=MyDBConnection.Myconnect();
+          conn=MyDBConnection.connectDB();
         
        
          

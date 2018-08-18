@@ -64,7 +64,7 @@ public class Stock_Exchange extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Stock Id", "Product Name", "Brand", "Quantity", "Total Count", "Date"
+                "Stock ID", "Product Name", "Brand", "Quantity", "Total Count", "Date"
             }
         ));
         jScrollPane1.setViewportView(jTable1);

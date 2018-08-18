@@ -34,7 +34,7 @@ public class Vehicle extends javax.swing.JInternalFrame {
     public Vehicle() {
         initComponents();
         
-        con = MyDBConnection.Myconnect();
+        con = MyDBConnection.connectDB();
 
         tableload25();
     }

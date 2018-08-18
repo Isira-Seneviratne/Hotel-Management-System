@@ -11,12 +11,12 @@ import javax.swing.JDesktopPane;
  *
  * @author Prabas Gayadeeptha
  */
-public class Mesage extends javax.swing.JInternalFrame {
+public class Message extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Mesage
      */
-    public Mesage() {
+    public Message() {
         initComponents();
     }
 

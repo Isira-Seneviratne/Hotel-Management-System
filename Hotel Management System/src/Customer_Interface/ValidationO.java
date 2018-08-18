@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Customer_intaface;
+package Customer_Interface;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -30,15 +30,10 @@ public class ValidationO {
 	{
 		status = false;
 	}
-		return status;
+        return status;
+    }
 
-}
-
-
-
-
-
-public static boolean nicValidation(String nic) {
+    public static boolean nicValidation(String nic) {
         
         boolean status1=false;
         String NIC_PATTERN = "^[0-9]{9}[vVxX]$";
@@ -53,8 +48,6 @@ public static boolean nicValidation(String nic) {
 	{
 		status1 = false;
 	}
-		return status1;
-        
+	return status1;
     }
-    
 }

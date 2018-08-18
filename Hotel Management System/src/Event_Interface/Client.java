@@ -38,7 +38,7 @@ public class Client extends javax.swing.JInternalFrame {
      */
     public Client() {
         initComponents();
-        con = MyDBConnection.Myconnect();
+        con = MyDBConnection.connectDB();
        
         update_table();
     }

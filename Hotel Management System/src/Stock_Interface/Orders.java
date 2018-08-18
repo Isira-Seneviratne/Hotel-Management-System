@@ -8,6 +8,7 @@ package Stock_Interface;
 import HMS_Database.MyDBConnection;
 import HMS_Home.MHome;
 import HRMS_Codes.ValidationHRMS;
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -41,24 +42,20 @@ public class Orders extends javax.swing.JInternalFrame {
     public Orders() {
         initComponents();
         
-        con = MyDBConnection.Myconnect();
+        con = MyDBConnection.connectDB();
         
-        tableload();
+        tableLoad();
     }
-    public void tableload()
+    
+    public void tableLoad()
     {
         try {
-            
-        String sql = "SELECT Order_Id, Item_Name, Quantity, Unit, Company, Order_Date FROM pending_orders";
-        pst = con.prepareStatement(sql);
-        rs = pst.executeQuery();
-        
-        jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-        
+            String sql = "SELECT Order_Id, Item_Name, Quantity, Unit, Company, Order_Date FROM pending_orders";
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (SQLException e) {
         }
-    
-    
     }
 
     /**
@@ -121,7 +118,6 @@ public class Orders extends javax.swing.JInternalFrame {
         jLabel3.setText("Date Of Order");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 60, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton1.setText("ADD");
         jButton1.setBorder(null);
@@ -130,9 +126,8 @@ public class Orders extends javax.swing.JInternalFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, 70, 40));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, 90, 40));
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton2.setText("UPDATE");
         jButton2.setBorder(null);
@@ -141,9 +136,8 @@ public class Orders extends javax.swing.JInternalFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, 80, 40));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 110, 100, 40));
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton3.setText("CLEAR");
         jButton3.setBorder(null);
@@ -152,9 +146,8 @@ public class Orders extends javax.swing.JInternalFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, -1, 40));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, 90, 40));
 
-        jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton4.setText("DELETE");
         jButton4.setBorder(null);
@@ -163,17 +156,11 @@ public class Orders extends javax.swing.JInternalFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 170, 80, 40));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 170, 100, 40));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setText("Item Name");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 62, -1, -1));
-
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 59, 155, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -181,7 +168,7 @@ public class Orders extends javax.swing.JInternalFrame {
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 97, -1, -1));
         jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 97, 155, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Company", "Edingbough", "Bairaha", "Ruhunu Foods" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Company", "Edinborough", "Bairaha", "Ruhunu Foods" }));
         jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 178, 155, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -202,7 +189,6 @@ public class Orders extends javax.swing.JInternalFrame {
         jLabel8.setText("Item ID Number");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 27, -1, -1));
 
-        jButton13.setBackground(new java.awt.Color(255, 255, 255));
         jButton13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton13.setText("Generate Report");
         jButton13.setBorder(null);
@@ -377,72 +363,78 @@ public class Orders extends javax.swing.JInternalFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        int d = JOptionPane.showConfirmDialog(null, "Do you want to delete ?");
+        int d = JOptionPane.showConfirmDialog(null, "Do you want to delete?");
         
         if(d==0)
         {
             String item_id = jLabel8.getText();
             
-            String sql = "DELETE FROM pending_orders where Order_Id='"+item_id+"' ";
+            String sql = "DELETE FROM pending_orders where Order_Id='"+item_id+"'";
             
             try {
                 pst = con.prepareStatement(sql);
                 pst.execute();
                 
                 //load table
-                tableload();
+                tableLoad();
                 
             } catch (SQLException e) {
             }
-        
-        
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if(jTextField2.getText().isEmpty()||jTextField3.getText().isEmpty()||jComboBox2.getSelectedItem().toString().isEmpty()||jComboBox1.getSelectedItem().toString().isEmpty()||((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText().isEmpty())
+        if(jTextField2.getText().isEmpty()
+                || jTextField3.getText().isEmpty()
+                || jComboBox2.getSelectedItem().toString().isEmpty()
+                || jComboBox1.getSelectedItem().toString().isEmpty()
+                || ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText().isEmpty())
         {
-                    JOptionPane.showMessageDialog(null,"Enter Data");
+            JOptionPane.showMessageDialog(null,"Some data has not been entered. Enter missing data.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
-        else{
-        String item_name = jTextField2.getText();
-        boolean item_name_validation = ValidationHRMS.isLetter(item_name);
-        String qty = jTextField3.getText();
-        boolean qty_validation = ValidationHRMS.isNumeric(qty);
-        String unit = jComboBox2.getSelectedItem().toString();
-        String company = jComboBox1.getSelectedItem().toString();
-        String date_of_order = ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText();
-        
-        if(item_name_validation){
-            if(qty_validation){
-            
-        try {
-                String w = "INSERT INTO pending_orders(Item_Name, Quantity, Unit, Company, Order_Date) values ('"+item_name+"', '"+qty+"', '"+unit+"', '"+company+"', '"+date_of_order+"')";
-            pst = con.prepareStatement(w);
-            pst.execute();
-            JOptionPane.showMessageDialog(null, "Details  Saved Successfully");
-            
-            tableload();
-        } catch (SQLException e) {
-        }
-            }else{
-                JOptionPane.showMessageDialog(null, "Enter a number");
+        else
+        {
+            String item_name = jTextField2.getText();
+            boolean item_name_validation = ValidationHRMS.isLetter(item_name);
+            String qty = jTextField3.getText();
+            boolean qty_validation = ValidationHRMS.isNumeric(qty);
+            String unit = jComboBox2.getSelectedItem().toString();
+            String company = jComboBox1.getSelectedItem().toString();
+            String date_of_order = ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText();
+
+            if(item_name_validation)
+            {
+                if(qty_validation)
+                {
+                    try
+                    {
+                        String w = "INSERT INTO pending_orders(Item_Name, Quantity, Unit, Company, Order_Date) values ('"+item_name+"', '"+qty+"', '"+unit+"', '"+company+"', '"+date_of_order+"')";
+                        pst = con.prepareStatement(w);
+                        pst.execute();
+                        JOptionPane.showMessageDialog(null, "Details  Saved Successfully");
+                        tableLoad();
+                    }
+                    catch (SQLException e) {
+                        JOptionPane.showMessageDialog(null, "An error occurred while saving.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Enter a number");
+                }
             }
-        }else{
-            JOptionPane.showMessageDialog(null, "Invalid Item Name");
-        }
-        
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Invalid Item Name");
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        int x = JOptionPane.showConfirmDialog(null, "Do you really want to Updare ?");
+        int x = JOptionPane.showConfirmDialog(null, "Do you really want to update?");
         
         if(x==0)
         {
@@ -452,21 +444,16 @@ public class Orders extends javax.swing.JInternalFrame {
             String unit = jComboBox2.getSelectedItem().toString();
             String company = jComboBox1.getSelectedItem().toString();
             String date_of_order = ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText();
-            
-            
-            
             String sql = "UPDATE pending_orders SET Order_Id ='"+item_id+"', Item_Name='"+item_name+"', Quantity='"+qty+"', Unit='"+unit+"', Company='"+company+"', Order_Date='"+date_of_order+"' where  Order_Id='"+item_id+"'  ";
         
             try {
                 pst = con.prepareStatement(sql);
                 pst.execute();
-                
                 //load table
-                tableload();
+                tableLoad();
             } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "An error occurred while updating.", "Error", JOptionPane.ERROR_MESSAGE);
             }
-        
-        
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -497,24 +484,17 @@ public class Orders extends javax.swing.JInternalFrame {
 
                 String add6=rs.getString("Order_Date");
                 
-        try {
+                try {
                     java.util.Date date =  new SimpleDateFormat("yyyy-MM-dd").parse(add6);
                     jDateChooser1.setDate(date);
-        } catch (ParseException e) {
-            JOptionPane.showMessageDialog(this, "cant get date");
-        }
-                
-
+                } catch (ParseException e) {
+                    JOptionPane.showMessageDialog(this, "Unable to parse date.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
                 //String add7=rs.getString("Price");
                 //jTextField4.setText(add7);
-
-                
-
             }
-
-        }catch(Exception e){
-
-            JOptionPane.showMessageDialog(null,e);
+        }catch(HeadlessException | SQLException e){
+            JOptionPane.showMessageDialog(null,"Unable to load row.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -579,7 +559,7 @@ public class Orders extends javax.swing.JInternalFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-        VenderDetails vnd1 = new VenderDetails();
+        VendorDetails vnd1 = new VendorDetails();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(vnd1).setVisible(true);
         this.dispose();

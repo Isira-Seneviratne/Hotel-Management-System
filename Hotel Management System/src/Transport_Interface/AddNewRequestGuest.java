@@ -30,7 +30,7 @@ public class AddNewRequestGuest extends javax.swing.JInternalFrame {
     
     public AddNewRequestGuest() {
         initComponents();
-        con = MyDBConnection.Myconnect();
+        con = MyDBConnection.connectDB();
     }
 
     /**

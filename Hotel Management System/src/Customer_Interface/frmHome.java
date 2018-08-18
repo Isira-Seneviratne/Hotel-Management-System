@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Customer_intaface;
+package Customer_Interface;
 
 import Beverage_Interface.BeverageHome;
 import HMS_Home.MHome;

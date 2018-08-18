@@ -29,7 +29,7 @@ import net.sf.jasperreports.view.JasperViewer;
  *
  * @author Prabas Gayadeeptha
  */
-public class AttendenceManagement extends javax.swing.JInternalFrame {
+public class AttendanceManagement extends javax.swing.JInternalFrame {
 
     Connection conn = null;
     PreparedStatement pst = null;
@@ -40,9 +40,9 @@ Hotel c = new Hotel();
     String sql = "";
 
     @SuppressWarnings("LeakingThisInConstructor")
-    public AttendenceManagement() {
+    public AttendanceManagement() {
         initComponents();
-        conn = (Connection) MyDBConnection.Myconnect();
+        conn = (Connection) MyDBConnection.connectDB();
 
         HMS_Methods hm = new HMS_Methods();
         hm.unmovableInternal(this);
@@ -636,7 +636,7 @@ Hotel c = new Hotel();
         try {
             this.AddLeave();
         } catch (ParseException ex) {
-            Logger.getLogger(AttendenceManagement.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AttendanceManagement.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btn_leaveActionPerformed
 
@@ -792,7 +792,7 @@ Hotel c = new Hotel();
 
     private void btn_payrollMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_payrollMainActionPerformed
         // TODO add your handling code here:
-        PayRoll pr = new PayRoll();
+        Payroll pr = new Payroll();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(pr).setVisible(true);
         this.dispose();
@@ -815,7 +815,7 @@ Hotel c = new Hotel();
 
     private void btn_attendeceMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_attendeceMainActionPerformed
         // TODO add your handling code here:
-        AttendenceManagement am = new AttendenceManagement();
+        AttendanceManagement am = new AttendanceManagement();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(am).setVisible(true);
         this.dispose();

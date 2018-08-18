@@ -10,12 +10,9 @@ import com.mysql.jdbc.PreparedStatement;
 //import java.sql.Connection;
 import java.sql.ResultSet;
 import net.proteanit.sql.DbUtils;
-import com.mysql.jdbc.Connection;
+import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.JTextField;
-import java.util.Date;
 import javax.swing.JDesktopPane;
 
 /**
@@ -34,7 +31,7 @@ public class MyRequest extends javax.swing.JInternalFrame {
     public MyRequest() {
         initComponents();
 
-        con = MyDBConnection.Myconnect();
+        con = MyDBConnection.connectDB();
         //this.setLocationRelativeTo(null);
 
         tableload23();

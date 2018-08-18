@@ -1,7 +1,7 @@
 package HMS_Home;
 
 import Beverage_Interface.BeverageHome;
-import Customer_intaface.frmHome;
+import Customer_Interface.frmHome;
 import Event_Interface.EventManagement;
 
 import FMS_Interface.FMS_Home1;
@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
  * @author Prabas Gayadeeptha
  */
 public class MHome extends javax.swing.JInternalFrame {
-Hotel c= new Hotel();
+    Hotel c= new Hotel();
     HR_Methods hrm = new HR_Methods();
     Color blueColor = new Color(0, 174, 239);
 
@@ -350,7 +350,6 @@ Hotel c= new Hotel();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(f).setVisible(true);
         this.dispose();
-
     }//GEN-LAST:event_btn_stockActionPerformed
 
     private void btn_beverageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_beverageActionPerformed
@@ -399,7 +398,7 @@ Hotel c= new Hotel();
 
     private void btn_logout2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_logout2ActionPerformed
         String ObjButtons[] = {"Yes", "No"};
-        int PromptResult = JOptionPane.showOptionDialog(null, "Are you sure you want to Logout?", "Logout Confirmation", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, ObjButtons, ObjButtons[1]);
+        int PromptResult = JOptionPane.showOptionDialog(null, "Are you sure you want to log out?", "Logout Confirmation", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, ObjButtons, ObjButtons[1]);
         if (PromptResult == JOptionPane.YES_OPTION) {
             MainLogin lg = new MainLogin();
             JDesktopPane desktopPane = getDesktopPane();

@@ -38,7 +38,7 @@ public class RoomItems extends javax.swing.JInternalFrame {
     public RoomItems() {
         initComponents();
         
-        con = MyDBConnection.Myconnect();
+        con = MyDBConnection.connectDB();
         
         tableload();
     }
@@ -135,9 +135,8 @@ public class RoomItems extends javax.swing.JInternalFrame {
         });
         jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 169, 180, -1));
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton1.setText("ADD");
+        jButton1.setText("Add");
         jButton1.setBorder(null);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,9 +145,8 @@ public class RoomItems extends javax.swing.JInternalFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, 150, 40));
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton2.setText("UPDATE");
+        jButton2.setText("Update");
         jButton2.setBorder(null);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,9 +155,8 @@ public class RoomItems extends javax.swing.JInternalFrame {
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, 150, 40));
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton3.setText("CLEAR");
+        jButton3.setText("Clear");
         jButton3.setBorder(null);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -176,9 +173,8 @@ public class RoomItems extends javax.swing.JInternalFrame {
         jLabel6.setText("Room Item Number");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 29, -1, -1));
 
-        jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton5.setText("DELETE");
+        jButton5.setText("Delete");
         jButton5.setBorder(null);
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -187,7 +183,6 @@ public class RoomItems extends javax.swing.JInternalFrame {
         });
         jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, 150, 40));
 
-        jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton4.setText("Generate Report");
         jButton4.setBorder(null);
@@ -525,7 +520,7 @@ public class RoomItems extends javax.swing.JInternalFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-        VenderDetails vnd1 = new VenderDetails();
+        VendorDetails vnd1 = new VendorDetails();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(vnd1).setVisible(true);
         this.dispose();

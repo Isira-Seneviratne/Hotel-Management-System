@@ -35,9 +35,9 @@ public class Invoice extends javax.swing.JInternalFrame {
 
     public Invoice() {
         initComponents();
-        conn =  MyDBConnection.Myconnect();
-      tableLoad();
-      update_table();
+        conn =  MyDBConnection.connectDB();
+        tableLoad();
+        update_table();
     }
 
     private void update_table() {
@@ -153,7 +153,7 @@ public class Invoice extends javax.swing.JInternalFrame {
 
         af.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         af.setText("Price");
-        jPanel2.add(af, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, 30, 20));
+        jPanel2.add(af, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, 50, 20));
 
         Invo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -227,7 +227,7 @@ public class Invoice extends javax.swing.JInternalFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Invoce No", "Date", "Time", "Quantity", "Brand", "Price", "Amount"
+                "Invoice No.", "Date", "Time", "Quantity", "Brand", "Price", "Amount"
             }
         ));
         tab1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -298,10 +298,7 @@ public class Invoice extends javax.swing.JInternalFrame {
         });
         jPanel4.add(searchbo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 180, 30));
 
-        jButton1.setBackground(new java.awt.Color(0, 204, 204));
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Beverage_Images/search-in-folder.png"))); // NOI18N
+        jButton1.setForeground(new java.awt.Color(51, 51, 0));
         jButton1.setText("Search");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -350,10 +347,10 @@ public class Invoice extends javax.swing.JInternalFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Beverage_Images/cheap-specialty-wine.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 980, 200));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, 980, 200));
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel7.setFont(new java.awt.Font("Stencil", 2, 48)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Stencil", 1, 48)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 51, 204));
         jLabel7.setText("Invoice");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));

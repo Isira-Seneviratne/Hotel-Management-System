@@ -326,7 +326,7 @@ public class HRHome extends javax.swing.JInternalFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        AttendenceManagement am = new AttendenceManagement();
+        AttendanceManagement am = new AttendanceManagement();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(am).setVisible(true);
         this.dispose();
@@ -342,7 +342,7 @@ public class HRHome extends javax.swing.JInternalFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        PayRoll pr = new PayRoll();
+        Payroll pr = new Payroll();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(pr).setVisible(true);
         this.dispose();

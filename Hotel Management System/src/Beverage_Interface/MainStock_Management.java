@@ -40,7 +40,7 @@ public class MainStock_Management extends javax.swing.JInternalFrame {
     String passCID;
     public MainStock_Management() {
         initComponents();
-        conn =  MyDBConnection.Myconnect();
+        conn =  MyDBConnection.connectDB();
         tableLoad();
         //tableLoad1();
        // update_table();
@@ -170,7 +170,7 @@ public class MainStock_Management extends javax.swing.JInternalFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Stock Id");
+        jLabel2.setText("Stock ID");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -248,7 +248,7 @@ public class MainStock_Management extends javax.swing.JInternalFrame {
             }
         });
         jPanel6.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 9, 140, 50));
-        jPanel6.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 140, -1));
+        jPanel6.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 140, 30));
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Beverage_Images/View-Tender-icon.png"))); // NOI18N
@@ -305,7 +305,7 @@ public class MainStock_Management extends javax.swing.JInternalFrame {
         });
         jPanel6.add(REPORT, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 70, 260, 50));
 
-        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 440, 810, 130));
+        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 440, 850, 130));
 
         jLabel1.setFont(new java.awt.Font("Stencil", 2, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 102, 255));
@@ -408,7 +408,7 @@ public class MainStock_Management extends javax.swing.JInternalFrame {
         });
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 220, 100, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, -1, 580));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 1250, 580));
 
         PnlMenu.setPreferredSize(new java.awt.Dimension(1200, 100));
         PnlMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

@@ -699,7 +699,7 @@ public class UserManagement extends javax.swing.JInternalFrame {
 
     private void btn_attendeceMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_attendeceMainActionPerformed
         // TODO add your handling code here:
-        AttendenceManagement am = new AttendenceManagement();
+        AttendanceManagement am = new AttendanceManagement();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(am).setVisible(true);
         this.dispose();
@@ -745,7 +745,7 @@ public class UserManagement extends javax.swing.JInternalFrame {
 
     private void btn_payrollMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_payrollMainActionPerformed
         // TODO add your handling code here:
-        PayRoll pr = new PayRoll();
+        Payroll pr = new Payroll();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(pr).setVisible(true);
         this.dispose();

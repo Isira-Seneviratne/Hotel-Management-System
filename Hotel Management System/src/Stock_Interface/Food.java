@@ -42,24 +42,23 @@ public class Food extends javax.swing.JInternalFrame {
     public Food() {
         initComponents();
         
-        con = MyDBConnection.Myconnect();
+        con = MyDBConnection.connectDB();
         
-        tableload();
+        tableLoad();
     }
-    public void tableload()
+    
+    public void tableLoad()
     {
-        try {
-            
-        String sql = "SELECT Food_Item_Id,Food_Name, Quantity, Unit, Vender, Purchased_Date, Expiary_Date, Price FROM food_items";
-        pst = con.prepareStatement(sql);
-        rs = pst.executeQuery();
-        
-        jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-        
+        try
+        {   
+            String sql = "SELECT Food_Item_Id,Food_Name, Quantity, Unit, Vender, Purchased_Date, Expiary_Date, Price FROM food_items";
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (SQLException e) {
+            
         }
-    
-    
     }
 
     /**
@@ -158,14 +157,14 @@ public class Food extends javax.swing.JInternalFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("Food Name");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 73, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel3.setText("Vender");
+        jLabel3.setText("Vendor");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(391, 53, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel4.setText("Expiary Date");
+        jLabel4.setText("Expiry Date");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 282, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -180,20 +179,13 @@ public class Food extends javax.swing.JInternalFrame {
         jLabel7.setText("Quantity");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 186, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Vender", "Edinborougt", "Bairaha", "Ruhunu Foods" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Vendor", "Edinborough", "Bairaha", "Ruhunu Foods" }));
         jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(454, 50, 190, -1));
-
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(454, 97, 189, -1));
         jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 182, 155, -1));
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton1.setText("ADD");
+        jButton1.setText("Add");
         jButton1.setBorder(null);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -202,9 +194,8 @@ public class Food extends javax.swing.JInternalFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 143, 80, 40));
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton2.setText("UPDATE");
+        jButton2.setText("Update");
         jButton2.setBorder(null);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -213,9 +204,8 @@ public class Food extends javax.swing.JInternalFrame {
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 143, 100, 40));
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton3.setText("CLEAR");
+        jButton3.setText("Clear");
         jButton3.setBorder(null);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -224,9 +214,8 @@ public class Food extends javax.swing.JInternalFrame {
         });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 203, 80, 40));
 
-        jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton4.setText("DELETE");
+        jButton4.setText("Delete");
         jButton4.setBorder(null);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -236,12 +225,12 @@ public class Food extends javax.swing.JInternalFrame {
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(541, 203, 100, 40));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel8.setText("price");
+        jLabel8.setText("Price");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(391, 100, -1, -1));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Unit", "Kilogram", "Gram", "Liter" }));
         jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 135, 155, -1));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 70, 154, -1));
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 154, -1));
 
         jDateChooser1.setDateFormatString("yyyy-MM-dd");
         jPanel1.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 220, 150, -1));
@@ -251,13 +240,12 @@ public class Food extends javax.swing.JInternalFrame {
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel9.setText("Food ID");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 30, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel10.setText("Food ID Number");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 30, -1, -1));
+        jLabel10.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 150, 20));
 
-        jButton13.setBackground(new java.awt.Color(255, 255, 255));
         jButton13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton13.setText("Generate Report");
         jButton13.setBorder(null);
@@ -392,68 +380,67 @@ public class Food extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         if(jTextField1.getText().isEmpty()||jComboBox2.getSelectedItem().toString().isEmpty()||jTextField3.getText().isEmpty())
         {
-             JOptionPane.showMessageDialog(null,"Enter Data");
+             JOptionPane.showMessageDialog(null,"One or more fields have not been filled in. Enter the missing data.",
+                     "Missing data", JOptionPane.ERROR_MESSAGE);
         }
-        else{
-        String food_name = jTextField1.getText();
-        boolean food_name_validation = ValidationHRMS.isLetter(food_name);
-        String unit = jComboBox2.getSelectedItem().toString();
-        String qty = jTextField3.getText();
-        boolean qty_validation = ValidationHRMS.isNumeric(qty);
-        String purchased_date = ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText();
-        String expiary_date = ((JTextField)jDateChooser2.getDateEditor().getUiComponent()).getText();
-        String vender = jComboBox1.getSelectedItem().toString();
-        String price = jTextField2.getText();
-        boolean price_validation = ValidationHRMS.isNumeric(price);
-        
-        float prs = Float.parseFloat(price);
-        int qt = Integer.parseInt(qty);
-        float totvalue = prs*qt;
-        
-        
-        try {
-            if(food_name_validation){
-                if(qty_validation){
-                    if(price_validation){
-                String w = "INSERT INTO food_items(Food_Name, Quantity, Unit, Vender, Purchased_Date, Expiary_Date, Price) values ('"+food_name+"', '"+qty+"', '"+unit+"', '"+vender+"', '"+purchased_date+"', '"+expiary_date+"', '"+totvalue+"')";
-            pst = con.prepareStatement(w);
-            pst.execute();
-            JOptionPane.showMessageDialog(null, "Details  Saved Successfully");
-            tableload();
-            }else{
-                    JOptionPane.showMessageDialog(null, "Enter a Number");
-                }
-            }else{
-                JOptionPane.showMessageDialog(null, "Enter a Number");
-            }
-        
-        }else{
-            JOptionPane.showMessageDialog(null, "Invalid item name");
-        }
+        else
+        {
+            String food_name = jTextField1.getText();
+            boolean food_name_validation = ValidationHRMS.isLetter(food_name);
+            String unit = jComboBox2.getSelectedItem().toString();
+            String qty = jTextField3.getText();
+            boolean qty_validation = ValidationHRMS.isNumeric(qty);
+            String purchased_date = ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText();
+            String expiary_date = ((JTextField)jDateChooser2.getDateEditor().getUiComponent()).getText();
+            String vender = jComboBox1.getSelectedItem().toString();
+            String price = jTextField2.getText();
+            boolean price_validation = ValidationHRMS.isNumeric(price);
+
+            float prs = Float.parseFloat(price);
+            int qt = Integer.parseInt(qty);
+            float totvalue = prs*qt;
             
-        } catch (SQLException e) {
-             JOptionPane.showMessageDialog(null, e);
+            try
+            {
+                if(food_name_validation)
+                {
+                    if(qty_validation)
+                    {
+                        if(price_validation)
+                        {
+                            String w = "INSERT INTO food_items(Food_Name, Quantity, Unit, Vender, Purchased_Date, Expiary_Date, Price) values ('"+food_name+"', '"+qty+"', '"+unit+"', '"+vender+"', '"+purchased_date+"', '"+expiary_date+"', '"+totvalue+"')";
+                            pst = con.prepareStatement(w);
+                            pst.execute();
+                            JOptionPane.showMessageDialog(null, "Details  Saved Successfully");
+                            tableLoad();
+                        }
+                        else
+                        {
+                            JOptionPane.showMessageDialog(null, "Enter a Number");
+                        }
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null, "Enter a Number");
+                    }
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Invalid item name");
+                }
+            } catch (SQLException e) {
+                 JOptionPane.showMessageDialog(null, e);
+            }
         }
-               
-        
-        
-        
-        }
-        
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        int x = JOptionPane.showConfirmDialog(null, "Do you really want to Updare ?");
+        int x = JOptionPane.showConfirmDialog(null, "Do you want to update the selected record?");
         
         if(x==0)
         {
@@ -468,22 +455,24 @@ public class Food extends javax.swing.JInternalFrame {
             
             String sql = "UPDATE food_items SET Food_Item_Id ='"+Food_Item_Id+"', Food_Name='"+Food_Name+"', Quantity='"+Quantity+"', Unit='"+Unit+"', Vender='"+Vender+"', Purchased_Date='"+Purchased_Date+"', Expiary_Date='"+Expiary_Date+"', Price='"+Price+"' where  Food_Item_Id='"+Food_Item_Id+"'  ";
         
-            try {
+            try
+            {
                 pst = con.prepareStatement(sql);
                 pst.execute();
                 
                 //load table
-                tableload();
-            } catch (SQLException e) {
+                tableLoad();
             }
-        
-        
+            catch (SQLException e)
+            {
+                JOptionPane.showMessageDialog(null, "An error occurred while updating the record.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        int d = JOptionPane.showConfirmDialog(null, "Do you want to delete ?");
+        int d = JOptionPane.showConfirmDialog(null, "Do you want to delete?");
 
         if(d==0)
         {
@@ -496,24 +485,24 @@ public class Food extends javax.swing.JInternalFrame {
                 pst.execute();
 
                 //load table
-                tableload();
-
+                tableLoad();
             } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "An error occurred while deleting.", "Error", JOptionPane.ERROR_MESSAGE);
             }
-
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-        try{
-            int row=jTable1.getSelectedRow();
-            String Table_click=(jTable1.getModel().getValueAt(row, 0).toString());
-            String sql="select * from food_items where Food_Item_Id='"+Table_click+"'";
-            pst=con.prepareStatement(sql);
-            rs= (ResultSet) pst.executeQuery(sql);
-            while (rs.next()){
-
+        try
+        {
+            int row = jTable1.getSelectedRow();
+            String Table_click = jTable1.getModel().getValueAt(row, 0).toString();
+            String sql = "select * from food_items where Food_Item_Id='"+Table_click+"'";
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery(sql);
+            while (rs.next())
+            {
                 String add1=rs.getString("Food_Item_Id");
                 jLabel10.setText(add1);
 
@@ -531,31 +520,29 @@ public class Food extends javax.swing.JInternalFrame {
 
                 String add6=rs.getString("Purchased_Date");
                 
-        try {
+                try
+                {
                     java.util.Date date =  new SimpleDateFormat("yyyy-MM-dd").parse(add6);
                     jDateChooser1.setDate(date);
-        } catch (ParseException e) {
-            JOptionPane.showMessageDialog(this, "cant get date");
-        }
+                } catch (ParseException e) {
+                    JOptionPane.showMessageDialog(this, "Unable to parse date.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
                 
-
                 String add7=rs.getString("Expiary_Date");
-                try {
+                try
+                {
                     java.util.Date date =  new SimpleDateFormat("yyyy-MM-dd").parse(add6);
                     jDateChooser2.setDate(date);
-        } catch (ParseException e) {
-            JOptionPane.showMessageDialog(this, "cant get date");
-        }
+                } catch (ParseException e) {
+                    JOptionPane.showMessageDialog(this, "Unable to parse date.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
                 
                 String add8=rs.getString("Price");
                 jTextField2.setText(add8);
-
-                
-
             }
-
-        }catch(Exception e){
-
+        }
+        catch(HeadlessException | SQLException e)
+        {
             JOptionPane.showMessageDialog(null,e);
         }
     }//GEN-LAST:event_jTable1MouseClicked
@@ -566,7 +553,6 @@ public class Food extends javax.swing.JInternalFrame {
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(food1).setVisible(true);
         this.dispose();
-
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -591,26 +577,22 @@ public class Food extends javax.swing.JInternalFrame {
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(odr1).setVisible(true);
         this.dispose();
-
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-        VenderDetails vnd1 = new VenderDetails();
+        VendorDetails vnd1 = new VendorDetails();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(vnd1).setVisible(true);
         this.dispose();
-
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
-
         Payments pay1 = new Payments();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(pay1).setVisible(true);
         this.dispose();
-
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
@@ -619,7 +601,6 @@ public class Food extends javax.swing.JInternalFrame {
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(mh).setVisible(true);
         this.dispose();
-
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
@@ -638,8 +619,7 @@ public class Food extends javax.swing.JInternalFrame {
             JasperPrint jp = JasperFillManager.fillReport(jr, null, con);
             JasperViewer.viewReport(jp, false);
         } catch (JRException e) {
-            JOptionPane.showMessageDialog(null, e);
-            
+            JOptionPane.showMessageDialog(null, "Unable to generate report.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton13ActionPerformed
 
@@ -651,7 +631,7 @@ public class Food extends javax.swing.JInternalFrame {
         jTextField3.setText(null);
         jDateChooser1.setDate(null);
         jDateChooser2.setDate(null);
-        jComboBox1.setSelectedItem("Select Vender");
+        jComboBox1.setSelectedItem("Select Vendor");
         jTextField2.setText(null);
     }//GEN-LAST:event_jButton3ActionPerformed
 

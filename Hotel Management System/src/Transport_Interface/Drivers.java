@@ -6,9 +6,10 @@
 package Transport_Interface;
 
 import HMS_Database.MyDBConnection;
-import com.mysql.jdbc.PreparedStatement;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Connection;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,7 +28,7 @@ public class Drivers extends javax.swing.JInternalFrame {
     /**
      * Creates new form Drivers
      */
-    com.mysql.jdbc.Connection con = null;
+    Connection con = null;
 
     //Connection con = null;
     PreparedStatement pst = null;
@@ -36,12 +37,12 @@ public class Drivers extends javax.swing.JInternalFrame {
     public Drivers() {
         initComponents();
 
-        con = MyDBConnection.Myconnect();
+        con = MyDBConnection.connectDB();
 
-        tableload();
+        tableLoad();
     }
 
-    public void tableload() {
+    public void tableLoad() {
         try {
 
             String query = " SELECT Did,First_Name,Last_Name,Birthday,Nic,Date_of_Join,Date_of_leave,Last_Modified_date,Mobile_Number FROM driver ORDER BY Did ";
@@ -368,9 +369,7 @@ public class Drivers extends javax.swing.JInternalFrame {
         String mobiled = table_Driver.getValueAt(row, 8).toString();
 
         try {
-
             DefaultTableModel model = (DefaultTableModel) table_Driver.getModel();
-
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -398,7 +397,7 @@ public class Drivers extends javax.swing.JInternalFrame {
                 pst = (PreparedStatement) con.prepareStatement(queryForReject);
                 pst.execute();
                 //jTable2.setModel(DbUtils.resultSetToTableModel(rs));
-                tableload();
+                tableLoad();
 
                 txt_fname.setText("");
                 txt_lname.setText("");
@@ -408,7 +407,7 @@ public class Drivers extends javax.swing.JInternalFrame {
             } catch (Exception e) {
             }
 
-            tableload();
+            tableLoad();
 
         }
     }//GEN-LAST:event_btn_deleteDriverActionPerformed
@@ -440,8 +439,8 @@ public class Drivers extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, e);
         }
 
-        tableload();
-
+        tableLoad();
+        
     }//GEN-LAST:event_btn_updateDriverActionPerformed
 
     private void btn_clerDriverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clerDriverActionPerformed
@@ -529,7 +528,7 @@ public class Drivers extends javax.swing.JInternalFrame {
                 pst.execute();
 
                 JOptionPane.showMessageDialog(null, "DATA INSERTED");
-                tableload();
+                tableLoad();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e);
                 System.out.println(e);

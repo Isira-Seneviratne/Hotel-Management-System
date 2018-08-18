@@ -40,7 +40,7 @@ public class Service extends javax.swing.JInternalFrame {
      */
     public Service() {
         initComponents();
-        con = MyDBConnection.Myconnect();
+        con = MyDBConnection.connectDB();
         update_table();
     }
     

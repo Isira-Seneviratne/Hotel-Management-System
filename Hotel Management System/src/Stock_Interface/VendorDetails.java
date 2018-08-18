@@ -26,19 +26,19 @@ import net.sf.jasperreports.view.JasperViewer;
  *
  * @author Thishakya
  */
-public class VenderDetails extends javax.swing.JInternalFrame {
+public class VendorDetails extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form VenderDetails
+     * Creates new form VendorDetails
      */
     Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
     
-    public VenderDetails() {
+    public VendorDetails() {
         initComponents();
         
-        con = MyDBConnection.Myconnect();
+        con = MyDBConnection.connectDB();
         
         tableload();
     }
@@ -103,7 +103,7 @@ public class VenderDetails extends javax.swing.JInternalFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Algerian", 1, 24)); // NOI18N
-        jLabel1.setText("Vender Details");
+        jLabel1.setText("Vendor Details");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(247, 249, 255));
@@ -143,7 +143,6 @@ public class VenderDetails extends javax.swing.JInternalFrame {
         });
         jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 194, 175, -1));
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton1.setText("ADD");
         jButton1.setBorder(null);
@@ -154,7 +153,6 @@ public class VenderDetails extends javax.swing.JInternalFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, 130, 40));
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton2.setText("UPDATE");
         jButton2.setBorder(null);
@@ -165,7 +163,6 @@ public class VenderDetails extends javax.swing.JInternalFrame {
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 130, 40));
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton3.setText("CLEAR");
         jButton3.setBorder(null);
@@ -176,7 +173,6 @@ public class VenderDetails extends javax.swing.JInternalFrame {
         });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 170, 130, 40));
 
-        jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton4.setText("DELETE");
         jButton4.setBorder(null);
@@ -192,10 +188,9 @@ public class VenderDetails extends javax.swing.JInternalFrame {
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 27, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel7.setText("Compant ID Number");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 27, -1, -1));
+        jLabel7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, 180, 20));
 
-        jButton13.setBackground(new java.awt.Color(255, 255, 255));
         jButton13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton13.setText("Generate Report");
         jButton13.setBorder(null);
@@ -297,7 +292,7 @@ public class VenderDetails extends javax.swing.JInternalFrame {
 
         jButton9.setBackground(new java.awt.Color(255, 255, 255));
         jButton9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton9.setText("Venders");
+        jButton9.setText("Vendors");
         jButton9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton9.setPreferredSize(new java.awt.Dimension(110, 25));
         jButton9.setSelected(true);
@@ -533,7 +528,7 @@ public class VenderDetails extends javax.swing.JInternalFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-        VenderDetails vnd1 = new VenderDetails();
+        VendorDetails vnd1 = new VendorDetails();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(vnd1).setVisible(true);
         this.dispose();

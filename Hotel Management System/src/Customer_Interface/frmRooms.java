@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Customer_intaface;
+package Customer_Interface;
 
 import HMS_Database.MyDBConnection;
 import java.sql.Connection;
@@ -35,7 +35,7 @@ public class frmRooms extends javax.swing.JInternalFrame {
         jpanelRUpdate.setVisible(false);
         jpanelRDelete.setVisible(false);
         
-        conn=MyDBConnection.Myconnect();
+        conn=MyDBConnection.connectDB();
 
         
         update_table();

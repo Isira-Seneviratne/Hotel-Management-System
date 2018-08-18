@@ -43,7 +43,7 @@ public class Event extends javax.swing.JInternalFrame {
      */
     public Event() {
         initComponents();
-        con = MyDBConnection.Myconnect();
+        con = MyDBConnection.connectDB();
         update_table();
       //  tableLoad();
        // update_table();

@@ -38,7 +38,6 @@ public class BeverageHome extends javax.swing.JInternalFrame {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButton9 = new javax.swing.JButton();
         emp_background = new javax.swing.JLabel();
@@ -128,17 +127,11 @@ public class BeverageHome extends javax.swing.JInternalFrame {
         });
         jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 360, 290, 200));
 
-        jLabel1.setBackground(new java.awt.Color(0, 102, 204));
-        jLabel1.setFont(new java.awt.Font("Trajan Pro 3", 1, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 51, 204));
-        jLabel1.setText("Beverage");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, -1));
-
         jLabel2.setBackground(new java.awt.Color(0, 204, 255));
-        jLabel2.setFont(new java.awt.Font("Arial Unicode MS", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Arial Unicode MS", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 204, 204));
         jLabel2.setText("Hotel Selsan");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 40, -1, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, -1, -1));
 
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Beverage_Images/Home-icon.png"))); // NOI18N
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -192,7 +185,7 @@ public class BeverageHome extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        Bevarage_Order o1= new Bevarage_Order();
+        Beverage_Order o1= new Beverage_Order();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(o1).setVisible(true);
         this.dispose();
@@ -232,7 +225,6 @@ public class BeverageHome extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton9;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;

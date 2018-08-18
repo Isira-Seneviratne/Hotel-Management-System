@@ -41,7 +41,7 @@ public class Bill extends javax.swing.JInternalFrame {
      */
     public Bill() {
         initComponents();
-        con = MyDBConnection.Myconnect();
+        con = MyDBConnection.connectDB();
 
         update_table();
     }

@@ -5,18 +5,11 @@
  */
 package Transport_Interface;
 
-import com.mysql.jdbc.PreparedStatement;
-import javax.swing.JDesktopPane;
-import net.proteanit.sql.DbUtils;
 import HMS_Database.MyDBConnection;
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.PreparedStatement;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
-import javax.swing.JTextField;
-import javax.swing.JTextField;
-import java.util.Date;
 import javax.swing.JDesktopPane;
 
 /**
@@ -31,7 +24,7 @@ public class Payment extends javax.swing.JInternalFrame {
     
     public Payment() {
         initComponents();
-        con = MyDBConnection.Myconnect();
+        con = MyDBConnection.connectDB();
         
         tableload();
         tableload2();
@@ -42,7 +35,7 @@ public class Payment extends javax.swing.JInternalFrame {
         try {
 
             String query = "SELECT RID,Request_User,Repair_Date,Repair_Cost,Repair_Aditional_Cost FROM repair order by RID ";
-            pst = (PreparedStatement) con.prepareStatement(query);
+            pst = con.prepareStatement(query);
             rs = pst.executeQuery();
 
             jTable2.setModel(DbUtils.resultSetToTableModel(rs));
@@ -56,7 +49,7 @@ public class Payment extends javax.swing.JInternalFrame {
         try {
 
             String query = "SELECT SID,Request_Date,Request_User,Service_Cost,Aditional_Cost FROM service order by SID  ";
-            pst = (PreparedStatement) con.prepareStatement(query);
+            pst = con.prepareStatement(query);
             rs = pst.executeQuery();
 
             jTable3.setModel(DbUtils.resultSetToTableModel(rs));
@@ -66,7 +59,7 @@ public class Payment extends javax.swing.JInternalFrame {
 
     }
           
-               public void tableload3() {
+    public void tableload3() {
         try {
 
             String query = " SELECT VID,Vehicle_Number,Joined_Date,Milage_Now,Milage_Then,Milage_Balance FROM vehicle order by VID";

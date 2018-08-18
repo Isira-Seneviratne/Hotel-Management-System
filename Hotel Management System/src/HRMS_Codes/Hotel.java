@@ -48,7 +48,8 @@ public class Hotel {
     private char[] Password;
     private String FullNamefromDB;
     private String job;
-    
+    private String empdob;
+    private String empID;
 
     public String getFullNamefromDB() {
         return FullNamefromDB;
@@ -73,8 +74,6 @@ public class Hotel {
     public void setPassword(char[] Password) {
         this.Password = Password;
     }
-    private String empdob;
-    private String empID;
 
     public String getSdate() {
         return sdate;

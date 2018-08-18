@@ -46,7 +46,7 @@ public class SoftDrink_Stock extends javax.swing.JInternalFrame {
     public SoftDrink_Stock() {
         initComponents();
 
-        conn = MyDBConnection.Myconnect();
+        conn = MyDBConnection.connectDB();
         tableLoad();
         update_table();
     }
@@ -60,10 +60,8 @@ public class SoftDrink_Stock extends javax.swing.JInternalFrame {
             rst = pst.executeQuery();
 
             drinkta.setModel(DbUtils.resultSetToTableModel(rst));
-
         } catch (SQLException e) {
-
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "Unable to update table.", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
     }
@@ -73,37 +71,33 @@ public class SoftDrink_Stock extends javax.swing.JInternalFrame {
 
         // Bname,tibrand,qphone,bpay,brprice
         try {
-
             String q = "SELECT * FROM Soft_Drink ";
             pst = conn.prepareStatement(q);
             rst = pst.executeQuery();
 
             drinkta.setModel(DbUtils.resultSetToTableModel(rst));
-
         } catch (SQLException e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null, "Unable to load table.", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
     }
     
-     public void tableload3()
+     public void tableLoad3()
     {
-        
-         try{
-             
-          Date todatDate = new Date();
-        DateFormat todayFormat= new SimpleDateFormat("yyyy-MM-dd");
-        String todayDateString = todayFormat.format(todatDate);    
-        String sql = "SELECT Stock_id,Product_name,Company,Price,Quantity,ExpiryDate from Soft_Drink WHERE ExpiryDate  <= '"+todayDateString+"'";
-         pst = conn.prepareStatement(sql);   
-         rst = pst.executeQuery();
-         
-         drinkta.setModel(DbUtils.resultSetToTableModel(rst));
-         
+        try
+        { 
+            Date todatDate = new Date();
+            DateFormat todayFormat= new SimpleDateFormat("yyyy-MM-dd");
+            String todayDateString = todayFormat.format(todatDate);    
+            String sql = "SELECT Stock_id,Product_name,Company,Price,Quantity,ExpiryDate from Soft_Drink WHERE ExpiryDate  <= '"+todayDateString+"'";
+            pst = conn.prepareStatement(sql);   
+            rst = pst.executeQuery();
+
+            drinkta.setModel(DbUtils.resultSetToTableModel(rst));
         }
-        catch(Exception e)
+        catch(SQLException e)
         {
-            System.out.println("Error"+e);
+            JOptionPane.showMessageDialog(null, "Unable to load table.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
      /*
@@ -386,6 +380,7 @@ public class SoftDrink_Stock extends javax.swing.JInternalFrame {
             pst.setString(6, ((JTextField) dat.getDateEditor().getUiComponent()).getText());
 
             pst.execute();
+            
             JOptionPane.showMessageDialog(null, "Saved");
             tableLoad();
         } catch (HeadlessException | SQLException e) {
@@ -397,15 +392,13 @@ public class SoftDrink_Stock extends javax.swing.JInternalFrame {
         cccv.setText(null);
         xx.setText(null);
         dat.setDate(null);
-
-        //  JOptionPane.s
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
         //ubdate button here
-        try {                                         //Stock_id,Product_name,Company,Price,Quantity,ExpiryDate
+        try
+        {                                         //Stock_id,Product_name,Company,Price,Quantity,ExpiryDate
             String value1 = as.getText();
             String value2 = ads.getText();
             String value3 = seer.getText();
@@ -417,13 +410,11 @@ public class SoftDrink_Stock extends javax.swing.JInternalFrame {
             pst = conn.prepareStatement(sql);
             pst.execute();
             JOptionPane.showMessageDialog(null, "Record Updated");
-
         } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
 
         update_table();
-
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void bbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bbActionPerformed
@@ -449,12 +440,12 @@ public class SoftDrink_Stock extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void drinktaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_drinktaMouseClicked
-         try {
+        try {
             int row = drinkta.getSelectedRow();
             String Table_click = (drinkta.getModel().getValueAt(row, 0).toString());
             String q = "select * from soft_drink where Stock_id='" + Table_click + "'";
             pst = conn.prepareStatement(q);
-            rst = (ResultSet) pst.executeQuery(q);   //inId,Bname,tibrand,qphone,bpay,brprice
+            rst = pst.executeQuery(q);   //inId,Bname,tibrand,qphone,bpay,brprice
             while (rst.next()) {
 
                 String add1 = rst.getString("Stock_id");    //Stock_id,Product_name,Company,Price,Quantity,ExpiryDate
@@ -465,12 +456,12 @@ public class SoftDrink_Stock extends javax.swing.JInternalFrame {
                 //date_dob.setDate(add4);
                 //get selected date
                 java.util.Date date;
-                try {
+                try
+                {
                     date = new SimpleDateFormat("yyyy-MM-dd").parse(add2);
-
                     dat.setDate(date);
                 } catch (ParseException ex) {
-
+                    JOptionPane.showMessageDialog(null, "Unable to parse date.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
                 //-------------------------------------------
                 String add3 = rst.getString("Product_name");
@@ -498,8 +489,7 @@ public class SoftDrink_Stock extends javax.swing.JInternalFrame {
                     //    }
                 //-------------------------------------------
             }
-        } catch (Exception e) {
-
+        } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
                                     
@@ -507,8 +497,8 @@ public class SoftDrink_Stock extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_drinktaMouseClicked
 
     private void REPORTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_REPORTActionPerformed
-
-        try {
+        try
+        {
             JasperDesign jd = JRXmlLoader.load("D:\\SLIIT\\2nd Year\\2nd Semester\\ITP - Information Technology Project\\Project\\Hotel_Management_System(Selsan)\\SoftDrink.jrxml");// Path for the Report 
             String sql = "SELECT * FROM soft_drink";// USer input of SQL
             JRDesignQuery newquery = new JRDesignQuery();
@@ -517,8 +507,7 @@ public class SoftDrink_Stock extends javax.swing.JInternalFrame {
             JasperReport jr = JasperCompileManager.compileReport(jd);
             JasperPrint jp = JasperFillManager.fillReport(jr, null,conn);
             JasperViewer.viewReport(jp);
-            
-            } 
+        } 
         catch (Exception e) 
         {
             JOptionPane.showMessageDialog(null, e);
