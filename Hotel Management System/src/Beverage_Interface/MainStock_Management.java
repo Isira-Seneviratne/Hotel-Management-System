@@ -8,14 +8,15 @@ package Beverage_Interface;
 
 import HMS_Database.MyDBConnection;
 import HMS_Home.MHome;
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import net.proteanit.sql.DbUtils;
+import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -28,6 +29,8 @@ import net.sf.jasperreports.view.JasperViewer;
 /**
  *
  * @author Prabas Gayadeeptha
+ * 
+ * @author Isira Seneviratne
  */
 public class MainStock_Management extends javax.swing.JInternalFrame {
 
@@ -56,61 +59,44 @@ public class MainStock_Management extends javax.swing.JInternalFrame {
 
             tab1.setModel(DbUtils.resultSetToTableModel(rst));
 
-        } catch (Exception e) {
-
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
-
     }
     public void tableLoad(){
-        
        // Bname,tibrand,qphone,bpay,brprice
-        
-        try{
-        
-        String q = "SELECT * FROM main1 ";
-         pst = conn.prepareStatement(q);   
-         rst = pst.executeQuery();
-         
-         tab1.setModel(DbUtils.resultSetToTableModel(rst));
-       
+        try {
+            String q = "SELECT * FROM main1 ";
+            pst = conn.prepareStatement(q);   
+            rst = pst.executeQuery();
+            tab1.setModel(DbUtils.resultSetToTableModel(rst));
         }
-        catch(Exception e)
-        {
+        catch(SQLException e) {
             System.out.println(e);
         }
-        
-    }     
-      public void clearFeilds(){
-        
-         st.setText("");
+    }
+    
+    public void clearFeilds() {
+        st.setText("");
         pr.setText("");
         br.setText("");
         vo.setText("");
-         qu.setText("");
-         to.setText("");
-        
-      } 
+        qu.setText("");
+        to.setText("");
+    } 
         
 //table load 2
-     public void tableLoad1(){
-        
+    public void tableLoad1() {
        // Bname,tibrand,qphone,bpay,brprice
-        
-        try{
-        
-        String q = "SELECT * FROM main22 ";
-         pst = conn.prepareStatement(q);   
-         rst = pst.executeQuery();
-         
-         tab2.setModel(DbUtils.resultSetToTableModel(rst));
-       
+        try {
+            String q = "SELECT * FROM main22 ";
+            pst = conn.prepareStatement(q);   
+            rst = pst.executeQuery();
+            tab2.setModel(DbUtils.resultSetToTableModel(rst));
         }
-        catch(Exception e)
-        {
+        catch(SQLException e) {
             System.out.println(e);
         }
-        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -155,6 +141,11 @@ public class MainStock_Management extends javax.swing.JInternalFrame {
         Rdrug = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         PnlMenu = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        lblSoftDrinkStock = new javax.swing.JLabel();
+        lblInvoice = new javax.swing.JLabel();
+        lblBevOrders = new javax.swing.JLabel();
+        lblBarStock = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
 
         setMinimumSize(new java.awt.Dimension(1200, 680));
@@ -307,10 +298,10 @@ public class MainStock_Management extends javax.swing.JInternalFrame {
 
         jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 440, 850, 130));
 
-        jLabel1.setFont(new java.awt.Font("Stencil", 2, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Stencil", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 102, 255));
         jLabel1.setText("Main Stock");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
 
         tab1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -413,6 +404,61 @@ public class MainStock_Management extends javax.swing.JInternalFrame {
         PnlMenu.setPreferredSize(new java.awt.Dimension(1200, 100));
         PnlMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel9.setBackground(new java.awt.Color(0, 174, 238));
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("Main Stock Management");
+        jLabel9.setOpaque(true);
+        PnlMenu.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 40, 210, 30));
+
+        lblSoftDrinkStock.setBackground(new java.awt.Color(153, 204, 255));
+        lblSoftDrinkStock.setForeground(new java.awt.Color(255, 255, 255));
+        lblSoftDrinkStock.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSoftDrinkStock.setText("Soft Drink Stock");
+        lblSoftDrinkStock.setOpaque(true);
+        lblSoftDrinkStock.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblSoftDrinkStockMouseClicked(evt);
+            }
+        });
+        PnlMenu.add(lblSoftDrinkStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 40, 210, 30));
+
+        lblInvoice.setBackground(new java.awt.Color(153, 204, 255));
+        lblInvoice.setForeground(new java.awt.Color(255, 255, 255));
+        lblInvoice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblInvoice.setText("Invoice");
+        lblInvoice.setOpaque(true);
+        lblInvoice.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblInvoiceMouseClicked(evt);
+            }
+        });
+        PnlMenu.add(lblInvoice, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 40, 210, 30));
+
+        lblBevOrders.setBackground(new java.awt.Color(153, 204, 255));
+        lblBevOrders.setForeground(new java.awt.Color(255, 255, 255));
+        lblBevOrders.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblBevOrders.setText("Beverage Orders");
+        lblBevOrders.setOpaque(true);
+        lblBevOrders.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblBevOrdersMouseClicked(evt);
+            }
+        });
+        PnlMenu.add(lblBevOrders, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 210, 30));
+
+        lblBarStock.setBackground(new java.awt.Color(153, 204, 255));
+        lblBarStock.setForeground(new java.awt.Color(255, 255, 255));
+        lblBarStock.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblBarStock.setText("Bar Stock");
+        lblBarStock.setOpaque(true);
+        lblBarStock.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblBarStockMouseClicked(evt);
+            }
+        });
+        PnlMenu.add(lblBarStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 210, 30));
+
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Beverage_Images/MenuBar_Back_Beverage.jpg"))); // NOI18N
         jLabel13.setMaximumSize(new java.awt.Dimension(1190, 75));
         jLabel13.setMinimumSize(new java.awt.Dimension(1190, 75));
@@ -430,7 +476,7 @@ public class MainStock_Management extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         //update table
-            try{
+        try {
             String value1 = st.getText();                   //Stock_Id
             //Product Name
             //Brand
@@ -450,18 +496,14 @@ public class MainStock_Management extends javax.swing.JInternalFrame {
             pst=conn .prepareStatement(q);
             pst.execute();
             JOptionPane.showMessageDialog(null,"Record Updated");
-
         }
-        catch(Exception e)
-        {
+        catch(HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(null,e);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        
-        try{
+        try {
             // String q = "INSERT INTO invoice01 (inId,Bname,tibrand,qphone,bpay,brprice) values (?,?,?,?,?,?)";
             String q= "INSERT INTO main1(Stock_Id,Product_Name,Brand,Volume,Quantity,Total_Count) values(?,?,?,?,?,?)";
             //System.out.println("qq");
@@ -478,15 +520,10 @@ public class MainStock_Management extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Successfully Saved");
             tableLoad();
 
-        }catch(SQLException e){
-
+        } catch(SQLException e) {
             System.out.println(e.getMessage());
             JOptionPane.showMessageDialog(null ,e);
         }
-        
-
-
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -514,25 +551,18 @@ public class MainStock_Management extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_RdrugActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-         String qty = Rdrug.getText();
-
+        String qty = Rdrug.getText();
         int q = tab1.getSelectedRow();
-
         int newQty = Integer.parseInt(qty);
-
         String quantity = tab1.getValueAt(q, 5).toString();
-
         int oldQty = Integer.parseInt(quantity);
-
         // System.out.println(newQty);
         // System.out.println(oldQty);
 
         if (Rdrug.getText().isEmpty()) {
-
             JOptionPane.showMessageDialog(null, "Please Input Quantity", "Error", JOptionPane.ERROR_MESSAGE);
-
-        } else if (newQty <= oldQty) {
-
+        }
+        else if (newQty <= oldQty) {
             try {
 
                 String r =  "INSERT INTO main22(Stock_Id,Product_Name,Brand,Volume,Quantity,Total_Count) values(?,?,?,?,?,?)";
@@ -561,7 +591,7 @@ public class MainStock_Management extends javax.swing.JInternalFrame {
                // tableLoad1();
                 
                 System.out.print("test3");
-            } catch (Exception e) {
+            } catch (SQLException e) {
                 //System.out.print("test4");
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }
@@ -570,11 +600,10 @@ public class MainStock_Management extends javax.swing.JInternalFrame {
                // tableLoad();
            // tableLoad();
             
-System.out.print("test4");
-        tableLoad();
-        tableLoad1();
+            System.out.print("test4");
+            tableLoad();
+            tableLoad1();
         }
-        
         else {
             JOptionPane.showMessageDialog(null, "Requested quantity cannot be issue", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -582,7 +611,7 @@ System.out.print("test4");
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void tab1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab1MouseClicked
-         try {
+        try {
             int row = tab1.getSelectedRow();//Stock_id,product_name,Brand,Volume,Quantity,Pay_by,Price,Amount
             String Table_click = (tab1.getModel().getValueAt(row, 0).toString());
             String q = "select * from main1  where Stock_id='" + Table_click + "'";
@@ -638,35 +667,20 @@ System.out.print("test4");
 
             JOptionPane.showMessageDialog(null, e);
         }
-
-                                  
-                                   
-
     }//GEN-LAST:event_tab1MouseClicked
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-             
-           // delete record
+        // delete record
         String q = "delete from main1 where Stock_id= ?";
         try {
-
             pst = conn.prepareStatement(q);
-
             pst.setString(1, st.getText());
-
             pst.execute();
             JOptionPane.showMessageDialog(null, "Record Deleted");
-
         } catch (Exception e) {
-
             JOptionPane.showMessageDialog(null, e);
-
         }
         update_table();
-
-                 
-                                           
-
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -686,7 +700,6 @@ System.out.print("test4");
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void REPORTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_REPORTActionPerformed
-
         try {
             JasperDesign jd = JRXmlLoader.load("D:\\SLIIT\\2nd Year\\2nd Semester\\ITP - Information Technology Project\\Project\\Hotel_Management_System(Selsan)\\MainStock.jrxml");// Path for the Report
             String sql = "SELECT * FROM main1";// USer input of SQL
@@ -696,14 +709,28 @@ System.out.print("test4");
             JasperReport jr = JasperCompileManager.compileReport(jd);
             JasperPrint jp = JasperFillManager.fillReport(jr, null,conn);
             JasperViewer.viewReport(jp);
-
         }
-        catch (Exception e)
+        catch (JRException e)
         {
             JOptionPane.showMessageDialog(null, e);
         }
-
     }//GEN-LAST:event_REPORTActionPerformed
+
+    private void lblBarStockMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBarStockMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblBarStockMouseClicked
+
+    private void lblBevOrdersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBevOrdersMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblBevOrdersMouseClicked
+
+    private void lblInvoiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInvoiceMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblInvoiceMouseClicked
+
+    private void lblSoftDrinkStockMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSoftDrinkStockMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblSoftDrinkStockMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -728,12 +755,17 @@ System.out.print("test4");
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lblBarStock;
+    private javax.swing.JLabel lblBevOrders;
+    private javax.swing.JLabel lblInvoice;
+    private javax.swing.JLabel lblSoftDrinkStock;
     private javax.swing.JTextField pr;
     private javax.swing.JTextField qu;
     private javax.swing.JTextField st;

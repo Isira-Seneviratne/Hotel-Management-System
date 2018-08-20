@@ -5,17 +5,11 @@
  */
 package HRMS_Interface;
 
-import Beverage_Interface.BeverageHome;
-import Customer_Interface.frmHome;
-import Event_Interface.EventManagement;
-import FMS_Interface.FMS_Home1;
 
 import HMS_Home.MHome;
-import com.mysql.jdbc.Connection;
+import java.sql.Connection;
 import HMS_Database.MyDBConnection;
 import HRMS_Codes.Hotel;
-import Stock_Interface.Food;
-import Transport_Interface.TransportMain;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -39,7 +33,7 @@ public class MainLogin extends javax.swing.JInternalFrame {
 
     public MainLogin() {
         initComponents();
-        //conn = (Connection) MyDBConnection.Myconnect();
+        conn = MyDBConnection.connectDB();
     }
 
     @SuppressWarnings("unchecked")
@@ -78,7 +72,7 @@ public class MainLogin extends javax.swing.JInternalFrame {
                 btn_loginActionPerformed(evt);
             }
         });
-        pnl_login.add(btn_login, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 330, 90, 40));
+        pnl_login.add(btn_login, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 330, 90, 40));
 
         btn_loginReset.setBackground(new java.awt.Color(255, 255, 255));
         btn_loginReset.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -90,7 +84,7 @@ public class MainLogin extends javax.swing.JInternalFrame {
                 btn_loginResetActionPerformed(evt);
             }
         });
-        pnl_login.add(btn_loginReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 330, 90, 40));
+        pnl_login.add(btn_loginReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 330, 90, 40));
 
         btn_loginClose.setBackground(new java.awt.Color(255, 255, 255));
         btn_loginClose.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -110,14 +104,14 @@ public class MainLogin extends javax.swing.JInternalFrame {
         lbl_password.setForeground(new java.awt.Color(60, 148, 139));
         lbl_password.setText("Password");
         lbl_password.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        pnl_login.add(lbl_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 260, 100, 30));
+        pnl_login.add(lbl_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 260, 110, 30));
 
         lbl_username.setBackground(new java.awt.Color(255, 255, 255));
         lbl_username.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         lbl_username.setForeground(new java.awt.Color(60, 148, 139));
         lbl_username.setText("User Name");
         lbl_username.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        pnl_login.add(lbl_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 210, 100, 30));
+        pnl_login.add(lbl_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 210, 110, 30));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -134,9 +128,9 @@ public class MainLogin extends javax.swing.JInternalFrame {
         lbl_hotelselsan.setForeground(new java.awt.Color(60, 148, 139));
         lbl_hotelselsan.setText("Hotel Selsan");
         lbl_hotelselsan.setToolTipText("");
-        pnl_login.add(lbl_hotelselsan, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 100, 150, -1));
+        pnl_login.add(lbl_hotelselsan, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 100, 170, -1));
 
-        txt_loginuserName.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        txt_loginuserName.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txt_loginuserName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_loginuserNameActionPerformed(evt);
@@ -144,7 +138,7 @@ public class MainLogin extends javax.swing.JInternalFrame {
         });
         pnl_login.add(txt_loginuserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 210, 190, 30));
 
-        txt_loginpassword.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        txt_loginpassword.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         pnl_login.add(txt_loginpassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 260, 190, 30));
 
         emp_background4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/MainBackForAll.jpg"))); // NOI18N

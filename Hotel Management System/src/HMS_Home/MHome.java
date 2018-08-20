@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
  * @author Prabas Gayadeeptha
  */
 public class MHome extends javax.swing.JInternalFrame {
-    Hotel c= new Hotel();
+    Hotel c = new Hotel();
     HR_Methods hrm = new HR_Methods();
     Color blueColor = new Color(0, 174, 239);
 
@@ -62,7 +62,6 @@ public class MHome extends javax.swing.JInternalFrame {
         pnl_hmsHome.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 1190, 10));
 
         btn_event.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Events_48.png"))); // NOI18N
-        btn_event.setEnabled(false);
         btn_event.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btn_eventMouseEntered(evt);
@@ -79,7 +78,6 @@ public class MHome extends javax.swing.JInternalFrame {
         pnl_hmsHome.add(btn_event, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 100, 250, 200));
 
         btn_custBooking.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Customers_Small.png"))); // NOI18N
-        btn_custBooking.setEnabled(false);
         btn_custBooking.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btn_custBookingMouseEntered(evt);
@@ -96,7 +94,6 @@ public class MHome extends javax.swing.JInternalFrame {
         pnl_hmsHome.add(btn_custBooking, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 330, 250, 200));
 
         btn_finance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Finance_Small.png"))); // NOI18N
-        btn_finance.setEnabled(false);
         btn_finance.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btn_financeMouseEntered(evt);
@@ -113,7 +110,6 @@ public class MHome extends javax.swing.JInternalFrame {
         pnl_hmsHome.add(btn_finance, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, 250, 200));
 
         btn_restaurant.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Restaurant_Small.png"))); // NOI18N
-        btn_restaurant.setEnabled(false);
         btn_restaurant.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btn_restaurantMouseEntered(evt);
@@ -125,7 +121,6 @@ public class MHome extends javax.swing.JInternalFrame {
         pnl_hmsHome.add(btn_restaurant, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 330, 250, 200));
 
         btn_transport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Transport_Small.png"))); // NOI18N
-        btn_transport.setEnabled(false);
         btn_transport.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btn_transportMouseEntered(evt);
@@ -142,7 +137,6 @@ public class MHome extends javax.swing.JInternalFrame {
         pnl_hmsHome.add(btn_transport, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 100, 250, 200));
 
         btn_stock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Stock_Small.png"))); // NOI18N
-        btn_stock.setEnabled(false);
         btn_stock.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btn_stockMouseEntered(evt);
@@ -159,7 +153,6 @@ public class MHome extends javax.swing.JInternalFrame {
         pnl_hmsHome.add(btn_stock, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 330, 250, 200));
 
         btn_beverage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Beverage_Small.png"))); // NOI18N
-        btn_beverage.setEnabled(false);
         btn_beverage.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btn_beverageMouseEntered(evt);
@@ -176,7 +169,6 @@ public class MHome extends javax.swing.JInternalFrame {
         pnl_hmsHome.add(btn_beverage, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 250, 200));
 
         btn_hr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/HR_Small(low).png"))); // NOI18N
-        btn_hr.setEnabled(false);
         btn_hr.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btn_hrMouseEntered(evt);
@@ -259,118 +251,116 @@ public class MHome extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_eventMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_eventMouseEntered
-        this.btn_event.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Events_64.png")));
+        btn_event.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Events_64.png")));
     }//GEN-LAST:event_btn_eventMouseEntered
 
     private void btn_eventMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_eventMouseExited
-        this.btn_event.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Events_48.png")));
+        btn_event.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Events_48.png")));
     }//GEN-LAST:event_btn_eventMouseExited
 
     private void btn_eventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eventActionPerformed
         EventManagement em = new EventManagement();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(em).setVisible(true);
-        this.dispose();
-
+        dispose();
     }//GEN-LAST:event_btn_eventActionPerformed
 
     private void btn_custBookingMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_custBookingMouseEntered
-        this.btn_custBooking.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Customers_Large.png")));
+        btn_custBooking.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Customers_Large.png")));
     }//GEN-LAST:event_btn_custBookingMouseEntered
 
     private void btn_custBookingMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_custBookingMouseExited
-        this.btn_custBooking.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Customers_Small.png")));
+        btn_custBooking.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Customers_Small.png")));
     }//GEN-LAST:event_btn_custBookingMouseExited
 
     private void btn_financeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_financeMouseEntered
-        this.btn_finance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Finance_Large.png")));
+        btn_finance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Finance_Large.png")));
     }//GEN-LAST:event_btn_financeMouseEntered
 
     private void btn_financeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_financeMouseExited
-        this.btn_finance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Finance_Small.png")));
+        btn_finance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Finance_Small.png")));
     }//GEN-LAST:event_btn_financeMouseExited
 
     private void btn_restaurantMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_restaurantMouseEntered
-        this.btn_restaurant.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Restaurant_Large.png")));
+        btn_restaurant.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Restaurant_Large.png")));
     }//GEN-LAST:event_btn_restaurantMouseEntered
 
     private void btn_restaurantMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_restaurantMouseExited
-        this.btn_restaurant.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Restaurant_Small.png")));
+        btn_restaurant.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Restaurant_Small.png")));
     }//GEN-LAST:event_btn_restaurantMouseExited
 
     private void btn_transportMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_transportMouseEntered
-        this.btn_transport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Transport_Large.png")));
+        btn_transport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Transport_Large.png")));
     }//GEN-LAST:event_btn_transportMouseEntered
 
     private void btn_transportMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_transportMouseExited
-        this.btn_transport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Transport_Small.png")));
+        btn_transport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Transport_Small.png")));
     }//GEN-LAST:event_btn_transportMouseExited
 
     private void btn_stockMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_stockMouseEntered
-        this.btn_stock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Stock_Large.png")));
+        btn_stock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Stock_Large.png")));
     }//GEN-LAST:event_btn_stockMouseEntered
 
     private void btn_stockMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_stockMouseExited
-        this.btn_stock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Stock_Small.png")));
+        btn_stock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Stock_Small.png")));
     }//GEN-LAST:event_btn_stockMouseExited
 
     private void btn_beverageMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_beverageMouseEntered
-        this.btn_beverage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Beverage_Large.png")));
+        btn_beverage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Beverage_Large.png")));
     }//GEN-LAST:event_btn_beverageMouseEntered
 
     private void btn_beverageMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_beverageMouseExited
-        this.btn_beverage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Beverage_Small.png")));
+        btn_beverage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Beverage_Small.png")));
     }//GEN-LAST:event_btn_beverageMouseExited
 
     private void btn_hrMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_hrMouseEntered
-        this.btn_hr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/HR_Large(low).png")));
+        btn_hr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/HR_Large(low).png")));
     }//GEN-LAST:event_btn_hrMouseEntered
 
     private void btn_hrMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_hrMouseExited
-        this.btn_hr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/HR_Small(low).png")));
+        btn_hr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/HR_Small(low).png")));
     }//GEN-LAST:event_btn_hrMouseExited
 
     private void btn_hrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hrActionPerformed
         UserManagement um = new UserManagement();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(um).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_btn_hrActionPerformed
 
     private void btn_financeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_financeActionPerformed
         FMS_Home1 f = new FMS_Home1();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(f).setVisible(true);
-        this.dispose();
-
+        dispose();
     }//GEN-LAST:event_btn_financeActionPerformed
 
     private void btn_stockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_stockActionPerformed
         Food f = new Food();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(f).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_btn_stockActionPerformed
 
     private void btn_beverageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_beverageActionPerformed
         BeverageHome mi = new BeverageHome();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(mi).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_btn_beverageActionPerformed
 
     private void btn_custBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_custBookingActionPerformed
         frmHome fh = new frmHome();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(fh).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_btn_custBookingActionPerformed
 
     private void btn_transportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_transportActionPerformed
         TransportMain tm = new TransportMain();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(tm).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_btn_transportActionPerformed
 
     private void btn_home2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_home2MouseEntered
@@ -385,7 +375,7 @@ public class MHome extends javax.swing.JInternalFrame {
         MHome m = new MHome();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(m).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_btn_home2ActionPerformed
 
     private void btn_logout2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_logout2MouseEntered
@@ -403,7 +393,7 @@ public class MHome extends javax.swing.JInternalFrame {
             MainLogin lg = new MainLogin();
             JDesktopPane desktopPane = getDesktopPane();
             desktopPane.add(lg).setVisible(true);
-            this.dispose();
+            dispose();
         }
     }//GEN-LAST:event_btn_logout2ActionPerformed
 

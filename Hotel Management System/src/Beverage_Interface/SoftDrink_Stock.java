@@ -32,6 +32,8 @@ import net.sf.jasperreports.view.JasperViewer;
 /**
  *
  * @author Prabas Gayadeeptha
+ * 
+ * @author Isira Seneviratne
  */
 public class SoftDrink_Stock extends javax.swing.JInternalFrame {
 
@@ -162,6 +164,11 @@ public class SoftDrink_Stock extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         emp_background = new javax.swing.JLabel();
         PnlMenu = new javax.swing.JPanel();
+        lblInvoice1 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        lblInvoice = new javax.swing.JLabel();
+        lblBevOrders = new javax.swing.JLabel();
+        lblBarStock = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
 
         setMinimumSize(new java.awt.Dimension(1200, 680));
@@ -177,7 +184,7 @@ public class SoftDrink_Stock extends javax.swing.JInternalFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("Stock Id");
+        jLabel1.setText("Stock ID");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -249,7 +256,7 @@ public class SoftDrink_Stock extends javax.swing.JInternalFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Stock Id", "Product Name", "Company", "Price", "Quantity", "Expiry date"
+                "Stock ID", "Product Name", "Company", "Price", "Quantity", "Expiry date"
             }
         ));
         drinkta.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -353,6 +360,61 @@ public class SoftDrink_Stock extends javax.swing.JInternalFrame {
 
         PnlMenu.setPreferredSize(new java.awt.Dimension(1200, 100));
         PnlMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblInvoice1.setBackground(new java.awt.Color(153, 204, 255));
+        lblInvoice1.setForeground(new java.awt.Color(255, 255, 255));
+        lblInvoice1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblInvoice1.setText("Invoice");
+        lblInvoice1.setOpaque(true);
+        lblInvoice1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblInvoice1MouseClicked(evt);
+            }
+        });
+        PnlMenu.add(lblInvoice1, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 40, 210, 30));
+
+        jLabel8.setBackground(new java.awt.Color(0, 174, 238));
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Soft Drink Stock");
+        jLabel8.setOpaque(true);
+        PnlMenu.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 40, 210, 30));
+
+        lblInvoice.setBackground(new java.awt.Color(153, 204, 255));
+        lblInvoice.setForeground(new java.awt.Color(255, 255, 255));
+        lblInvoice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblInvoice.setText("Invoice");
+        lblInvoice.setOpaque(true);
+        lblInvoice.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblInvoiceMouseClicked(evt);
+            }
+        });
+        PnlMenu.add(lblInvoice, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 40, 210, 30));
+
+        lblBevOrders.setBackground(new java.awt.Color(153, 204, 255));
+        lblBevOrders.setForeground(new java.awt.Color(255, 255, 255));
+        lblBevOrders.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblBevOrders.setText("Beverage Orders");
+        lblBevOrders.setOpaque(true);
+        lblBevOrders.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblBevOrdersMouseClicked(evt);
+            }
+        });
+        PnlMenu.add(lblBevOrders, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 210, 30));
+
+        lblBarStock.setBackground(new java.awt.Color(153, 204, 255));
+        lblBarStock.setForeground(new java.awt.Color(255, 255, 255));
+        lblBarStock.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblBarStock.setText("Bar Stock");
+        lblBarStock.setOpaque(true);
+        lblBarStock.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblBarStockMouseClicked(evt);
+            }
+        });
+        PnlMenu.add(lblBarStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 210, 30));
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Beverage_Images/MenuBar_Back_Beverage.jpg"))); // NOI18N
         jLabel13.setMaximumSize(new java.awt.Dimension(1190, 75));
@@ -516,6 +578,22 @@ public class SoftDrink_Stock extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_REPORTActionPerformed
 
+    private void lblBarStockMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBarStockMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblBarStockMouseClicked
+
+    private void lblBevOrdersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBevOrdersMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblBevOrdersMouseClicked
+
+    private void lblInvoiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInvoiceMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblInvoiceMouseClicked
+
+    private void lblInvoice1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInvoice1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblInvoice1MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PnlMenu;
@@ -540,6 +618,7 @@ public class SoftDrink_Stock extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -547,6 +626,10 @@ public class SoftDrink_Stock extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lblBarStock;
+    private javax.swing.JLabel lblBevOrders;
+    private javax.swing.JLabel lblInvoice;
+    private javax.swing.JLabel lblInvoice1;
     private javax.swing.JTextField seer;
     private javax.swing.JTextField xx;
     // End of variables declaration//GEN-END:variables

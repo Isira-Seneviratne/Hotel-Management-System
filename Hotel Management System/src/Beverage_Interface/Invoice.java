@@ -7,6 +7,7 @@ package Beverage_Interface;
 
 import HMS_Database.MyDBConnection;
 import HMS_Home.MHome;
+import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -22,6 +24,8 @@ import net.proteanit.sql.DbUtils;
 /**
  *
  * @author Prabas Gayadeeptha
+ * 
+ * @author Isira Seneviratne
  */
 public class Invoice extends javax.swing.JInternalFrame {
 
@@ -41,38 +45,28 @@ public class Invoice extends javax.swing.JInternalFrame {
     }
 
     private void update_table() {
-
         try {
             String sql = "SELECT inId,Bname,tibrand,qphone,bpay,brprice from invoice01 ";
             //String sql = "SELECT id,f_name,l_name,category from trainers ";
             pst = conn.prepareStatement(sql);
             rst = pst.executeQuery();
-
             tab1.setModel(DbUtils.resultSetToTableModel(rst));
-
-        } catch (Exception e) {
-
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
-
     }
 
     //table load
     public void tableLoad() {
-
         // Bname,tibrand,qphone,bpay,brprice
         try {
-
             String q = "SELECT * FROM invoice01 ";
             pst = conn.prepareStatement(q);
             rst = pst.executeQuery();
-
             tab1.setModel(DbUtils.resultSetToTableModel(rst));
-
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e);
         }
-
     }
 
     /**
@@ -116,6 +110,11 @@ public class Invoice extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         emp_background = new javax.swing.JLabel();
         PnlMenu = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        lblBarStock = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        lblBeverageOrders = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
 
         setMinimumSize(new java.awt.Dimension(1200, 680));
@@ -364,6 +363,41 @@ public class Invoice extends javax.swing.JInternalFrame {
         PnlMenu.setPreferredSize(new java.awt.Dimension(1200, 100));
         PnlMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel2.setBackground(new java.awt.Color(0, 174, 238));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Invoice");
+        jLabel2.setOpaque(true);
+        PnlMenu.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 40, 210, 30));
+
+        lblBarStock.setBackground(new java.awt.Color(153, 204, 255));
+        lblBarStock.setForeground(new java.awt.Color(255, 255, 255));
+        lblBarStock.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblBarStock.setText("Bar Stock");
+        lblBarStock.setOpaque(true);
+        PnlMenu.add(lblBarStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 210, 30));
+
+        jLabel4.setBackground(new java.awt.Color(153, 204, 255));
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Main Stock Management");
+        jLabel4.setOpaque(true);
+        PnlMenu.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 40, 210, 30));
+
+        lblBeverageOrders.setBackground(new java.awt.Color(153, 204, 255));
+        lblBeverageOrders.setForeground(new java.awt.Color(255, 255, 255));
+        lblBeverageOrders.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblBeverageOrders.setText("Beverage Orders");
+        lblBeverageOrders.setOpaque(true);
+        PnlMenu.add(lblBeverageOrders, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 210, 30));
+
+        jLabel6.setBackground(new java.awt.Color(153, 204, 255));
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Soft Drink Stock");
+        jLabel6.setOpaque(true);
+        PnlMenu.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 40, 210, 30));
+
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Beverage_Images/MenuBar_Back_Beverage.jpg"))); // NOI18N
         jLabel13.setMaximumSize(new java.awt.Dimension(1190, 75));
         jLabel13.setMinimumSize(new java.awt.Dimension(1190, 75));
@@ -380,8 +414,7 @@ public class Invoice extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_InvoActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        //ubdate button here
-
+        //update button here
         try {
             String value1 = Invo.getText();
             String value2 = ((JTextField) hh.getDateEditor().getUiComponent()).getText();
@@ -394,11 +427,9 @@ public class Invoice extends javax.swing.JInternalFrame {
             pst = conn.prepareStatement(sql);
             pst.execute();
             JOptionPane.showMessageDialog(null, "Record Updated");
-
-        } catch (Exception e) {
+        } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
-
         update_table();
         /*
 
@@ -426,36 +457,37 @@ public class Invoice extends javax.swing.JInternalFrame {
         }
 
          */
-
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void Ad2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ad2ActionPerformed
+        try {
+            if (Invo.getText().isEmpty()
+                    || ((JTextField)hh.getDateEditor().getUiComponent()).getText().isEmpty()
+                    || ss.getText().isEmpty()
+                    || hj.getText().isEmpty()
+                    || as.getText().isEmpty()
+                    || zx.getText().isEmpty())              
+            {
+                JOptionPane.showMessageDialog(null, "Please Enter All");
+            }
+            else {
+                // String q = "INSERT INTO invoice01 (inId,Bname,tibrand,qphone,bpay,brprice) values (?,?,?,?,?,?)";
+                String q = "INSERT INTO invoice01 (inId,Bname,tibrand,qphone,bpay,brprice) values (?,?,?,?,?,?)";
+                pst = conn.prepareStatement(q);
 
-           
-       try{
-            if(Invo.getText().isEmpty()||((JTextField)hh.getDateEditor().getUiComponent()).getText().isEmpty()||ss.getText().isEmpty()||hj.getText().isEmpty()||as.getText().isEmpty()||zx.getText().isEmpty())              
-    {
-        JOptionPane.showMessageDialog(null, "Please Enter All");
-    }
-            else{
-            // String q = "INSERT INTO invoice01 (inId,Bname,tibrand,qphone,bpay,brprice) values (?,?,?,?,?,?)";
-            String q = "INSERT INTO invoice01 (inId,Bname,tibrand,qphone,bpay,brprice) values (?,?,?,?,?,?)";
-            pst = conn.prepareStatement(q);
+                pst.setString(1, Invo.getText());
+                pst.setString(2, ((JTextField) hh.getDateEditor().getUiComponent()).getText());
+                pst.setString(3, ss.getText());
+                pst.setString(4, hj.getText());
+                pst.setString(5, as.getText());
+                pst.setString(6, zx.getText());
 
-            pst.setString(1, Invo.getText());
-            pst.setString(2, ((JTextField) hh.getDateEditor().getUiComponent()).getText());
-            pst.setString(3, ss.getText());
-            pst.setString(4, hj.getText());
-            pst.setString(5, as.getText());
-            pst.setString(6, zx.getText());
+                pst.execute();
+                JOptionPane.showMessageDialog(null, "Successfully Saved");
 
-            pst.execute();
-            JOptionPane.showMessageDialog(null, "Successfully Saved");
-            
-            tableLoad();
+                tableLoad();
             }
         } catch (SQLException e) {
-
             JOptionPane.showMessageDialog(null, e);
         }
         //Invo.setText(null);
@@ -464,7 +496,6 @@ public class Invoice extends javax.swing.JInternalFrame {
        // hj.setText(null);
        // as.setText(null);
        // zx.setText(null);
-       
     }//GEN-LAST:event_Ad2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -518,32 +549,24 @@ public class Invoice extends javax.swing.JInternalFrame {
                 String add6 = rst.getString("brprice");
                 zx.setText(add6);
             }
-
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "An error occurred while retrieving the desired invoice.", 
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-
         // delete record
         String q = "delete from invoice01 where inId= ?";
         try {
-
             pst = conn.prepareStatement(q);
-
             pst.setString(1, Invo.getText());
-
             pst.execute();
-            JOptionPane.showMessageDialog(null, "Record Deleted");
-
-        } catch (Exception e) {
-
-            JOptionPane.showMessageDialog(null, e);
-
+            JOptionPane.showMessageDialog(null, "Record successfully deleted.", "Success", JOptionPane.INFORMATION_MESSAGE);
+        } catch (HeadlessException | SQLException e) {
+            JOptionPane.showMessageDialog(null, "An error occurred while deleting the record.", "Error", JOptionPane.ERROR_MESSAGE);
         }
         update_table();
-
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -563,16 +586,14 @@ public class Invoice extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        
-           double a=Double.parseDouble(hj.getText());
-         double b=Double.parseDouble(zx.getText());
-         double am=a*b;
-            cal_table.setText(""+am);
-         
+        double a=Double.parseDouble(hj.getText());
+        double b=Double.parseDouble(zx.getText());
+        double am=a*b;
+        cal_table.setText(""+am);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void InvoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_InvoKeyTyped
-         char c =evt.getKeyChar();
+        char c =evt.getKeyChar();
         if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE)|| c==KeyEvent.VK_DELETE)){
            evt.consume(); 
         }
@@ -583,14 +604,14 @@ public class Invoice extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_ssKeyTyped
 
     private void hjKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_hjKeyTyped
-           char c =evt.getKeyChar();
+        char c =evt.getKeyChar();
         if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE)|| c==KeyEvent.VK_DELETE)){
            evt.consume(); 
         }
     }//GEN-LAST:event_hjKeyTyped
 
     private void zxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_zxKeyTyped
-           char c =evt.getKeyChar();
+        char c =evt.getKeyChar();
         if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE)|| c==KeyEvent.VK_DELETE)){
            evt.consume(); 
         }
@@ -602,9 +623,8 @@ public class Invoice extends javax.swing.JInternalFrame {
             String Table_click = (tab1.getModel().getValueAt(row, 0).toString());
             String q = "select * from invoice01 where inId='" + Table_click + "'";
             pst = conn.prepareStatement(q);
-            rst = (ResultSet) pst.executeQuery(q);   //inId,Bname,tibrand,qphone,bpay,brprice
+            rst = pst.executeQuery(q);   //inId,Bname,tibrand,qphone,bpay,brprice
             while (rst.next()) {
-
                 String add1 = rst.getString("inId");
                 Invo.setText(add1);
 
@@ -612,13 +632,12 @@ public class Invoice extends javax.swing.JInternalFrame {
                 String add2 = rst.getString("Bname");
                 //date_dob.setDate(add4);
                 //get selected date
-                java.util.Date date;
+                Date date;
                 try {
                     date = new SimpleDateFormat("yyyy-MM-dd").parse(add2);
-
                     hh.setDate(date);
                 } catch (ParseException ex) {
-
+                    JOptionPane.showMessageDialog(null, "Unable to parse date.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
                 //-------------------------------------------
                 String add3 = rst.getString("tibrand");
@@ -644,8 +663,7 @@ public class Invoice extends javax.swing.JInternalFrame {
                     //    }
                 //-------------------------------------------
             }
-        } catch (Exception e) {
-
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_tab1MouseClicked
@@ -675,12 +693,17 @@ public class Invoice extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblBarStock;
+    private javax.swing.JLabel lblBeverageOrders;
     private javax.swing.JTextField searchbo;
     private javax.swing.JTextField ss;
     private javax.swing.JTable tab1;

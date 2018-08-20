@@ -501,7 +501,7 @@ public class Payroll extends javax.swing.JInternalFrame {
 
         btn_attendeceMain.setBackground(new java.awt.Color(255, 255, 255));
         btn_attendeceMain.setForeground(new java.awt.Color(0, 174, 239));
-        btn_attendeceMain.setText("Attendence");
+        btn_attendeceMain.setText("Attendance");
         btn_attendeceMain.setBorder(null);
         btn_attendeceMain.setContentAreaFilled(false);
         btn_attendeceMain.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -573,11 +573,11 @@ public class Payroll extends javax.swing.JInternalFrame {
         btn_UserMain.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_UserMain.setOpaque(true);
         btn_UserMain.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btn_UserMainMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btn_UserMainMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_UserMainMouseEntered(evt);
             }
         });
         btn_UserMain.addActionListener(new java.awt.event.ActionListener() {

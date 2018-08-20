@@ -7,6 +7,8 @@ package Beverage_Interface;
 
 import HMS_Database.MyDBConnection;
 import HMS_Home.MHome;
+import java.awt.Color;
+import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,6 +17,7 @@ import java.sql.SQLException;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
+import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -27,58 +30,44 @@ import net.sf.jasperreports.view.JasperViewer;
 /**
  *
  * @author Prabas Gayadeeptha
+ * 
+ * @author Isira Seneviratne
  */
 public class BarStock_Management extends javax.swing.JInternalFrame {
+    private Connection conn = null;
+    private PreparedStatement pst = null;
+    private ResultSet rst = null;
     
-        Connection conn=null;
-        PreparedStatement pst=null;
-        ResultSet rst=null;
+    private final Color entered = new Color(104,109,213), exited = new Color(153,204,255);
 
-    /**
-     
-     */
     public BarStock_Management() {
         initComponents();
-        
-        conn=MyDBConnection.connectDB();
-         tableLoad();
-     update_table();
+        conn = MyDBConnection.connectDB();
+        tableLoad();
+        updateTable();
     }
-     private void update_table() {
-
+    
+    private void updateTable() {
         try {
             String sql = "SELECT Stock_id,product_name,Brand,Volume,Quantity,Pay_by,Price,Amount from Bar_Stock ";
             //String sql = "SELECT id,f_name,l_name,category from trainers ";
             pst = conn.prepareStatement(sql);
             rst = pst.executeQuery();
-
             tab2.setModel(DbUtils.resultSetToTableModel(rst));
-
-        } catch (Exception e) {
-
-            JOptionPane.showMessageDialog(null, e);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "An error occurred while retrieving the data.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-
     }
-    
-    
-    
-      //table load
+    //table load
     public void tableLoad() {
-
-       
         try {
-
             String q = "SELECT * FROM Bar_Stock ";
             pst = conn.prepareStatement(q);
             rst = pst.executeQuery();
-
             tab2.setModel(DbUtils.resultSetToTableModel(rst));
-
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e);
         }
-
     }
 
     /**
@@ -129,6 +118,11 @@ public class BarStock_Management extends javax.swing.JInternalFrame {
         jLabel11 = new javax.swing.JLabel();
         emp_background = new javax.swing.JLabel();
         PnlMenu = new javax.swing.JPanel();
+        lblMainStock = new javax.swing.JLabel();
+        lblBevOrders = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        lblInvoice = new javax.swing.JLabel();
+        lblSoftDrinkStock = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
 
         setMinimumSize(new java.awt.Dimension(1200, 680));
@@ -234,7 +228,7 @@ public class BarStock_Management extends javax.swing.JInternalFrame {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Stock ID", "Product name", "Brand", "Volume", "Quantity", "Pay By", "Price", "Amount"
+                "Stock ID", "Product Name", "Brand", "Volume", "Quantity", "Pay By", "Price", "Amount"
             }
         ));
         tab2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -361,6 +355,89 @@ public class BarStock_Management extends javax.swing.JInternalFrame {
         PnlMenu.setPreferredSize(new java.awt.Dimension(1200, 100));
         PnlMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        lblMainStock.setBackground(new java.awt.Color(153, 204, 255));
+        lblMainStock.setForeground(new java.awt.Color(255, 255, 255));
+        lblMainStock.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMainStock.setText("Main Stock Management");
+        lblMainStock.setToolTipText("Click to switch to the main stock management section.");
+        lblMainStock.setOpaque(true);
+        lblMainStock.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblMainStockMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblMainStockMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblMainStockMouseEntered(evt);
+            }
+        });
+        PnlMenu.add(lblMainStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 40, 200, 30));
+
+        lblBevOrders.setBackground(new java.awt.Color(153, 204, 255));
+        lblBevOrders.setForeground(new java.awt.Color(255, 255, 255));
+        lblBevOrders.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblBevOrders.setText("Beverage Orders");
+        lblBevOrders.setToolTipText("Click to switch to the beverage orders section.");
+        lblBevOrders.setOpaque(true);
+        lblBevOrders.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblBevOrdersMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblBevOrdersMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblBevOrdersMouseEntered(evt);
+            }
+        });
+        PnlMenu.add(lblBevOrders, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 220, 30));
+
+        jLabel14.setBackground(new java.awt.Color(0, 174, 238));
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setText("Bar Stock");
+        jLabel14.setOpaque(true);
+        PnlMenu.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 210, 30));
+
+        lblInvoice.setBackground(new java.awt.Color(153, 204, 255));
+        lblInvoice.setForeground(new java.awt.Color(255, 255, 255));
+        lblInvoice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblInvoice.setText("Invoice");
+        lblInvoice.setToolTipText("Click to switch to the invoice section.");
+        lblInvoice.setOpaque(true);
+        lblInvoice.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblInvoiceMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblInvoiceMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblInvoiceMouseEntered(evt);
+            }
+        });
+        PnlMenu.add(lblInvoice, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 40, 200, 30));
+
+        lblSoftDrinkStock.setBackground(new java.awt.Color(153, 204, 255));
+        lblSoftDrinkStock.setForeground(new java.awt.Color(255, 255, 255));
+        lblSoftDrinkStock.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSoftDrinkStock.setText("Soft Drink Stock");
+        lblSoftDrinkStock.setToolTipText("Click to switch to the soft drink stock section.");
+        lblSoftDrinkStock.setOpaque(true);
+        lblSoftDrinkStock.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblSoftDrinkStockMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblSoftDrinkStockMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblSoftDrinkStockMouseEntered(evt);
+            }
+        });
+        PnlMenu.add(lblSoftDrinkStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 40, 200, 30));
+
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Beverage_Images/MenuBar_Back_Beverage.jpg"))); // NOI18N
         jLabel13.setMaximumSize(new java.awt.Dimension(1190, 75));
         jLabel13.setMinimumSize(new java.awt.Dimension(1190, 75));
@@ -373,7 +450,7 @@ public class BarStock_Management extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-         try {
+        try {
             String q = "select * from invoice01 where inId=?";
             pst = conn.prepareStatement(q);
             pst.setString(1, searbo2.getText());//Stock_id,product_name,Brand,Volume,Quantity,Pay_by,Price,Amount
@@ -403,62 +480,57 @@ public class BarStock_Management extends javax.swing.JInternalFrame {
                 
                  String add8 = rst.getString("Amount");
                 t8.setText(add8);
-                
             }
-            
-            
-            
-
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "An error occurred while retrieving the invoice.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        
-         try{
-            if(t1.getText().isEmpty()||t2.getText().isEmpty()||t3.getText().isEmpty()||t4.getText().isEmpty()||t5.getText().isEmpty()||t7.getText().isEmpty()||t8.getText().isEmpty())              
-    {
-        JOptionPane.showMessageDialog(null, "Please Enter All");
-    }
-            else{   
-             String q= "INSERT INTO bar_stock (Stock_id,product_name,Brand,Volume,Quantity,Pay_by,Price,Amount ) values (?,?,?,?,?,?,?,?)";
-            
-                                
-                pst = conn.prepareStatement(q);
-
-                pst.setString(1, t1.getText());
-               
-                pst.setString(2, t2.getText());
-                 pst.setString(3, t3.getText());
-                pst.setString(4, t4.getText());
-                 pst.setString(5, t5.getText());
-              // pst.setString(6, t6.getText());
-               String value = t6.getSelectedItem().toString();
-               pst.setString (6,value);
-                 //pst.setString(6, t6.getSelectedItems().toString()); 
-                 pst.setString(7, t7.getText());
-                  pst.setString(8, t8.getText());
-        
-                pst.execute();
-                JOptionPane.showMessageDialog(null, "Successfully Saved");
-
-                tableLoad();
-        }
-
-            }catch(SQLException e){
-
-                JOptionPane.showMessageDialog(null ,e);
+        try {
+            if(t1.getText().isEmpty()
+                    || t2.getText().isEmpty()
+                    || t3.getText().isEmpty()
+                    || t4.getText().isEmpty()
+                    || t5.getText().isEmpty()
+                    || t7.getText().isEmpty()
+                    || t8.getText().isEmpty())              
+            {
+                JOptionPane.showMessageDialog(null, "Some values are missing. Enter missing values.", "Missing data", 
+                        JOptionPane.ERROR_MESSAGE);
             }
+            else {
+                String q= "INSERT INTO bar_stock (Stock_id,product_name,Brand,Volume,Quantity,Pay_by,Price,Amount ) values (?,?,?,?,?,?,?,?)";               
+                pst = conn.prepareStatement(q);
+                
+                pst.setString(1, t1.getText());
+                pst.setString(2, t2.getText());
+                pst.setString(3, t3.getText());
+                pst.setString(4, t4.getText());
+                pst.setString(5, t5.getText());
+                //pst.setString(6, t6.getText());
+                String value = t6.getSelectedItem().toString();
+                pst.setString (6,value);
+                //pst.setString(6, t6.getSelectedItems().toString()); 
+                pst.setString(7, t7.getText());
+                pst.setString(8, t8.getText());
+                
+                pst.execute();
+                JOptionPane.showMessageDialog(null, "Data was successfully saved.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                tableLoad();
+            }
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(null, "An error occurred while saving data.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
          //   Invo.setText(null);
          //   hh.setDate(null);
           //  ss.setText(null);
            // hj.setText(null);
            // as.setText(null);
            // zx.setText(null);
-          }
+    }
 
-        private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
             //ubdate button here
            /* 
             try{
@@ -484,18 +556,14 @@ public class BarStock_Management extends javax.swing.JInternalFrame {
             catch(Exception e)
             {
                 JOptionPane.showMessageDialog(null,e);
-            }}
-
-
-*/
+            }}*/
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        
         MHome m = new MHome();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(m).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -503,51 +571,43 @@ public class BarStock_Management extends javax.swing.JInternalFrame {
         BeverageHome m = new BeverageHome();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(m).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-         //ubdate button here
-          
+        //update button here
+        try {
+            String value1 = t1.getText();
+            String value2 = t2.getText();                                             
+            String value3 = t3.getText();
+            String value4 = t4.getText();
+            String value5 = t5.getText();
+            String value6 = t6.getSelectedItem().toString();
+            // pst.setString (6,value);
+            String value7 = t7.getText();
+            String value8 = t8.getText();
             
-            try{
-                String value1 = t1.getText();
-               
-                String value2 = t2.getText();                                             
-                String value3 = t3.getText();
-                String value4 = t4.getText();
-                String value5 = t5.getText();
-                   String value6 = t6.getSelectedItem().toString();
-              // pst.setString (6,value);
-               String value7 = t7.getText();
-                String value8 = t8.getText();
-                 
-               
-                //inId,Bname,tibrand,qphone,bpay,brprice
-                String q = "update bar_stock set product_name='"+value2+"',Brand='"+value3+"',Volume='"+value4+"',Quantity='"+value5+"',Pay_by='"+value6+"',Price='"+value7+"',Amount='"+value8+"' where Stock_id = '"+value1+"'";
-                pst=conn .prepareStatement(q);
-                pst.execute();
-                JOptionPane.showMessageDialog(null,"Record Updated");
-
-}
-            catch(Exception e)
-            {
-                JOptionPane.showMessageDialog(null,e);
-            }
-         update_table();
-
-
+            //inId,Bname,tibrand,qphone,bpay,brprice
+            String q = "update bar_stock set product_name='"+value2+"',Brand='"+value3+"',Volume='"+value4+"',Quantity='"+value5+"',Pay_by='"+value6+"',Price='"+value7+"',Amount='"+value8+"' where Stock_id = '"+value1+"'";
+            pst = conn.prepareStatement(q);
+            pst.execute();
+            JOptionPane.showMessageDialog(null, "Record successfully updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
+        }
+        catch(HeadlessException | SQLException e)
+        {
+            JOptionPane.showMessageDialog(null, "An error occurred while updating data.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        updateTable();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void tab2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab2MouseClicked
-         try {
+        try {
             int row = tab2.getSelectedRow();//Stock_id,product_name,Brand,Volume,Quantity,Pay_by,Price,Amount
             String Table_click = (tab2.getModel().getValueAt(row, 0).toString());
             String q = "select * from bar_stock  where Stock_id='" + Table_click + "'";
             pst = conn.prepareStatement(q);
             rst = (ResultSet) pst.executeQuery(q);  
             while (rst.next()) {
-
                 String add1 = rst.getString("Stock_id");
                 t1.setText(add1);
 
@@ -576,10 +636,10 @@ public class BarStock_Management extends javax.swing.JInternalFrame {
                 String add5 = rst.getString("Quantity");
                 t5.setText(add5);
                 
-                 String add6 = rst.getString("Pay_by");
+                String add6 = rst.getString("Pay_by");
                 t6.setSelectedItem(add6);
                 
-                 String add7 = rst.getString("Price");
+                String add7 = rst.getString("Price");
                 t7.setText(add7);
                 String add8 = rst.getString("Amount");
                 t8.setText(add8);
@@ -595,53 +655,40 @@ public class BarStock_Management extends javax.swing.JInternalFrame {
                 //    }
                 //-------------------------------------------
             }
-        } catch (Exception e) {
-
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
-        }
-
-                                  
+        }                   
     }//GEN-LAST:event_tab2MouseClicked
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        
-           // delete record
+        // delete record
         String q = "delete from bar_stock where Stock_id= ?";
         try {
-
             pst = conn.prepareStatement(q);
-
             pst.setString(1, t1.getText());
-
             pst.execute();
-            JOptionPane.showMessageDialog(null, "Record Deleted");
-
-        } catch (Exception e) {
-
-            JOptionPane.showMessageDialog(null, e);
-
+            JOptionPane.showMessageDialog(null, "Record successfully deleted.", "Success", JOptionPane.INFORMATION_MESSAGE);
+        } catch (HeadlessException | SQLException e) {
+            JOptionPane.showMessageDialog(null, "An error occurred while deleting the record.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        update_table();
-
-                 
+        updateTable();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void t1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t1KeyTyped
-          char c =evt.getKeyChar();
+        char c = evt.getKeyChar();
         if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE)|| c==KeyEvent.VK_DELETE)){
-           evt.consume(); 
+            evt.consume(); 
         }
     }//GEN-LAST:event_t1KeyTyped
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-             double a=Double.parseDouble(t5.getText());
-         double b=Double.parseDouble(t7.getText());
-         double am=a*b;
-            t8.setText(""+am);
+        double a = Double.parseDouble(t5.getText());
+        double b = Double.parseDouble(t7.getText());
+        double am = a*b;
+        t8.setText(""+am);
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void REPORTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_REPORTActionPerformed
-
         try {
             JasperDesign jd = JRXmlLoader.load("D:\\SLIIT\\2nd Year\\2nd Semester\\ITP - Information Technology Project\\Project\\Hotel_Management_System(Selsan)\\BarStock.jrxml");// Path for the Report
             String sql = "SELECT * FROM bar_stock";// USer input of SQL
@@ -651,13 +698,65 @@ public class BarStock_Management extends javax.swing.JInternalFrame {
             JasperReport jr = JasperCompileManager.compileReport(jd);
             JasperPrint jp = JasperFillManager.fillReport(jr, null,conn);
             JasperViewer.viewReport(jp);
-
         }
-        catch (Exception e)
+        catch (JRException e)
         {
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "An error occurred while generating the report.", "Error", 
+                    JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_REPORTActionPerformed
+
+    private void lblBevOrdersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBevOrdersMouseClicked
+        getDesktopPane().add(new Beverage_Order()).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_lblBevOrdersMouseClicked
+
+    private void lblInvoiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInvoiceMouseClicked
+        getDesktopPane().add(new Invoice()).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_lblInvoiceMouseClicked
+
+    private void lblSoftDrinkStockMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSoftDrinkStockMouseClicked
+        getDesktopPane().add(new SoftDrink_Stock()).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_lblSoftDrinkStockMouseClicked
+
+    private void lblMainStockMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMainStockMouseClicked
+        getDesktopPane().add(new MainStock_Management()).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_lblMainStockMouseClicked
+
+    private void lblBevOrdersMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBevOrdersMouseEntered
+        lblBevOrders.setBackground(entered);
+    }//GEN-LAST:event_lblBevOrdersMouseEntered
+
+    private void lblBevOrdersMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBevOrdersMouseExited
+        lblBevOrders.setBackground(exited);
+    }//GEN-LAST:event_lblBevOrdersMouseExited
+
+    private void lblInvoiceMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInvoiceMouseEntered
+        lblInvoice.setBackground(entered);
+    }//GEN-LAST:event_lblInvoiceMouseEntered
+
+    private void lblInvoiceMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInvoiceMouseExited
+        lblInvoice.setBackground(exited);
+    }//GEN-LAST:event_lblInvoiceMouseExited
+
+    private void lblSoftDrinkStockMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSoftDrinkStockMouseEntered
+        lblSoftDrinkStock.setBackground(entered);
+    }//GEN-LAST:event_lblSoftDrinkStockMouseEntered
+
+    private void lblSoftDrinkStockMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSoftDrinkStockMouseExited
+        lblSoftDrinkStock.setBackground(exited);
+    }//GEN-LAST:event_lblSoftDrinkStockMouseExited
+
+    private void lblMainStockMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMainStockMouseEntered
+        lblMainStock.setBackground(entered);
+    }//GEN-LAST:event_lblMainStockMouseEntered
+
+    private void lblMainStockMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMainStockMouseExited
+        lblMainStock.setBackground(exited);
+    }//GEN-LAST:event_lblMainStockMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -676,6 +775,7 @@ public class BarStock_Management extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -691,6 +791,10 @@ public class BarStock_Management extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel lblBevOrders;
+    private javax.swing.JLabel lblInvoice;
+    private javax.swing.JLabel lblMainStock;
+    private javax.swing.JLabel lblSoftDrinkStock;
     private javax.swing.JTextField searbo2;
     private javax.swing.JTextField t1;
     private javax.swing.JTextField t2;

@@ -7,6 +7,7 @@ package Beverage_Interface;
 
 import HMS_Database.MyDBConnection;
 import HMS_Home.MHome;
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -43,76 +44,55 @@ public class Beverage_Order extends javax.swing.JInternalFrame {
         tableLoad4();
     }
     
-      public void tableLoad() {
-
+    public void tableLoad() {
         // Bname,tibrand,qphone,bpay,brprice
-        try 
-        {
+        try {
             String q = "SELECT * FROM order_table ";
             pst = conn.prepareStatement(q);
             rst = pst.executeQuery();
-
             tav.setModel(DbUtils.resultSetToTableModel(rst));
-
-        } catch (Exception e) {
-            System.out.println(e);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Unable to load records.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-
     }
-       public void tableLoad1(){
-        
+    
+    public void tableLoad1() {
        // Bname,tibrand,qphone,bpay,brprice
-        
-        try{
-        
-        String r = "SELECT * FROM main22 ";
-         pst = conn.prepareStatement(r);   
-         rst = pst.executeQuery();
-         
-         tab4.setModel(DbUtils.resultSetToTableModel(rst));
+        try {
+            String r = "SELECT * FROM main22 ";
+            pst = conn.prepareStatement(r);   
+            rst = pst.executeQuery();
+            tab4.setModel(DbUtils.resultSetToTableModel(rst));
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(null, "Unable to load records.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
        
-        }
-        catch(Exception e)
-        {
-            System.out.println(e);
-        }
-        
-    }
-         public void tableload3()
-    {
-        
-         try{
-             
-          Date todatDate = new Date();
-        DateFormat todayFormat= new SimpleDateFormat("yyyy-MM-dd");
-        String todayDateString = todayFormat.format(todatDate);    
-        String sql = "SELECT company,brand,quantity,date from order_table WHERE ExpiryDate  <= '"+todayDateString+"'";
-         pst = conn.prepareStatement(sql);   
-         rst = pst.executeQuery();
-         
-         das.setModel(DbUtils.resultSetToTableModel(rst));
-         
-        }
-        catch(Exception e)
-        {
-            System.out.println("Error"+e);
+    public void tableLoad3() {
+        try {
+            Date todatDate = new Date();
+            DateFormat todayFormat= new SimpleDateFormat("yyyy-MM-dd");
+            String todayDateString = todayFormat.format(todatDate);    
+            String sql = "SELECT company,brand,quantity,date from order_table WHERE ExpiryDate  <= '"+todayDateString+"'";
+            pst = conn.prepareStatement(sql);   
+            rst = pst.executeQuery();
+            das.setModel(DbUtils.resultSetToTableModel(rst)); 
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(null, "An error occurred while loading expiry records.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-           public void tableLoad4() {
 
+    public void tableLoad4() {
         // Bname,tibrand,qphone,bpay,brprice
         try {
-
             String q = "SELECT * FROM order_table ";
             pst = conn.prepareStatement(q);
             rst = pst.executeQuery();
 
             das.setModel(DbUtils.resultSetToTableModel(rst));
-
         } catch (SQLException e) {
             System.out.println(e);
         }
-
     }
 
     /**
@@ -154,6 +134,11 @@ public class Beverage_Order extends javax.swing.JInternalFrame {
         jButton6 = new javax.swing.JButton();
         emp_background = new javax.swing.JLabel();
         PnlMenu = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        lblMainStock = new javax.swing.JLabel();
+        lblBarStock = new javax.swing.JLabel();
+        lblInvoice = new javax.swing.JLabel();
+        lblSoftDrinkStock = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
 
         setMinimumSize(new java.awt.Dimension(1200, 680));
@@ -182,7 +167,7 @@ public class Beverage_Order extends javax.swing.JInternalFrame {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Date");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, -1, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, -1, -1));
 
         namebox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -228,7 +213,7 @@ public class Beverage_Order extends javax.swing.JInternalFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Stock Id", "Product name", "Brand", "Volume", "Quantity", "Total Count"
+                "Stock ID", "Product name", "Brand", "Volume", "Quantity", "Total Count"
             }
         ));
         jScrollPane2.setViewportView(tab4);
@@ -446,6 +431,61 @@ public class Beverage_Order extends javax.swing.JInternalFrame {
         PnlMenu.setPreferredSize(new java.awt.Dimension(1200, 100));
         PnlMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel6.setBackground(new java.awt.Color(0, 174, 238));
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Beverage Orders");
+        jLabel6.setOpaque(true);
+        PnlMenu.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 210, 30));
+
+        lblMainStock.setBackground(new java.awt.Color(153, 204, 255));
+        lblMainStock.setForeground(new java.awt.Color(255, 255, 255));
+        lblMainStock.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMainStock.setText("Main Stock Management");
+        lblMainStock.setOpaque(true);
+        lblMainStock.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblMainStockMouseClicked(evt);
+            }
+        });
+        PnlMenu.add(lblMainStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 40, 210, 30));
+
+        lblBarStock.setBackground(new java.awt.Color(153, 204, 255));
+        lblBarStock.setForeground(new java.awt.Color(255, 255, 255));
+        lblBarStock.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblBarStock.setText("Bar Stock");
+        lblBarStock.setOpaque(true);
+        lblBarStock.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblBarStockMouseClicked(evt);
+            }
+        });
+        PnlMenu.add(lblBarStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 210, 30));
+
+        lblInvoice.setBackground(new java.awt.Color(153, 204, 255));
+        lblInvoice.setForeground(new java.awt.Color(255, 255, 255));
+        lblInvoice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblInvoice.setText("Invoice");
+        lblInvoice.setOpaque(true);
+        lblInvoice.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblInvoiceMouseClicked(evt);
+            }
+        });
+        PnlMenu.add(lblInvoice, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 40, 210, 30));
+
+        lblSoftDrinkStock.setBackground(new java.awt.Color(153, 204, 255));
+        lblSoftDrinkStock.setForeground(new java.awt.Color(255, 255, 255));
+        lblSoftDrinkStock.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSoftDrinkStock.setText("Soft Drink Stock");
+        lblSoftDrinkStock.setOpaque(true);
+        lblSoftDrinkStock.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblSoftDrinkStockMouseClicked(evt);
+            }
+        });
+        PnlMenu.add(lblSoftDrinkStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 40, 210, 30));
+
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Beverage_Images/MenuBar_Back_Beverage.jpg"))); // NOI18N
         jLabel13.setMaximumSize(new java.awt.Dimension(1190, 75));
         jLabel13.setMinimumSize(new java.awt.Dimension(1190, 75));
@@ -464,7 +504,6 @@ public class Beverage_Order extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         try {
-
             String q = "INSERT INTO order_table (company,brand,quantity,date) values (?,?,?,?)";
             pst = conn.prepareStatement(q);
 
@@ -475,12 +514,10 @@ public class Beverage_Order extends javax.swing.JInternalFrame {
             pst.setString(4, ((JTextField) dat.getDateEditor().getUiComponent()).getText());
 
             pst.execute();
-            JOptionPane.showMessageDialog(null, "Saved");
+            JOptionPane.showMessageDialog(null, "Inserted record successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
-
+            JOptionPane.showMessageDialog(null, "An error occurred while inserting the record.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -491,23 +528,16 @@ public class Beverage_Order extends javax.swing.JInternalFrame {
           // delete record
         String q = "delete from order_table  where company= ?";
         try {
-
             pst = conn.prepareStatement(q);
 
             pst.setString(1, namebox.getText());
 
             pst.execute();
-            JOptionPane.showMessageDialog(null, "Record Deleted");
-
-        } catch (Exception e) {
-
-            JOptionPane.showMessageDialog(null, e);
-
+            JOptionPane.showMessageDialog(null, "Record deleted.", "Success", JOptionPane.INFORMATION_MESSAGE);
+        } catch (HeadlessException | SQLException e) {
+            JOptionPane.showMessageDialog(null, "An error occurred while deleting the record.", "Error", JOptionPane.ERROR_MESSAGE);
         }
        // update_table();
-
-                              
-
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -534,11 +564,10 @@ public class Beverage_Order extends javax.swing.JInternalFrame {
             rst = pst.executeQuery();
             tav.setModel(DbUtils.resultSetToTableModel(rst));
         } catch (SQLException e) {
-
-            System.out.println(e);
-
+            JOptionPane.showMessageDialog(null, "An error occurred while retrieving company details.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
-    }
+
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
         MHome m = new MHome();
@@ -563,10 +592,8 @@ public class Beverage_Order extends javax.swing.JInternalFrame {
             pst = conn.prepareStatement(q);
             rst = (ResultSet) pst.executeQuery(q);  
             while (rst.next()) {                        // order_table (company,brand,quantity,date) 
-
                 String add1 = rst.getString("company");
                 namebox.setText(add1);
-
                 //--------------------------------------------
                 String add2 = rst.getString("date");
                 //date_dob.setDate(add4);
@@ -574,7 +601,6 @@ public class Beverage_Order extends javax.swing.JInternalFrame {
                 java.util.Date date;
                 try {
                     date = new SimpleDateFormat("yyyy-MM-dd").parse(add2);
-
                     dat.setDate(date);
                 } catch (ParseException ex) {
 
@@ -582,8 +608,8 @@ public class Beverage_Order extends javax.swing.JInternalFrame {
                 //-------------------------------------------
                 String add3 = rst.getString("quantity");
                 bra.setText(add3);
-
-              String add4 = rst.getString("brand");
+                
+                String add4 = rst.getString("brand");
                 quan.setText(add4);
 
                 //-------------------------------------------
@@ -599,12 +625,8 @@ public class Beverage_Order extends javax.swing.JInternalFrame {
                 //-------------------------------------------
             }
         } catch (Exception e) {
-
             JOptionPane.showMessageDialog(null, e);
         }
-                                     
-
-
     }//GEN-LAST:event_tavMouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -612,8 +634,24 @@ public class Beverage_Order extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-       tableload3();        // TODO add your handling code here:
+       tableLoad3();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void lblBarStockMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBarStockMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblBarStockMouseClicked
+
+    private void lblInvoiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInvoiceMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblInvoiceMouseClicked
+
+    private void lblSoftDrinkStockMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSoftDrinkStockMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblSoftDrinkStockMouseClicked
+
+    private void lblMainStockMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMainStockMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblMainStockMouseClicked
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -636,6 +674,7 @@ public class Beverage_Order extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -643,6 +682,10 @@ public class Beverage_Order extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel lblBarStock;
+    private javax.swing.JLabel lblInvoice;
+    private javax.swing.JLabel lblMainStock;
+    private javax.swing.JLabel lblSoftDrinkStock;
     private javax.swing.JTextField namebox;
     private javax.swing.JTextField quan;
     private javax.swing.JTextField searcha;
