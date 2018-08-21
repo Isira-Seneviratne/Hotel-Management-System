@@ -31,16 +31,16 @@ import net.sf.jasperreports.view.JasperViewer;
  *
  * @author Prabas Gayadeeptha
  * 
- * @author Isira Seneviratne
+ * @author Isira Seneviratne (19440268)
  */
-public class BarStock_Management extends javax.swing.JInternalFrame {
+public class BarStockManagement extends javax.swing.JInternalFrame {
     private Connection conn = null;
     private PreparedStatement pst = null;
     private ResultSet rst = null;
     
     private final Color entered = new Color(104,109,213), exited = new Color(153,204,255);
 
-    public BarStock_Management() {
+    public BarStockManagement() {
         initComponents();
         conn = MyDBConnection.connectDB();
         tableLoad();
@@ -238,9 +238,9 @@ public class BarStock_Management extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tab2);
 
-        jPanel5.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 820, 180));
+        jPanel5.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 840, 180));
 
-        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 820, 190));
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, -1, 190));
 
         jPanel4.setBackground(new java.awt.Color(0, 183, 255));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -256,7 +256,6 @@ public class BarStock_Management extends javax.swing.JInternalFrame {
         jPanel4.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 320, -1, -1));
 
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Beverage_Images/Update-icon.png"))); // NOI18N
         jButton4.setText("Update");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -265,32 +264,28 @@ public class BarStock_Management extends javax.swing.JInternalFrame {
         });
         jPanel4.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 140, 47));
 
-        jButton5.setBackground(new java.awt.Color(255, 51, 0));
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Beverage_Images/disaprrove-icon.png"))); // NOI18N
         jButton5.setText("Delete");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 10, -1, 47));
+        jPanel4.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 10, 130, 47));
+
+        searbo2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel4.add(searbo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 140, 30));
 
-        jButton6.setBackground(new java.awt.Color(0, 102, 255));
         jButton6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Beverage_Images/View-Tender-icon.png"))); // NOI18N
         jButton6.setText("Search");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, 44));
+        jPanel4.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 130, 44));
 
-        jButton7.setBackground(new java.awt.Color(0, 204, 0));
         jButton7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Beverage_Images/Accept-icon.png"))); // NOI18N
         jButton7.setText("Add");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -316,8 +311,7 @@ public class BarStock_Management extends javax.swing.JInternalFrame {
         jPanel4.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 120, -1, -1));
 
         jButton11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Beverage_Images/calculate-icon.png"))); // NOI18N
-        jButton11.setText("Calculation");
+        jButton11.setText("Calculate");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton11ActionPerformed(evt);
@@ -335,7 +329,7 @@ public class BarStock_Management extends javax.swing.JInternalFrame {
         });
         jPanel4.add(REPORT, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 70, 280, 50));
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 410, 820, 160));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 410, 840, 160));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Beverage_Images/cheap-specialty-wine.jpg"))); // NOI18N
         jLabel9.setText("jLabel9");
@@ -348,7 +342,7 @@ public class BarStock_Management extends javax.swing.JInternalFrame {
 
         emp_background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/MainBackForAll.jpg"))); // NOI18N
         emp_background.setPreferredSize(new java.awt.Dimension(1190, 570));
-        jPanel1.add(emp_background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1190, 580));
+        jPanel1.add(emp_background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 580));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, -1, -1));
 
@@ -593,8 +587,7 @@ public class BarStock_Management extends javax.swing.JInternalFrame {
             pst.execute();
             JOptionPane.showMessageDialog(null, "Record successfully updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
         }
-        catch(HeadlessException | SQLException e)
-        {
+        catch(HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(null, "An error occurred while updating data.", "Error", JOptionPane.ERROR_MESSAGE);
         }
         updateTable();
@@ -612,7 +605,7 @@ public class BarStock_Management extends javax.swing.JInternalFrame {
                 t1.setText(add1);
 
                 //--------------------------------------------
-               /* String add2 = rst.getString("Bname");
+                /* String add2 = rst.getString("Bname");
                 //date_dob.setDate(add4);
                 //get selected date
                 java.util.Date date;
@@ -641,6 +634,7 @@ public class BarStock_Management extends javax.swing.JInternalFrame {
                 
                 String add7 = rst.getString("Price");
                 t7.setText(add7);
+                
                 String add8 = rst.getString("Amount");
                 t8.setText(add8);
                 //-------------------------------------------
@@ -656,7 +650,8 @@ public class BarStock_Management extends javax.swing.JInternalFrame {
                 //-------------------------------------------
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "An error occurred while retrieving the desired record.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }                   
     }//GEN-LAST:event_tab2MouseClicked
 
@@ -676,7 +671,7 @@ public class BarStock_Management extends javax.swing.JInternalFrame {
 
     private void t1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t1KeyTyped
         char c = evt.getKeyChar();
-        if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE)|| c==KeyEvent.VK_DELETE)){
+        if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE)|| c==KeyEvent.VK_DELETE)) {
             evt.consume(); 
         }
     }//GEN-LAST:event_t1KeyTyped
@@ -699,15 +694,14 @@ public class BarStock_Management extends javax.swing.JInternalFrame {
             JasperPrint jp = JasperFillManager.fillReport(jr, null,conn);
             JasperViewer.viewReport(jp);
         }
-        catch (JRException e)
-        {
+        catch (JRException e) {
             JOptionPane.showMessageDialog(null, "An error occurred while generating the report.", "Error", 
                     JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_REPORTActionPerformed
 
     private void lblBevOrdersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBevOrdersMouseClicked
-        getDesktopPane().add(new Beverage_Order()).setVisible(true);
+        getDesktopPane().add(new BeverageOrder()).setVisible(true);
         dispose();
     }//GEN-LAST:event_lblBevOrdersMouseClicked
 
@@ -717,12 +711,12 @@ public class BarStock_Management extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_lblInvoiceMouseClicked
 
     private void lblSoftDrinkStockMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSoftDrinkStockMouseClicked
-        getDesktopPane().add(new SoftDrink_Stock()).setVisible(true);
+        getDesktopPane().add(new SoftDrinkStock()).setVisible(true);
         dispose();
     }//GEN-LAST:event_lblSoftDrinkStockMouseClicked
 
     private void lblMainStockMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMainStockMouseClicked
-        getDesktopPane().add(new MainStock_Management()).setVisible(true);
+        getDesktopPane().add(new MainStockManagement()).setVisible(true);
         dispose();
     }//GEN-LAST:event_lblMainStockMouseClicked
 

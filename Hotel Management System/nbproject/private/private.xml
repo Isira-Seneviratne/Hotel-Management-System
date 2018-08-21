@@ -4,7 +4,6 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/isira/Hotel-Management-System/Hotel%20Management%20System/src/HRMS_Interface/UserManagement.java</file>
-            <file>file:/home/isira/Hotel-Management-System/Hotel%20Management%20System/src/Beverage_Interface/Beverage_Order.java</file>
             <file>file:/home/isira/Hotel-Management-System/Hotel%20Management%20System/src/Event_Interface/Events%25203.jpg</file>
             <file>file:/home/isira/Hotel-Management-System/Hotel%20Management%20System/src/HRMS_Codes/Hotel.java</file>
             <file>file:/home/isira/Hotel-Management-System/Hotel%20Management%20System/src/HRMS_Interface/EmployeePromotion.java</file>
@@ -13,13 +12,13 @@
             <file>file:/home/isira/Hotel-Management-System/Hotel%20Management%20System/src/Event_Interface/file-submit.png</file>
             <file>file:/home/isira/Hotel-Management-System/Hotel%20Management%20System/src/HMS_Home/HMS_Methods.java</file>
             <file>file:/home/isira/Hotel-Management-System/Hotel%20Management%20System/src/HRMS_Interface/InterviewManagement.java</file>
+            <file>file:/home/isira/Hotel-Management-System/Hotel%20Management%20System/src/Beverage_Interface/BarStockManagement.java</file>
+            <file>file:/home/isira/Hotel-Management-System/Hotel%20Management%20System/src/HRMS_Interface/TrainingManagement.java</file>
             <file>file:/home/isira/Hotel-Management-System/Hotel%20Management%20System/src/HMS_Home/DesktopPane.java</file>
             <file>file:/home/isira/Hotel-Management-System/Hotel%20Management%20System/src/HRMS_Codes/HR_Methods.java</file>
             <file>file:/home/isira/Hotel-Management-System/Hotel%20Management%20System/src/Event_Interface/Validation.java</file>
-            <file>file:/home/isira/Hotel-Management-System/Hotel%20Management%20System/src/Beverage_Interface/BarStock_Management.java</file>
             <file>file:/home/isira/Hotel-Management-System/Hotel%20Management%20System/src/HRMS_Codes/ValidationHRMS.java</file>
             <file>file:/home/isira/Hotel-Management-System/Hotel%20Management%20System/src/HRMS_Interface/AttendanceManagement.java</file>
-            <file>file:/home/isira/Hotel-Management-System/Hotel%20Management%20System/src/Beverage_Interface/MainStock_Management.java</file>
             <file>file:/home/isira/Hotel-Management-System/Hotel%20Management%20System/src/Event_Interface/Bill.java</file>
             <file>file:/home/isira/Hotel-Management-System/Hotel%20Management%20System/src/Stock_Interface/KitchenItems.java</file>
             <file>file:/home/isira/Hotel-Management-System/Hotel%20Management%20System/src/HRMS_Interface/HRHome.java</file>
@@ -31,14 +30,16 @@
             <file>file:/home/isira/Hotel-Management-System/Hotel%20Management%20System/src/Stock_Interface/RoomItems.java</file>
             <file>file:/home/isira/Hotel-Management-System/Hotel%20Management%20System/src/Beverage_Interface/Stock_Exchange.java</file>
             <file>file:/home/isira/Hotel-Management-System/Hotel%20Management%20System/src/Beverage_Interface/Invoice.java</file>
+            <file>file:/home/isira/Hotel-Management-System/Hotel%20Management%20System/src/Beverage_Interface/BeverageOrder.java</file>
             <file>file:/home/isira/Hotel-Management-System/Hotel%20Management%20System/src/Beverage_Interface/BeverageHome.java</file>
+            <file>file:/home/isira/Hotel-Management-System/Hotel%20Management%20System/src/Beverage_Interface/SoftDrinkStock.java</file>
             <file>file:/home/isira/Hotel-Management-System/Hotel%20Management%20System/src/HRMS_Interface/Settings.java</file>
             <file>file:/home/isira/Hotel-Management-System/Hotel%20Management%20System/src/FMS_Interface/FMS_Home1.java</file>
             <file>file:/home/isira/Hotel-Management-System/Hotel%20Management%20System/src/Stock_Interface/VendorDetails.java</file>
             <file>file:/home/isira/Hotel-Management-System/Hotel%20Management%20System/src/Stock_Interface/CleaningItems.java</file>
+            <file>file:/home/isira/Hotel-Management-System/Hotel%20Management%20System/src/Beverage_Interface/MainStockManagement.java</file>
             <file>file:/home/isira/Hotel-Management-System/Hotel%20Management%20System/src/HRMS_Interface/JobAnalysis.java</file>
             <file>file:/home/isira/Hotel-Management-System/Hotel%20Management%20System/src/Event_Interface/Event.java</file>
-            <file>file:/home/isira/Hotel-Management-System/Hotel%20Management%20System/src/Beverage_Interface/SoftDrink_Stock.java</file>
             <file>file:/home/isira/Hotel-Management-System/Hotel%20Management%20System/src/Stock_Interface/Payments.java</file>
             <file>file:/home/isira/Hotel-Management-System/Hotel%20Management%20System/src/Stock_Interface/Orders.java</file>
             <file>file:/home/isira/Hotel-Management-System/Hotel%20Management%20System/src/FMS_Interface/FMS_Home.java</file>

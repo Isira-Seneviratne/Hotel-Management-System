@@ -7,6 +7,7 @@ package Beverage_Interface;
 
 import HMS_Database.MyDBConnection;
 import HMS_Home.MHome;
+import java.awt.Color;
 import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
@@ -32,11 +33,12 @@ public class Invoice extends javax.swing.JInternalFrame {
     /**
      * Creates new form Invoice
      */
-    Connection conn = null;
-    PreparedStatement pst = null;
-    ResultSet rst = null;
-    String passCID;
+    private Connection conn = null;
+    private PreparedStatement pst = null;
+    private ResultSet rst = null;
 
+    private final Color entered = new Color(104,109,213), exited = new Color(153,204,255);
+    
     public Invoice() {
         initComponents();
         conn =  MyDBConnection.connectDB();
@@ -112,9 +114,9 @@ public class Invoice extends javax.swing.JInternalFrame {
         PnlMenu = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         lblBarStock = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        lblBeverageOrders = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lblMainStock = new javax.swing.JLabel();
+        lblBevOrders = new javax.swing.JLabel();
+        lblSoftDrinkStock = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
 
         setMinimumSize(new java.awt.Dimension(1200, 680));
@@ -375,28 +377,61 @@ public class Invoice extends javax.swing.JInternalFrame {
         lblBarStock.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblBarStock.setText("Bar Stock");
         lblBarStock.setOpaque(true);
+        lblBarStock.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblBarStockMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblBarStockMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblBarStockMouseEntered(evt);
+            }
+        });
         PnlMenu.add(lblBarStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 210, 30));
 
-        jLabel4.setBackground(new java.awt.Color(153, 204, 255));
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Main Stock Management");
-        jLabel4.setOpaque(true);
-        PnlMenu.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 40, 210, 30));
+        lblMainStock.setBackground(new java.awt.Color(153, 204, 255));
+        lblMainStock.setForeground(new java.awt.Color(255, 255, 255));
+        lblMainStock.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMainStock.setText("Main Stock Management");
+        lblMainStock.setOpaque(true);
+        PnlMenu.add(lblMainStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 40, 210, 30));
 
-        lblBeverageOrders.setBackground(new java.awt.Color(153, 204, 255));
-        lblBeverageOrders.setForeground(new java.awt.Color(255, 255, 255));
-        lblBeverageOrders.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblBeverageOrders.setText("Beverage Orders");
-        lblBeverageOrders.setOpaque(true);
-        PnlMenu.add(lblBeverageOrders, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 210, 30));
+        lblBevOrders.setBackground(new java.awt.Color(153, 204, 255));
+        lblBevOrders.setForeground(new java.awt.Color(255, 255, 255));
+        lblBevOrders.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblBevOrders.setText("Beverage Orders");
+        lblBevOrders.setOpaque(true);
+        lblBevOrders.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblBevOrdersMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblBevOrdersMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblBevOrdersMouseEntered(evt);
+            }
+        });
+        PnlMenu.add(lblBevOrders, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 210, 30));
 
-        jLabel6.setBackground(new java.awt.Color(153, 204, 255));
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Soft Drink Stock");
-        jLabel6.setOpaque(true);
-        PnlMenu.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 40, 210, 30));
+        lblSoftDrinkStock.setBackground(new java.awt.Color(153, 204, 255));
+        lblSoftDrinkStock.setForeground(new java.awt.Color(255, 255, 255));
+        lblSoftDrinkStock.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSoftDrinkStock.setText("Soft Drink Stock");
+        lblSoftDrinkStock.setOpaque(true);
+        lblSoftDrinkStock.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblSoftDrinkStockMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblSoftDrinkStockMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblSoftDrinkStockMouseEntered(evt);
+            }
+        });
+        PnlMenu.add(lblSoftDrinkStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 40, 210, 30));
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Beverage_Images/MenuBar_Back_Beverage.jpg"))); // NOI18N
         jLabel13.setMaximumSize(new java.awt.Dimension(1190, 75));
@@ -668,6 +703,42 @@ public class Invoice extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_tab1MouseClicked
 
+    private void lblBarStockMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBarStockMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblBarStockMouseClicked
+
+    private void lblBarStockMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBarStockMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblBarStockMouseEntered
+
+    private void lblBarStockMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBarStockMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblBarStockMouseExited
+
+    private void lblBevOrdersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBevOrdersMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblBevOrdersMouseClicked
+
+    private void lblBevOrdersMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBevOrdersMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblBevOrdersMouseEntered
+
+    private void lblBevOrdersMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBevOrdersMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblBevOrdersMouseExited
+
+    private void lblSoftDrinkStockMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSoftDrinkStockMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblSoftDrinkStockMouseClicked
+
+    private void lblSoftDrinkStockMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSoftDrinkStockMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblSoftDrinkStockMouseEntered
+
+    private void lblSoftDrinkStockMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSoftDrinkStockMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblSoftDrinkStockMouseExited
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Ad2;
@@ -694,8 +765,6 @@ public class Invoice extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -703,7 +772,9 @@ public class Invoice extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBarStock;
-    private javax.swing.JLabel lblBeverageOrders;
+    private javax.swing.JLabel lblBevOrders;
+    private javax.swing.JLabel lblMainStock;
+    private javax.swing.JLabel lblSoftDrinkStock;
     private javax.swing.JTextField searchbo;
     private javax.swing.JTextField ss;
     private javax.swing.JTable tab1;

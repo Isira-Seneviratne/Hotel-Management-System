@@ -7,6 +7,7 @@ package Beverage_Interface;
 
 import HMS_Database.MyDBConnection;
 import HMS_Home.MHome;
+import java.awt.Color;
 import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,17 +26,17 @@ import net.proteanit.sql.DbUtils;
 /**
  *
  * @author Prabas Gayadeeptha
+ * 
+ * @author Isira Seneviratne (19440268)
  */
-public class Beverage_Order extends javax.swing.JInternalFrame {
+public class BeverageOrder extends javax.swing.JInternalFrame {
+    private Connection conn = null;
+    private PreparedStatement pst = null;
+    private ResultSet rst = null;
+    
+    private final Color entered = new Color(104,109,213), exited = new Color(153,204,255);
 
-    /**
-     * 
-     */
-    Connection conn = null;
-    PreparedStatement pst = null;
-    ResultSet rst = null;
-
-    public Beverage_Order() {
+    public BeverageOrder() {
         initComponents();
         conn =  MyDBConnection.connectDB();
         tableLoad();
@@ -447,6 +448,12 @@ public class Beverage_Order extends javax.swing.JInternalFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblMainStockMouseClicked(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblMainStockMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblMainStockMouseEntered(evt);
+            }
         });
         PnlMenu.add(lblMainStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 40, 210, 30));
 
@@ -458,6 +465,12 @@ public class Beverage_Order extends javax.swing.JInternalFrame {
         lblBarStock.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblBarStockMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblBarStockMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblBarStockMouseEntered(evt);
             }
         });
         PnlMenu.add(lblBarStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 210, 30));
@@ -471,6 +484,12 @@ public class Beverage_Order extends javax.swing.JInternalFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblInvoiceMouseClicked(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblInvoiceMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblInvoiceMouseEntered(evt);
+            }
         });
         PnlMenu.add(lblInvoice, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 40, 210, 30));
 
@@ -482,6 +501,12 @@ public class Beverage_Order extends javax.swing.JInternalFrame {
         lblSoftDrinkStock.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblSoftDrinkStockMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblSoftDrinkStockMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblSoftDrinkStockMouseEntered(evt);
             }
         });
         PnlMenu.add(lblSoftDrinkStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 40, 210, 30));
@@ -502,7 +527,6 @@ public class Beverage_Order extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_nameboxActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
         try {
             String q = "INSERT INTO order_table (company,brand,quantity,date) values (?,?,?,?)";
             pst = conn.prepareStatement(q);
@@ -516,7 +540,8 @@ public class Beverage_Order extends javax.swing.JInternalFrame {
             pst.execute();
             JOptionPane.showMessageDialog(null, "Inserted record successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "An error occurred while inserting the record.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "An error occurred while inserting the record.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -535,7 +560,8 @@ public class Beverage_Order extends javax.swing.JInternalFrame {
             pst.execute();
             JOptionPane.showMessageDialog(null, "Record deleted.", "Success", JOptionPane.INFORMATION_MESSAGE);
         } catch (HeadlessException | SQLException e) {
-            JOptionPane.showMessageDialog(null, "An error occurred while deleting the record.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "An error occurred while deleting the record.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
        // update_table();
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -564,12 +590,12 @@ public class Beverage_Order extends javax.swing.JInternalFrame {
             rst = pst.executeQuery();
             tav.setModel(DbUtils.resultSetToTableModel(rst));
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "An error occurred while retrieving company details.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "An error occurred while retrieving company details.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
         MHome m = new MHome();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(m).setVisible(true);
@@ -577,7 +603,6 @@ public class Beverage_Order extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
         BeverageHome m = new BeverageHome();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(m).setVisible(true);
@@ -624,8 +649,9 @@ public class Beverage_Order extends javax.swing.JInternalFrame {
                     //    }
                 //-------------------------------------------
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "An error occurred while retrieving the desired records.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_tavMouseClicked
 
@@ -634,24 +660,60 @@ public class Beverage_Order extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-       tableLoad3();        // TODO add your handling code here:
+       tableLoad3();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void lblBarStockMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBarStockMouseClicked
-        // TODO add your handling code here:
+        getDesktopPane().add(new BarStockManagement()).setVisible(true);
+        dispose();
     }//GEN-LAST:event_lblBarStockMouseClicked
 
     private void lblInvoiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInvoiceMouseClicked
-        // TODO add your handling code here:
+        getDesktopPane().add(new Invoice()).setVisible(true);
+        dispose();
     }//GEN-LAST:event_lblInvoiceMouseClicked
 
     private void lblSoftDrinkStockMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSoftDrinkStockMouseClicked
-        // TODO add your handling code here:
+        getDesktopPane().add(new SoftDrinkStock()).setVisible(true);
+        dispose();
     }//GEN-LAST:event_lblSoftDrinkStockMouseClicked
 
     private void lblMainStockMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMainStockMouseClicked
-        // TODO add your handling code here:
+        getDesktopPane().add(new MainStockManagement()).setVisible(true);
+        dispose();
     }//GEN-LAST:event_lblMainStockMouseClicked
+
+    private void lblBarStockMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBarStockMouseEntered
+        lblBarStock.setBackground(entered);
+    }//GEN-LAST:event_lblBarStockMouseEntered
+
+    private void lblBarStockMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBarStockMouseExited
+        lblBarStock.setBackground(exited);
+    }//GEN-LAST:event_lblBarStockMouseExited
+
+    private void lblInvoiceMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInvoiceMouseEntered
+        lblInvoice.setBackground(entered);
+    }//GEN-LAST:event_lblInvoiceMouseEntered
+
+    private void lblInvoiceMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInvoiceMouseExited
+        lblInvoice.setBackground(exited);
+    }//GEN-LAST:event_lblInvoiceMouseExited
+
+    private void lblSoftDrinkStockMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSoftDrinkStockMouseEntered
+        lblSoftDrinkStock.setBackground(entered);
+    }//GEN-LAST:event_lblSoftDrinkStockMouseEntered
+
+    private void lblSoftDrinkStockMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSoftDrinkStockMouseExited
+        lblSoftDrinkStock.setBackground(exited);
+    }//GEN-LAST:event_lblSoftDrinkStockMouseExited
+
+    private void lblMainStockMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMainStockMouseEntered
+        lblMainStock.setBackground(entered);
+    }//GEN-LAST:event_lblMainStockMouseEntered
+
+    private void lblMainStockMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMainStockMouseExited
+        lblMainStock.setBackground(exited);
+    }//GEN-LAST:event_lblMainStockMouseExited
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

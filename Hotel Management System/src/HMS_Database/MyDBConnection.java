@@ -18,8 +18,7 @@ public class MyDBConnection {
     {
         synchronized(monitor)
         {
-            try
-            {
+            try {
                 if(conn == null) {
                     Class.forName("com.mysql.jdbc.Driver");
                     conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel_management_system", "root", "");
@@ -28,8 +27,6 @@ public class MyDBConnection {
                 JOptionPane.showMessageDialog(null, "Unable to establish database connection.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-        
         return conn;
     }
-    
 }

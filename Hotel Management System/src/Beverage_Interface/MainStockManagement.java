@@ -8,6 +8,7 @@ package Beverage_Interface;
 
 import HMS_Database.MyDBConnection;
 import HMS_Home.MHome;
+import java.awt.Color;
 import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -30,27 +31,28 @@ import net.sf.jasperreports.view.JasperViewer;
  *
  * @author Prabas Gayadeeptha
  * 
- * @author Isira Seneviratne
+ * @author Isira Seneviratne (19440268)
  */
-public class MainStock_Management extends javax.swing.JInternalFrame {
-
+public class MainStockManagement extends javax.swing.JInternalFrame {
     /**
-     * Creates new form MainStock_Management
+     * Creates new form MainStockManagement
      */
-    Connection conn = null;
-    PreparedStatement pst = null;
-    ResultSet rst = null;
-    String passCID;
-    public MainStock_Management() {
+    private Connection conn = null;
+    private PreparedStatement pst = null;
+    private ResultSet rst = null;
+    
+    private final Color entered = new Color(104,109,213), exited = new Color(153,204,255);
+    
+    public MainStockManagement() {
         initComponents();
         conn =  MyDBConnection.connectDB();
         tableLoad();
         //tableLoad1();
-       // update_table();
-       update_table();
+        // update_table();
+        update_table();
     }
+    
     private void update_table() {
-
         try {
             String sql = "SELECT Stock_Id,Product_Name,Brand,Volume,Quantity,Total_Count from main1 ";
             //String sql = "SELECT id,f_name,l_name,category from trainers ";
@@ -63,6 +65,7 @@ public class MainStock_Management extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, e);
         }
     }
+    
     public void tableLoad(){
        // Bname,tibrand,qphone,bpay,brprice
         try {
@@ -85,7 +88,7 @@ public class MainStock_Management extends javax.swing.JInternalFrame {
         to.setText("");
     } 
         
-//table load 2
+    //table load 2
     public void tableLoad1() {
        // Bname,tibrand,qphone,bpay,brprice
         try {
@@ -420,6 +423,12 @@ public class MainStock_Management extends javax.swing.JInternalFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblSoftDrinkStockMouseClicked(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblSoftDrinkStockMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblSoftDrinkStockMouseEntered(evt);
+            }
         });
         PnlMenu.add(lblSoftDrinkStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 40, 210, 30));
 
@@ -431,6 +440,12 @@ public class MainStock_Management extends javax.swing.JInternalFrame {
         lblInvoice.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblInvoiceMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblInvoiceMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblInvoiceMouseEntered(evt);
             }
         });
         PnlMenu.add(lblInvoice, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 40, 210, 30));
@@ -444,6 +459,12 @@ public class MainStock_Management extends javax.swing.JInternalFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblBevOrdersMouseClicked(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblBevOrdersMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblBevOrdersMouseEntered(evt);
+            }
         });
         PnlMenu.add(lblBevOrders, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 210, 30));
 
@@ -455,6 +476,12 @@ public class MainStock_Management extends javax.swing.JInternalFrame {
         lblBarStock.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblBarStockMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblBarStockMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblBarStockMouseEntered(evt);
             }
         });
         PnlMenu.add(lblBarStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 210, 30));
@@ -493,20 +520,21 @@ public class MainStock_Management extends javax.swing.JInternalFrame {
 
             //inId,Bname,tibrand,qphone,bpay,brprice
             String q = "update main1 set Product Name='"+value2+"',Brand ='"+value3+"',Volume='"+value4+"',Quantity='"+value5+"',Total_Count='"+value6+"' where Stock_Id = '"+value1+"'";
-            pst=conn .prepareStatement(q);
+            pst = conn.prepareStatement(q);
             pst.execute();
-            JOptionPane.showMessageDialog(null,"Record Updated");
+            JOptionPane.showMessageDialog(null, "Record successfully updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
         }
         catch(HeadlessException | SQLException e) {
-            JOptionPane.showMessageDialog(null,e);
+            JOptionPane.showMessageDialog(null, "An error occurred while updating the record.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             // String q = "INSERT INTO invoice01 (inId,Bname,tibrand,qphone,bpay,brprice) values (?,?,?,?,?,?)";
-            String q= "INSERT INTO main1(Stock_Id,Product_Name,Brand,Volume,Quantity,Total_Count) values(?,?,?,?,?,?)";
-            //System.out.println("qq");
+            String q = "INSERT INTO main1(Stock_Id,Product_Name,Brand,Volume,Quantity,Total_Count) values(?,?,?,?,?,?)";
+            
             pst = conn.prepareStatement(q);
             pst.setString(1, st.getText());
             pst.setString(2, pr.getText());
@@ -514,32 +542,29 @@ public class MainStock_Management extends javax.swing.JInternalFrame {
             pst.setString(4, vo.getText());
             pst.setString(5, qu.getText());
             pst.setString(6, to.getText());
-            System.out.println("aa");
             
             pst.execute();
-            JOptionPane.showMessageDialog(null, "Successfully Saved");
+            JOptionPane.showMessageDialog(null, "Successfully inserted new record.", "Success", 
+                    JOptionPane.INFORMATION_MESSAGE);
             tableLoad();
-
         } catch(SQLException e) {
             System.out.println(e.getMessage());
-            JOptionPane.showMessageDialog(null ,e);
+            JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
         MHome m = new MHome();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(m).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
         BeverageHome m = new BeverageHome();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(m).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -560,7 +585,7 @@ public class MainStock_Management extends javax.swing.JInternalFrame {
         // System.out.println(oldQty);
 
         if (Rdrug.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Please Input Quantity", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please input a quantity.", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else if (newQty <= oldQty) {
             try {
@@ -583,7 +608,7 @@ public class MainStock_Management extends javax.swing.JInternalFrame {
 
                 String value1 = st.getText();
 
-                String sql = "UPDATE main1 SET Quantity  = Quantity - " + qty + " WHERE Stock_Id='" + value1 + "'";
+                String sql = "UPDATE main1 SET Quantity = Quantity - " + qty + " WHERE Stock_Id='" + value1 + "'";
                 //System.out.println(sql);
                 System.out.print("test2");
                 pst = conn.prepareStatement(sql);
@@ -596,16 +621,16 @@ public class MainStock_Management extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }
             
-            JOptionPane.showMessageDialog(null, "Drug issued successfully");
-               // tableLoad();
-           // tableLoad();
+            JOptionPane.showMessageDialog(null, "The drug was issued successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+            // tableLoad();
+            // tableLoad();
             
             System.out.print("test4");
             tableLoad();
             tableLoad1();
         }
         else {
-            JOptionPane.showMessageDialog(null, "Requested quantity cannot be issue", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "The requested quantity cannot be issued.", "Error", JOptionPane.ERROR_MESSAGE);
         }
        // tableLoad1();
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -613,7 +638,7 @@ public class MainStock_Management extends javax.swing.JInternalFrame {
     private void tab1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab1MouseClicked
         try {
             int row = tab1.getSelectedRow();//Stock_id,product_name,Brand,Volume,Quantity,Pay_by,Price,Amount
-            String Table_click = (tab1.getModel().getValueAt(row, 0).toString());
+            String Table_click = tab1.getModel().getValueAt(row, 0).toString();
             String q = "select * from main1  where Stock_id='" + Table_click + "'";
             pst = conn.prepareStatement(q);
             rst = (ResultSet) pst.executeQuery(q);  
@@ -621,7 +646,6 @@ public class MainStock_Management extends javax.swing.JInternalFrame {
 //Stock_Id,Product_Name,Brand,Volume,Quantity,Total_Count
                 String add1 = rst.getString("Stock_id");
                 st.setText(add1);
-
                 //--------------------------------------------
                /* String add2 = rst.getString("Bname");
                 //date_dob.setDate(add4);
@@ -649,8 +673,6 @@ public class MainStock_Management extends javax.swing.JInternalFrame {
                 
                  String add6 = rst.getString("Total_Count");
                 to.setText(add6);
-                
-               
                 //-------------------------------------------
                 // String add12=rs.getString("joined_date");
                 //date_joined.setText(add9);
@@ -663,8 +685,7 @@ public class MainStock_Management extends javax.swing.JInternalFrame {
                 //    }
                 //-------------------------------------------
             }
-        } catch (Exception e) {
-
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_tab1MouseClicked
@@ -676,9 +697,11 @@ public class MainStock_Management extends javax.swing.JInternalFrame {
             pst = conn.prepareStatement(q);
             pst.setString(1, st.getText());
             pst.execute();
-            JOptionPane.showMessageDialog(null, "Record Deleted");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "Record successfully deleted.", "Success",
+                    JOptionPane.INFORMATION_MESSAGE);
+        } catch (HeadlessException | SQLException e) {
+            JOptionPane.showMessageDialog(null, "An error occurred while deleting the record.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
         update_table();
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -702,7 +725,7 @@ public class MainStock_Management extends javax.swing.JInternalFrame {
     private void REPORTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_REPORTActionPerformed
         try {
             JasperDesign jd = JRXmlLoader.load("D:\\SLIIT\\2nd Year\\2nd Semester\\ITP - Information Technology Project\\Project\\Hotel_Management_System(Selsan)\\MainStock.jrxml");// Path for the Report
-            String sql = "SELECT * FROM main1";// USer input of SQL
+            String sql = "SELECT * FROM main1";// User input of SQL
             JRDesignQuery newquery = new JRDesignQuery();
             newquery.setText(sql);
             jd.setQuery(newquery);
@@ -710,18 +733,20 @@ public class MainStock_Management extends javax.swing.JInternalFrame {
             JasperPrint jp = JasperFillManager.fillReport(jr, null,conn);
             JasperViewer.viewReport(jp);
         }
-        catch (JRException e)
-        {
-            JOptionPane.showMessageDialog(null, e);
+        catch (JRException e) {
+            JOptionPane.showMessageDialog(null, "An error occurred while generating the report.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_REPORTActionPerformed
 
     private void lblBarStockMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBarStockMouseClicked
-        // TODO add your handling code here:
+        getDesktopPane().add(new BarStockManagement()).setVisible(true);
+        dispose();
     }//GEN-LAST:event_lblBarStockMouseClicked
 
     private void lblBevOrdersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBevOrdersMouseClicked
-        // TODO add your handling code here:
+        getDesktopPane().add(new BeverageOrder()).setVisible(true);
+        dispose();
     }//GEN-LAST:event_lblBevOrdersMouseClicked
 
     private void lblInvoiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInvoiceMouseClicked
@@ -731,6 +756,38 @@ public class MainStock_Management extends javax.swing.JInternalFrame {
     private void lblSoftDrinkStockMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSoftDrinkStockMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_lblSoftDrinkStockMouseClicked
+
+    private void lblBarStockMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBarStockMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblBarStockMouseEntered
+
+    private void lblBarStockMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBarStockMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblBarStockMouseExited
+
+    private void lblBevOrdersMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBevOrdersMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblBevOrdersMouseEntered
+
+    private void lblBevOrdersMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBevOrdersMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblBevOrdersMouseExited
+
+    private void lblInvoiceMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInvoiceMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblInvoiceMouseEntered
+
+    private void lblInvoiceMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInvoiceMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblInvoiceMouseExited
+
+    private void lblSoftDrinkStockMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSoftDrinkStockMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblSoftDrinkStockMouseEntered
+
+    private void lblSoftDrinkStockMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSoftDrinkStockMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblSoftDrinkStockMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

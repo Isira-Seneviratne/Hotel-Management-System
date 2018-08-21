@@ -12,7 +12,7 @@ import javax.swing.JDesktopPane;
  *
  * @author Prabas Gayadeeptha
  * 
- * @author Isira Seneviratne
+ * @author Isira Seneviratne (19440268)
  */
 public class BeverageHome extends javax.swing.JInternalFrame {
 
@@ -165,7 +165,7 @@ public class BeverageHome extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        BarStock_Management z = new BarStock_Management();
+        BarStockManagement z = new BarStockManagement();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(z).setVisible(true);
         this.dispose();
@@ -173,21 +173,21 @@ public class BeverageHome extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        MainStock_Management c1 = new MainStock_Management ();
+        MainStockManagement c1 = new MainStockManagement ();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(c1).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        SoftDrink_Stock d1 = new SoftDrink_Stock();
+        SoftDrinkStock d1 = new SoftDrinkStock();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(d1).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        Beverage_Order o1= new Beverage_Order();
+        BeverageOrder o1= new BeverageOrder();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(o1).setVisible(true);
         this.dispose();

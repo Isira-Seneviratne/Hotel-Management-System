@@ -20,9 +20,9 @@ import javax.swing.JOptionPane;
  * @author Prabas Gayadeeptha
  */
 public class MHome extends javax.swing.JInternalFrame {
-    Hotel c = new Hotel();
-    HR_Methods hrm = new HR_Methods();
-    Color blueColor = new Color(0, 174, 239);
+    private Hotel c = new Hotel();
+    private HR_Methods hrm = new HR_Methods();
+    private Color blueColor = new Color(0, 174, 239);
 
     public MHome() {
         initComponents();
