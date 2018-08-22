@@ -49,7 +49,7 @@ public class BarStockManagement extends javax.swing.JInternalFrame {
     }
     
     //table load
-    public void loadTable(JTable table, String query) {
+    private void loadTable(JTable table, String query) {
         try {
             pst = conn.prepareStatement(query);
             rst = pst.executeQuery();
@@ -550,7 +550,6 @@ public class BarStockManagement extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
         BeverageHome m = new BeverageHome();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(m).setVisible(true);
@@ -666,10 +665,13 @@ public class BarStockManagement extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_t1KeyTyped
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        double a = Double.parseDouble(t5.getText());
-        double b = Double.parseDouble(t7.getText());
-        double am = a*b;
-        t8.setText(""+am);
+        try {
+            double am = Double.parseDouble(t5.getText()) * Double.parseDouble(t7.getText());
+            t8.setText(""+am);
+        } catch(NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "You have entered an invalid value for one of the number fields. Enter a "
+                    + "proper value.", "Invalid Number", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void REPORTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_REPORTActionPerformed

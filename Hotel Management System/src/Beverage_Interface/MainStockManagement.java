@@ -52,7 +52,7 @@ public class MainStockManagement extends javax.swing.JInternalFrame {
         loadTable(tab1, "SELECT Stock_Id,Product_Name,Brand,Volume,Quantity,Total_Count from main1"); //previously updateTable();
     }
     
-    public void loadTable(JTable table, String query) {
+    private void loadTable(JTable table, String query) {
         try {
             pst = conn.prepareStatement(query);   
             rst = pst.executeQuery();
@@ -65,7 +65,7 @@ public class MainStockManagement extends javax.swing.JInternalFrame {
         }
     }
     
-    public void clearFields() {
+    private void clearFields() {
         txtStockID.setText("");
         txtProdName.setText("");
         txtBrand.setText("");
@@ -379,6 +379,7 @@ public class MainStockManagement extends javax.swing.JInternalFrame {
         lblSoftDrinkStock.setForeground(new java.awt.Color(255, 255, 255));
         lblSoftDrinkStock.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSoftDrinkStock.setText("Soft Drink Stock");
+        lblSoftDrinkStock.setToolTipText("Click to switch to the soft drink stock section.");
         lblSoftDrinkStock.setOpaque(true);
         lblSoftDrinkStock.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -397,6 +398,7 @@ public class MainStockManagement extends javax.swing.JInternalFrame {
         lblInvoice.setForeground(new java.awt.Color(255, 255, 255));
         lblInvoice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblInvoice.setText("Invoice");
+        lblInvoice.setToolTipText("Click to switch to the invoice section.");
         lblInvoice.setOpaque(true);
         lblInvoice.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -415,6 +417,7 @@ public class MainStockManagement extends javax.swing.JInternalFrame {
         lblBevOrders.setForeground(new java.awt.Color(255, 255, 255));
         lblBevOrders.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblBevOrders.setText("Beverage Orders");
+        lblBevOrders.setToolTipText("Click to switch to the beverage orders section.");
         lblBevOrders.setOpaque(true);
         lblBevOrders.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -433,6 +436,7 @@ public class MainStockManagement extends javax.swing.JInternalFrame {
         lblBarStock.setForeground(new java.awt.Color(255, 255, 255));
         lblBarStock.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblBarStock.setText("Bar Stock");
+        lblBarStock.setToolTipText("Click to switch to the bar stock section.");
         lblBarStock.setOpaque(true);
         lblBarStock.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -646,7 +650,7 @@ public class MainStockManagement extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-      /*    String r;
+      /*String r;
         try{
         r= "delete from main22";
          pst = conn.prepareStatement(r);

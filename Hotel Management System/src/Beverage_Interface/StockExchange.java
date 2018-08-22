@@ -72,7 +72,7 @@ public class StockExchange extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 32, 541, 154));
 
         jButton2.setText("Delete");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(383, 261, 71, 39));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(374, 261, 80, 39));
 
         emp_background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/MainBackForAll.jpg"))); // NOI18N
         emp_background.setPreferredSize(new java.awt.Dimension(1190, 570));

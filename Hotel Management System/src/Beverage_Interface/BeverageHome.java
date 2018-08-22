@@ -54,7 +54,7 @@ public class BeverageHome extends javax.swing.JInternalFrame {
         jPanel2.setPreferredSize(new java.awt.Dimension(1190, 580));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setBackground(new java.awt.Color(102, 204, 0));
+        jButton1.setBackground(new java.awt.Color(0, 102, 204));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Beverage_Images/Reurn-handle-icon.png"))); // NOI18N
@@ -81,7 +81,7 @@ public class BeverageHome extends javax.swing.JInternalFrame {
         jButton3.setText("jButton1");
         jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(303, 1129, 111, 76));
 
-        jButton4.setBackground(new java.awt.Color(0, 153, 0));
+        jButton4.setBackground(new java.awt.Color(0, 102, 204));
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Beverage_Images/Delete-icon.png"))); // NOI18N
@@ -93,7 +93,7 @@ public class BeverageHome extends javax.swing.JInternalFrame {
         });
         jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 130, 290, 210));
 
-        jButton5.setBackground(new java.awt.Color(255, 153, 51));
+        jButton5.setBackground(new java.awt.Color(0, 102, 204));
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Beverage_Images/transport-icon.png"))); // NOI18N
@@ -105,7 +105,7 @@ public class BeverageHome extends javax.swing.JInternalFrame {
         });
         jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 360, 290, 200));
 
-        jButton6.setBackground(new java.awt.Color(0, 204, 204));
+        jButton6.setBackground(new java.awt.Color(0, 102, 204));
         jButton6.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Beverage_Images/View-Site-icon.png"))); // NOI18N
@@ -117,7 +117,7 @@ public class BeverageHome extends javax.swing.JInternalFrame {
         });
         jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 360, 290, 200));
 
-        jButton7.setBackground(new java.awt.Color(255, 51, 0));
+        jButton7.setBackground(new java.awt.Color(0, 102, 204));
         jButton7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Beverage_Images/disaprrove-icon.png"))); // NOI18N

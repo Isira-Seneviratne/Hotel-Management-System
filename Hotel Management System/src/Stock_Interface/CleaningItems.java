@@ -8,6 +8,7 @@ package Stock_Interface;
 import HMS_Database.MyDBConnection;
 import HMS_Home.MHome;
 import HRMS_Codes.ValidationHRMS;
+import java.awt.Color;
 import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -41,21 +42,22 @@ public class CleaningItems extends javax.swing.JInternalFrame {
     private PreparedStatement pst = null;
     private ResultSet rs = null;
     
+    private final Color entered = new Color(104,109,213), exited = new Color(153,204,255);
+    
     public CleaningItems() {
         initComponents();
         
         con = MyDBConnection.connectDB();
         
-        tableLoad();
+        loadTable();
     }
     
-    public void tableLoad()
+    private void loadTable()
     {
         try {
             String sql = "SELECT Item_Id, Item_Name, Quantity, Purchased_Date, Vender, Price FROM cleaning_items";
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();
-
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "An error occurred while retrieving the records.", "Error",
@@ -72,6 +74,7 @@ public class CleaningItems extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jButton11 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -92,6 +95,7 @@ public class CleaningItems extends javax.swing.JInternalFrame {
         jButton13 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel10 = new javax.swing.JLabel();
         PnlMenu = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
@@ -100,9 +104,7 @@ public class CleaningItems extends javax.swing.JInternalFrame {
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
 
         setMinimumSize(new java.awt.Dimension(1200, 680));
         setPreferredSize(new java.awt.Dimension(1200, 680));
@@ -111,6 +113,17 @@ public class CleaningItems extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Algerian", 1, 24)); // NOI18N
         jLabel1.setText("CLEANING ITEMS");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 90, 250, 40));
+
+        jButton11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton11.setText("Home");
+        jButton11.setPreferredSize(new java.awt.Dimension(110, 25));
+        jButton11.setSelected(true);
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 590, 120, 30));
 
         jPanel1.setBackground(new java.awt.Color(247, 249, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Add Cleaning Items", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
@@ -141,6 +154,7 @@ public class CleaningItems extends javax.swing.JInternalFrame {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton1.setText("Add");
+        jButton1.setToolTipText("Adds a new record to the database.");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -150,6 +164,7 @@ public class CleaningItems extends javax.swing.JInternalFrame {
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton2.setText("Update");
+        jButton2.setToolTipText("Updates the record.");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -159,6 +174,7 @@ public class CleaningItems extends javax.swing.JInternalFrame {
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton3.setText("Delete");
+        jButton3.setToolTipText("Deletes the record from the database.");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -168,6 +184,7 @@ public class CleaningItems extends javax.swing.JInternalFrame {
 
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton4.setText("Clear");
+        jButton4.setToolTipText("Clears the data entry controls on the left.");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -229,26 +246,41 @@ public class CleaningItems extends javax.swing.JInternalFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 480, 1184, 170));
 
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Stock_Images/MainBackForAll.jpg"))); // NOI18N
+        jLabel10.setPreferredSize(new java.awt.Dimension(1190, 570));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, -1, 580));
+
         PnlMenu.setPreferredSize(new java.awt.Dimension(1200, 100));
         PnlMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton5.setBackground(new java.awt.Color(255, 255, 255));
+        jButton5.setBackground(new java.awt.Color(153, 204, 255));
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Food Items");
-        jButton5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton5.setToolTipText("Click to switch to the food items section.");
+        jButton5.setBorder(null);
         jButton5.setPreferredSize(new java.awt.Dimension(110, 25));
         jButton5.setSelected(true);
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton5MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton5MouseEntered(evt);
+            }
+        });
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
-        PnlMenu.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 120, -1));
+        PnlMenu.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 120, 30));
 
-        jButton6.setBackground(new java.awt.Color(255, 255, 255));
+        jButton6.setBackground(new java.awt.Color(0, 174, 238));
         jButton6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Cleaning Items");
-        jButton6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton6.setBorder(null);
         jButton6.setPreferredSize(new java.awt.Dimension(110, 25));
         jButton6.setSelected(true);
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -256,38 +288,60 @@ public class CleaningItems extends javax.swing.JInternalFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        PnlMenu.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 120, -1));
+        PnlMenu.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 120, 30));
 
-        jButton7.setBackground(new java.awt.Color(255, 255, 255));
+        jButton7.setBackground(new java.awt.Color(153, 204, 255));
         jButton7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(255, 255, 255));
         jButton7.setText("Room Items");
-        jButton7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton7.setToolTipText("Click to switch to the room items section.");
+        jButton7.setBorder(null);
         jButton7.setPreferredSize(new java.awt.Dimension(110, 25));
         jButton7.setSelected(true);
+        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton7MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton7MouseEntered(evt);
+            }
+        });
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
             }
         });
-        PnlMenu.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, 120, -1));
+        PnlMenu.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, 120, 30));
 
-        jButton8.setBackground(new java.awt.Color(255, 255, 255));
+        jButton8.setBackground(new java.awt.Color(153, 204, 255));
         jButton8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton8.setForeground(new java.awt.Color(255, 255, 255));
         jButton8.setText("Pending Orders");
-        jButton8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton8.setToolTipText("Click to switch to the pending orders section.");
+        jButton8.setBorder(null);
         jButton8.setPreferredSize(new java.awt.Dimension(110, 25));
         jButton8.setSelected(true);
+        jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton8MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton8MouseEntered(evt);
+            }
+        });
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
             }
         });
-        PnlMenu.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, 120, -1));
+        PnlMenu.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, 120, 30));
 
-        jButton9.setBackground(new java.awt.Color(255, 255, 255));
+        jButton9.setBackground(new java.awt.Color(153, 204, 255));
         jButton9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton9.setForeground(new java.awt.Color(255, 255, 255));
         jButton9.setText("Vendors");
-        jButton9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton9.setToolTipText("Click to switch to the vendors section.");
+        jButton9.setBorder(null);
         jButton9.setPreferredSize(new java.awt.Dimension(110, 25));
         jButton9.setSelected(true);
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -295,46 +349,53 @@ public class CleaningItems extends javax.swing.JInternalFrame {
                 jButton9ActionPerformed(evt);
             }
         });
-        PnlMenu.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 30, 120, -1));
+        PnlMenu.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 40, 120, 30));
 
-        jButton10.setBackground(new java.awt.Color(255, 255, 255));
+        jButton10.setBackground(new java.awt.Color(153, 204, 255));
         jButton10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton10.setForeground(new java.awt.Color(255, 255, 255));
         jButton10.setText("Payments");
-        jButton10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton10.setToolTipText("Click to switch to the payments section.");
+        jButton10.setBorder(null);
         jButton10.setPreferredSize(new java.awt.Dimension(110, 25));
         jButton10.setSelected(true);
+        jButton10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton10MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton10MouseEntered(evt);
+            }
+        });
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton10ActionPerformed(evt);
             }
         });
-        PnlMenu.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, 120, -1));
+        PnlMenu.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 40, 120, 30));
 
-        jButton12.setBackground(new java.awt.Color(255, 255, 255));
+        jButton12.setBackground(new java.awt.Color(153, 204, 255));
         jButton12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton12.setForeground(new java.awt.Color(255, 255, 255));
         jButton12.setText("Kitchen Items");
-        jButton12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton12.setToolTipText("Click to switch to the kitchen items section.");
+        jButton12.setBorder(null);
         jButton12.setPreferredSize(new java.awt.Dimension(110, 25));
         jButton12.setSelected(true);
+        jButton12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton12MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton12MouseEntered(evt);
+            }
+        });
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton12ActionPerformed(evt);
             }
         });
-        PnlMenu.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 30, 120, 25));
-
-        jButton11.setBackground(new java.awt.Color(255, 255, 255));
-        jButton11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton11.setText("Home");
-        jButton11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButton11.setPreferredSize(new java.awt.Dimension(110, 25));
-        jButton11.setSelected(true);
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
-            }
-        });
-        PnlMenu.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 30, 120, 25));
+        PnlMenu.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 40, 120, 30));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Stock_Images/MenuBar_Back_Main_Stock.jpg"))); // NOI18N
         jLabel12.setMaximumSize(new java.awt.Dimension(1190, 75));
@@ -344,22 +405,19 @@ public class CleaningItems extends javax.swing.JInternalFrame {
 
         getContentPane().add(PnlMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1190, 70));
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Stock_Images/MainBackForAll.jpg"))); // NOI18N
-        jLabel10.setPreferredSize(new java.awt.Dimension(1190, 570));
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, -1, 580));
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if(jTextField1.getText().isEmpty()||jTextField2.getText().isEmpty()||jTextField3.getText().isEmpty())
+        if(jTextField1.getText().isEmpty()
+                || jTextField2.getText().isEmpty()
+                || jTextField3.getText().isEmpty())
         {
             JOptionPane.showMessageDialog(null,"Some data has not been entered. Enter missing data.", "Missing Data",
                     JOptionPane.ERROR_MESSAGE);
         }
-        else
-        {
+        else {
             String item_name = jTextField1.getText();
             boolean item_name_validation = ValidationHRMS.isLetter(item_name);
             String qty = jTextField2.getText();
@@ -377,12 +435,12 @@ public class CleaningItems extends javax.swing.JInternalFrame {
                 if(qty_validation) {
                     if(price_validation) {
                         try {
-                                String w = "INSERT INTO cleaning_items(Item_Name, Quantity, Purchased_Date, Vender, Price) values ('"+item_name+"', '"+qty+"', '"+purchased_date+"', '"+vender+"', '"+totvalue+"')";
+                            String w = "INSERT INTO cleaning_items(Item_Name, Quantity, Purchased_Date, Vender, Price)"
+                                    + " values ('"+item_name+"', '"+qty+"', '"+purchased_date+"', '"+vender+"', '"+totvalue+"')";
                             pst = con.prepareStatement(w);
                             pst.execute();
                             JOptionPane.showMessageDialog(null, "Details  Saved Successfully");
-
-                            tableLoad();
+                            loadTable();
                         } catch (SQLException e) {
                             JOptionPane.showMessageDialog(null, e);
                         }
@@ -455,7 +513,7 @@ public class CleaningItems extends javax.swing.JInternalFrame {
                 pst = con.prepareStatement(sql);
                 pst.execute();
                 //load table
-                tableLoad();
+                loadTable();
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "An error occurred while updating the record.", "Error",
                         JOptionPane.ERROR_MESSAGE);
@@ -473,7 +531,7 @@ public class CleaningItems extends javax.swing.JInternalFrame {
                 pst = con.prepareStatement("DELETE FROM cleaning_items where Item_Id='"+item_id+"' ");
                 pst.execute();
                 //load table
-                tableLoad();
+                loadTable();
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "An error occurred while deleting.", "Error",
                         JOptionPane.ERROR_MESSAGE);
@@ -524,7 +582,7 @@ public class CleaningItems extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        Orders odr1 = new Orders();
+        PendingOrders odr1 = new PendingOrders();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(odr1).setVisible(true);
         dispose();
@@ -557,6 +615,46 @@ public class CleaningItems extends javax.swing.JInternalFrame {
         desktopPane.add(mh).setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseEntered
+        jButton5.setBackground(entered);
+    }//GEN-LAST:event_jButton5MouseEntered
+
+    private void jButton5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseExited
+        jButton5.setBackground(exited);
+    }//GEN-LAST:event_jButton5MouseExited
+
+    private void jButton7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseEntered
+        jButton7.setBackground(entered);
+    }//GEN-LAST:event_jButton7MouseEntered
+
+    private void jButton7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseExited
+        jButton7.setBackground(exited);
+    }//GEN-LAST:event_jButton7MouseExited
+
+    private void jButton8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseEntered
+        jButton8.setBackground(entered);
+    }//GEN-LAST:event_jButton8MouseEntered
+
+    private void jButton8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseExited
+        jButton8.setBackground(exited);
+    }//GEN-LAST:event_jButton8MouseExited
+
+    private void jButton10MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseEntered
+        jButton10.setBackground(entered);
+    }//GEN-LAST:event_jButton10MouseEntered
+
+    private void jButton10MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseExited
+        jButton10.setBackground(exited);
+    }//GEN-LAST:event_jButton10MouseExited
+
+    private void jButton12MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MouseEntered
+        jButton12.setBackground(entered);
+    }//GEN-LAST:event_jButton12MouseEntered
+
+    private void jButton12MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MouseExited
+        jButton12.setBackground(exited);
+    }//GEN-LAST:event_jButton12MouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

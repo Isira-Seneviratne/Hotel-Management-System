@@ -67,6 +67,7 @@ public class VendorDetails extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton11 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -95,19 +96,29 @@ public class VendorDetails extends javax.swing.JInternalFrame {
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
 
         setMinimumSize(new java.awt.Dimension(1200, 680));
         setPreferredSize(new java.awt.Dimension(1200, 680));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jButton11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton11.setText("Home");
+        jButton11.setPreferredSize(new java.awt.Dimension(110, 25));
+        jButton11.setSelected(true);
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 570, 120, 30));
+
         jLabel1.setFont(new java.awt.Font("Algerian", 1, 24)); // NOI18N
         jLabel1.setText("Vendor Details");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(247, 249, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Add Venders"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Add Vendors"));
         jPanel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -185,6 +196,7 @@ public class VendorDetails extends javax.swing.JInternalFrame {
         jPanel1.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 233, 180, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, 510, 290));
+        jPanel1.getAccessibleContext().setAccessibleName("Add Vendors");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -221,62 +233,103 @@ public class VendorDetails extends javax.swing.JInternalFrame {
         PnlMenu.setPreferredSize(new java.awt.Dimension(1200, 100));
         PnlMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton5.setBackground(new java.awt.Color(255, 255, 255));
+        jButton5.setBackground(new java.awt.Color(153, 204, 255));
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Food Items");
-        jButton5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton5.setToolTipText("Click to switch to the food items section.");
+        jButton5.setBorder(null);
         jButton5.setPreferredSize(new java.awt.Dimension(110, 25));
         jButton5.setSelected(true);
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton5MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton5MouseEntered(evt);
+            }
+        });
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
-        PnlMenu.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 120, -1));
+        PnlMenu.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 120, 30));
 
-        jButton6.setBackground(new java.awt.Color(255, 255, 255));
+        jButton6.setBackground(new java.awt.Color(153, 204, 255));
         jButton6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Cleaning Items");
-        jButton6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton6.setToolTipText("Click to switch to the cleaning items section.");
+        jButton6.setBorder(null);
         jButton6.setPreferredSize(new java.awt.Dimension(110, 25));
         jButton6.setSelected(true);
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton6MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton6MouseEntered(evt);
+            }
+        });
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
             }
         });
-        PnlMenu.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 120, -1));
+        PnlMenu.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 120, 30));
 
-        jButton7.setBackground(new java.awt.Color(255, 255, 255));
+        jButton7.setBackground(new java.awt.Color(153, 204, 255));
         jButton7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(255, 255, 255));
         jButton7.setText("Room Items");
-        jButton7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton7.setToolTipText("Click to switch to the room items section.");
+        jButton7.setBorder(null);
         jButton7.setPreferredSize(new java.awt.Dimension(110, 25));
         jButton7.setSelected(true);
+        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton7MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton7MouseEntered(evt);
+            }
+        });
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
             }
         });
-        PnlMenu.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, 120, -1));
+        PnlMenu.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, 120, 30));
 
-        jButton8.setBackground(new java.awt.Color(255, 255, 255));
+        jButton8.setBackground(new java.awt.Color(153, 204, 255));
         jButton8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton8.setForeground(new java.awt.Color(255, 255, 255));
         jButton8.setText("Pending Orders");
-        jButton8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton8.setToolTipText("Click to switch to the pending orders section.");
+        jButton8.setBorder(null);
         jButton8.setPreferredSize(new java.awt.Dimension(110, 25));
         jButton8.setSelected(true);
+        jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton8MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton8MouseEntered(evt);
+            }
+        });
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
             }
         });
-        PnlMenu.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, 120, -1));
+        PnlMenu.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, 120, 30));
 
-        jButton9.setBackground(new java.awt.Color(255, 255, 255));
+        jButton9.setBackground(new java.awt.Color(0, 174, 238));
         jButton9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton9.setForeground(new java.awt.Color(255, 255, 255));
         jButton9.setText("Vendors");
-        jButton9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton9.setBorder(null);
         jButton9.setPreferredSize(new java.awt.Dimension(110, 25));
         jButton9.setSelected(true);
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -284,46 +337,53 @@ public class VendorDetails extends javax.swing.JInternalFrame {
                 jButton9ActionPerformed(evt);
             }
         });
-        PnlMenu.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 30, 120, -1));
+        PnlMenu.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 40, 120, 30));
 
-        jButton10.setBackground(new java.awt.Color(255, 255, 255));
+        jButton10.setBackground(new java.awt.Color(153, 204, 255));
         jButton10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton10.setForeground(new java.awt.Color(255, 255, 255));
         jButton10.setText("Payments");
-        jButton10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton10.setToolTipText("Click to switch to the payments section.");
+        jButton10.setBorder(null);
         jButton10.setPreferredSize(new java.awt.Dimension(110, 25));
         jButton10.setSelected(true);
+        jButton10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton10MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton10MouseEntered(evt);
+            }
+        });
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton10ActionPerformed(evt);
             }
         });
-        PnlMenu.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, 120, -1));
+        PnlMenu.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 40, 120, 30));
 
-        jButton12.setBackground(new java.awt.Color(255, 255, 255));
+        jButton12.setBackground(new java.awt.Color(153, 204, 255));
         jButton12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton12.setForeground(new java.awt.Color(255, 255, 255));
         jButton12.setText("Kitchen Items");
-        jButton12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton12.setToolTipText("Click to switch to the kitchen items section.");
+        jButton12.setBorder(null);
         jButton12.setPreferredSize(new java.awt.Dimension(110, 25));
         jButton12.setSelected(true);
+        jButton12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton12MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton12MouseEntered(evt);
+            }
+        });
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton12ActionPerformed(evt);
             }
         });
-        PnlMenu.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 30, 120, 25));
-
-        jButton11.setBackground(new java.awt.Color(255, 255, 255));
-        jButton11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton11.setText("Home");
-        jButton11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButton11.setPreferredSize(new java.awt.Dimension(110, 25));
-        jButton11.setSelected(true);
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
-            }
-        });
-        PnlMenu.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 30, 120, 25));
+        PnlMenu.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 40, 120, 30));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Stock_Images/MenuBar_Back_Main_Stock.jpg"))); // NOI18N
         jLabel12.setMaximumSize(new java.awt.Dimension(1190, 75));
@@ -488,7 +548,7 @@ public class VendorDetails extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        Orders odr1 = new Orders();
+        PendingOrders odr1 = new PendingOrders();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(odr1).setVisible(true);
         dispose();
@@ -521,6 +581,54 @@ public class VendorDetails extends javax.swing.JInternalFrame {
         desktopPane.add(mh).setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5MouseEntered
+
+    private void jButton5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5MouseExited
+
+    private void jButton6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6MouseEntered
+
+    private void jButton6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6MouseExited
+
+    private void jButton7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7MouseEntered
+
+    private void jButton7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7MouseExited
+
+    private void jButton8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton8MouseEntered
+
+    private void jButton8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton8MouseExited
+
+    private void jButton10MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton10MouseEntered
+
+    private void jButton10MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton10MouseExited
+
+    private void jButton12MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton12MouseEntered
+
+    private void jButton12MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton12MouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

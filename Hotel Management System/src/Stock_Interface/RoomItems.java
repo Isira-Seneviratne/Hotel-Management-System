@@ -9,6 +9,7 @@ import HMS_Home.MHome;
 import javax.swing.JDesktopPane;
 import HMS_Database.MyDBConnection;
 import HRMS_Codes.ValidationHRMS;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -33,9 +34,11 @@ public class RoomItems extends javax.swing.JInternalFrame {
     /**
      * Creates new form RoomItems
      */
-    Connection con = null;
-    PreparedStatement pst = null;
-    ResultSet rs = null;
+    private Connection con = null;
+    private PreparedStatement pst = null;
+    private ResultSet rs = null;
+    
+    private final Color entered = new Color(104,109,213), exited = new Color(153,204,255);
     
     public RoomItems() {
         initComponents();
@@ -45,7 +48,7 @@ public class RoomItems extends javax.swing.JInternalFrame {
         loadTable();
     }
     
-    public void loadTable() {
+    private void loadTable() {
         try {
             pst = con.prepareStatement("SELECT Item_Id, Room_Number, Item_Name, Quantity FROM room_items");
             rs = pst.executeQuery();
@@ -65,6 +68,7 @@ public class RoomItems extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton11 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -90,13 +94,23 @@ public class RoomItems extends javax.swing.JInternalFrame {
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
 
         setMinimumSize(new java.awt.Dimension(1200, 680));
         setPreferredSize(new java.awt.Dimension(1200, 680));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton11.setText("Home");
+        jButton11.setPreferredSize(new java.awt.Dimension(110, 25));
+        jButton11.setSelected(true);
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 570, 120, 30));
 
         jLabel1.setFont(new java.awt.Font("Algerian", 1, 24)); // NOI18N
         jLabel1.setText("ROOM ITEMS");
@@ -118,19 +132,7 @@ public class RoomItems extends javax.swing.JInternalFrame {
         jLabel4.setText("Quantity");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 172, -1, -1));
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 54, 180, -1));
-
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 106, 180, -1));
-
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
         jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 169, 180, -1));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -219,36 +221,57 @@ public class RoomItems extends javax.swing.JInternalFrame {
         PnlMenu.setPreferredSize(new java.awt.Dimension(1200, 100));
         PnlMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton14.setBackground(new java.awt.Color(255, 255, 255));
+        jButton14.setBackground(new java.awt.Color(153, 204, 255));
         jButton14.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton14.setForeground(new java.awt.Color(255, 255, 255));
         jButton14.setText("Food Items");
-        jButton14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton14.setToolTipText("Click to switch to the food items section.");
+        jButton14.setBorder(null);
         jButton14.setPreferredSize(new java.awt.Dimension(110, 25));
         jButton14.setSelected(true);
+        jButton14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton14MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton14MouseEntered(evt);
+            }
+        });
         jButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton14ActionPerformed(evt);
             }
         });
-        PnlMenu.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 120, -1));
+        PnlMenu.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 120, 30));
 
-        jButton6.setBackground(new java.awt.Color(255, 255, 255));
+        jButton6.setBackground(new java.awt.Color(153, 204, 255));
         jButton6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Cleaning Items");
-        jButton6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton6.setToolTipText("Click to switch to the cleaning items section.");
+        jButton6.setBorder(null);
         jButton6.setPreferredSize(new java.awt.Dimension(110, 25));
         jButton6.setSelected(true);
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton6MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton6MouseEntered(evt);
+            }
+        });
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
             }
         });
-        PnlMenu.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 120, -1));
+        PnlMenu.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 120, 30));
 
-        jButton7.setBackground(new java.awt.Color(255, 255, 255));
+        jButton7.setBackground(new java.awt.Color(0, 174, 238));
         jButton7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(255, 255, 255));
         jButton7.setText("Room Items");
-        jButton7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton7.setBorder(null);
         jButton7.setPreferredSize(new java.awt.Dimension(110, 25));
         jButton7.setSelected(true);
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -256,12 +279,14 @@ public class RoomItems extends javax.swing.JInternalFrame {
                 jButton7ActionPerformed(evt);
             }
         });
-        PnlMenu.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, 120, -1));
+        PnlMenu.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, 120, 30));
 
-        jButton8.setBackground(new java.awt.Color(255, 255, 255));
+        jButton8.setBackground(new java.awt.Color(153, 204, 255));
         jButton8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton8.setForeground(new java.awt.Color(255, 255, 255));
         jButton8.setText("Pending Orders");
-        jButton8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton8.setToolTipText("Click to switch to the pending orders section.");
+        jButton8.setBorder(null);
         jButton8.setPreferredSize(new java.awt.Dimension(110, 25));
         jButton8.setSelected(true);
         jButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -269,12 +294,14 @@ public class RoomItems extends javax.swing.JInternalFrame {
                 jButton8ActionPerformed(evt);
             }
         });
-        PnlMenu.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, 120, -1));
+        PnlMenu.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, 120, 30));
 
-        jButton9.setBackground(new java.awt.Color(255, 255, 255));
+        jButton9.setBackground(new java.awt.Color(153, 204, 255));
         jButton9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton9.setForeground(new java.awt.Color(255, 255, 255));
         jButton9.setText("Vendors");
-        jButton9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton9.setToolTipText("Click to switch to the vendors section.");
+        jButton9.setBorder(null);
         jButton9.setPreferredSize(new java.awt.Dimension(110, 25));
         jButton9.setSelected(true);
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -282,12 +309,14 @@ public class RoomItems extends javax.swing.JInternalFrame {
                 jButton9ActionPerformed(evt);
             }
         });
-        PnlMenu.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 30, 120, -1));
+        PnlMenu.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 40, 120, 30));
 
-        jButton10.setBackground(new java.awt.Color(255, 255, 255));
+        jButton10.setBackground(new java.awt.Color(153, 204, 255));
         jButton10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton10.setForeground(new java.awt.Color(255, 255, 255));
         jButton10.setText("Payments");
-        jButton10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton10.setToolTipText("Click to switch to the payments section.");
+        jButton10.setBorder(null);
         jButton10.setPreferredSize(new java.awt.Dimension(110, 25));
         jButton10.setSelected(true);
         jButton10.addActionListener(new java.awt.event.ActionListener() {
@@ -295,12 +324,14 @@ public class RoomItems extends javax.swing.JInternalFrame {
                 jButton10ActionPerformed(evt);
             }
         });
-        PnlMenu.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, 120, -1));
+        PnlMenu.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 40, 120, 30));
 
-        jButton12.setBackground(new java.awt.Color(255, 255, 255));
+        jButton12.setBackground(new java.awt.Color(153, 204, 255));
         jButton12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton12.setForeground(new java.awt.Color(255, 255, 255));
         jButton12.setText("Kitchen Items");
-        jButton12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton12.setToolTipText("Click to switch to the kitchen items section.");
+        jButton12.setBorder(null);
         jButton12.setPreferredSize(new java.awt.Dimension(110, 25));
         jButton12.setSelected(true);
         jButton12.addActionListener(new java.awt.event.ActionListener() {
@@ -308,20 +339,7 @@ public class RoomItems extends javax.swing.JInternalFrame {
                 jButton12ActionPerformed(evt);
             }
         });
-        PnlMenu.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 30, 120, 25));
-
-        jButton11.setBackground(new java.awt.Color(255, 255, 255));
-        jButton11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton11.setText("Home");
-        jButton11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButton11.setPreferredSize(new java.awt.Dimension(110, 25));
-        jButton11.setSelected(true);
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
-            }
-        });
-        PnlMenu.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 30, 120, 25));
+        PnlMenu.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 40, 120, 30));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Stock_Images/MenuBar_Back_Main_Stock.jpg"))); // NOI18N
         jLabel12.setMaximumSize(new java.awt.Dimension(1190, 75));
@@ -338,16 +356,8 @@ public class RoomItems extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int x = JOptionPane.showConfirmDialog(null, "Do you really want to Updare ?");
+        int x = JOptionPane.showConfirmDialog(null, "Do you want to update the record?");
         
         if(x == 0)
         {
@@ -462,7 +472,6 @@ public class RoomItems extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        // TODO add your handling code here:
         Food food1 = new Food();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(food1).setVisible(true);
@@ -470,7 +479,6 @@ public class RoomItems extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
         CleaningItems ci1 = new CleaningItems();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(ci1).setVisible(true);
@@ -485,15 +493,13 @@ public class RoomItems extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
-        Orders odr1 = new Orders();
+        PendingOrders odr1 = new PendingOrders();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(odr1).setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
         VendorDetails vnd1 = new VendorDetails();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(vnd1).setVisible(true);
@@ -520,6 +526,22 @@ public class RoomItems extends javax.swing.JInternalFrame {
         desktopPane.add(mh).setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton14MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton14MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton14MouseEntered
+
+    private void jButton14MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton14MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton14MouseExited
+
+    private void jButton6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6MouseEntered
+
+    private void jButton6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6MouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

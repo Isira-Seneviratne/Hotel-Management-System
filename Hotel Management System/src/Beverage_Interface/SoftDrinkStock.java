@@ -13,7 +13,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -36,7 +35,7 @@ import net.sf.jasperreports.view.JasperViewer;
  *
  * @author Prabas Gayadeeptha
  * 
- * @author Isira Seneviratne
+ * @author Isira Seneviratne (19440268)
  */
 public class SoftDrinkStock extends javax.swing.JInternalFrame {
     /**
@@ -336,6 +335,7 @@ public class SoftDrinkStock extends javax.swing.JInternalFrame {
         lblMainStock.setForeground(new java.awt.Color(255, 255, 255));
         lblMainStock.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMainStock.setText("Main Stock Management");
+        lblMainStock.setToolTipText("Click to switch to the main stock management section.");
         lblMainStock.setOpaque(true);
         lblMainStock.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -355,6 +355,7 @@ public class SoftDrinkStock extends javax.swing.JInternalFrame {
         lblInvoice.setForeground(new java.awt.Color(255, 255, 255));
         lblInvoice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblInvoice.setText("Invoice");
+        lblInvoice.setToolTipText("Click to switch to the invoice section.");
         lblInvoice.setOpaque(true);
         lblInvoice.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -373,6 +374,7 @@ public class SoftDrinkStock extends javax.swing.JInternalFrame {
         lblBevOrders.setForeground(new java.awt.Color(255, 255, 255));
         lblBevOrders.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblBevOrders.setText("Beverage Orders");
+        lblBevOrders.setToolTipText("Click to switch to the beverage orders section.");
         lblBevOrders.setOpaque(true);
         lblBevOrders.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -391,6 +393,7 @@ public class SoftDrinkStock extends javax.swing.JInternalFrame {
         lblBarStock.setForeground(new java.awt.Color(255, 255, 255));
         lblBarStock.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblBarStock.setText("Bar Stock");
+        lblBarStock.setToolTipText("Click to switch to the bar stock section.");
         lblBarStock.setOpaque(true);
         lblBarStock.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -523,8 +526,6 @@ public class SoftDrinkStock extends javax.swing.JInternalFrame {
                   
                 String add6 = rst.getString("Company");
                 seer.setText(add3);
-
-              
                 //-------------------------------------------
                 // String add12=rs.getString("joined_date");
                 //date_joined.setText(add9);

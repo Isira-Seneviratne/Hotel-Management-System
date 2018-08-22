@@ -14,8 +14,7 @@ import java.util.regex.Pattern;
  */
 public class Validation {
     
-    public static boolean emailValidate(String email){
-        
+    public static boolean emailValidate(String email) {
         boolean status = false;
         String Email_PATTERN ="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.A-Za-z||{2,})$";
         Pattern pattern = Pattern.compile(Email_PATTERN);

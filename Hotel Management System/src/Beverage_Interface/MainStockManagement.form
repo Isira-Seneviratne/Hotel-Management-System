@@ -618,6 +618,7 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Soft Drink Stock"/>
+            <Property name="toolTipText" type="java.lang.String" value="Click to switch to the soft drink stock section."/>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
           <Events>
@@ -641,6 +642,7 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Invoice"/>
+            <Property name="toolTipText" type="java.lang.String" value="Click to switch to the invoice section."/>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
           <Events>
@@ -664,6 +666,7 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Beverage Orders"/>
+            <Property name="toolTipText" type="java.lang.String" value="Click to switch to the beverage orders section."/>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
           <Events>
@@ -687,6 +690,7 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Bar Stock"/>
+            <Property name="toolTipText" type="java.lang.String" value="Click to switch to the bar stock section."/>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
           <Events>

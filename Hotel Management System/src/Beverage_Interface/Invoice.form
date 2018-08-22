@@ -155,7 +155,6 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtInvoiceNo">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtInvoiceNoActionPerformed"/>
                 <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtInvoiceNoKeyTyped"/>
               </Events>
               <Constraints>
@@ -549,6 +548,7 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Bar Stock"/>
+            <Property name="toolTipText" type="java.lang.String" value="Click to switch to the bar stock section."/>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
           <Events>
@@ -572,8 +572,14 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Main Stock Management"/>
+            <Property name="toolTipText" type="java.lang.String" value="Click to switch to the main stock management section."/>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblMainStockMouseClicked"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblMainStockMouseExited"/>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblMainStockMouseEntered"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="880" y="40" width="210" height="30"/>
@@ -590,6 +596,7 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Beverage Orders"/>
+            <Property name="toolTipText" type="java.lang.String" value="Click to switch to the beverage orders section."/>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
           <Events>
@@ -613,6 +620,7 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Soft Drink Stock"/>
+            <Property name="toolTipText" type="java.lang.String" value="Click to switch to the soft drink stock section."/>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
           <Events>
