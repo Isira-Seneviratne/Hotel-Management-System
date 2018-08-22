@@ -63,7 +63,7 @@ public class EmployeeTransfer extends javax.swing.JFrame {
         jPanel3.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 150, 30));
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel23.setText("Tranfer Date                       :");
+        jLabel23.setText("Transfer Date                       :");
         jLabel23.setPreferredSize(new java.awt.Dimension(130, 30));
         jPanel3.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 150, 30));
 
@@ -77,7 +77,7 @@ public class EmployeeTransfer extends javax.swing.JFrame {
         jPanel3.add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 60, 30));
 
         jButton17.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton17.setText("Cancle");
+        jButton17.setText("Cancel");
         jButton17.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton17.setPreferredSize(new java.awt.Dimension(60, 30));
         jPanel3.add(jButton17, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 330, 60, 30));

@@ -16,6 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import net.proteanit.sql.DbUtils;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -45,62 +46,34 @@ public class MainStockManagement extends javax.swing.JInternalFrame {
     
     public MainStockManagement() {
         initComponents();
-        conn =  MyDBConnection.connectDB();
-        tableLoad();
-        //tableLoad1();
-        // update_table();
-        update_table();
+        conn = MyDBConnection.connectDB();
+        loadTable(tab1, "SELECT * FROM main1");
+        //loadTable(tab1, "SELECT * FROM main22"); //previously tableLoad1();
+        loadTable(tab1, "SELECT Stock_Id,Product_Name,Brand,Volume,Quantity,Total_Count from main1"); //previously updateTable();
     }
     
-    private void update_table() {
+    public void loadTable(JTable table, String query) {
         try {
-            String sql = "SELECT Stock_Id,Product_Name,Brand,Volume,Quantity,Total_Count from main1 ";
-            //String sql = "SELECT id,f_name,l_name,category from trainers ";
-            pst = conn.prepareStatement(sql);
+            pst = conn.prepareStatement(query);   
             rst = pst.executeQuery();
-
-            tab1.setModel(DbUtils.resultSetToTableModel(rst));
-
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-    }
-    
-    public void tableLoad(){
-       // Bname,tibrand,qphone,bpay,brprice
-        try {
-            String q = "SELECT * FROM main1 ";
-            pst = conn.prepareStatement(q);   
-            rst = pst.executeQuery();
-            tab1.setModel(DbUtils.resultSetToTableModel(rst));
+            table.setModel(DbUtils.resultSetToTableModel(rst));
         }
         catch(SQLException e) {
+            JOptionPane.showMessageDialog(null, "An error occurred while retrieving the records.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
             System.out.println(e);
         }
     }
     
-    public void clearFeilds() {
-        st.setText("");
-        pr.setText("");
-        br.setText("");
-        vo.setText("");
-        qu.setText("");
-        to.setText("");
-    } 
-        
-    //table load 2
-    public void tableLoad1() {
-       // Bname,tibrand,qphone,bpay,brprice
-        try {
-            String q = "SELECT * FROM main22 ";
-            pst = conn.prepareStatement(q);   
-            rst = pst.executeQuery();
-            tab2.setModel(DbUtils.resultSetToTableModel(rst));
-        }
-        catch(SQLException e) {
-            System.out.println(e);
-        }
+    public void clearFields() {
+        txtStockID.setText("");
+        txtProdName.setText("");
+        txtBrand.setText("");
+        txtVolume.setText("");
+        txtQty.setText("");
+        txtTotCount.setText("");
     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -119,12 +92,12 @@ public class MainStockManagement extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        st = new javax.swing.JTextField();
-        pr = new javax.swing.JTextField();
-        br = new javax.swing.JTextField();
-        vo = new javax.swing.JTextField();
-        qu = new javax.swing.JTextField();
-        to = new javax.swing.JTextField();
+        txtStockID = new javax.swing.JTextField();
+        txtProdName = new javax.swing.JTextField();
+        txtBrand = new javax.swing.JTextField();
+        txtVolume = new javax.swing.JTextField();
+        txtQty = new javax.swing.JTextField();
+        txtTotCount = new javax.swing.JTextField();
         tost = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
@@ -141,7 +114,7 @@ public class MainStockManagement extends javax.swing.JInternalFrame {
         tab1 = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         tab2 = new javax.swing.JTable();
-        Rdrug = new javax.swing.JTextField();
+        txtRdrug = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         PnlMenu = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -190,26 +163,20 @@ public class MainStockManagement extends javax.swing.JInternalFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("Total Stock");
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 520, -1, -1));
+        jPanel2.add(txtStockID, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, 144, -1));
+        jPanel2.add(txtProdName, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 145, -1));
 
-        st.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                stActionPerformed(evt);
-            }
-        });
-        jPanel2.add(st, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, 144, -1));
-        jPanel2.add(pr, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 145, -1));
+        txtBrand.setText(" ");
+        jPanel2.add(txtBrand, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 145, -1));
 
-        br.setText(" ");
-        jPanel2.add(br, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 145, -1));
+        txtVolume.setText(" ");
+        jPanel2.add(txtVolume, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 330, 145, -1));
 
-        vo.setText(" ");
-        jPanel2.add(vo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 330, 145, -1));
+        txtQty.setText(" ");
+        jPanel2.add(txtQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 400, 145, -1));
 
-        qu.setText(" ");
-        jPanel2.add(qu, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 400, 145, -1));
-
-        to.setText(" ");
-        jPanel2.add(to, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 460, 145, -1));
+        txtTotCount.setText(" ");
+        jPanel2.add(txtTotCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 460, 145, -1));
 
         tost.setText(" ");
         jPanel2.add(tost, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 520, 145, -1));
@@ -386,13 +353,7 @@ public class MainStockManagement extends javax.swing.JInternalFrame {
         jScrollPane3.setViewportView(tab2);
 
         jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, 820, 140));
-
-        Rdrug.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RdrugActionPerformed(evt);
-            }
-        });
-        jPanel1.add(Rdrug, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 220, 120, -1));
+        jPanel1.add(txtRdrug, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 220, 120, -1));
 
         jButton4.setText("Calculate");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -497,25 +458,21 @@ public class MainStockManagement extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void stActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_stActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         //update table
         try {
-            String value1 = st.getText();                   //Stock_Id
+            String value1 = txtStockID.getText();                   //Stock_Id
             //Product Name
             //Brand
             //Volume
             //Quantity
             //Total Count
             //Total Stock
-            String value2 = pr.getText();
-            String value3 = br.getText();
-            String value4 = vo.getText();
-            String value5 = qu.getText();
-            String value6 = to.getText();
+            String value2 = txtProdName.getText();
+            String value3 = txtBrand.getText();
+            String value4 = txtVolume.getText();
+            String value5 = txtQty.getText();
+            String value6 = txtTotCount.getText();
            // String value7 = tost.getText();
 
             //inId,Bname,tibrand,qphone,bpay,brprice
@@ -536,17 +493,17 @@ public class MainStockManagement extends javax.swing.JInternalFrame {
             String q = "INSERT INTO main1(Stock_Id,Product_Name,Brand,Volume,Quantity,Total_Count) values(?,?,?,?,?,?)";
             
             pst = conn.prepareStatement(q);
-            pst.setString(1, st.getText());
-            pst.setString(2, pr.getText());
-            pst.setString(3, br.getText());
-            pst.setString(4, vo.getText());
-            pst.setString(5, qu.getText());
-            pst.setString(6, to.getText());
+            pst.setString(1, txtStockID.getText());
+            pst.setString(2, txtProdName.getText());
+            pst.setString(3, txtBrand.getText());
+            pst.setString(4, txtVolume.getText());
+            pst.setString(5, txtQty.getText());
+            pst.setString(6, txtTotCount.getText());
             
             pst.execute();
             JOptionPane.showMessageDialog(null, "Successfully inserted new record.", "Success", 
                     JOptionPane.INFORMATION_MESSAGE);
-            tableLoad();
+            loadTable(tab1, "SELECT * FROM main1");
         } catch(SQLException e) {
             System.out.println(e.getMessage());
             JOptionPane.showMessageDialog(null, e);
@@ -571,81 +528,62 @@ public class MainStockManagement extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void RdrugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RdrugActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RdrugActionPerformed
-
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        String qty = Rdrug.getText();
+        String qty = txtRdrug.getText();
         int q = tab1.getSelectedRow();
         int newQty = Integer.parseInt(qty);
         String quantity = tab1.getValueAt(q, 5).toString();
         int oldQty = Integer.parseInt(quantity);
-        // System.out.println(newQty);
-        // System.out.println(oldQty);
 
-        if (Rdrug.getText().isEmpty()) {
+        if (txtRdrug.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please input a quantity.", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else if (newQty <= oldQty) {
             try {
-
                 String r =  "INSERT INTO main22(Stock_Id,Product_Name,Brand,Volume,Quantity,Total_Count) values(?,?,?,?,?,?)";
                 pst = conn.prepareStatement(r);
 
-                pst.setString(1, st.getText());
-                pst.setString(2, pr.getText());
-                pst.setString(3, br.getText());
+                pst.setString(1, txtStockID.getText());
+                pst.setString(2, txtProdName.getText());
+                pst.setString(3, txtBrand.getText());
                              
-                pst.setString(4, vo.getText());
-                pst.setString(5, qu.getText());
-                pst.setString(6, to.getText());
+                pst.setString(4, txtVolume.getText());
+                pst.setString(5, txtQty.getText());
+                pst.setString(6, txtTotCount.getText());
              
-                //JOptionPane.showMessageDialog(null, "Check");
-                //SysexMessage''
-                System.out.print("test1");
                 pst.execute();
 
-                String value1 = st.getText();
-
+                String value1 = txtStockID.getText();
                 String sql = "UPDATE main1 SET Quantity = Quantity - " + qty + " WHERE Stock_Id='" + value1 + "'";
-                //System.out.println(sql);
-                System.out.print("test2");
                 pst = conn.prepareStatement(sql);
                 pst.execute();
-               // tableLoad1();
-                
-                System.out.print("test3");
+                //tableLoad1();
             } catch (SQLException e) {
-                //System.out.print("test4");
-                JOptionPane.showMessageDialog(null, e.getMessage());
+                JOptionPane.showMessageDialog(null, "An error occurred while inserting or updating the record.",
+                        "Error", JOptionPane.ERROR_MESSAGE);
             }
             
             JOptionPane.showMessageDialog(null, "The drug was issued successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
-            // tableLoad();
-            // tableLoad();
-            
-            System.out.print("test4");
-            tableLoad();
-            tableLoad1();
+
+            loadTable(tab1, "SELECT * FROM main1");
+            loadTable(tab2, "SELECT * FROM main22");
         }
         else {
             JOptionPane.showMessageDialog(null, "The requested quantity cannot be issued.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-       // tableLoad1();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void tab1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab1MouseClicked
         try {
             int row = tab1.getSelectedRow();//Stock_id,product_name,Brand,Volume,Quantity,Pay_by,Price,Amount
             String Table_click = tab1.getModel().getValueAt(row, 0).toString();
-            String q = "select * from main1  where Stock_id='" + Table_click + "'";
+            String q = "select * from main1 where Stock_id='" + Table_click + "'";
             pst = conn.prepareStatement(q);
             rst = (ResultSet) pst.executeQuery(q);  
             while (rst.next()) {
 //Stock_Id,Product_Name,Brand,Volume,Quantity,Total_Count
                 String add1 = rst.getString("Stock_id");
-                st.setText(add1);
+                txtStockID.setText(add1);
                 //--------------------------------------------
                /* String add2 = rst.getString("Bname");
                 //date_dob.setDate(add4);
@@ -660,19 +598,19 @@ public class MainStockManagement extends javax.swing.JInternalFrame {
                 }*/
                 //-------------------------------------------
                 String add2 = rst.getString("product_name");
-                pr.setText(add2);                          
+                txtProdName.setText(add2);                          
 
                 String add3 = rst.getString("Brand");
-                br.setText(add3);
+                txtBrand.setText(add3);
 
                 String add4 = rst.getString("Volume");
-                vo.setText(add4);
+                txtVolume.setText(add4);
 
                 String add5 = rst.getString("Quantity");
-                qu.setText(add5);
+                txtQty.setText(add5);
                 
                  String add6 = rst.getString("Total_Count");
-                to.setText(add6);
+                txtTotCount.setText(add6);
                 //-------------------------------------------
                 // String add12=rs.getString("joined_date");
                 //date_joined.setText(add9);
@@ -686,7 +624,8 @@ public class MainStockManagement extends javax.swing.JInternalFrame {
                 //-------------------------------------------
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "An error occurred while loading data.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_tab1MouseClicked
 
@@ -695,7 +634,7 @@ public class MainStockManagement extends javax.swing.JInternalFrame {
         String q = "delete from main1 where Stock_id= ?";
         try {
             pst = conn.prepareStatement(q);
-            pst.setString(1, st.getText());
+            pst.setString(1, txtStockID.getText());
             pst.execute();
             JOptionPane.showMessageDialog(null, "Record successfully deleted.", "Success",
                     JOptionPane.INFORMATION_MESSAGE);
@@ -703,7 +642,7 @@ public class MainStockManagement extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "An error occurred while deleting the record.", "Error",
                     JOptionPane.ERROR_MESSAGE);
         }
-        update_table();
+        loadTable(tab1, "SELECT Stock_Id,Product_Name,Brand,Volume,Quantity,Total_Count from main1");
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -750,51 +689,51 @@ public class MainStockManagement extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_lblBevOrdersMouseClicked
 
     private void lblInvoiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInvoiceMouseClicked
-        // TODO add your handling code here:
+        getDesktopPane().add(new Invoice()).setVisible(true);
+        dispose();
     }//GEN-LAST:event_lblInvoiceMouseClicked
 
     private void lblSoftDrinkStockMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSoftDrinkStockMouseClicked
-        // TODO add your handling code here:
+        getDesktopPane().add(new SoftDrinkStock()).setVisible(true);
+        dispose();
     }//GEN-LAST:event_lblSoftDrinkStockMouseClicked
 
     private void lblBarStockMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBarStockMouseEntered
-        // TODO add your handling code here:
+        lblBarStock.setBackground(entered);
     }//GEN-LAST:event_lblBarStockMouseEntered
 
     private void lblBarStockMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBarStockMouseExited
-        // TODO add your handling code here:
+        lblBarStock.setBackground(exited);
     }//GEN-LAST:event_lblBarStockMouseExited
 
     private void lblBevOrdersMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBevOrdersMouseEntered
-        // TODO add your handling code here:
+        lblBevOrders.setBackground(entered);
     }//GEN-LAST:event_lblBevOrdersMouseEntered
 
     private void lblBevOrdersMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBevOrdersMouseExited
-        // TODO add your handling code here:
+        lblBevOrders.setBackground(exited);
     }//GEN-LAST:event_lblBevOrdersMouseExited
 
     private void lblInvoiceMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInvoiceMouseEntered
-        // TODO add your handling code here:
+        lblInvoice.setBackground(entered);
     }//GEN-LAST:event_lblInvoiceMouseEntered
 
     private void lblInvoiceMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInvoiceMouseExited
-        // TODO add your handling code here:
+        lblInvoice.setBackground(exited);
     }//GEN-LAST:event_lblInvoiceMouseExited
 
     private void lblSoftDrinkStockMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSoftDrinkStockMouseEntered
-        // TODO add your handling code here:
+        lblSoftDrinkStock.setBackground(entered);
     }//GEN-LAST:event_lblSoftDrinkStockMouseEntered
 
     private void lblSoftDrinkStockMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSoftDrinkStockMouseExited
-        // TODO add your handling code here:
+        lblSoftDrinkStock.setBackground(exited);
     }//GEN-LAST:event_lblSoftDrinkStockMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PnlMenu;
     private javax.swing.JButton REPORT;
-    private javax.swing.JTextField Rdrug;
-    private javax.swing.JTextField br;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
@@ -823,17 +762,15 @@ public class MainStockManagement extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblBevOrders;
     private javax.swing.JLabel lblInvoice;
     private javax.swing.JLabel lblSoftDrinkStock;
-    private javax.swing.JTextField pr;
-    private javax.swing.JTextField qu;
-    private javax.swing.JTextField st;
     private javax.swing.JTable tab1;
     private javax.swing.JTable tab2;
-    private javax.swing.JTextField to;
     private javax.swing.JTextField tost;
-    private javax.swing.JTextField vo;
+    private javax.swing.JTextField txtBrand;
+    private javax.swing.JTextField txtProdName;
+    private javax.swing.JTextField txtQty;
+    private javax.swing.JTextField txtRdrug;
+    private javax.swing.JTextField txtStockID;
+    private javax.swing.JTextField txtTotCount;
+    private javax.swing.JTextField txtVolume;
     // End of variables declaration//GEN-END:variables
-
-   // private void update_table() {
-      //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-   // }
 }

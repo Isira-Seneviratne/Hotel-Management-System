@@ -9,6 +9,7 @@ import HMS_Home.MHome;
 import javax.swing.JDesktopPane;
 import HMS_Database.MyDBConnection;
 import HRMS_Codes.ValidationHRMS;
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,6 +29,8 @@ import net.sf.jasperreports.view.JasperViewer;
 /**
  *
  * @author Thishakya
+ * 
+ * @author Isira Seneviratne (19440268)
  */
 public class Payments extends javax.swing.JInternalFrame {
 
@@ -43,23 +46,20 @@ public class Payments extends javax.swing.JInternalFrame {
         
         con = MyDBConnection.connectDB();
         
-        
-        tableload();
+        loadTable();
     }
-    public void tableload()
+    
+    public void loadTable()
     {
         try {
-            
-        String sql = "SELECT Payment_Id, Company, Item_Name, Quantity, Unit, Payment_Date, Price FROM payment";
-        pst = con.prepareStatement(sql);
-        rs = pst.executeQuery();
-        
-        jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-        
+            String sql = "SELECT Payment_Id, Company, Item_Name, Quantity, Unit, Payment_Date, Price FROM payment";
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (SQLException e) {
+            
         }
-    
-    
     }
 
     /**
@@ -139,59 +139,45 @@ public class Payments extends javax.swing.JInternalFrame {
         jLabel6.setText("Price");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(423, 96, -1, -1));
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 211, -1));
-
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 211, -1));
         jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 211, -1));
         jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(474, 93, 211, -1));
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton1.setText("ADD");
-        jButton1.setBorder(null);
+        jButton1.setText("Add");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 123, 65, 40));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 120, 70, 40));
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton2.setText("UPDATE");
-        jButton2.setBorder(null);
+        jButton2.setText("Update");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 123, 80, 40));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 123, 90, 40));
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton3.setText("CLEAR");
-        jButton3.setBorder(null);
+        jButton3.setText("Clear");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 170, -1, 40));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, -1, 40));
 
-        jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton4.setText("DELETE");
-        jButton4.setBorder(null);
+        jButton4.setText("Delete");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 170, 80, 40));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 170, 90, 40));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setText("Unit");
@@ -211,16 +197,14 @@ public class Payments extends javax.swing.JInternalFrame {
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Unit", "Kilograms", "Grams", "liter" }));
         jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 211, -1));
 
-        jButton13.setBackground(new java.awt.Color(255, 255, 255));
         jButton13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton13.setText("Generate Report");
-        jButton13.setBorder(null);
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton13ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 223, 210, 30));
+        jPanel1.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 223, 200, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, 720, 260));
 
@@ -309,7 +293,7 @@ public class Payments extends javax.swing.JInternalFrame {
 
         jButton9.setBackground(new java.awt.Color(255, 255, 255));
         jButton9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton9.setText("Venders");
+        jButton9.setText("Vendors");
         jButton9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton9.setPreferredSize(new java.awt.Dimension(110, 25));
         jButton9.setSelected(true);
@@ -375,62 +359,67 @@ public class Payments extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        if(jTextField3.getText().isEmpty()||jTextField2.getText().isEmpty()||jTextField1.getText().isEmpty()||jComboBox2.getSelectedItem().toString().isEmpty()||((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText().isEmpty()||jTextField4.getText().isEmpty())
+        if(jTextField3.getText().isEmpty()
+                || jTextField2.getText().isEmpty()
+                || jTextField1.getText().isEmpty()
+                || jComboBox2.getSelectedItem().toString().isEmpty()
+                || ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText().isEmpty()
+                || jTextField4.getText().isEmpty())
         {
-                     JOptionPane.showMessageDialog(null,"Enter Data");
+            JOptionPane.showMessageDialog(null,"One or more fields do not have entered data. Enter missing data.",
+                    "Missing Data", JOptionPane.ERROR_MESSAGE);
         }
-        else{
-        String company = jTextField3.getText();
-        boolean company_validation = ValidationHRMS.isLetter(company);
-        String item = jTextField2.getText();
-        boolean item_validation = ValidationHRMS.isLetter(item);
-        String qty = jTextField1.getText();
-        boolean qty_validation = ValidationHRMS.isNumeric(qty);
-        String unit = jComboBox2.getSelectedItem().toString();
-        String date = ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText();
-        String price = jTextField4.getText();
-        boolean price_validation = ValidationHRMS.isNumeric(price);
-        
-        float prs = Float.parseFloat(price);
-        int qt = Integer.parseInt(qty);
-        float totvalue = prs*qt;
-        
-        if(company_validation){
-            if(item_validation){
-                if(qty_validation){
-                    if(price_validation){
-        try {
-                String w = "INSERT INTO payment(Company, Item_Name, Quantity, Unit, Payment_Date, Price) values ('"+company+"', '"+item+"', '"+qty+"', '"+unit+"', '"+date+"', '"+totvalue+"')";
-            pst = con.prepareStatement(w);
-            pst.execute();
-            JOptionPane.showMessageDialog(null, "Details  Saved Successfully");
-            
-            tableload();
-        } catch (SQLException e) {
-        }
-                    }else{
+        else
+        {
+            String company = jTextField3.getText();
+            boolean company_validation = ValidationHRMS.isLetter(company);
+            String item = jTextField2.getText();
+            boolean item_validation = ValidationHRMS.isLetter(item);
+            String qty = jTextField1.getText();
+            boolean qty_validation = ValidationHRMS.isNumeric(qty);
+            String unit = jComboBox2.getSelectedItem().toString();
+            String date = ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText();
+            String price = jTextField4.getText();
+            boolean price_validation = ValidationHRMS.isNumeric(price);
+
+            float prs = Float.parseFloat(price);
+            int qt = Integer.parseInt(qty);
+            float totvalue = prs*qt;
+
+            if(company_validation) {
+                if(item_validation) {
+                    if(qty_validation) {
+                        if(price_validation) {
+                            try {
+                                pst = con.prepareStatement("INSERT INTO payment(Company, Item_Name,"
+                                        + " Quantity, Unit, Payment_Date, Price)"
+                                        + " values ('"+company+"',"
+                                        + " '"+item+"', '"+qty+"', '"+unit+"', '"+date+"', '"+totvalue+"')");
+                                pst.execute();
+                                JOptionPane.showMessageDialog(null, "Details  Saved Successfully");
+                                loadTable();
+                            } catch (SQLException e) {
+                                
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Enter a Number");
+                        }
+                    } else {
                         JOptionPane.showMessageDialog(null, "Enter a Number");
                     }
-                }else{
-                    JOptionPane.showMessageDialog(null, "Enter a Number");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Invalid item name");
                 }
-            }else{
-                JOptionPane.showMessageDialog(null, "Invalid item name");
+            } else {
+                JOptionPane.showMessageDialog(null, "Invalid company name");
             }
-        }else{
-            JOptionPane.showMessageDialog(null, "Invalid company name");
-        }
-        
-        
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        int x = JOptionPane.showConfirmDialog(null, "Do you really want to Updare ?");
+        int x = JOptionPane.showConfirmDialog(null, "Do you want to update the record?");
         
-        if(x==0)
+        if(x == 0)
         {
             String Payment_Id = jLabel9.getText();
             String Company = jTextField3.getText();
@@ -439,93 +428,73 @@ public class Payments extends javax.swing.JInternalFrame {
             String Unit = jComboBox2.getSelectedItem().toString();
             String Payment_Date = ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText();
             String Price = jTextField4.getText();
-            
-            
-            String sql = "UPDATE payment SET Payment_Id ='"+Payment_Id+"', Company='"+Company+"', Item_Name='"+Item_Name+"', Quantity='"+Quantity+"', Unit='"+Unit+"', Payment_Date='"+Payment_Date+"', Price='"+Price+"' where  Payment_Id='"+Payment_Id+"'  ";
         
             try {
-                pst = con.prepareStatement(sql);
+                pst = con.prepareStatement("UPDATE payment SET Payment_Id ='"+Payment_Id+"',"
+                        + " Company='"+Company+"', Item_Name='"+Item_Name+"',"
+                        + " Quantity='"+Quantity+"', Unit='"+Unit+"', Payment_Date='"+Payment_Date+"',"
+                        + " Price='"+Price+"' where  Payment_Id='"+Payment_Id+"'  ");
                 pst.execute();
-                
                 //load table
-                tableload();
+                loadTable();
             } catch (SQLException e) {
+                
             }
-        
-        
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        jLabel9.setText(null);
-        jTextField3.setText(null);
-        jTextField2.setText(null);
-        jTextField1.setText(null);
+        jLabel9.setText("");
+        jTextField3.setText("");
+        jTextField2.setText("");
+        jTextField1.setText("");
         jComboBox2.setSelectedItem("Select Unit");
         jDateChooser1.setDate(null);
-        jTextField4.setText(null);
+        jTextField4.setText("");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        // TODO add your handling code here:
-        try{
-            int row=jTable1.getSelectedRow();
-            String Table_click=(jTable1.getModel().getValueAt(row, 0).toString());
-            String sql="select * from payment where Payment_Id='"+Table_click+"'";
-            pst=con.prepareStatement(sql);
-            rs= (ResultSet) pst.executeQuery(sql);
-            while (rs.next()){
-
-                String add1=rs.getString("Payment_Id");
+        try {
+            int row = jTable1.getSelectedRow();
+            String Table_click = jTable1.getModel().getValueAt(row, 0).toString();
+            pst = con.prepareStatement("select * from payment where Payment_Id='"+Table_click+"'");
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                String add1 = rs.getString("Payment_Id");
                 jLabel9.setText(add1);
 
-                String add2=rs.getString("Company");
+                String add2 = rs.getString("Company");
                 jTextField3.setText(add2);
 
-                String add3=rs.getString("Item_Name");
+                String add3 = rs.getString("Item_Name");
                 jTextField2.setText(add3);
 
-                String add4=rs.getString("Quantity");
+                String add4 = rs.getString("Quantity");
                 jTextField1.setText(add4);
 
-                String add5=rs.getString("Unit");
+                String add5 = rs.getString("Unit");
                 jComboBox2.setSelectedItem(add5);
 
-                String add6=rs.getString("Payment_Date");
-                
-        try {
+                String add6 = rs.getString("Payment_Date");
+                try {
                     java.util.Date date =  new SimpleDateFormat("yyyy-MM-dd").parse(add6);
                     jDateChooser1.setDate(date);
-        } catch (ParseException e) {
-            JOptionPane.showMessageDialog(this, "cant get date");
-        }
+                } catch (ParseException e) {
+                    JOptionPane.showMessageDialog(this, "Unable to parse date.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
                 
-
-                String add7=rs.getString("Price");
+                String add7 = rs.getString("Price");
                 jTextField4.setText(add7);
-
-                
-
             }
-
-        }catch(Exception e){
-
+        } catch(HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(null,e);
         }
-        
-        
     }//GEN-LAST:event_jTable1MouseClicked
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        int d = JOptionPane.showConfirmDialog(null, "Do you want to delete ?");
+        int d = JOptionPane.showConfirmDialog(null, "Do you want to delete the record?");
 
-        if(d==0)
+        if(d == 0)
         {
             String Payment_Id = jLabel9.getText();
 
@@ -534,18 +503,14 @@ public class Payments extends javax.swing.JInternalFrame {
             try {
                 pst = con.prepareStatement(sql);
                 pst.execute();
-
                 //load table
-                tableload();
-
+                loadTable();
             } catch (SQLException e) {
             }
-
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // TODO add your handling code here:
         try {
             String report = "D:\\SLIIT\\2nd Year\\2nd Semester\\ITP - Information Technology Project\\Project\\Hotel_Management_System(Selsan)\\Reports\\Payments.jrxml";
             JasperReport jr = JasperCompileManager.compileReport(report);
@@ -553,73 +518,63 @@ public class Payments extends javax.swing.JInternalFrame {
             JasperViewer.viewReport(jp, false);
         } catch (JRException e) {
             JOptionPane.showMessageDialog(null, e);
-            
         }
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
         Food food1 = new Food();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(food1).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
         CleaningItems ci1 = new CleaningItems();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(ci1).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
         RoomItems ri1 = new RoomItems();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(ri1).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
         Orders odr1 = new Orders();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(odr1).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
         VendorDetails vnd1 = new VendorDetails();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(vnd1).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
-
         Payments pay1 = new Payments();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(pay1).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
         KitchenItems ki = new KitchenItems();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(ki).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        // TODO add your handling code here:
         MHome mh = new MHome();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(mh).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton11ActionPerformed
 
 

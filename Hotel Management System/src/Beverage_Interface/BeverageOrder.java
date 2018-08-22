@@ -13,12 +13,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
@@ -38,62 +38,27 @@ public class BeverageOrder extends javax.swing.JInternalFrame {
 
     public BeverageOrder() {
         initComponents();
-        conn =  MyDBConnection.connectDB();
-        tableLoad();
-        tableLoad1();
-        // tableLoad3();
-        tableLoad4();
+        conn = MyDBConnection.connectDB();
+        loadTable(tav, "SELECT * FROM order_table");
+        loadTable(tab4, "SELECT * FROM main22");
+        // loadTable_Expiry();
+        loadTable(das, "SELECT * FROM order_table");
     }
     
-    public void tableLoad() {
-        // Bname,tibrand,qphone,bpay,brprice
+    public void loadTable(JTable table, String query) {
         try {
-            String q = "SELECT * FROM order_table ";
-            pst = conn.prepareStatement(q);
+            pst = conn.prepareStatement(query);
             rst = pst.executeQuery();
-            tav.setModel(DbUtils.resultSetToTableModel(rst));
+            table.setModel(DbUtils.resultSetToTableModel(rst));
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Unable to load records.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "An error occurred while loading records.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     
-    public void tableLoad1() {
-       // Bname,tibrand,qphone,bpay,brprice
-        try {
-            String r = "SELECT * FROM main22 ";
-            pst = conn.prepareStatement(r);   
-            rst = pst.executeQuery();
-            tab4.setModel(DbUtils.resultSetToTableModel(rst));
-        } catch(SQLException e) {
-            JOptionPane.showMessageDialog(null, "Unable to load records.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-       
-    public void tableLoad3() {
-        try {
-            Date todatDate = new Date();
-            DateFormat todayFormat= new SimpleDateFormat("yyyy-MM-dd");
-            String todayDateString = todayFormat.format(todatDate);    
-            String sql = "SELECT company,brand,quantity,date from order_table WHERE ExpiryDate  <= '"+todayDateString+"'";
-            pst = conn.prepareStatement(sql);   
-            rst = pst.executeQuery();
-            das.setModel(DbUtils.resultSetToTableModel(rst)); 
-        } catch(SQLException e) {
-            JOptionPane.showMessageDialog(null, "An error occurred while loading expiry records.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
-    public void tableLoad4() {
-        // Bname,tibrand,qphone,bpay,brprice
-        try {
-            String q = "SELECT * FROM order_table ";
-            pst = conn.prepareStatement(q);
-            rst = pst.executeQuery();
-
-            das.setModel(DbUtils.resultSetToTableModel(rst));
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
+    public void loadTable_Expiry() {
+        String todayDateString = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+        loadTable(das, "SELECT company,brand,quantity,date from order_table"
+                + " WHERE ExpiryDate <= '"+todayDateString+"'");
     }
 
     /**
@@ -169,12 +134,6 @@ public class BeverageOrder extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Date");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, -1, -1));
-
-        namebox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameboxActionPerformed(evt);
-            }
-        });
         jPanel2.add(namebox, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 158, 30));
         jPanel2.add(quan, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, 160, 30));
 
@@ -522,16 +481,11 @@ public class BeverageOrder extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nameboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameboxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nameboxActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             String q = "INSERT INTO order_table (company,brand,quantity,date) values (?,?,?,?)";
             pst = conn.prepareStatement(q);
 
-            String name = namebox.getText();
             pst.setString(1, namebox.getText());
             pst.setString(2, bra.getText());
             pst.setString(3, quan.getText());
@@ -599,14 +553,14 @@ public class BeverageOrder extends javax.swing.JInternalFrame {
         MHome m = new MHome();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(m).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         BeverageHome m = new BeverageHome();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(m).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void tavMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tavMouseClicked
@@ -660,7 +614,7 @@ public class BeverageOrder extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-       tableLoad3();
+        loadTable_Expiry();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void lblBarStockMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBarStockMouseClicked

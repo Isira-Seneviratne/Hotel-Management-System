@@ -25,37 +25,37 @@ import net.sf.jasperreports.view.JasperViewer;
 /**
  *
  * @author Thishakya
+ * 
+ * @author Isira Seneviratne (19440268)
  */
 public class KitchenItems extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form KitchenItems
      */
-    Connection con = null;
-    PreparedStatement pst = null;
-    ResultSet rs = null;
+    private Connection con = null;
+    private PreparedStatement pst = null;
+    private ResultSet rs = null;
     
     public KitchenItems() {
         initComponents();
         
         con = MyDBConnection.connectDB();
                 
-        tableload();
+        tableLoad();
     }
-    public void tableload()
-    {
+    
+    public void tableLoad() {
         try {
-            
-        String sql = "SELECT Item_Id,Item_Name, Quantity FROM kitchen_items";
-        pst = con.prepareStatement(sql);
-        rs = pst.executeQuery();
-        
-        jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-        
+            String sql = "SELECT Item_Id, Item_Name, Quantity FROM kitchen_items";
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "An error occurred while loading the table.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
-    
-    
     }
 
     /**
@@ -71,8 +71,8 @@ public class KitchenItems extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        txtItem = new javax.swing.JTextField();
+        txtQty = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -114,43 +114,39 @@ public class KitchenItems extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("Quantity");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 113, -1, -1));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 64, 185, -1));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 110, 185, -1));
+        jPanel1.add(txtItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 64, 185, -1));
+        jPanel1.add(txtQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 110, 185, -1));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton1.setText("Add");
         jButton1.setToolTipText("");
-        jButton1.setBorder(null);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 50, 40));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 60, 40));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton2.setText("Update");
-        jButton2.setBorder(null);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 70, 40));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 80, 40));
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton3.setText("Clear");
-        jButton3.setBorder(null);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 60, 40));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 70, 40));
 
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton4.setText("Delete");
-        jButton4.setBorder(null);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -163,12 +159,11 @@ public class KitchenItems extends javax.swing.JInternalFrame {
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 27, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel5.setText("Item ID Number");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 27, -1, -1));
+        jLabel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 27, 180, 20));
 
         jButton13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton13.setText("Generate Report");
-        jButton13.setBorder(null);
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton13ActionPerformed(evt);
@@ -266,7 +261,7 @@ public class KitchenItems extends javax.swing.JInternalFrame {
 
         jButton9.setBackground(new java.awt.Color(255, 255, 255));
         jButton9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton9.setText("Venders");
+        jButton9.setText("Vendors");
         jButton9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton9.setPreferredSize(new java.awt.Dimension(110, 25));
         jButton9.setSelected(true);
@@ -332,11 +327,9 @@ public class KitchenItems extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        int d = JOptionPane.showConfirmDialog(null, "Do you want to delete ?");
+        int d = JOptionPane.showConfirmDialog(null, "Do you want to delete?");
         
-        if(d==0)
-        {
+        if(d == 0) {
             String item_ID = jLabel5.getText();
             
             String sql = "DELETE FROM kitchen_items where Item_Id='"+item_ID+"' ";
@@ -344,87 +337,78 @@ public class KitchenItems extends javax.swing.JInternalFrame {
             try {
                 pst = con.prepareStatement(sql);
                 pst.execute();
-                
                 //load table
-                tableload();
-                
+                tableLoad();
             } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "An error occurred while deleting the record.", "Error",
+                        JOptionPane.ERROR_MESSAGE);
             }
-        
-        
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        if(jTextField1.getText().isEmpty()||jTextField2.getText().isEmpty())
-        {
-            JOptionPane.showMessageDialog(null,"Enter Data");
+        if(txtItem.getText().isEmpty() || txtQty.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Some data has not been entered. Enter missing data.", "Missing data",
+                    JOptionPane.ERROR_MESSAGE);
         }
-        else{
-        String item = jTextField1.getText();
-        boolean item_validation = ValidationHRMS.isLetter(item);
-        String qty = jTextField2.getText();
-        boolean qty_validation = ValidationHRMS.isNumeric(qty);
-        
-        if(item_validation){
-            if(qty_validation){
-        try {
-            String w = "INSERT INTO kitchen_items(Item_Name, Quantity) values ('"+item+"','"+qty+"')";
-            pst = con.prepareStatement(w);
-            pst.execute();
-            JOptionPane.showMessageDialog(null, "Details  Saved Successfully");
-            
-            tableload();
-        } catch (SQLException e) {
-        }
-            }else{
-                JOptionPane.showMessageDialog(null, "Enter a Number");
+        else {
+            String item = txtItem.getText();
+            boolean item_validation = ValidationHRMS.isLetter(item);
+            String qty = txtQty.getText();
+            boolean qty_validation = ValidationHRMS.isNumeric(qty);
+
+            if(item_validation) {
+                if(qty_validation) {
+                    try {
+                        String w = "INSERT INTO kitchen_items(Item_Name, Quantity) values ('"+item+"','"+qty+"')";
+                        pst = con.prepareStatement(w);
+                        pst.execute();
+                        JOptionPane.showMessageDialog(null, "Details  Saved Successfully");
+                        tableLoad();
+                    } catch (SQLException e) {
+                        
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Enter a Number");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Invalid Item Name");
             }
-        }else{
-            JOptionPane.showMessageDialog(null, "Invalid Item Name");
-        }
-        
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        // TODO add your handling code here:
         int r = jTable1.getSelectedRow();
         
         String item_id = jTable1.getValueAt(r, 0).toString();
         String item = jTable1.getValueAt(r, 1).toString();
         String qty = jTable1.getValueAt(r, 2).toString();
         
-        
-        jTextField1.setText(item);
-        jTextField2.setText(qty);
+        txtItem.setText(item);
+        txtQty.setText(qty);
         jLabel5.setText(item_id);
-        
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        int x = JOptionPane.showConfirmDialog(null, "Do you really want to Updare ?");
+        int x = JOptionPane.showConfirmDialog(null, "Do you want to update the record?");
         
-        if(x==0)
-        {
+        if(x == 0) {
             String item_id = jLabel5.getText();
-            String item = jTextField1.getText();
-            String qty = jTextField2.getText();
+            String item = txtItem.getText();
+            String qty = txtQty.getText();
             
-            String sql = "UPDATE kitchen_items SET Item_Name ='"+item+"', Quantity='"+qty+"' where  Item_Id='"+item_id+"'  ";
+            String sql = "UPDATE kitchen_items SET Item_Name ='"+item+"', Quantity='"+qty+"' where  Item_Id='"+item_id+"'";
         
             try {
                 pst = con.prepareStatement(sql);
                 pst.execute();
                 
                 //load table
-                tableload();
+                tableLoad();
             } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "An error occurred while updating the record.", "Error",
+                        JOptionPane.ERROR_MESSAGE);
             }
-        
-        
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -436,81 +420,71 @@ public class KitchenItems extends javax.swing.JInternalFrame {
             JasperPrint jp = JasperFillManager.fillReport(jr, null, con);
             JasperViewer.viewReport(jp, false);
         } catch (JRException e) {
-            JOptionPane.showMessageDialog(null, e);
-            
+            JOptionPane.showMessageDialog(null, "An error occurred while generating the report.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        jLabel5.setText(null);
-        jTextField1.setText(null);
-        jTextField2.setText(null);
+        jLabel5.setText("");
+        txtItem.setText("");
+        txtQty.setText("");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
         Food food1 = new Food();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(food1).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
         CleaningItems ci1 = new CleaningItems();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(ci1).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
         RoomItems ri1 = new RoomItems();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(ri1).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
         Orders odr1 = new Orders();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(odr1).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
         VendorDetails vnd1 = new VendorDetails();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(vnd1).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
-
         Payments pay1 = new Payments();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(pay1).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
         KitchenItems ki = new KitchenItems();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(ki).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        // TODO add your handling code here:
         MHome mh = new MHome();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(mh).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton11ActionPerformed
 
 
@@ -539,7 +513,7 @@ public class KitchenItems extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField txtItem;
+    private javax.swing.JTextField txtQty;
     // End of variables declaration//GEN-END:variables
 }

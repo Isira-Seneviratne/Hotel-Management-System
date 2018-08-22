@@ -25,37 +25,37 @@ import net.sf.jasperreports.view.JasperViewer;
 /**
  *
  * @author Thishakya
+ * 
+ * @author Isira Seneviratne (19440268)
  */
 public class VendorDetails extends javax.swing.JInternalFrame {
-
     /**
      * Creates new form VendorDetails
      */
-    Connection con = null;
-    PreparedStatement pst = null;
-    ResultSet rs = null;
+    private Connection con = null;
+    private PreparedStatement pst = null;
+    private ResultSet rs = null;
     
     public VendorDetails() {
         initComponents();
         
         con = MyDBConnection.connectDB();
         
-        tableload();
+        loadTable();
     }
-    public void tableload()
+    
+    public void loadTable()
     {
         try {
-            
-        String sql = "SELECT Vender_ID,Company, Address, TPnumber, Email FROM vender_details";
-        pst = con.prepareStatement(sql);
-        rs = pst.executeQuery();
-        
-        jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-        
+            String sql = "SELECT Vender_ID,Company, Address, TPnumber, Email FROM vender_details";
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "An error occurred while loading records from the vendor table.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
-    
-    
     }
 
     /**
@@ -125,27 +125,14 @@ public class VendorDetails extends javax.swing.JInternalFrame {
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setText("E-mail");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 202, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 73, 175, -1));
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 112, 175, -1));
-
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
         jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 153, 175, -1));
-
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
         jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 194, 175, -1));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton1.setText("ADD");
-        jButton1.setBorder(null);
+        jButton1.setText("Add");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -154,8 +141,7 @@ public class VendorDetails extends javax.swing.JInternalFrame {
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, 130, 40));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton2.setText("UPDATE");
-        jButton2.setBorder(null);
+        jButton2.setText("Update");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -164,8 +150,7 @@ public class VendorDetails extends javax.swing.JInternalFrame {
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 130, 40));
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton3.setText("CLEAR");
-        jButton3.setBorder(null);
+        jButton3.setText("Clear");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -174,8 +159,7 @@ public class VendorDetails extends javax.swing.JInternalFrame {
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 170, 130, 40));
 
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton4.setText("DELETE");
-        jButton4.setBorder(null);
+        jButton4.setText("Delete");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -193,13 +177,12 @@ public class VendorDetails extends javax.swing.JInternalFrame {
 
         jButton13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton13.setText("Generate Report");
-        jButton13.setBorder(null);
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton13ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 233, 200, 40));
+        jPanel1.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 233, 180, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, 510, 290));
 
@@ -353,66 +336,61 @@ public class VendorDetails extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
-
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        jLabel7.setText(null);
-        jTextField1.setText(null);
-        jTextField2.setText(null);
-        jTextField3.setText(null);
-        jTextField4.setText(null);
+        jLabel7.setText("");
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-       if(jTextField1.getText().isEmpty()||jTextField2.getText().isEmpty()||jTextField3.getText().isEmpty()||jTextField4.getText().isEmpty())
-       {
-                JOptionPane.showMessageDialog(null,"Enter Data");
-       } 
-       else{
-        String company_name = jTextField1.getText();
-        boolean companyvalidation = ValidationHRMS.isLetter(company_name);
-        String address = jTextField2.getText();
-        String tpnumber = jTextField3.getText();
-        boolean tpvalidation = ValidationHRMS.isMobilePhone(tpnumber);
-        String email = jTextField4.getText(); 
-        boolean mailvalidate = ValidationHRMS.emailValidate(email);
-        
-        if(mailvalidate){
-            if(companyvalidation){
-                if(tpvalidation){
-        
-        try {
-                String w = "INSERT INTO vender_details(Company, Address, TPnumber, Email) values ('"+company_name+"', '"+address+"', '"+tpnumber+"', '"+email+"')";
-            pst = con.prepareStatement(w);
-            pst.execute();
-            JOptionPane.showMessageDialog(null, "Details  Saved Successfully");
-            
-            tableload();
-        } catch (SQLException e) {
-        }
-                }  else{
-                    JOptionPane.showMessageDialog(null, "Invalid Telephone Number");
+        if(jTextField1.getText().isEmpty()
+                || jTextField2.getText().isEmpty()
+                || jTextField3.getText().isEmpty()
+                || jTextField4.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null,"Enter Data");
+        } 
+        else {
+            String company_name = jTextField1.getText();
+            boolean companyvalidation = ValidationHRMS.isLetter(company_name);
+            String address = jTextField2.getText();
+            String tpnumber = jTextField3.getText();
+            boolean tpvalidation = ValidationHRMS.isMobilePhone(tpnumber);
+            String email = jTextField4.getText(); 
+            boolean mailvalidate = ValidationHRMS.emailValidate(email);
+
+            if(mailvalidate) {
+                if(companyvalidation) {
+                    if(tpvalidation) {
+                        try {
+                            String w = "INSERT INTO vender_details(Company, Address, TPnumber, Email) values ('"+company_name+"', '"+address+"', '"+tpnumber+"', '"+email+"')";
+                            pst = con.prepareStatement(w);
+                            pst.execute();
+                            JOptionPane.showMessageDialog(null, "New vendor record successfully inserted.", "Success",
+                                    JOptionPane.INFORMATION_MESSAGE);
+                            loadTable();
+                        } catch (SQLException e) {
+                            JOptionPane.showMessageDialog(null, "An error occurred while inserting a new vendor record.",
+                                    "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "You have entered an invalid telephone number. Enter a valid one.",
+                                "Invalid phone number", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "You have entered an invalid company name. Enter a valid one.",
+                            "Invalid company name", JOptionPane.ERROR_MESSAGE);
                 }
-            }else{
-                JOptionPane.showMessageDialog(null, "Invalid company name");
+            } else {
+                JOptionPane.showMessageDialog(null, "You have entered an invalid email. Enter a valid one.",
+                        "Invalid email", JOptionPane.ERROR_MESSAGE);
             }
-       
-        }else{
-            JOptionPane.showMessageDialog(null, "Invalid Email");
-       }
-       }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        // TODO add your handling code here:
         int r = jTable1.getSelectedRow();
         
         String compant_id = jTable1.getValueAt(r, 0).toString();
@@ -426,12 +404,10 @@ public class VendorDetails extends javax.swing.JInternalFrame {
         jTextField2.setText(address);
         jTextField3.setText(tpnumber);
         jTextField4.setText(email);
-        
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        int x = JOptionPane.showConfirmDialog(null, "Do you really want to Updare ?");
+        int x = JOptionPane.showConfirmDialog(null, "Do you want to update the record?");
         
         if(x==0)
         {
@@ -441,7 +417,6 @@ public class VendorDetails extends javax.swing.JInternalFrame {
             String tpnumber = jTextField3.getText();
             String email = jTextField4.getText();
             
-            
             String sql = "UPDATE vender_details SET Vender_ID ='"+company_id+"', Company='"+company_name+"', Address='"+address+"', TPnumber='"+tpnumber+"', Email='"+email+"' where  Vender_ID='"+company_id+"'   ";
         
             try {
@@ -449,16 +424,15 @@ public class VendorDetails extends javax.swing.JInternalFrame {
                 pst.execute();
                 
                 //load table
-                tableload();
+                loadTable();
             } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "An error occurred while updating the vendor table.", "Error",
+                        JOptionPane.ERROR_MESSAGE);
             }
-        
-        
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
         int d = JOptionPane.showConfirmDialog(null, "Do you want to delete ?");
         
         if(d==0)
@@ -472,91 +446,80 @@ public class VendorDetails extends javax.swing.JInternalFrame {
                 pst.execute();
                 
                 //load table
-                tableload();
-                
+                loadTable();
             } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "An error occurred while deleting from the vendor table.", "Error",
+                        JOptionPane.ERROR_MESSAGE);
             }
-        
-        
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // TODO add your handling code here:
         try {
             String report = "D:\\SLIIT\\2nd Year\\2nd Semester\\ITP - Information Technology Project\\Project\\Hotel_Management_System(Selsan)\\Reports\\Venders.jrxml";
             JasperReport jr = JasperCompileManager.compileReport(report);
             JasperPrint jp = JasperFillManager.fillReport(jr, null, con);
             JasperViewer.viewReport(jp, false);
         } catch (JRException e) {
-            JOptionPane.showMessageDialog(null, e);
-            
+            JOptionPane.showMessageDialog(null, "An error occurred while generating the report.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
         Food food1 = new Food();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(food1).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
         CleaningItems ci1 = new CleaningItems();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(ci1).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
         RoomItems ri1 = new RoomItems();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(ri1).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
         Orders odr1 = new Orders();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(odr1).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
         VendorDetails vnd1 = new VendorDetails();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(vnd1).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
-
         Payments pay1 = new Payments();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(pay1).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
         KitchenItems ki = new KitchenItems();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(ki).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        // TODO add your handling code here:
         MHome mh = new MHome();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(mh).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton11ActionPerformed
 
 

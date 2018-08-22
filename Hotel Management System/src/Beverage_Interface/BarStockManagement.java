@@ -16,6 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import net.proteanit.sql.DbUtils;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -43,28 +44,16 @@ public class BarStockManagement extends javax.swing.JInternalFrame {
     public BarStockManagement() {
         initComponents();
         conn = MyDBConnection.connectDB();
-        tableLoad();
-        updateTable();
+        loadTable(tab2, "SELECT * FROM Bar_Stock");
+        loadTable(tab2, "SELECT Stock_id,product_name,Brand,Volume,Quantity,Pay_by,Price,Amount from Bar_Stock"); //previously updateTable()
     }
     
-    private void updateTable() {
-        try {
-            String sql = "SELECT Stock_id,product_name,Brand,Volume,Quantity,Pay_by,Price,Amount from Bar_Stock ";
-            //String sql = "SELECT id,f_name,l_name,category from trainers ";
-            pst = conn.prepareStatement(sql);
-            rst = pst.executeQuery();
-            tab2.setModel(DbUtils.resultSetToTableModel(rst));
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "An error occurred while retrieving the data.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
     //table load
-    public void tableLoad() {
+    public void loadTable(JTable table, String query) {
         try {
-            String q = "SELECT * FROM Bar_Stock ";
-            pst = conn.prepareStatement(q);
+            pst = conn.prepareStatement(query);
             rst = pst.executeQuery();
-            tab2.setModel(DbUtils.resultSetToTableModel(rst));
+            table.setModel(DbUtils.resultSetToTableModel(rst));
         } catch (SQLException e) {
             System.out.println(e);
         }
@@ -447,10 +436,10 @@ public class BarStockManagement extends javax.swing.JInternalFrame {
         try {
             String q = "select * from invoice01 where inId=?";
             pst = conn.prepareStatement(q);
-            pst.setString(1, searbo2.getText());//Stock_id,product_name,Brand,Volume,Quantity,Pay_by,Price,Amount
+            pst.setString(1, searbo2.getText());            //Stock_id,product_name,Brand,Volume,Quantity,Pay_by,Price,Amount
             rst = pst.executeQuery();                           
             if (rst.next()) {
-                String add1 = rst.getString("Stock_id");//((JTextField)date_search().getUiComponent()).getText();
+                String add1 = rst.getString("Stock_id");    //((JTextField)date_search().getUiComponent()).getText();
                 t1.setText(add1);
                 // ((JTextField).getUiComponent()).getText();
                 // String add2 = rst.JDateChooser("Bname");
@@ -511,17 +500,17 @@ public class BarStockManagement extends javax.swing.JInternalFrame {
                 
                 pst.execute();
                 JOptionPane.showMessageDialog(null, "Data was successfully saved.", "Success", JOptionPane.INFORMATION_MESSAGE);
-                tableLoad();
+                loadTable(tab2, "SELECT * FROM Bar_Stock");
             }
         } catch(SQLException e) {
             JOptionPane.showMessageDialog(null, "An error occurred while saving data.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-         //   Invo.setText(null);
-         //   hh.setDate(null);
-          //  ss.setText(null);
-           // hj.setText(null);
-           // as.setText(null);
-           // zx.setText(null);
+        //Invo.setText(null);
+        //hh.setDate(null);
+        //ss.setText(null);
+        //hj.setText(null);
+        //as.setText(null);
+        //zx.setText(null);
     }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -590,7 +579,7 @@ public class BarStockManagement extends javax.swing.JInternalFrame {
         catch(HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(null, "An error occurred while updating data.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        updateTable();
+        loadTable(tab2, "SELECT Stock_id,product_name,Brand,Volume,Quantity,Pay_by,Price,Amount from Bar_Stock");
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void tab2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab2MouseClicked
@@ -666,7 +655,7 @@ public class BarStockManagement extends javax.swing.JInternalFrame {
         } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(null, "An error occurred while deleting the record.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        updateTable();
+        loadTable(tab2, "SELECT Stock_id,product_name,Brand,Volume,Quantity,Pay_by,Price,Amount from Bar_Stock");
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void t1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t1KeyTyped

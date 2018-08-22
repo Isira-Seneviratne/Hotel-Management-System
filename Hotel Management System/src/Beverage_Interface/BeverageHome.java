@@ -164,33 +164,31 @@ public class BeverageHome extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        BarStockManagement z = new BarStockManagement();
+        BarStockManagement bsm = new BarStockManagement();
         JDesktopPane desktopPane = getDesktopPane();
-        desktopPane.add(z).setVisible(true);
-        this.dispose();
-
+        desktopPane.add(bsm).setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         MainStockManagement c1 = new MainStockManagement ();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(c1).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         SoftDrinkStock d1 = new SoftDrinkStock();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(d1).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        BeverageOrder o1= new BeverageOrder();
+        BeverageOrder o1 = new BeverageOrder();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(o1).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -204,15 +202,14 @@ public class BeverageHome extends javax.swing.JInternalFrame {
         MHome m = new MHome();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(m).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
         MHome m = new MHome();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(m).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton9ActionPerformed
 
 

@@ -19,6 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import net.proteanit.sql.DbUtils;
 import net.sf.jasperreports.engine.JRException;
@@ -51,53 +52,26 @@ public class SoftDrinkStock extends javax.swing.JInternalFrame {
         initComponents();
 
         conn = MyDBConnection.connectDB();
-        tableLoad();
-        updateTable();
-    }
-
-    private void updateTable() {
-        //Stock_id,Product_name,Company,Price,Quantity,ExpiryDate
-        try {
-            //String sql = "SELECT id,f_name,l_name,category from trainers ";
-            pst = conn.prepareStatement("SELECT Stock_id,Product_name,Company,Price,Quantity,ExpiryDate from soft_drink");
-            rst = pst.executeQuery();
-
-            drinkTable.setModel(DbUtils.resultSetToTableModel(rst));
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Unable to update table.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        loadTable(drinkTable, "SELECT * FROM Soft_Drink");
+        loadTable(drinkTable, "SELECT Stock_id,Product_name,Company,Price,Quantity,ExpiryDate from soft_drink"); //previously updateTable()
     }
 
     //table load
-    public void tableLoad() {
-        // Bname,tibrand,qphone,bpay,brprice
+    private void loadTable(JTable table, String query) {
         try {
-            pst = conn.prepareStatement("SELECT * FROM Soft_Drink");
+            pst = conn.prepareStatement(query);
             rst = pst.executeQuery();
-
-            drinkTable.setModel(DbUtils.resultSetToTableModel(rst));
+            table.setModel(DbUtils.resultSetToTableModel(rst));
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Unable to load table.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "An error occurred while loading the table.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     
-    public void tableLoad3()
-    {
-        try
-        { 
-            Date todayDate = new Date();
-            DateFormat todayFormat= new SimpleDateFormat("yyyy-MM-dd");
-            String todayDateString = todayFormat.format(todayDate);    
-            String sql = "SELECT Stock_id,Product_name,Company,Price,Quantity,ExpiryDate from Soft_Drink WHERE ExpiryDate  <= '"+todayDateString+"'";
-            pst = conn.prepareStatement(sql);   
-            rst = pst.executeQuery();
-
-            drinkTable.setModel(DbUtils.resultSetToTableModel(rst));
-        }
-        catch(SQLException e)
-        {
-            JOptionPane.showMessageDialog(null, "Unable to load table.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+    private void loadTable_Expiry() {
+        String todayDateString = new SimpleDateFormat("yyyy-MM-dd").format(new Date());    
+        loadTable(drinkTable, "SELECT Stock_id,Product_name,Company,Price,Quantity,ExpiryDate"
+                + " from Soft_Drink WHERE ExpiryDate <= '"+todayDateString+"'");
     }
      /*
       public void tableload4()
@@ -457,7 +431,7 @@ public class SoftDrinkStock extends javax.swing.JInternalFrame {
             pst.execute();
             
             JOptionPane.showMessageDialog(null, "Record inserted successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
-            tableLoad();
+            loadTable(drinkTable, "SELECT * FROM Soft_Drink");
         } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(null, "An error occurred while inserting the record.", "Error",
                     JOptionPane.ERROR_MESSAGE);
@@ -489,13 +463,13 @@ public class SoftDrinkStock extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "An error occurred while updating the record.", "Error",
                     JOptionPane.ERROR_MESSAGE);
         }
-        updateTable();
+        loadTable(drinkTable, "SELECT Stock_id,Product_name,Company,Price,Quantity,ExpiryDate from soft_drink");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void bbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bbActionPerformed
-        hide();
         BeverageHome g2 = new BeverageHome();
-        g2.setVisible(true);
+        getDesktopPane().add(g2).setVisible(true);
+        dispose();
     }//GEN-LAST:event_bbActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -604,27 +578,27 @@ public class SoftDrinkStock extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_lblInvoiceMouseClicked
 
     private void lblBarStockMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBarStockMouseEntered
-        // TODO add your handling code here:
+        lblBarStock.setBackground(entered);
     }//GEN-LAST:event_lblBarStockMouseEntered
 
     private void lblBarStockMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBarStockMouseExited
-        // TODO add your handling code here:
+        lblBarStock.setBackground(exited);
     }//GEN-LAST:event_lblBarStockMouseExited
 
     private void lblBevOrdersMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBevOrdersMouseEntered
-        // TODO add your handling code here:
+        lblBevOrders.setBackground(entered);
     }//GEN-LAST:event_lblBevOrdersMouseEntered
 
     private void lblBevOrdersMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBevOrdersMouseExited
-        // TODO add your handling code here:
+        lblBevOrders.setBackground(exited);
     }//GEN-LAST:event_lblBevOrdersMouseExited
 
     private void lblInvoiceMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInvoiceMouseEntered
-        // TODO add your handling code here:
+        lblInvoice.setBackground(entered);
     }//GEN-LAST:event_lblInvoiceMouseEntered
 
     private void lblInvoiceMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInvoiceMouseExited
-        // TODO add your handling code here:
+        lblInvoice.setBackground(exited);
     }//GEN-LAST:event_lblInvoiceMouseExited
 
     private void lblMainStockMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMainStockMouseClicked

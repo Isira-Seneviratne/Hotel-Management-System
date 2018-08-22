@@ -29,32 +29,35 @@ import net.sf.jasperreports.view.JasperViewer;
 /**
  *
  * @author Thishakya
+ * 
+ * @author Isira Seneviratne (19440268)
  */
 public class Orders extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Orders
      */
-    Connection con = null;
-    PreparedStatement pst = null;
-    ResultSet rs = null;
+    private Connection con = null;
+    private PreparedStatement pst = null;
+    private ResultSet rs = null;
     
     public Orders() {
         initComponents();
         
         con = MyDBConnection.connectDB();
         
-        tableLoad();
+        loadTable();
     }
     
-    public void tableLoad()
-    {
+    public void loadTable() {
         try {
             String sql = "SELECT Order_Id, Item_Name, Quantity, Unit, Company, Order_Date FROM pending_orders";
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "An error occurred while loading the table.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -120,7 +123,6 @@ public class Orders extends javax.swing.JInternalFrame {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton1.setText("ADD");
-        jButton1.setBorder(null);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -130,7 +132,6 @@ public class Orders extends javax.swing.JInternalFrame {
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton2.setText("UPDATE");
-        jButton2.setBorder(null);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -140,7 +141,6 @@ public class Orders extends javax.swing.JInternalFrame {
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton3.setText("CLEAR");
-        jButton3.setBorder(null);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -150,7 +150,6 @@ public class Orders extends javax.swing.JInternalFrame {
 
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton4.setText("DELETE");
-        jButton4.setBorder(null);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -191,7 +190,6 @@ public class Orders extends javax.swing.JInternalFrame {
 
         jButton13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton13.setText("Generate Report");
-        jButton13.setBorder(null);
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton13ActionPerformed(evt);
@@ -204,12 +202,6 @@ public class Orders extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Algerian", 1, 24)); // NOI18N
         jLabel1.setText("Pending Orders");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 120, -1, -1));
-
-        jScrollPane1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jScrollPane1MouseClicked(evt);
-            }
-        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -296,7 +288,7 @@ public class Orders extends javax.swing.JInternalFrame {
 
         jButton9.setBackground(new java.awt.Color(255, 255, 255));
         jButton9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton9.setText("Venders");
+        jButton9.setText("Vendors");
         jButton9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton9.setPreferredSize(new java.awt.Dimension(110, 25));
         jButton9.setSelected(true);
@@ -362,29 +354,24 @@ public class Orders extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
         int d = JOptionPane.showConfirmDialog(null, "Do you want to delete?");
         
-        if(d==0)
-        {
+        if(d == 0) {
             String item_id = jLabel8.getText();
-            
             String sql = "DELETE FROM pending_orders where Order_Id='"+item_id+"'";
-            
             try {
                 pst = con.prepareStatement(sql);
                 pst.execute();
-                
                 //load table
-                tableLoad();
-                
+                loadTable();
             } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "An error occurred while deleting the record.", "Error",
+                        JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
         if(jTextField2.getText().isEmpty()
                 || jTextField3.getText().isEmpty()
                 || jComboBox2.getSelectedItem().toString().isEmpty()
@@ -404,40 +391,30 @@ public class Orders extends javax.swing.JInternalFrame {
             String company = jComboBox1.getSelectedItem().toString();
             String date_of_order = ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText();
 
-            if(item_name_validation)
-            {
-                if(qty_validation)
-                {
-                    try
-                    {
+            if(item_name_validation) {
+                if(qty_validation) {
+                    try {
                         String w = "INSERT INTO pending_orders(Item_Name, Quantity, Unit, Company, Order_Date) values ('"+item_name+"', '"+qty+"', '"+unit+"', '"+company+"', '"+date_of_order+"')";
                         pst = con.prepareStatement(w);
                         pst.execute();
                         JOptionPane.showMessageDialog(null, "Details  Saved Successfully");
-                        tableLoad();
-                    }
-                    catch (SQLException e) {
+                        loadTable();
+                    } catch (SQLException e) {
                         JOptionPane.showMessageDialog(null, "An error occurred while saving.", "Error", JOptionPane.ERROR_MESSAGE);
                     }
-                }
-                else
-                {
+                } else {
                     JOptionPane.showMessageDialog(null, "Enter a number");
                 }
-            }
-            else
-            {
+            } else {
                 JOptionPane.showMessageDialog(null, "Invalid Item Name");
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
         int x = JOptionPane.showConfirmDialog(null, "Do you really want to update?");
         
-        if(x==0)
-        {
+        if(x == 0) {
             String item_id = jLabel8.getText();
             String item_name = jTextField2.getText();
             String qty = jTextField3.getText();
@@ -450,7 +427,7 @@ public class Orders extends javax.swing.JInternalFrame {
                 pst = con.prepareStatement(sql);
                 pst.execute();
                 //load table
-                tableLoad();
+                loadTable();
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "An error occurred while updating.", "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -458,34 +435,30 @@ public class Orders extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        // TODO add your handling code here:
-        try{
-            int row=jTable1.getSelectedRow();
-            String Table_click=(jTable1.getModel().getValueAt(row, 0).toString());
-            String sql="select * from pending_orders where Order_Id='"+Table_click+"'";
-            pst=con.prepareStatement(sql);
-            rs= (ResultSet) pst.executeQuery(sql);
-            while (rs.next()){
-
-                String add1=rs.getString("Order_Id");
+        try {
+            int row = jTable1.getSelectedRow();
+            String Table_click = jTable1.getModel().getValueAt(row, 0).toString();
+            pst = con.prepareStatement("select * from pending_orders where Order_Id='"+Table_click+"'");
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                String add1 = rs.getString("Order_Id");
                 jLabel8.setText(add1);
 
-                String add2=rs.getString("Item_Name");
+                String add2 = rs.getString("Item_Name");
                 jTextField2.setText(add2);
 
-                String add3=rs.getString("Quantity");
+                String add3 = rs.getString("Quantity");
                 jTextField3.setText(add3);
 
-                String add4=rs.getString("Unit");
+                String add4 = rs.getString("Unit");
                 jComboBox2.setSelectedItem(add4);
 
-                String add5=rs.getString("Company");
+                String add5 = rs.getString("Company");
                 jComboBox1.setSelectedItem(add5);
 
-                String add6=rs.getString("Order_Date");
-                
+                String add6 = rs.getString("Order_Date");
                 try {
-                    java.util.Date date =  new SimpleDateFormat("yyyy-MM-dd").parse(add6);
+                    java.util.Date date = new SimpleDateFormat("yyyy-MM-dd").parse(add6);
                     jDateChooser1.setDate(date);
                 } catch (ParseException e) {
                     JOptionPane.showMessageDialog(this, "Unable to parse date.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -493,101 +466,87 @@ public class Orders extends javax.swing.JInternalFrame {
                 //String add7=rs.getString("Price");
                 //jTextField4.setText(add7);
             }
-        }catch(HeadlessException | SQLException e){
-            JOptionPane.showMessageDialog(null,"Unable to load row.", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch(HeadlessException | SQLException e) {
+            JOptionPane.showMessageDialog(null,"An error occurred while loading the row.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
-    private void jScrollPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jScrollPane1MouseClicked
-
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // TODO add your handling code here:
         try {
             String report = "D:\\SLIIT\\2nd Year\\2nd Semester\\ITP - Information Technology Project\\Project\\Hotel_Management_System(Selsan)\\Reports\\Pending Orders.jrxml";
             JasperReport jr = JasperCompileManager.compileReport(report);
             JasperPrint jp = JasperFillManager.fillReport(jr, null, con);
             JasperViewer.viewReport(jp, false);
         } catch (JRException e) {
-            JOptionPane.showMessageDialog(null, e);
-            
+            JOptionPane.showMessageDialog(null, "An error occurred while generating the report.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        jLabel8.setText(null);
-        jTextField2.setText(null);
-        jTextField3.setText(null);
+        jLabel8.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
         jComboBox2.setSelectedItem("Select Unit");
         jComboBox1.setSelectedItem("Select Company");
         jDateChooser1.setDate(null);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
         Food food1 = new Food();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(food1).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
         CleaningItems ci1 = new CleaningItems();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(ci1).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
         RoomItems ri1 = new RoomItems();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(ri1).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
         Orders odr1 = new Orders();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(odr1).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
         VendorDetails vnd1 = new VendorDetails();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(vnd1).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
-
         Payments pay1 = new Payments();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(pay1).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
         KitchenItems ki = new KitchenItems();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(ki).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        // TODO add your handling code here:
         MHome mh = new MHome();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(mh).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton11ActionPerformed
 
 

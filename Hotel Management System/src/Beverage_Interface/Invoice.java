@@ -19,6 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import net.proteanit.sql.DbUtils;
 
@@ -26,10 +27,9 @@ import net.proteanit.sql.DbUtils;
  *
  * @author Prabas Gayadeeptha
  * 
- * @author Isira Seneviratne
+ * @author Isira Seneviratne (19440268)
  */
 public class Invoice extends javax.swing.JInternalFrame {
-
     /**
      * Creates new form Invoice
      */
@@ -42,32 +42,19 @@ public class Invoice extends javax.swing.JInternalFrame {
     public Invoice() {
         initComponents();
         conn =  MyDBConnection.connectDB();
-        tableLoad();
-        update_table();
-    }
-
-    private void update_table() {
-        try {
-            String sql = "SELECT inId,Bname,tibrand,qphone,bpay,brprice from invoice01 ";
-            //String sql = "SELECT id,f_name,l_name,category from trainers ";
-            pst = conn.prepareStatement(sql);
-            rst = pst.executeQuery();
-            tab1.setModel(DbUtils.resultSetToTableModel(rst));
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
+        tableLoad(tab1, "SELECT * FROM invoice01");
+        tableLoad(tab1, "SELECT inId,Bname,tibrand,qphone,bpay,brprice from invoice01"); //previously updateTable()
     }
 
     //table load
-    public void tableLoad() {
-        // Bname,tibrand,qphone,bpay,brprice
+    public void tableLoad(JTable table, String query) {
         try {
-            String q = "SELECT * FROM invoice01 ";
-            pst = conn.prepareStatement(q);
+            pst = conn.prepareStatement(query);
             rst = pst.executeQuery();
-            tab1.setModel(DbUtils.resultSetToTableModel(rst));
+            table.setModel(DbUtils.resultSetToTableModel(rst));
         } catch (SQLException e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null, "An error occurred while loading the table with the required data.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -88,12 +75,12 @@ public class Invoice extends javax.swing.JInternalFrame {
         ad = new javax.swing.JLabel();
         ae = new javax.swing.JLabel();
         af = new javax.swing.JLabel();
-        Invo = new javax.swing.JTextField();
-        ss = new javax.swing.JTextField();
-        hj = new javax.swing.JTextField();
-        as = new javax.swing.JTextField();
-        zx = new javax.swing.JTextField();
-        hh = new com.toedter.calendar.JDateChooser();
+        txtInvoiceNo = new javax.swing.JTextField();
+        txtTime = new javax.swing.JTextField();
+        txtQty = new javax.swing.JTextField();
+        txtBrand = new javax.swing.JTextField();
+        txtPrice = new javax.swing.JTextField();
+        inpDate = new com.toedter.calendar.JDateChooser();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tab1 = new javax.swing.JTable();
@@ -156,42 +143,42 @@ public class Invoice extends javax.swing.JInternalFrame {
         af.setText("Price");
         jPanel2.add(af, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, 50, 20));
 
-        Invo.addActionListener(new java.awt.event.ActionListener() {
+        txtInvoiceNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InvoActionPerformed(evt);
+                txtInvoiceNoActionPerformed(evt);
             }
         });
-        Invo.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtInvoiceNo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                InvoKeyTyped(evt);
+                txtInvoiceNoKeyTyped(evt);
             }
         });
-        jPanel2.add(Invo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 160, 30));
+        jPanel2.add(txtInvoiceNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 160, 30));
 
-        ss.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtTime.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                ssKeyTyped(evt);
+                txtTimeKeyTyped(evt);
             }
         });
-        jPanel2.add(ss, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, 163, 30));
+        jPanel2.add(txtTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, 163, 30));
 
-        hj.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtQty.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                hjKeyTyped(evt);
+                txtQtyKeyTyped(evt);
             }
         });
-        jPanel2.add(hj, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, 163, 30));
-        jPanel2.add(as, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 410, 163, 30));
+        jPanel2.add(txtQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, 163, 30));
+        jPanel2.add(txtBrand, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 410, 163, 30));
 
-        zx.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtPrice.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                zxKeyTyped(evt);
+                txtPriceKeyTyped(evt);
             }
         });
-        jPanel2.add(zx, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 470, 163, 30));
+        jPanel2.add(txtPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 470, 163, 30));
 
-        hh.setDateFormatString("yyyy-MM-dd");
-        jPanel2.add(hh, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, 160, 30));
+        inpDate.setDateFormatString("yyyy-MM-dd");
+        jPanel2.add(inpDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, 160, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 374, 520));
 
@@ -291,12 +278,6 @@ public class Invoice extends javax.swing.JInternalFrame {
             }
         });
         jPanel4.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 11, 127, 52));
-
-        searchbo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchboActionPerformed(evt);
-            }
-        });
         jPanel4.add(searchbo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 180, 30));
 
         jButton1.setForeground(new java.awt.Color(51, 51, 0));
@@ -444,19 +425,19 @@ public class Invoice extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void InvoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InvoActionPerformed
+    private void txtInvoiceNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtInvoiceNoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_InvoActionPerformed
+    }//GEN-LAST:event_txtInvoiceNoActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         //update button here
         try {
-            String value1 = Invo.getText();
-            String value2 = ((JTextField) hh.getDateEditor().getUiComponent()).getText();
-            String value3 = ss.getText();
-            String value4 = hj.getText();
-            String value5 = as.getText();
-            String value6 = zx.getText();
+            String value1 = txtInvoiceNo.getText();
+            String value2 = ((JTextField) inpDate.getDateEditor().getUiComponent()).getText();
+            String value3 = txtTime.getText();
+            String value4 = txtQty.getText();
+            String value5 = txtBrand.getText();
+            String value6 = txtPrice.getText();
             //inId,Bname,tibrand,qphone,bpay,brprice
             String sql = "update invoice01 set Bname='" + value2 + "',tibrand='" + value3 + "',qphone='" + value4 + "',bpay='" + value5 + "',brprice='" + value6 + "' where inId = '" + value1 + "'";
             pst = conn.prepareStatement(sql);
@@ -465,7 +446,7 @@ public class Invoice extends javax.swing.JInternalFrame {
         } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
-        update_table();
+        tableLoad(tab1, "SELECT inId,Bname,tibrand,qphone,bpay,brprice from invoice01");
         /*
 
         try{
@@ -487,7 +468,7 @@ public class Invoice extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null,e);
 
         }
-        update_table();
+        updateTable();
 
         }
 
@@ -496,52 +477,51 @@ public class Invoice extends javax.swing.JInternalFrame {
 
     private void Ad2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ad2ActionPerformed
         try {
-            if (Invo.getText().isEmpty()
-                    || ((JTextField)hh.getDateEditor().getUiComponent()).getText().isEmpty()
-                    || ss.getText().isEmpty()
-                    || hj.getText().isEmpty()
-                    || as.getText().isEmpty()
-                    || zx.getText().isEmpty())              
+            if (txtInvoiceNo.getText().isEmpty()
+                    || ((JTextField)inpDate.getDateEditor().getUiComponent()).getText().isEmpty()
+                    || txtTime.getText().isEmpty()
+                    || txtQty.getText().isEmpty()
+                    || txtBrand.getText().isEmpty()
+                    || txtPrice.getText().isEmpty())              
             {
-                JOptionPane.showMessageDialog(null, "Please Enter All");
+                JOptionPane.showMessageDialog(null, "Some data has not been entered. Enter missing data.", "Missing Data",
+                        JOptionPane.ERROR_MESSAGE);
             }
             else {
                 // String q = "INSERT INTO invoice01 (inId,Bname,tibrand,qphone,bpay,brprice) values (?,?,?,?,?,?)";
                 String q = "INSERT INTO invoice01 (inId,Bname,tibrand,qphone,bpay,brprice) values (?,?,?,?,?,?)";
                 pst = conn.prepareStatement(q);
 
-                pst.setString(1, Invo.getText());
-                pst.setString(2, ((JTextField) hh.getDateEditor().getUiComponent()).getText());
-                pst.setString(3, ss.getText());
-                pst.setString(4, hj.getText());
-                pst.setString(5, as.getText());
-                pst.setString(6, zx.getText());
+                pst.setString(1, txtInvoiceNo.getText());
+                pst.setString(2, ((JTextField) inpDate.getDateEditor().getUiComponent()).getText());
+                pst.setString(3, txtTime.getText());
+                pst.setString(4, txtQty.getText());
+                pst.setString(5, txtBrand.getText());
+                pst.setString(6, txtPrice.getText());
 
                 pst.execute();
-                JOptionPane.showMessageDialog(null, "Successfully Saved");
+                JOptionPane.showMessageDialog(null, "Record inserted successfully.", "Success",
+                        JOptionPane.INFORMATION_MESSAGE);
 
-                tableLoad();
+                tableLoad(tab1, "SELECT * FROM invoice01");
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "An error occurred while inserting the record.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
         //Invo.setText(null);
-       // hh.setDate(null);
-       // ss.setText(null);
-       // hj.setText(null);
-       // as.setText(null);
-       // zx.setText(null);
+        //hh.setDate(null);
+        //ss.setText(null);
+        //hj.setText(null);
+        //as.setText(null);
+        //zx.setText(null);
     }//GEN-LAST:event_Ad2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        this.hide();
         BeverageHome e1 = new BeverageHome();
-        e1.setVisible(true);
+        getDesktopPane().add(e1).setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void searchboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchboActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchboActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -569,20 +549,21 @@ public class Invoice extends javax.swing.JInternalFrame {
             rst = pst.executeQuery();                            // inId,Bname,tibrand,qphone,bpay,brprice
             if (rst.next()) {
                 String add1 = rst.getString("inId");//((JTextField)date_search().getUiComponent()).getText();
-                Invo.setText(add1);
+                txtInvoiceNo.setText(add1);
                 // ((JTextField).getUiComponent()).getText();
                 // String add2 = rst.JDateChooser("Bname");
                 //hh.JDateChooser(add2);
                 String add3 = rst.getString("tibrand");
-                ss.setText(add3);
+                txtTime.setText(add3);
+                
                 String add4 = rst.getString("qphone");
-                hj.setText(add4);
+                txtQty.setText(add4);
 
                 String add5 = rst.getString("bpay");
-                as.setText(add5);
+                txtBrand.setText(add5);
 
                 String add6 = rst.getString("brprice");
-                zx.setText(add6);
+                txtPrice.setText(add6);
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "An error occurred while retrieving the desired invoice.", 
@@ -595,73 +576,78 @@ public class Invoice extends javax.swing.JInternalFrame {
         String q = "delete from invoice01 where inId= ?";
         try {
             pst = conn.prepareStatement(q);
-            pst.setString(1, Invo.getText());
+            pst.setString(1, txtInvoiceNo.getText());
             pst.execute();
             JOptionPane.showMessageDialog(null, "Record successfully deleted.", "Success", JOptionPane.INFORMATION_MESSAGE);
         } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(null, "An error occurred while deleting the record.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        update_table();
+        tableLoad(tab1, "SELECT inId,Bname,tibrand,qphone,bpay,brprice from invoice01");
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
         MHome m = new MHome();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(m).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
         BeverageHome m = new BeverageHome();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(m).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        double a=Double.parseDouble(hj.getText());
-        double b=Double.parseDouble(zx.getText());
-        double am=a*b;
-        cal_table.setText(""+am);
+        try
+        {
+            double a = Double.parseDouble(txtQty.getText());
+            double b = Double.parseDouble(txtPrice.getText());
+            double am = a*b;
+            cal_table.setText(""+am);
+        }
+        catch(NumberFormatException e)
+        {
+            JOptionPane.showMessageDialog(null, "You have entered an invalid value for one of the number fields. Enter a "
+                    + "proper value.", "Invalid Number", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void InvoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_InvoKeyTyped
+    private void txtInvoiceNoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtInvoiceNoKeyTyped
         char c =evt.getKeyChar();
         if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE)|| c==KeyEvent.VK_DELETE)){
-           evt.consume(); 
+            evt.consume(); 
         }
-    }//GEN-LAST:event_InvoKeyTyped
+    }//GEN-LAST:event_txtInvoiceNoKeyTyped
 
-    private void ssKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ssKeyTyped
+    private void txtTimeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimeKeyTyped
          
-    }//GEN-LAST:event_ssKeyTyped
+    }//GEN-LAST:event_txtTimeKeyTyped
 
-    private void hjKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_hjKeyTyped
-        char c =evt.getKeyChar();
+    private void txtQtyKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQtyKeyTyped
+        char c = evt.getKeyChar();
         if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE)|| c==KeyEvent.VK_DELETE)){
-           evt.consume(); 
+            evt.consume(); 
         }
-    }//GEN-LAST:event_hjKeyTyped
+    }//GEN-LAST:event_txtQtyKeyTyped
 
-    private void zxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_zxKeyTyped
-        char c =evt.getKeyChar();
+    private void txtPriceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPriceKeyTyped
+        char c = evt.getKeyChar();
         if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE)|| c==KeyEvent.VK_DELETE)){
-           evt.consume(); 
+            evt.consume(); 
         }
-    }//GEN-LAST:event_zxKeyTyped
+    }//GEN-LAST:event_txtPriceKeyTyped
 
     private void tab1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab1MouseClicked
         try {
             int row = tab1.getSelectedRow();
-            String Table_click = (tab1.getModel().getValueAt(row, 0).toString());
-            String q = "select * from invoice01 where inId='" + Table_click + "'";
-            pst = conn.prepareStatement(q);
-            rst = pst.executeQuery(q);   //inId,Bname,tibrand,qphone,bpay,brprice
+            String Table_click = tab1.getModel().getValueAt(row, 0).toString();
+            pst = conn.prepareStatement("select * from invoice01 where inId='" + Table_click + "'");
+            rst = pst.executeQuery();   //inId,Bname,tibrand,qphone,bpay,brprice
             while (rst.next()) {
                 String add1 = rst.getString("inId");
-                Invo.setText(add1);
+                txtInvoiceNo.setText(add1);
 
                 //--------------------------------------------
                 String add2 = rst.getString("Bname");
@@ -670,22 +656,22 @@ public class Invoice extends javax.swing.JInternalFrame {
                 Date date;
                 try {
                     date = new SimpleDateFormat("yyyy-MM-dd").parse(add2);
-                    hh.setDate(date);
+                    inpDate.setDate(date);
                 } catch (ParseException ex) {
                     JOptionPane.showMessageDialog(null, "Unable to parse date.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
                 //-------------------------------------------
                 String add3 = rst.getString("tibrand");
-                ss.setText(add3);
+                txtTime.setText(add3);
 
                 String add4 = rst.getString("qphone");
-                hj.setText(add4);
+                txtQty.setText(add4);
 
                 String add5 = rst.getString("bpay");
-                as.setText(add5);
+                txtBrand.setText(add5);
 
                 String add6 = rst.getString("brprice");
-                zx.setText(add6);
+                txtPrice.setText(add6);
                 //-------------------------------------------
                 // String add12=rs.getString("joined_date");
                 //date_joined.setText(add9);
@@ -704,15 +690,16 @@ public class Invoice extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tab1MouseClicked
 
     private void lblBarStockMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBarStockMouseClicked
-        // TODO add your handling code here:
+        getDesktopPane().add(new BarStockManagement()).setVisible(true);
+        dispose();
     }//GEN-LAST:event_lblBarStockMouseClicked
 
     private void lblBarStockMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBarStockMouseEntered
-        // TODO add your handling code here:
+        lblBarStock.setBackground(entered);
     }//GEN-LAST:event_lblBarStockMouseEntered
 
     private void lblBarStockMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBarStockMouseExited
-        // TODO add your handling code here:
+        lblBarStock.setBackground(exited);
     }//GEN-LAST:event_lblBarStockMouseExited
 
     private void lblBevOrdersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBevOrdersMouseClicked
@@ -742,7 +729,6 @@ public class Invoice extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Ad2;
-    private javax.swing.JTextField Invo;
     private javax.swing.JPanel PnlMenu;
     private javax.swing.JLabel aa;
     private javax.swing.JLabel ab;
@@ -750,11 +736,9 @@ public class Invoice extends javax.swing.JInternalFrame {
     private javax.swing.JLabel ad;
     private javax.swing.JLabel ae;
     private javax.swing.JLabel af;
-    private javax.swing.JTextField as;
     private javax.swing.JTextField cal_table;
     private javax.swing.JLabel emp_background;
-    private com.toedter.calendar.JDateChooser hh;
-    private javax.swing.JTextField hj;
+    private com.toedter.calendar.JDateChooser inpDate;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
@@ -776,8 +760,11 @@ public class Invoice extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblMainStock;
     private javax.swing.JLabel lblSoftDrinkStock;
     private javax.swing.JTextField searchbo;
-    private javax.swing.JTextField ss;
     private javax.swing.JTable tab1;
-    private javax.swing.JTextField zx;
+    private javax.swing.JTextField txtBrand;
+    private javax.swing.JTextField txtInvoiceNo;
+    private javax.swing.JTextField txtPrice;
+    private javax.swing.JTextField txtQty;
+    private javax.swing.JTextField txtTime;
     // End of variables declaration//GEN-END:variables
 }
