@@ -494,9 +494,8 @@ public class Invoice extends javax.swing.JInternalFrame {
                         JOptionPane.ERROR_MESSAGE);
             }
             else {
-                // String q = "INSERT INTO invoice01 (inId,Bname,tibrand,qphone,bpay,brprice) values (?,?,?,?,?,?)";
-                String q = "INSERT INTO invoice01 (inId,Bname,tibrand,qphone,bpay,brprice) values (?,?,?,?,?,?)";
-                pst = conn.prepareStatement(q);
+                pst = conn.prepareStatement("INSERT INTO invoice01 (inId,Bname,tibrand,qphone,bpay,brprice)"
+                        + " values (?,?,?,?,?,?)");
 
                 pst.setString(1, txtInvoiceNo.getText());
                 pst.setString(2, ((JTextField) inpDate.getDateEditor().getUiComponent()).getText());
@@ -582,11 +581,13 @@ public class Invoice extends javax.swing.JInternalFrame {
             pst = conn.prepareStatement("delete from invoice01 where inId= ?");
             pst.setString(1, txtInvoiceNo.getText());
             pst.execute();
-            JOptionPane.showMessageDialog(null, "Record successfully deleted.", "Success", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Record successfully deleted.", "Success",
+                    JOptionPane.INFORMATION_MESSAGE);
+            tableLoad(tab1, "SELECT inId,Bname,tibrand,qphone,bpay,brprice from invoice01");
         } catch (HeadlessException | SQLException e) {
-            JOptionPane.showMessageDialog(null, "An error occurred while deleting the record.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "An error occurred while deleting the record.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
-        tableLoad(tab1, "SELECT inId,Bname,tibrand,qphone,bpay,brprice from invoice01");
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -610,14 +611,16 @@ public class Invoice extends javax.swing.JInternalFrame {
             double am = a*b;
             cal_table.setText(""+am);
         } catch(NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "You have entered an invalid value for one of the number fields. Enter a "
-                    + "proper value.", "Invalid Number", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Invalid value input for one or both"
+                    + " of the number fields. Enter a "
+                    + "valid value.", "Invalid Number", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void txtInvoiceNoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtInvoiceNoKeyTyped
         char c =evt.getKeyChar();
-        if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE)|| c==KeyEvent.VK_DELETE)){
+        if(!(Character.isDigit(c) || c == KeyEvent.VK_BACK_SPACE
+                || c == KeyEvent.VK_DELETE)) {
             evt.consume(); 
         }
     }//GEN-LAST:event_txtInvoiceNoKeyTyped
@@ -628,14 +631,16 @@ public class Invoice extends javax.swing.JInternalFrame {
 
     private void txtQtyKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQtyKeyTyped
         char c = evt.getKeyChar();
-        if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE)|| c==KeyEvent.VK_DELETE)){
+        if(!(Character.isDigit(c) || c == KeyEvent.VK_BACK_SPACE
+                || c == KeyEvent.VK_DELETE)) {
             evt.consume(); 
         }
     }//GEN-LAST:event_txtQtyKeyTyped
 
     private void txtPriceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPriceKeyTyped
         char c = evt.getKeyChar();
-        if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE)|| c==KeyEvent.VK_DELETE)){
+        if(!(Character.isDigit(c) || c == KeyEvent.VK_BACK_SPACE
+                || c == KeyEvent.VK_DELETE)) {
             evt.consume(); 
         }
     }//GEN-LAST:event_txtPriceKeyTyped

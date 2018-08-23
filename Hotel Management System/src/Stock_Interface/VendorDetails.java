@@ -9,6 +9,7 @@ import HMS_Home.MHome;
 import javax.swing.JDesktopPane;
 import HMS_Database.MyDBConnection;
 import HRMS_Codes.ValidationHRMS;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -36,6 +37,8 @@ public class VendorDetails extends javax.swing.JInternalFrame {
     private PreparedStatement pst = null;
     private ResultSet rs = null;
     
+    private final Color entered = new Color(104,109,213), exited = new Color(153,204,255);
+    
     public VendorDetails() {
         initComponents();
         
@@ -44,7 +47,7 @@ public class VendorDetails extends javax.swing.JInternalFrame {
         loadTable();
     }
     
-    public void loadTable()
+    private void loadTable()
     {
         try {
             String sql = "SELECT Vender_ID,Company, Address, TPnumber, Email FROM vender_details";
@@ -410,7 +413,8 @@ public class VendorDetails extends javax.swing.JInternalFrame {
                 || jTextField3.getText().isEmpty()
                 || jTextField4.getText().isEmpty())
         {
-            JOptionPane.showMessageDialog(null,"Enter Data");
+            JOptionPane.showMessageDialog(null,"One or more fields are empty. Enter data for those fields.",
+                    "Missing data", JOptionPane.ERROR_MESSAGE);
         } 
         else {
             String company_name = jTextField1.getText();
@@ -453,13 +457,13 @@ public class VendorDetails extends javax.swing.JInternalFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         int r = jTable1.getSelectedRow();
         
-        String compant_id = jTable1.getValueAt(r, 0).toString();
+        String company_id = jTable1.getValueAt(r, 0).toString();
         String company_name = jTable1.getValueAt(r, 1).toString();
         String address = jTable1.getValueAt(r, 2).toString();
         String tpnumber = jTable1.getValueAt(r, 3).toString();
         String email = jTable1.getValueAt(r, 4).toString();
         
-        jLabel7.setText(compant_id);
+        jLabel7.setText(company_id);
         jTextField1.setText(company_name);
         jTextField2.setText(address);
         jTextField3.setText(tpnumber);
@@ -467,23 +471,23 @@ public class VendorDetails extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int x = JOptionPane.showConfirmDialog(null, "Do you want to update the record?");
+        int x = JOptionPane.showConfirmDialog(null, "Do you want to update the record?", "Update record",
+                JOptionPane.YES_NO_OPTION);
         
-        if(x==0)
+        if(x == 0)
         {
             String company_id = jLabel7.getText();
             String company_name = jTextField1.getText();
             String address = jTextField2.getText();
             String tpnumber = jTextField3.getText();
             String email = jTextField4.getText();
-            
-            String sql = "UPDATE vender_details SET Vender_ID ='"+company_id+"', Company='"+company_name+"', Address='"+address+"', TPnumber='"+tpnumber+"', Email='"+email+"' where  Vender_ID='"+company_id+"'   ";
         
             try {
-                pst = con.prepareStatement(sql);
+                pst = con.prepareStatement("UPDATE vender_details SET Vender_ID ='"+company_id+"',"
+                        + " Company='"+company_name+"',"
+                        + " Address='"+address+"', TPnumber='"+tpnumber+"',"
+                        + " Email='"+email+"' where  Vender_ID='"+company_id+"'");
                 pst.execute();
-                
-                //load table
                 loadTable();
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "An error occurred while updating the vendor table.", "Error",
@@ -493,19 +497,15 @@ public class VendorDetails extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        int d = JOptionPane.showConfirmDialog(null, "Do you want to delete ?");
+        int d = JOptionPane.showConfirmDialog(null, "Do you want to delete the record?", "Delete record",
+                JOptionPane.YES_NO_OPTION);
         
-        if(d==0)
+        if(d == 0)
         {
             String company_id = jLabel7.getText();
-            
-            String sql = "DELETE FROM vender_details where Vender_ID='"+company_id+"' ";
-            
             try {
-                pst = con.prepareStatement(sql);
+                pst = con.prepareStatement("DELETE FROM vender_details where Vender_ID='"+company_id+"' ");
                 pst.execute();
-                
-                //load table
                 loadTable();
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "An error occurred while deleting from the vendor table.", "Error",
@@ -583,51 +583,51 @@ public class VendorDetails extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseEntered
-        // TODO add your handling code here:
+        jButton5.setBackground(entered);
     }//GEN-LAST:event_jButton5MouseEntered
 
     private void jButton5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseExited
-        // TODO add your handling code here:
+        jButton5.setBackground(exited);
     }//GEN-LAST:event_jButton5MouseExited
 
     private void jButton6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseEntered
-        // TODO add your handling code here:
+        jButton6.setBackground(entered);
     }//GEN-LAST:event_jButton6MouseEntered
 
     private void jButton6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseExited
-        // TODO add your handling code here:
+        jButton6.setBackground(exited);
     }//GEN-LAST:event_jButton6MouseExited
 
     private void jButton7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseEntered
-        // TODO add your handling code here:
+        jButton7.setBackground(entered);
     }//GEN-LAST:event_jButton7MouseEntered
 
     private void jButton7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseExited
-        // TODO add your handling code here:
+        jButton7.setBackground(exited);
     }//GEN-LAST:event_jButton7MouseExited
 
     private void jButton8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseEntered
-        // TODO add your handling code here:
+        jButton8.setBackground(entered);
     }//GEN-LAST:event_jButton8MouseEntered
 
     private void jButton8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseExited
-        // TODO add your handling code here:
+        jButton8.setBackground(exited);
     }//GEN-LAST:event_jButton8MouseExited
 
     private void jButton10MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseEntered
-        // TODO add your handling code here:
+        jButton10.setBackground(entered);
     }//GEN-LAST:event_jButton10MouseEntered
 
     private void jButton10MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseExited
-        // TODO add your handling code here:
+        jButton10.setBackground(exited);
     }//GEN-LAST:event_jButton10MouseExited
 
     private void jButton12MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MouseEntered
-        // TODO add your handling code here:
+        jButton12.setBackground(entered);
     }//GEN-LAST:event_jButton12MouseEntered
 
     private void jButton12MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MouseExited
-        // TODO add your handling code here:
+        jButton12.setBackground(exited);
     }//GEN-LAST:event_jButton12MouseExited
 
 

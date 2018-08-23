@@ -20,7 +20,6 @@ import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -487,8 +486,7 @@ public class BeverageOrder extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            String q = "INSERT INTO order_table (company,brand,quantity,date) values (?,?,?,?)";
-            pst = conn.prepareStatement(q);
+            pst = conn.prepareStatement("INSERT INTO order_table (company,brand,quantity,date) values (?,?,?,?)");
 
             pst.setString(1, namebox.getText());
             pst.setString(2, bra.getText());
@@ -509,9 +507,8 @@ public class BeverageOrder extends javax.swing.JInternalFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
           // delete record
-        String q = "delete from order_table  where company= ?";
         try {
-            pst = conn.prepareStatement(q);
+            pst = conn.prepareStatement("delete from order_table  where company= ?");
 
             pst.setString(1, namebox.getText());
 
@@ -539,12 +536,11 @@ public class BeverageOrder extends javax.swing.JInternalFrame {
         //   {
             //   System.out.println(e);
         }
-         */ DefaultTableModel model = (DefaultTableModel) tav.getModel();
+        */
         String company = searcha.getText();
-        String q = "SELECT company,brand,quantity,date from order_table where ename LIKE '%" + company + "%'";
 
         try {
-            pst = conn.prepareStatement(q);
+            pst = conn.prepareStatement("SELECT company,brand,quantity,date from order_table where ename LIKE '%" + company + "%'");
             rst = pst.executeQuery();
             tav.setModel(DbUtils.resultSetToTableModel(rst));
         } catch (SQLException e) {
@@ -570,7 +566,7 @@ public class BeverageOrder extends javax.swing.JInternalFrame {
     private void tavMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tavMouseClicked
          try {
             int row = tav.getSelectedRow();
-            String Table_click = (tav.getModel().getValueAt(row, 0).toString());
+            String Table_click = tav.getModel().getValueAt(row, 0).toString();
             String q = "select * from order_table where company='" + Table_click + "'";
             pst = conn.prepareStatement(q);
             rst = (ResultSet) pst.executeQuery(q);  

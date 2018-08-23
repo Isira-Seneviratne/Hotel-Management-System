@@ -16,6 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -414,7 +415,7 @@ public class CleaningItems extends javax.swing.JInternalFrame {
                 || jTextField2.getText().isEmpty()
                 || jTextField3.getText().isEmpty())
         {
-            JOptionPane.showMessageDialog(null,"Some data has not been entered. Enter missing data.", "Missing Data",
+            JOptionPane.showMessageDialog(null,"Some data has not been entered. Enter missing data.", "Missing data",
                     JOptionPane.ERROR_MESSAGE);
         }
         else {
@@ -422,7 +423,7 @@ public class CleaningItems extends javax.swing.JInternalFrame {
             boolean item_name_validation = ValidationHRMS.isLetter(item_name);
             String qty = jTextField2.getText();
             boolean qty_validation = ValidationHRMS.isNumeric(qty);
-            String vender = jComboBox1.getSelectedItem().toString();
+            String vendor = jComboBox1.getSelectedItem().toString();
             String purchased_date = ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText();
             String price = jTextField3.getText();
             boolean price_validation = ValidationHRMS.isNumeric(price);
@@ -436,10 +437,11 @@ public class CleaningItems extends javax.swing.JInternalFrame {
                     if(price_validation) {
                         try {
                             String w = "INSERT INTO cleaning_items(Item_Name, Quantity, Purchased_Date, Vender, Price)"
-                                    + " values ('"+item_name+"', '"+qty+"', '"+purchased_date+"', '"+vender+"', '"+totvalue+"')";
+                                    + " values ('"+item_name+"', '"+qty+"', '"+purchased_date+"', '"+vendor+"',"
+                                    + " '"+totvalue+"')";
                             pst = con.prepareStatement(w);
                             pst.execute();
-                            JOptionPane.showMessageDialog(null, "Details  Saved Successfully");
+                            JOptionPane.showMessageDialog(null, "Details Saved Successfully");
                             loadTable();
                         } catch (SQLException e) {
                             JOptionPane.showMessageDialog(null, e);
@@ -460,32 +462,32 @@ public class CleaningItems extends javax.swing.JInternalFrame {
         try {
             int row = jTable1.getSelectedRow();
             String Table_click = jTable1.getModel().getValueAt(row, 0).toString();
-            String sql = "select * from cleaning_items where Item_Id='"+Table_click+"'";
-            pst = con.prepareStatement(sql);
-            rs = pst.executeQuery(sql);
+            pst = con.prepareStatement("select * from cleaning_items where Item_Id='"+Table_click+"'");
+            rs = pst.executeQuery();
+            
             while (rs.next()) {
-                String add1=rs.getString("Item_Id");
+                String add1 = rs.getString("Item_Id");
                 jLabel8.setText(add1);
 
-                String add2=rs.getString("Item_Name");
+                String add2 = rs.getString("Item_Name");
                 jTextField1.setText(add2);
 
-                String add3=rs.getString("Quantity");
+                String add3 = rs.getString("Quantity");
                 jTextField2.setText(add3);
 
-                String add4=rs.getString("Price");
+                String add4 = rs.getString("Price");
                 jTextField3.setText(add4);
 
-                String add5=rs.getString("Vender");
+                String add5 = rs.getString("Vender");
                 jComboBox1.setSelectedItem(add5);
 
                 String add6=rs.getString("Purchased_Date");
                 
                 try {
-                    java.util.Date date =  new SimpleDateFormat("yyyy-MM-dd").parse(add6);
+                    Date date =  new SimpleDateFormat("yyyy-MM-dd").parse(add6);
                     jDateChooser1.setDate(date);
                 } catch (ParseException e) {
-                    JOptionPane.showMessageDialog(this, "cant get date");
+                    JOptionPane.showMessageDialog(this, "Unable to parse date.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
                 //String add7=rs.getString("Price");
                 //jTextField4.setText(add7);
@@ -497,7 +499,8 @@ public class CleaningItems extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int x = JOptionPane.showConfirmDialog(null, "Do you want to update?", "Update confirmation", JOptionPane.YES_NO_OPTION);
+        int x = JOptionPane.showConfirmDialog(null, "Do you want to update?", "Update confirmation",
+                JOptionPane.YES_NO_OPTION);
         
         if(x == 0) {
             String item_id = jLabel8.getText();
@@ -522,8 +525,8 @@ public class CleaningItems extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        int d = JOptionPane.showConfirmDialog(null, "Do you want to delete?", "Delete confirmation", JOptionPane.YES_NO_OPTION);
+        int d = JOptionPane.showConfirmDialog(null, "Do you want to delete?", "Delete confirmation",
+                JOptionPane.YES_NO_OPTION);
         
         if(d == 0) {
             String item_id = jLabel8.getText();

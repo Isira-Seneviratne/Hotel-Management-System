@@ -55,7 +55,8 @@ public class RoomItems extends javax.swing.JInternalFrame {
 
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (SQLException e) {
-            
+            JOptionPane.showMessageDialog(null, "An error occurred while loading the table.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -289,6 +290,14 @@ public class RoomItems extends javax.swing.JInternalFrame {
         jButton8.setBorder(null);
         jButton8.setPreferredSize(new java.awt.Dimension(110, 25));
         jButton8.setSelected(true);
+        jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton8MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton8MouseEntered(evt);
+            }
+        });
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
@@ -304,6 +313,14 @@ public class RoomItems extends javax.swing.JInternalFrame {
         jButton9.setBorder(null);
         jButton9.setPreferredSize(new java.awt.Dimension(110, 25));
         jButton9.setSelected(true);
+        jButton9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton9MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton9MouseEntered(evt);
+            }
+        });
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
@@ -319,6 +336,14 @@ public class RoomItems extends javax.swing.JInternalFrame {
         jButton10.setBorder(null);
         jButton10.setPreferredSize(new java.awt.Dimension(110, 25));
         jButton10.setSelected(true);
+        jButton10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton10MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton10MouseEntered(evt);
+            }
+        });
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton10ActionPerformed(evt);
@@ -334,6 +359,14 @@ public class RoomItems extends javax.swing.JInternalFrame {
         jButton12.setBorder(null);
         jButton12.setPreferredSize(new java.awt.Dimension(110, 25));
         jButton12.setSelected(true);
+        jButton12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton12MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton12MouseEntered(evt);
+            }
+        });
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton12ActionPerformed(evt);
@@ -357,7 +390,8 @@ public class RoomItems extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int x = JOptionPane.showConfirmDialog(null, "Do you want to update the record?");
+        int x = JOptionPane.showConfirmDialog(null, "Do you want to update the record?", "Update record",
+                    JOptionPane.YES_NO_OPTION);
         
         if(x == 0)
         {
@@ -372,7 +406,8 @@ public class RoomItems extends javax.swing.JInternalFrame {
                 pst.execute();
                 loadTable();
             } catch (SQLException e) {
-                
+                JOptionPane.showMessageDialog(null, "An error occurred while updating the record.", "Error",
+                        JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -389,7 +424,8 @@ public class RoomItems extends javax.swing.JInternalFrame {
                 || jTextField2.getText().isEmpty()
                 || jTextField3.getText().isEmpty())
         {
-              JOptionPane.showMessageDialog(null,"Enter Data");
+              JOptionPane.showMessageDialog(null,"One or more fields are empty. Enter data for those fields.",
+                      "Missing data", JOptionPane.ERROR_MESSAGE);
         }
         else
         {
@@ -407,20 +443,24 @@ public class RoomItems extends javax.swing.JInternalFrame {
                             pst = con.prepareStatement("INSERT INTO room_items(Room_Number, Item_Name, Quantity)"
                                     + " values ('"+room_number+"', '"+item_name+"', '"+qty+"')");
                             pst.execute();
-                            JOptionPane.showMessageDialog(null, "Details  Saved Successfully");
+                            JOptionPane.showMessageDialog(null, "The record was successfully inserted.", "Success",
+                                    JOptionPane.INFORMATION_MESSAGE);
                             loadTable();
                         } catch (SQLException e) {
                             JOptionPane.showMessageDialog(null, "An error occurred while inserting the record.", "Error",
                                     JOptionPane.ERROR_MESSAGE);
                         }
                     } else {
-                        JOptionPane.showMessageDialog(null, "Invalid number");
+                        JOptionPane.showMessageDialog(null, "Enter a valid value for the quantity.", 
+                                "Invalid quantity", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
-                   JOptionPane.showMessageDialog(null, "Invalid number"); 
+                   JOptionPane.showMessageDialog(null, "Enter a valid value for the room number.",
+                           "Invalid room number", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Invalid Item Name");
+                JOptionPane.showMessageDialog(null, "Enter a valid item name.",
+                        "Invalid item name", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -446,16 +486,15 @@ public class RoomItems extends javax.swing.JInternalFrame {
         {
             String item_id = jLabel6.getText();
             
-            String sql = "DELETE FROM room_items where Item_Id='"+item_id+"' ";
-            
             try {
-                pst = con.prepareStatement(sql);
+                pst = con.prepareStatement("DELETE FROM room_items where Item_Id='"+item_id+"'");
                 pst.execute();
                 
                 //load table
                 loadTable();
             } catch (SQLException e) {
-                
+                JOptionPane.showMessageDialog(null, "An error occurred while deleting the record.", "Error",
+                        JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -528,20 +567,52 @@ public class RoomItems extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton14MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton14MouseEntered
-        // TODO add your handling code here:
+        jButton14.setBackground(entered);
     }//GEN-LAST:event_jButton14MouseEntered
 
     private void jButton14MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton14MouseExited
-        // TODO add your handling code here:
+        jButton14.setBackground(exited);
     }//GEN-LAST:event_jButton14MouseExited
 
     private void jButton6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseEntered
-        // TODO add your handling code here:
+        jButton6.setBackground(entered);
     }//GEN-LAST:event_jButton6MouseEntered
 
     private void jButton6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseExited
-        // TODO add your handling code here:
+        jButton6.setBackground(exited);
     }//GEN-LAST:event_jButton6MouseExited
+
+    private void jButton8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseEntered
+        jButton8.setBackground(entered);
+    }//GEN-LAST:event_jButton8MouseEntered
+
+    private void jButton8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseExited
+        jButton8.setBackground(exited);
+    }//GEN-LAST:event_jButton8MouseExited
+
+    private void jButton9MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseEntered
+        jButton9.setBackground(entered);
+    }//GEN-LAST:event_jButton9MouseEntered
+
+    private void jButton9MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseExited
+        jButton9.setBackground(exited);
+    }//GEN-LAST:event_jButton9MouseExited
+
+    private void jButton10MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseEntered
+        jButton10.setBackground(entered);
+    }//GEN-LAST:event_jButton10MouseEntered
+
+    private void jButton10MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseExited
+        jButton10.setBackground(exited);
+    }//GEN-LAST:event_jButton10MouseExited
+
+    private void jButton12MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MouseEntered
+        jButton12.setBackground(entered);
+    }//GEN-LAST:event_jButton12MouseEntered
+
+    private void jButton12MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MouseExited
+        jButton12.setBackground(exited);
+    }//GEN-LAST:event_jButton12MouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

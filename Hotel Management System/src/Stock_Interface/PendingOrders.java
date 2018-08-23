@@ -54,8 +54,7 @@ public class PendingOrders extends javax.swing.JInternalFrame {
     
     private void loadTable() {
         try {
-            String sql = "SELECT Order_Id, Item_Name, Quantity, Unit, Company, Order_Date FROM pending_orders";
-            pst = con.prepareStatement(sql);
+            pst = con.prepareStatement("SELECT Order_Id, Item_Name, Quantity, Unit, Company, Order_Date FROM pending_orders");
             rs = pst.executeQuery();
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (SQLException e) {
@@ -415,15 +414,14 @@ public class PendingOrders extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        int d = JOptionPane.showConfirmDialog(null, "Do you want to delete?");
+        int d = JOptionPane.showConfirmDialog(null, "Do you want to delete the record?", "Delete record",
+                    JOptionPane.YES_NO_OPTION);
         
         if(d == 0) {
             String item_id = jLabel8.getText();
-            String sql = "DELETE FROM pending_orders where Order_Id='"+item_id+"'";
             try {
-                pst = con.prepareStatement(sql);
+                pst = con.prepareStatement("DELETE FROM pending_orders where Order_Id='"+item_id+"'");
                 pst.execute();
-                //load table
                 loadTable();
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "An error occurred while deleting the record.", "Error",
@@ -473,7 +471,8 @@ public class PendingOrders extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int x = JOptionPane.showConfirmDialog(null, "Do you really want to update?");
+        int x = JOptionPane.showConfirmDialog(null, "Do you want to update the record?", "Update record",
+                    JOptionPane.YES_NO_OPTION);
         
         if(x == 0) {
             String item_id = jLabel8.getText();
@@ -482,12 +481,12 @@ public class PendingOrders extends javax.swing.JInternalFrame {
             String unit = jComboBox2.getSelectedItem().toString();
             String company = jComboBox1.getSelectedItem().toString();
             String date_of_order = ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText();
-            String sql = "UPDATE pending_orders SET Order_Id ='"+item_id+"', Item_Name='"+item_name+"', Quantity='"+qty+"', Unit='"+unit+"', Company='"+company+"', Order_Date='"+date_of_order+"' where  Order_Id='"+item_id+"'  ";
         
             try {
-                pst = con.prepareStatement(sql);
+                pst = con.prepareStatement("UPDATE pending_orders SET Order_Id ='"+item_id+"', Item_Name='"+item_name+"'"
+                        + ", Quantity='"+qty+"', Unit='"+unit+"', Company='"+company+"', Order_Date='"+date_of_order+"'"
+                        + " where  Order_Id='"+item_id+"'  ");
                 pst.execute();
-                //load table
                 loadTable();
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "An error occurred while updating.", "Error", JOptionPane.ERROR_MESSAGE);

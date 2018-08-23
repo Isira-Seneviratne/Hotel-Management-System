@@ -55,7 +55,8 @@ public class BarStockManagement extends javax.swing.JInternalFrame {
             rst = pst.executeQuery();
             table.setModel(DbUtils.resultSetToTableModel(rst));
         } catch (SQLException e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null, "An error occurred while loading the table.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -434,10 +435,11 @@ public class BarStockManagement extends javax.swing.JInternalFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         try {
-            String q = "select * from invoice01 where inId=?";
-            pst = conn.prepareStatement(q);
+            pst = conn.prepareStatement("select * from invoice01 where inId=?");
+            
             pst.setString(1, searbo2.getText());            //Stock_id,product_name,Brand,Volume,Quantity,Pay_by,Price,Amount
-            rst = pst.executeQuery();                           
+            rst = pst.executeQuery();
+            
             if (rst.next()) {
                 String add1 = rst.getString("Stock_id");    //((JTextField)date_search().getUiComponent()).getText();
                 t1.setText(add1);
@@ -446,6 +448,7 @@ public class BarStockManagement extends javax.swing.JInternalFrame {
                 //hh.JDateChooser(add2);
                 String add2 = rst.getString("product_name");
                 t2.setText(add2);
+                
                 String add3 = rst.getString("Brand");
                 t3.setText(add3);  
 
@@ -455,17 +458,18 @@ public class BarStockManagement extends javax.swing.JInternalFrame {
                 String add5 = rst.getString("Quantity");
                 t5.setText(add5);
                 
-                  String add6 = rst.getString("Pay_by");
+                String add6 = rst.getString("Pay_by");
                 t6.setSelectedItem(add6);
                 
-                 String add7 = rst.getString("Price");
+                String add7 = rst.getString("Price");
                 t7.setText(add7);
                 
-                 String add8 = rst.getString("Amount");
+                String add8 = rst.getString("Amount");
                 t8.setText(add8);
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "An error occurred while retrieving the invoice.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "An error occurred while retrieving the invoice.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -482,9 +486,9 @@ public class BarStockManagement extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "Some values are missing. Enter missing values.", "Missing data", 
                         JOptionPane.ERROR_MESSAGE);
             }
-            else {
-                String q= "INSERT INTO bar_stock (Stock_id,product_name,Brand,Volume,Quantity,Pay_by,Price,Amount ) values (?,?,?,?,?,?,?,?)";               
-                pst = conn.prepareStatement(q);
+            else {           
+                pst = conn.prepareStatement("INSERT INTO bar_stock (Stock_id,product_name,Brand,Volume,"
+                        + "Quantity,Pay_by,Price,Amount ) values (?,?,?,?,?,?,?,?)");
                 
                 pst.setString(1, t1.getText());
                 pst.setString(2, t2.getText());
@@ -499,11 +503,13 @@ public class BarStockManagement extends javax.swing.JInternalFrame {
                 pst.setString(8, t8.getText());
                 
                 pst.execute();
-                JOptionPane.showMessageDialog(null, "Data was successfully saved.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Data was successfully saved.", "Success",
+                        JOptionPane.INFORMATION_MESSAGE);
                 loadTable(tab2, "SELECT * FROM Bar_Stock");
             }
         } catch(SQLException e) {
-            JOptionPane.showMessageDialog(null, "An error occurred while saving data.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "An error occurred while saving data.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
         //Invo.setText(null);
         //hh.setDate(null);
@@ -570,15 +576,17 @@ public class BarStockManagement extends javax.swing.JInternalFrame {
             String value8 = t8.getText();
             
             //inId,Bname,tibrand,qphone,bpay,brprice
-            String q = "update bar_stock set product_name='"+value2+"',Brand='"+value3+"',Volume='"+value4+"',Quantity='"+value5+"',Pay_by='"+value6+"',Price='"+value7+"',Amount='"+value8+"' where Stock_id = '"+value1+"'";
-            pst = conn.prepareStatement(q);
+            pst = conn.prepareStatement("update bar_stock set product_name='"+value2+"'"
+                    + ",Brand='"+value3+"',Volume='"+value4+"'"
+                    + ",Quantity='"+value5+"',Pay_by='"+value6+"',Price='"+value7+"',Amount='"+value8+"'"
+                    + " where Stock_id = '"+value1+"'");
             pst.execute();
             JOptionPane.showMessageDialog(null, "Record successfully updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
+            loadTable(tab2, "SELECT Stock_id,product_name,Brand,Volume,Quantity,Pay_by,Price,Amount from Bar_Stock");
         }
         catch(HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(null, "An error occurred while updating data.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        loadTable(tab2, "SELECT Stock_id,product_name,Brand,Volume,Quantity,Pay_by,Price,Amount from Bar_Stock");
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void tab2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab2MouseClicked

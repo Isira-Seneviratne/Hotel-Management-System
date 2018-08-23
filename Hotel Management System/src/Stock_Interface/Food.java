@@ -52,9 +52,9 @@ public class Food extends javax.swing.JInternalFrame {
     }
     
     private void loadTable() {
-        try {   
-            String sql = "SELECT Food_Item_Id,Food_Name, Quantity, Unit, Vender, Purchased_Date, Expiary_Date, Price FROM food_items";
-            pst = con.prepareStatement(sql);
+        try {
+            pst = con.prepareStatement("SELECT Food_Item_Id,Food_Name, Quantity, Unit, Vender, Purchased_Date,"
+                    + " Expiary_Date, Price FROM food_items");
             rs = pst.executeQuery();
 
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
@@ -438,12 +438,11 @@ public class Food extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
         if(jTextField1.getText().isEmpty()
                 || jComboBox2.getSelectedItem().toString().isEmpty()
                 || jTextField3.getText().isEmpty())
         {
-             JOptionPane.showMessageDialog(null,"One or more fields have not been filled in. Enter the missing data.",
+             JOptionPane.showMessageDialog(null,"One or more fields are empty. Enter the missing data.",
                      "Missing data", JOptionPane.ERROR_MESSAGE);
         }
         else
@@ -509,15 +508,14 @@ public class Food extends javax.swing.JInternalFrame {
             String Unit = jComboBox2.getSelectedItem().toString();
             String Vender = jComboBox1.getSelectedItem().toString();
             String Purchased_Date = ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText();
-            String Expiary_Date = ((JTextField)jDateChooser2.getDateEditor().getUiComponent()).getText();
+            String Expiry_Date = ((JTextField)jDateChooser2.getDateEditor().getUiComponent()).getText();
             String Price = jTextField2.getText();
-            
-            String sql = "UPDATE food_items SET Food_Item_Id ='"+Food_Item_Id+"', Food_Name='"+Food_Name+"', Quantity='"+Quantity+"', Unit='"+Unit+"', Vender='"+Vender+"', Purchased_Date='"+Purchased_Date+"', Expiary_Date='"+Expiary_Date+"', Price='"+Price+"' where  Food_Item_Id='"+Food_Item_Id+"'  ";
         
             try {
-                pst = con.prepareStatement(sql);
+                pst = con.prepareStatement("UPDATE food_items SET Food_Item_Id ='"+Food_Item_Id+"', Food_Name='"+Food_Name
+                        +"', Quantity='"+Quantity+"', Unit='"+Unit+"', Vender='"+Vender+"', Purchased_Date='"+Purchased_Date
+                        +"', Expiary_Date='"+Expiry_Date+"', Price='"+Price+"' where  Food_Item_Id='"+Food_Item_Id+"'");
                 pst.execute();
-                //load table
                 loadTable();
             }
             catch (SQLException e) {
@@ -527,7 +525,8 @@ public class Food extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        int d = JOptionPane.showConfirmDialog(null, "Do you want to delete the selected record?");
+        int d = JOptionPane.showConfirmDialog(null, "Do you want to delete the selected record?", "Delete record",
+                JOptionPane.YES_NO_OPTION);
 
         if(d == 0)
         {
@@ -538,10 +537,10 @@ public class Food extends javax.swing.JInternalFrame {
             try {
                 pst = con.prepareStatement(sql);
                 pst.execute();
-                //load table
                 loadTable();
             } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "An error occurred while deleting.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "An error occurred while deleting.", "Error",
+                        JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -551,9 +550,9 @@ public class Food extends javax.swing.JInternalFrame {
         {
             int row = jTable1.getSelectedRow();
             String Table_click = jTable1.getModel().getValueAt(row, 0).toString();
-            String sql = "select * from food_items where Food_Item_Id='"+Table_click+"'";
-            pst = con.prepareStatement(sql);
-            rs = pst.executeQuery(sql);
+            pst = con.prepareStatement("select * from food_items where Food_Item_Id='"+Table_click+"'");
+            rs = pst.executeQuery();
+            
             while (rs.next())
             {
                 String add1 = rs.getString("Food_Item_Id");
@@ -581,7 +580,6 @@ public class Food extends javax.swing.JInternalFrame {
                     JOptionPane.showMessageDialog(this, "Unable to parse date.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
                 
-                String add7 = rs.getString("Expiary_Date");
                 try
                 {
                     java.util.Date date =  new SimpleDateFormat("yyyy-MM-dd").parse(add6);
@@ -604,14 +602,14 @@ public class Food extends javax.swing.JInternalFrame {
         Food food1 = new Food();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(food1).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         CleaningItems ci1 = new CleaningItems();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(ci1).setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed

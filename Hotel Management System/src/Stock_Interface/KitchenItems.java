@@ -50,10 +50,8 @@ public class KitchenItems extends javax.swing.JInternalFrame {
     
     private void loadTable() {
         try {
-            String sql = "SELECT Item_Id, Item_Name, Quantity FROM kitchen_items";
-            pst = con.prepareStatement(sql);
+            pst = con.prepareStatement("SELECT Item_Id, Item_Name, Quantity FROM kitchen_items");
             rs = pst.executeQuery();
-
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "An error occurred while loading the table.", "Error",
@@ -388,15 +386,14 @@ public class KitchenItems extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        int d = JOptionPane.showConfirmDialog(null, "Do you want to delete?");
+        int d = JOptionPane.showConfirmDialog(null, "Do you want to delete the record?", "Delete record",
+                    JOptionPane.YES_NO_OPTION);
         
         if(d == 0) {
             String item_ID = jLabel5.getText();
             
-            String sql = "DELETE FROM kitchen_items where Item_Id='"+item_ID+"' ";
-            
             try {
-                pst = con.prepareStatement(sql);
+                pst = con.prepareStatement("DELETE FROM kitchen_items where Item_Id='"+item_ID+"'");
                 pst.execute();
                 loadTable();
             } catch (SQLException e) {
@@ -423,16 +420,20 @@ public class KitchenItems extends javax.swing.JInternalFrame {
                         String w = "INSERT INTO kitchen_items(Item_Name, Quantity) values ('"+item+"','"+qty+"')";
                         pst = con.prepareStatement(w);
                         pst.execute();
-                        JOptionPane.showMessageDialog(null, "Details  Saved Successfully");
+                        JOptionPane.showMessageDialog(null, "The record was successfully inserted.", "Success",
+                                JOptionPane.INFORMATION_MESSAGE);
                         loadTable();
                     } catch (SQLException e) {
-                        
+                        JOptionPane.showMessageDialog(null, "An error occurred while inserting the record.", "Error",
+                                JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Enter a Number");
+                    JOptionPane.showMessageDialog(null, "Enter a valid quantity value.", "Invalid quantity",
+                            JOptionPane.ERROR_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Invalid Item Name");
+                JOptionPane.showMessageDialog(null, "Enter a valid item name.", "Invalid item name",
+                        JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -450,7 +451,8 @@ public class KitchenItems extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int x = JOptionPane.showConfirmDialog(null, "Do you want to update the record?");
+        int x = JOptionPane.showConfirmDialog(null, "Do you want to update the record?", "Update record",
+                    JOptionPane.YES_NO_OPTION);
         
         if(x == 0) {
             String item_id = jLabel5.getText();

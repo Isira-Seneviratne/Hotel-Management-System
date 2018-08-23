@@ -493,10 +493,9 @@ public class MainStockManagement extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            // String q = "INSERT INTO invoice01 (inId,Bname,tibrand,qphone,bpay,brprice) values (?,?,?,?,?,?)";
-            String q = "INSERT INTO main1(Stock_Id,Product_Name,Brand,Volume,Quantity,Total_Count) values(?,?,?,?,?,?)";
+            pst = conn.prepareStatement("INSERT INTO main1(Stock_Id,Product_Name,Brand,Volume,Quantity,Total_Count)"
+                    + " values(?,?,?,?,?,?)");
             
-            pst = conn.prepareStatement(q);
             pst.setString(1, txtStockID.getText());
             pst.setString(2, txtProdName.getText());
             pst.setString(3, txtBrand.getText());
@@ -505,6 +504,7 @@ public class MainStockManagement extends javax.swing.JInternalFrame {
             pst.setString(6, txtTotCount.getText());
             
             pst.execute();
+            
             JOptionPane.showMessageDialog(null, "Successfully inserted new record.", "Success", 
                     JOptionPane.INFORMATION_MESSAGE);
             loadTable(tab1, "SELECT * FROM main1");
@@ -540,17 +540,16 @@ public class MainStockManagement extends javax.swing.JInternalFrame {
         int oldQty = Integer.parseInt(quantity);
 
         if (txtRdrug.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Please input a quantity.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please input a quantity.", "No quantity entered", JOptionPane.ERROR_MESSAGE);
         }
         else if (newQty <= oldQty) {
             try {
-                String r =  "INSERT INTO main22(Stock_Id,Product_Name,Brand,Volume,Quantity,Total_Count) values(?,?,?,?,?,?)";
-                pst = conn.prepareStatement(r);
+                pst = conn.prepareStatement("INSERT INTO main22(Stock_Id,Product_Name,Brand,Volume,Quantity,Total_Count)"
+                        + " values(?,?,?,?,?,?)");
 
                 pst.setString(1, txtStockID.getText());
                 pst.setString(2, txtProdName.getText());
                 pst.setString(3, txtBrand.getText());
-                             
                 pst.setString(4, txtVolume.getText());
                 pst.setString(5, txtQty.getText());
                 pst.setString(6, txtTotCount.getText());
@@ -558,8 +557,8 @@ public class MainStockManagement extends javax.swing.JInternalFrame {
                 pst.execute();
 
                 String value1 = txtStockID.getText();
-                String sql = "UPDATE main1 SET Quantity = Quantity - " + qty + " WHERE Stock_Id='" + value1 + "'";
-                pst = conn.prepareStatement(sql);
+                pst = conn.prepareStatement("UPDATE main1 SET Quantity = Quantity - " + qty
+                        + " WHERE Stock_Id='" + value1 + "'");
                 pst.execute();
                 //tableLoad1();
             } catch (SQLException e) {
@@ -573,7 +572,8 @@ public class MainStockManagement extends javax.swing.JInternalFrame {
             loadTable(tab2, "SELECT * FROM main22");
         }
         else {
-            JOptionPane.showMessageDialog(null, "The requested quantity cannot be issued.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "The requested quantity cannot be issued.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -581,9 +581,9 @@ public class MainStockManagement extends javax.swing.JInternalFrame {
         try {
             int row = tab1.getSelectedRow();//Stock_id,product_name,Brand,Volume,Quantity,Pay_by,Price,Amount
             String Table_click = tab1.getModel().getValueAt(row, 0).toString();
-            String q = "select * from main1 where Stock_id='" + Table_click + "'";
-            pst = conn.prepareStatement(q);
-            rst = (ResultSet) pst.executeQuery(q);  
+            
+            pst = conn.prepareStatement("select * from main1 where Stock_id='" + Table_click + "'");
+            rst = pst.executeQuery();
             while (rst.next()) {
 //Stock_Id,Product_Name,Brand,Volume,Quantity,Total_Count
                 String add1 = rst.getString("Stock_id");
@@ -635,9 +635,8 @@ public class MainStockManagement extends javax.swing.JInternalFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // delete record
-        String q = "delete from main1 where Stock_id= ?";
         try {
-            pst = conn.prepareStatement(q);
+            pst = conn.prepareStatement("delete from main1 where Stock_id= ?");
             pst.setString(1, txtStockID.getText());
             pst.execute();
             JOptionPane.showMessageDialog(null, "Record successfully deleted.", "Success",

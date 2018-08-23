@@ -459,7 +459,7 @@ public class Payments extends javax.swing.JInternalFrame {
                                         + " values ('"+company+"',"
                                         + " '"+item+"', '"+qty+"', '"+unit+"', '"+date+"', '"+totvalue+"')");
                                 pst.execute();
-                                JOptionPane.showMessageDialog(null, "Details  Saved Successfully");
+                                JOptionPane.showMessageDialog(null, "Details Saved Successfully");
                                 loadTable();
                             } catch (SQLException e) {
                                 
@@ -480,7 +480,8 @@ public class Payments extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int x = JOptionPane.showConfirmDialog(null, "Do you want to update the record?");
+        int x = JOptionPane.showConfirmDialog(null, "Do you want to update the record?", "Update record",
+                    JOptionPane.YES_NO_OPTION);
         
         if(x == 0)
         {
@@ -556,7 +557,8 @@ public class Payments extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        int d = JOptionPane.showConfirmDialog(null, "Do you want to delete the record?");
+        int d = JOptionPane.showConfirmDialog(null, "Do you want to delete the record?", "Delete record",
+                    JOptionPane.YES_NO_OPTION);
 
         if(d == 0)
         {
@@ -642,51 +644,51 @@ public class Payments extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseEntered
-        // TODO add your handling code here:
+        jButton5.setBackground(entered);
     }//GEN-LAST:event_jButton5MouseEntered
 
     private void jButton5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseExited
-        // TODO add your handling code here:
+        jButton5.setBackground(exited);
     }//GEN-LAST:event_jButton5MouseExited
 
     private void jButton6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseEntered
-        // TODO add your handling code here:
+        jButton6.setBackground(entered);
     }//GEN-LAST:event_jButton6MouseEntered
 
     private void jButton6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseExited
-        // TODO add your handling code here:
+        jButton6.setBackground(exited);
     }//GEN-LAST:event_jButton6MouseExited
 
     private void jButton7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseEntered
-        // TODO add your handling code here:
+        jButton7.setBackground(entered);
     }//GEN-LAST:event_jButton7MouseEntered
 
     private void jButton7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseExited
-        // TODO add your handling code here:
+        jButton7.setBackground(exited);
     }//GEN-LAST:event_jButton7MouseExited
 
     private void jButton8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseEntered
-        // TODO add your handling code here:
+        jButton8.setBackground(entered);
     }//GEN-LAST:event_jButton8MouseEntered
 
     private void jButton8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseExited
-        // TODO add your handling code here:
+        jButton8.setBackground(exited);
     }//GEN-LAST:event_jButton8MouseExited
 
     private void jButton9MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseEntered
-        // TODO add your handling code here:
+        jButton9.setBackground(entered);
     }//GEN-LAST:event_jButton9MouseEntered
 
     private void jButton9MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseExited
-        // TODO add your handling code here:
+        jButton9.setBackground(exited);
     }//GEN-LAST:event_jButton9MouseExited
 
     private void jButton12MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MouseEntered
-        // TODO add your handling code here:
+        jButton12.setBackground(entered);
     }//GEN-LAST:event_jButton12MouseEntered
 
     private void jButton12MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MouseExited
-        // TODO add your handling code here:
+        jButton12.setBackground(exited);
     }//GEN-LAST:event_jButton12MouseExited
 
 

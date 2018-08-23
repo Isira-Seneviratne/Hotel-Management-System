@@ -274,6 +274,10 @@ public class MainLogin extends javax.swing.JInternalFrame {
                 txtUserName.setText(null);
                 txtPassword.setText(null);
             }
+        } catch (NullPointerException e)
+        {
+            JOptionPane.showMessageDialog(null, "A database connection was not established.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "An error occurred while logging in.", "Error",
                     JOptionPane.ERROR_MESSAGE);
