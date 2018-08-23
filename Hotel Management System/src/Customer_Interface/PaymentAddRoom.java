@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -311,8 +312,8 @@ void clearFields() {
             cus.setsinglebed(Integer.parseInt(Txtdoublebed.getText()));
             cus.setsinglebed(Integer.parseInt(Txtextrabed.getText()));
             cus.settotalamount(Integer.parseInt(TxtTotalAmount.getText()));
-  //          cus.setTo_date(((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText());
-//            cus.setFrom_date(((JTextField)jDateChooser2.getDateEditor().getUiComponent()).getText());
+          // cus.setTo_date(((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText());
+       // cus.setFrom_date(((JTextField)jDateChooser2.getDateEditor().getUiComponent()).getText());
 
              new PayDBOperations().addroom(cus);
             clearFields();

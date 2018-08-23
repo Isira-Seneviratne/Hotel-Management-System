@@ -12,14 +12,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
-//import net.proteanit.sql.DbUtils;
+import net.proteanit.sql.DbUtils;
+
 
 
 /**
  *
  * @author user
  */
-public class CustomerINFO extends javax.swing.JFrame {
+public class CustomerINFO extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form CustomerINFO
@@ -219,7 +220,7 @@ public class CustomerINFO extends javax.swing.JFrame {
              CA.setVisible(true);
             
     }//GEN-LAST:event_BtnAddActionPerformed
- void loadCustomersToTable(){
+    void loadCustomersToTable(){
      
         }
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
@@ -237,7 +238,7 @@ public class CustomerINFO extends javax.swing.JFrame {
             String sql = "Select * from customer";
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
-//            jTable_cus.setModel(DbUtils.resultSetToTableModel(rs));
+           jTable_cus.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Cant load Customer Table");
         }
@@ -350,8 +351,4 @@ public class CustomerINFO extends javax.swing.JFrame {
     private javax.swing.JTable jTable_cus;
     // End of variables declaration//GEN-END:variables
 
-    
-    private JDesktopPane getDesktopPane() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
