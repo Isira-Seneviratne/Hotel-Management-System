@@ -179,6 +179,7 @@ public class MainLogin extends javax.swing.JInternalFrame {
                     email = rs.getString("email");
                     dpt = rs.getString("Department");
                     stdat = rs.getDate("startdate");
+                    job = rs.getString("designation");
                 }
                 
                 JDesktopPane desktopPane = getDesktopPane();
