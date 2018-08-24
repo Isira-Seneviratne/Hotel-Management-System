@@ -13,199 +13,191 @@ package Customer_Interface;
  * @author Upeksha
  */
 
-
-import java.util.Date;
-
 public class Customer {
- 
-    private int bookingID;
-    private int cid;
-    private String customerName;
-    private String address;
-    private String nic;
-    private String email;
-    private String phone;
-    private String nationality;
-    private String gender;
-    private String birthdate;
-    private String comment;
-    private String description;
-    private String To_date;
-    private int singlebed;
-    private int doulebed;
-    private int extrabed;
-    private int totalamount;
-    private String From_date;
-    private String Reservationdate;
+    private int BookingID;
+    private int CID;
+    private String CustomerName;
+    private String Address;
+    private String NIC;
+    private String Email;
+    private String Phone;
+    private String Nationality;
+    private String Gender;
+    private String BirthDate;
+    private String Comment;
+    private String Description;
+    private String ToDate, FromDate;
+    private int SingleBed, DoubleBed, ExtraBed;
+    private int TotalAmount;
+    private String ReservationDate;
     private String CustomerType;
-    private String HallType;
-    
-    
-    public String getReservationdate() {
-        return Reservationdate;
+    private String HallType;    
+
+    public int getCID() {
+        return CID;
     }
 
-    public void setReservationdate(String x) {
-        Reservationdate = x;
-    }
-    
-    public String getTo_date() {
-        return To_date;
+    public void setCID(int CID) {
+        this.CID = CID;
     }
 
-    public void setTo_date(String x) {
-        To_date = x;
+    public int getBookingID() {
+        return BookingID;
     }
 
-    public String getFrom_date() {
-        return From_date;
+    public void setBookingID(int BookingID) {
+        this.BookingID = BookingID;
     }
 
-    public void setFrom_date(String x) {
-        From_date = x;
-    }
-    public void setbookingID(int x) {
-        bookingID = x;
-    }
-    public int getbookingID() {
-        return bookingID;
+    public String getCustomerName() {
+        return CustomerName;
     }
 
-    public int getCustomercId() {
-        return cid;
-    }
-   
-   public void setsinglebed(int x) {
-        singlebed = x;
+    public void setCustomerName(String CustomerName) {
+        this.CustomerName = CustomerName;
     }
 
-    public int getsinglebed() {
-        return singlebed;
-    }
-    
-     public void setdoulebed(int x) {
-        doulebed = x;
+    public String getAddress() {
+        return Address;
     }
 
-    public int getdoulebed() {
-        return doulebed;
-    }
-    
-     public void setextrabed(int x) {
-        extrabed = x;
+    public void setAddress(String Address) {
+        this.Address = Address;
     }
 
-    public int getextrabed() {
-        return extrabed;
-    }
-    
-    public void setCustomercId(int x) {
-        cid = x;
+    public String getNIC() {
+        return NIC;
     }
 
-    public void setcustomerName(String x) {
-        customerName = x;
+    public void setNIC(String NIC) {
+        this.NIC = NIC;
     }
 
-    public String getcustomerName() {
-        return customerName;
-    }
-                        
-    public void setaddress(String x) {
-        address = x;
+    public String getEmail() {
+        return Email;
     }
 
-    public String getaddress() {
-        return address;
-    }
-    
-     public void setnic(String x) {
-        nic = x;
+    public void setEmail(String Email) {
+        this.Email = Email;
     }
 
-    public String getnic() {
-        return nic;
-    }
-    
-     public void setnationality(String x) {
-        nationality = x;
+    public String getPhone() {
+        return Phone;
     }
 
-    public String getnationality() {
-        return nationality;
-    }
-    
-    public void setemail(String x) {
-        email = x;
+    public void setPhone(String Phone) {
+        this.Phone = Phone;
     }
 
-    public String getemail() {
-        return email;
-    }
-    
-     public void setphone(String x) {
-        phone = x;
+    public String getNationality() {
+        return Nationality;
     }
 
-    public String getphone() {
-        return phone;
-    }
-    
-    public void setbirthdate(String x) {
-        birthdate = x;
+    public void setNationality(String Nationality) {
+        this.Nationality = Nationality;
     }
 
-    public String getbirthdate() {
-        return birthdate;
-    }
-    
-    public void setcomment(String x) {
-        comment = x;
+    public String getGender() {
+        return Gender;
     }
 
-    public String getcomment() {
-        return comment;
-    }
-    
-    public void setdescription(String x) {
-        description = x;
+    public void setGender(String Gender) {
+        this.Gender = Gender;
     }
 
-    public String getdescription() {
-        return description;
+    public String getBirthDate() {
+        return BirthDate;
     }
-    
-    public void setCustomerType(String x) {
-        CustomerType = x;
+
+    public void setBirthDate(String BirthDate) {
+        this.BirthDate = BirthDate;
+    }
+
+    public String getComment() {
+        return Comment;
+    }
+
+    public void setComment(String Comment) {
+        this.Comment = Comment;
+    }
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public void setDescription(String Description) {
+        this.Description = Description;
+    }
+
+    public String getToDate() {
+        return ToDate;
+    }
+
+    public void setToDate(String ToDate) {
+        this.ToDate = ToDate;
+    }
+
+    public String getFromDate() {
+        return FromDate;
+    }
+
+    public void setFromDate(String FromDate) {
+        this.FromDate = FromDate;
+    }
+
+    public int getSingleBed() {
+        return SingleBed;
+    }
+
+    public void setSingleBed(int SingleBed) {
+        this.SingleBed = SingleBed;
+    }
+
+    public int getDoubleBed() {
+        return DoubleBed;
+    }
+
+    public void setDoubleBed(int DoubleBed) {
+        this.DoubleBed = DoubleBed;
+    }
+
+    public int getExtraBed() {
+        return ExtraBed;
+    }
+
+    public void setExtraBed(int ExtraBed) {
+        this.ExtraBed = ExtraBed;
+    }
+
+    public int getTotalAmount() {
+        return TotalAmount;
+    }
+
+    public void setTotalAmount(int TotalAmount) {
+        this.TotalAmount = TotalAmount;
+    }
+
+    public String getReservationDate() {
+        return ReservationDate;
+    }
+
+    public void setReservationDate(String ReservationDate) {
+        this.ReservationDate = ReservationDate;
     }
 
     public String getCustomerType() {
         return CustomerType;
     }
-    
-     public void setHallType(String x) {
-        HallType = x;
+
+    public void setCustomerType(String CustomerType) {
+        this.CustomerType = CustomerType;
     }
 
     public String getHallType() {
         return HallType;
     }
-    
-    
-    public void setgender(String x) {
-        gender = x;
-    }
 
-    public String getgender() {
-        return gender;
+    public void setHallType(String HallType) {
+        this.HallType = HallType;
     }
-    
-   public void settotalamount(int x) {
-        totalamount = x;
-    }
-
-    public int gettotalamount() {
-        return totalamount;
-    }
-    
 }

@@ -277,21 +277,17 @@ void clearFields() {
                || Txtadescription.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please Enter Valid Inputs.");
         } else {
-            cus.setbookingID(Integer.parseInt(TxtbookingId.getText()));
-            cus.setcustomerName(TxtName.getText().toString());
-            cus.setdescription(Txtadescription.getText().toString());
+            cus.setBookingID(Integer.parseInt(TxtbookingId.getText()));
+            cus.setCustomerName(TxtName.getText().toString());
+            cus.setDescription(Txtadescription.getText().toString());
            // cus.setHallType(Txtadescription.getText().toString());
-            cus.settotalamount(Integer.parseInt(TxtTotalAmount.getText()));
+            cus.setTotalAmount(Integer.parseInt(TxtTotalAmount.getText()));
 //            cus.setReservationdate(((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText());
             
-             new PayDBOperations().HallUpdate(cus);
+            new PayDBOperations().updateHall(cus);
             clearFields();
             dispose();
-            
-            
-
         }
-        
     }//GEN-LAST:event_BtnUpdateActionPerformed
 
     private void BtntotalamountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtntotalamountActionPerformed

@@ -9,7 +9,6 @@ import com.mysql.jdbc.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
-import javax.swing.*;
 
 /**
  *
@@ -193,7 +192,7 @@ public class CustomerAdd extends javax.swing.JFrame {
                                         .addGap(30, 30, 30)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE))
+                                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 61, Short.MAX_VALUE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(TxtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -303,41 +302,50 @@ void clearFields() {
     }//GEN-LAST:event_TxtphoneActionPerformed
 
     private void BtnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSaveActionPerformed
-        // TODO add your handling code here:
-         Customer cus = new Customer();
+        Customer cus = new Customer();
 
-        if (TxtName.getText().isEmpty() || TxtaAddress.getText().isEmpty() || Txtphone.getText().isEmpty() || TxtEmail.getText().isEmpty()|| TxtNIC.getText().isEmpty()|| 
-                TxtGender.getText().isEmpty() || TxtaComments.getText().isEmpty()) {
+        if (TxtName.getText().isEmpty()
+                || TxtaAddress.getText().isEmpty()
+                || Txtphone.getText().isEmpty()
+                || TxtEmail.getText().isEmpty()
+                || TxtNIC.getText().isEmpty()
+                || TxtGender.getText().isEmpty()
+                || TxtaComments.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please Enter Valid Inputs.");
         } else {
             //cus.setCustomerId(Integer.parseInt(txt_CustomerID.getText()));
-            if(CustomerValidation.isLetter(TxtName.getText())){
-            cus.setcustomerName(TxtName.getText().toString());}
-            else{JOptionPane.showMessageDialog(null, "Errooor");}
+            if(CustomerValidation.isLetter(TxtName.getText()))
+            {
+                cus.setCustomerName(TxtName.getText().toString());
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Error");
+            }
             
-            cus.setaddress(TxtaAddress.getText().toString());
+            cus.setAddress(TxtaAddress.getText().toString());
             cus.setCustomerType(buttonGroup1.getSelection().toString());
                     
             if(CustomerValidation.isNumeric(Txtphone.getText())){
-            cus.setphone(Txtphone.getText().toString());
+            cus.setPhone(Txtphone.getText().toString());
             }else{
                 JOptionPane.showMessageDialog(null, "Errooor");
             }
             if(CustomerValidation.emailValidate(TxtEmail.getText())){
-            cus.setemail(TxtEmail.getText().toString());}
+            cus.setEmail(TxtEmail.getText().toString());}
             else{JOptionPane.showMessageDialog(null, "Errooor");}
             
             if(CustomerValidation.nicValidation(TxtNIC.getText())){
-            cus.setnic(TxtNIC.getText().toString());}
+            cus.setNIC(TxtNIC.getText().toString());}
             else{JOptionPane.showMessageDialog(null, "Errooor");}
             
-            cus.setnationality(CmbNationality.getSelectedItem().toString());
+            cus.setNationality(CmbNationality.getSelectedItem().toString());
             
             if(CustomerValidation.isLetter(TxtGender.getText())){
-            cus.setgender(TxtGender.getText().toString());}
+            cus.setGender(TxtGender.getText().toString());}
             else{JOptionPane.showMessageDialog(null, "Errooor");}
             
-            cus.setcomment(TxtaComments.getText().toString());
+            cus.setComment(TxtaComments.getText().toString());
             
 
             new CusDBOperations().addUser(cus);

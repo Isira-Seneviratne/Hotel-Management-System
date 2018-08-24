@@ -26,17 +26,11 @@ public class PaymentEditRoom extends javax.swing.JFrame {
 
     java.util.Date date;
 
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost:3306/hotel_management_system";
-
-    static final String USERNAME = "root";
-    static final String PASSWORD = "";
     private String rbtngenderCAND;
-
     
     public PaymentEditRoom() {
         initComponents();
-         conn=MyDBConnection.connectDB();
+        conn = MyDBConnection.connectDB();
     }
 
     /**
@@ -283,13 +277,12 @@ public class PaymentEditRoom extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-void clearFields() {
+    void clearFields() {
         TxtName.setText(null);
         TxtbookingId.setText(null);
         cmbAvalability.setAction(null);
         TxtTotalAmount.setText(null);
         Txtadescription.setText(null);
-
     }
     
     private void TxtbookingIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtbookingIdActionPerformed
@@ -304,24 +297,20 @@ void clearFields() {
                || Txtadescription.getText().isEmpty()  || Txtsinglebed.getText().isEmpty()  || Txtdoublebed.getText().isEmpty() || Txtextrabed.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please Enter Valid Inputs.");
         } else {
-            cus.setbookingID(Integer.parseInt(TxtbookingId.getText()));
-            cus.setcustomerName(TxtName.getText().toString());
-            cus.setdescription(Txtadescription.getText().toString());
-            cus.setsinglebed(Integer.parseInt(Txtsinglebed.getText()));
-            cus.setsinglebed(Integer.parseInt(Txtdoublebed.getText()));
-            cus.setsinglebed(Integer.parseInt(Txtextrabed.getText()));
-            cus.settotalamount(Integer.parseInt(TxtTotalAmount.getText()));
+            cus.setBookingID(Integer.parseInt(TxtbookingId.getText()));
+            cus.setCustomerName(TxtName.getText().toString());
+            cus.setDescription(Txtadescription.getText().toString());
+            cus.setSingleBed(Integer.parseInt(Txtsinglebed.getText()));
+            cus.setSingleBed(Integer.parseInt(Txtdoublebed.getText()));
+            cus.setSingleBed(Integer.parseInt(Txtextrabed.getText()));
+            cus.setTotalAmount(Integer.parseInt(TxtTotalAmount.getText()));
          //   cus.setTo_date(((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText());
           //  cus.setFrom_date(((JTextField)jDateChooser2.getDateEditor().getUiComponent()).getText());
 
-             new PayDBOperations().RoomUpdate(cus);
+             new PayDBOperations().updateRoom(cus);
             clearFields();
             dispose();
-            
-            
-
         }
-        
     }//GEN-LAST:event_BtnUpdateActionPerformed
 
     private void BtntotalamountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtntotalamountActionPerformed
