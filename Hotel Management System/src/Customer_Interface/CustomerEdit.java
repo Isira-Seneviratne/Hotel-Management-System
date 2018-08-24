@@ -5,11 +5,12 @@
  */
 package Customer_Interface;
 
-import com.mysql.jdbc.Connection;
+import HMS_Database.MyDBConnection;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Date;
 import javax.swing.JOptionPane;
-import javax.swing.*;
 
 /**
  *
@@ -20,22 +21,17 @@ public class CustomerEdit extends javax.swing.JFrame {
     /**
      * Creates new form CustomerAdd
      */
-    Connection conn = null;
-    PreparedStatement pst = null;
-    ResultSet rs = null;
+    private Connection conn = null;
+    private PreparedStatement pst = null;
+    private ResultSet rs = null;
 
-    java.util.Date date;
+    private Date date;
 
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost:3306/hotel_management_system";
-
-    static final String USERNAME = "root";
-    static final String PASSWORD = "";
     private String rbtngenderCAND;
-
     
     public CustomerEdit() {
         initComponents();
+        conn = MyDBConnection.connectDB();
     }
 
     /**
@@ -285,7 +281,7 @@ public class CustomerEdit extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-void clearFields() {
+    void clearFields() {
         TxtName.setText(null);
         TxtaAddress.setText(null);
         Txtphone.setText(null);
@@ -293,8 +289,7 @@ void clearFields() {
         TxtNIC.setText(null);
         CmbNationality.setAction(null);
         TxtGender.setText(null);
-       TxtaComments.setText(null);
-
+        TxtaComments.setText(null);
     }
     
     private void TxtphoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtphoneActionPerformed
@@ -310,24 +305,20 @@ void clearFields() {
             JOptionPane.showMessageDialog(null, "Please Enter Valid Inputs.");
         } else {
             //cus.setCustomerId(Integer.parseInt(txt_CustomerID.getText()));
-            cus.setcustomerName(TxtName.getText().toString());
-            cus.setaddress(TxtaAddress.getText().toString());
-            cus.setphone(Txtphone.getText().toString());
-            cus.setemail(TxtEmail.getText().toString());
-            cus.setnic(TxtNIC.getText().toString());
-            cus.setnationality(CmbNationality.getSelectedItem().toString());
-            cus.setgender(TxtGender.getText().toString());
-            cus.setcomment(TxtaComments.getText().toString());
+            cus.setCustomerName(TxtName.getText().toString());
+            cus.setAddress(TxtaAddress.getText().toString());
+            cus.setPhone(Txtphone.getText().toString());
+            cus.setEmail(TxtEmail.getText().toString());
+            cus.setNIC(TxtNIC.getText().toString());
+            cus.setNationality(CmbNationality.getSelectedItem().toString());
+            cus.setGender(TxtGender.getText().toString());
+            cus.setComment(TxtaComments.getText().toString());
             
 
             new CusDBOperations().UserUpdate(cus);
             clearFields();
             dispose();
-            
-            
-
         }
-        
     }//GEN-LAST:event_BtnUpdateActionPerformed
 
     private void BtnCancleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancleActionPerformed

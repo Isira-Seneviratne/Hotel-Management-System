@@ -10,7 +10,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 /**
  *
@@ -27,17 +26,11 @@ public class PaymentAddHall extends javax.swing.JFrame {
 
     java.util.Date date;
 
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost:3306/hotel_management_system";
-
-    static final String USERNAME = "root";
-    static final String PASSWORD = "";
     private String rbtngenderCAND;
 
-    
     public PaymentAddHall() {
         initComponents();
-         conn=MyDBConnection.connectDB();
+        conn = MyDBConnection.connectDB();
     }
 
     /**
@@ -257,13 +250,12 @@ public class PaymentAddHall extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-void clearFields() {
+    void clearFields() {
         TxtName.setText(null);
         TxtbookingId.setText(null);
         cmbAvalability.setAction(null);
         TxtTotalAmount.setText(null);
         Txtadescription.setText(null);
-
     }
     
     private void TxtbookingIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtbookingIdActionPerformed
@@ -278,11 +270,11 @@ void clearFields() {
                || Txtadescription.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please Enter Valid Inputs.");
         } else {
-            cus.setbookingID(Integer.parseInt(TxtbookingId.getText()));
-            cus.setcustomerName(TxtName.getText().toString());
-            cus.setdescription(Txtadescription.getText().toString());
+            cus.setBookingID(Integer.parseInt(TxtbookingId.getText()));
+            cus.setCustomerName(TxtName.getText().toString());
+            cus.setDescription(Txtadescription.getText().toString());
            // cus.setHallType(Txtadescription.getText().toString());
-            cus.settotalamount(Integer.parseInt(TxtTotalAmount.getText()));
+            cus.setTotalAmount(Integer.parseInt(TxtTotalAmount.getText()));
 //            cus.setReservationdate(((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText());
             
              new PayDBOperations().addHall(cus);

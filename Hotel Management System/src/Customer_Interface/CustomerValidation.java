@@ -12,14 +12,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.swing.*;
 
 /**
  *
  * @author Prabas Gayadeeptha
  */
 public class CustomerValidation {
-    
     public static boolean status = false;
 
     public static boolean emailValidate(String email) {
@@ -50,12 +48,11 @@ public class CustomerValidation {
 
     @SuppressWarnings("CallToPrintStackTrace")
     public static boolean isValidDate(String date) {
-        Date gdate = null;
         String inputdate = "2017-09-23";
         try {
             DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             formatter.setLenient(false);
-            gdate = formatter.parse(inputdate);
+            formatter.parse(inputdate);
         } catch (ParseException e) {
             e.printStackTrace();
             return false;
@@ -88,9 +85,7 @@ public class CustomerValidation {
         return eid.length() == 5 && eid.matches("^[B][0-9]{4}$");
     }
 
-
     public static boolean isValidTime(String t) {
         return t.matches("([01]?[0-9]|2[0-3]).[0-5][0-9]");
     }
-
 }

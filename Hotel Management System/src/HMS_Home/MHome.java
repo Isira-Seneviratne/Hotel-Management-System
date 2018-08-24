@@ -1,7 +1,7 @@
 package HMS_Home;
 
 import Beverage_Interface.BeverageHome;
-import Customer_Interface.CustomerINFO;
+import Customer_Interface.CustomerInfo;
 
 import Event_Interface.EventManagement;
 
@@ -351,7 +351,7 @@ public class MHome extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_beverageActionPerformed
 
     private void btn_custBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_custBookingActionPerformed
-       CustomerINFO fh = new CustomerINFO();
+       CustomerInfo fh = new CustomerInfo();
        
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(fh).setVisible(true);

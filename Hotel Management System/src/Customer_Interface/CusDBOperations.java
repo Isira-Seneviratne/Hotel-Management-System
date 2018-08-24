@@ -5,16 +5,12 @@ import HMS_Database.MyDBConnection;
 //import com.toedter.calendar.JDateChooser;
 import java.awt.HeadlessException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 //import net.proteanit.sql.DbUtils;
@@ -30,32 +26,22 @@ import javax.swing.table.DefaultTableModel;
  * @author Upeksha
  */
 public class CusDBOperations {
-  
     Connection con = MyDBConnection.connectDB();
     PreparedStatement pst = null;
     ResultSet rs = null;
-
-    String url =  "jdbc:mysql://localhost:3306/hotel_management_system";
-    String user = "root";
-    String password = "";
     
-    
-    
-     public boolean addUser(Customer ad){
-   
-     
+    public boolean addUser(Customer ad) {
         try {
-            con = (Connection) DriverManager.getConnection(url, user, password);
-            pst = (PreparedStatement) con.prepareStatement("INSERT INTO customer VALUES(?,?,?,?,?,?,?,?)");
-            pst.setString(1, ad.getcustomerName());
-            pst.setString(2, ad.getaddress());
-            pst.setString(3, ad.getphone());
-            pst.setString(4, ad.getemail());
-            pst.setString(5, ad.getnic());
-            pst.setString(6, ad.getnationality());
+            pst = con.prepareStatement("INSERT INTO customer VALUES(?,?,?,?,?,?,?,?)");
+            pst.setString(1, ad.getCustomerName());
+            pst.setString(2, ad.getAddress());
+            pst.setString(3, ad.getPhone());
+            pst.setString(4, ad.getEmail());
+            pst.setString(5, ad.getNIC());
+            pst.setString(6, ad.getNationality());
              pst.setString(6, ad.getCustomerType());
-            pst.setString(7, ad.getgender());
-            pst.setString(8, ad.getcomment());
+            pst.setString(7, ad.getGender());
+            pst.setString(8, ad.getComment());
            /* pst.setString(9, ad.getTo_date());
             pst.setString(10, ad.getFrom_date());*/
          
@@ -94,21 +80,19 @@ finally {
 
 }  
     
-
-      public void UserUpdate(Customer up) {
+    public void UserUpdate(Customer up) {
         Boolean result = false;
 
         try {
-            con = (Connection) DriverManager.getConnection(url, user, password);
             pst = (PreparedStatement) con.prepareStatement("UPDATE customer SET name=? ,address=? ,phone=? ,email=?, nic=?, gender=?, nationality=?, comment=?");
-            pst.setString(1, up.getcustomerName());
-            pst.setString(2, up.getaddress());
-            pst.setString(3, up.getphone());
-            pst.setString(4, up.getemail());
-            pst.setString(5, up.getnic());
-            pst.setString(6, up.getnationality());
-            pst.setString(7, up.getgender());
-            pst.setString(8, up.getcomment());
+            pst.setString(1, up.getCustomerName());
+            pst.setString(2, up.getAddress());
+            pst.setString(3, up.getPhone());
+            pst.setString(4, up.getEmail());
+            pst.setString(5, up.getNIC());
+            pst.setString(6, up.getNationality());
+            pst.setString(7, up.getGender());
+            pst.setString(8, up.getComment());
 //add for designation
             
             
@@ -118,31 +102,25 @@ finally {
            
             JOptionPane.showMessageDialog(null, "Data Updated Successfully...!");
         } catch (SQLException sq) {
-
             JOptionPane.showMessageDialog(null, "Updation Fail...!");
-
         }
             
- finally{
-       try {
+        finally{
+        try {
                 if (rs != null) {
                     rs.close();
-
                 }
                 if (pst != null) {
                     pst.close();
                 }
                 if (con != null) {
                     con.close();
-
                 }
             } catch (SQLException exx) {
                 JOptionPane.showMessageDialog(null, "Database problem");
-
             }
-        
         }
-     }
+    }
      
      
      
@@ -156,8 +134,7 @@ finally {
             //validateLable.setText("**Select a raw from table to Remove data**");
         }else{
               String tbl_click = (table.getModel().getValueAt(rw, 0).toString());
-            con = (Connection) DriverManager.getConnection(url, user, password);
-            pst = (PreparedStatement) con.prepareStatement("DELETE  FROM customer WHERE name='"+tbl_click+"'");
+            pst = con.prepareStatement("DELETE  FROM customer WHERE name='"+tbl_click+"'");
         
         // pst.setInt(1,a);
 

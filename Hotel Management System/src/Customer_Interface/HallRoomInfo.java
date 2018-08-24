@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  *
  * @author Prabas Gayadeeptha
  */
-public class Hall_Room_INFO extends javax.swing.JInternalFrame {
+public class HallRoomInfo extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form HallINFO
@@ -30,7 +30,7 @@ public class Hall_Room_INFO extends javax.swing.JInternalFrame {
 
     java.util.Date date;
 
-    public Hall_Room_INFO() {
+    public HallRoomInfo() {
         initComponents();
         conn = MyDBConnection.connectDB();
         pnl_Hall.setVisible(false);
@@ -508,7 +508,7 @@ public class Hall_Room_INFO extends javax.swing.JInternalFrame {
 
     private void jTableHallMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableHallMouseClicked
         // TODO add your handling code here:
-        CustomerINFO cs = new CustomerINFO();
+        CustomerInfo cs = new CustomerInfo();
         cs.setVisible(true);
     }//GEN-LAST:event_jTableHallMouseClicked
 
@@ -552,7 +552,7 @@ public class Hall_Room_INFO extends javax.swing.JInternalFrame {
 
     private void jTableRoomMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableRoomMouseClicked
         // TODO add your handling code here:
-        CustomerINFO cs = new CustomerINFO();
+        CustomerInfo cs = new CustomerInfo();
         cs.setVisible(true);
     }//GEN-LAST:event_jTableRoomMouseClicked
 
@@ -601,7 +601,7 @@ public class Hall_Room_INFO extends javax.swing.JInternalFrame {
 
         if (reply == JOptionPane.YES_OPTION)
         {
-            new PayDBOperations().deleteroom(jTableRoom);
+            new PayDBOperations().deleteRoom(jTableRoom);
         }
         else
         {
