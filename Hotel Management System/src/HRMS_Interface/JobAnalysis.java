@@ -403,7 +403,7 @@ public class JobAnalysis extends javax.swing.JInternalFrame {
                 btn_EmployeeMainActionPerformed(evt);
             }
         });
-        PnlMenu.add(btn_EmployeeMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, 200, 30));
+        PnlMenu.add(btn_EmployeeMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, 190, 30));
 
         btn_jobMain.setBackground(new java.awt.Color(255, 255, 255));
         btn_jobMain.setForeground(new java.awt.Color(0, 174, 239));
@@ -425,7 +425,7 @@ public class JobAnalysis extends javax.swing.JInternalFrame {
                 btn_jobMainActionPerformed(evt);
             }
         });
-        PnlMenu.add(btn_jobMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 30, 190, 30));
+        PnlMenu.add(btn_jobMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 40, 190, 30));
 
         btn_UserMain.setBackground(new java.awt.Color(255, 255, 255));
         btn_UserMain.setForeground(new java.awt.Color(0, 174, 239));
@@ -447,7 +447,7 @@ public class JobAnalysis extends javax.swing.JInternalFrame {
                 btn_UserMainActionPerformed(evt);
             }
         });
-        PnlMenu.add(btn_UserMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 200, 30));
+        PnlMenu.add(btn_UserMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 190, 30));
 
         btn_attendeceMain.setBackground(new java.awt.Color(255, 255, 255));
         btn_attendeceMain.setForeground(new java.awt.Color(0, 174, 239));
@@ -469,7 +469,7 @@ public class JobAnalysis extends javax.swing.JInternalFrame {
                 btn_attendeceMainActionPerformed(evt);
             }
         });
-        PnlMenu.add(btn_attendeceMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 30, 200, 30));
+        PnlMenu.add(btn_attendeceMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 190, 30));
 
         btn_payrollMain.setBackground(new java.awt.Color(255, 255, 255));
         btn_payrollMain.setForeground(new java.awt.Color(0, 174, 239));
@@ -491,7 +491,7 @@ public class JobAnalysis extends javax.swing.JInternalFrame {
                 btn_payrollMainActionPerformed(evt);
             }
         });
-        PnlMenu.add(btn_payrollMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 30, 200, 30));
+        PnlMenu.add(btn_payrollMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 40, 190, 30));
 
         btn_interviewMain.setBackground(new java.awt.Color(255, 255, 255));
         btn_interviewMain.setForeground(new java.awt.Color(0, 174, 239));
@@ -513,7 +513,7 @@ public class JobAnalysis extends javax.swing.JInternalFrame {
                 btn_interviewMainActionPerformed(evt);
             }
         });
-        PnlMenu.add(btn_interviewMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, 200, 30));
+        PnlMenu.add(btn_interviewMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 190, 30));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/MenuBar_Back_Main_HR.jpg"))); // NOI18N
         jLabel8.setMaximumSize(new java.awt.Dimension(1190, 75));
