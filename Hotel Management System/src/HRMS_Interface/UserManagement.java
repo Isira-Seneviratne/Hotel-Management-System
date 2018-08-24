@@ -7,6 +7,7 @@ package HRMS_Interface;
 
 import HMS_Database.MyDBConnection;
 import HMS_Home.HMS_Methods;
+import HMS_Home.MHome;
 import HRMS_Codes.HR_Methods;
 import HRMS_Codes.Hotel;
 import com.mysql.jdbc.Connection;
@@ -61,6 +62,7 @@ public class UserManagement extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel17 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         pnl_addUpdateEmp = new javax.swing.JPanel();
         lbl_mno1 = new javax.swing.JLabel();
@@ -116,7 +118,11 @@ public class UserManagement extends javax.swing.JInternalFrame {
         btn_EmployeeMain = new javax.swing.JButton();
         btn_payrollMain = new javax.swing.JButton();
         btn_interviewMain = new javax.swing.JButton();
-        jLabel17 = new javax.swing.JLabel();
+
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/MenuBar_Back_Main_HR.jpg"))); // NOI18N
+        jLabel17.setMaximumSize(new java.awt.Dimension(1190, 75));
+        jLabel17.setMinimumSize(new java.awt.Dimension(1190, 75));
+        jLabel17.setPreferredSize(new java.awt.Dimension(1190, 75));
 
         setTitle("User Management");
         setMinimumSize(new java.awt.Dimension(1200, 680));
@@ -313,6 +319,9 @@ public class UserManagement extends javax.swing.JInternalFrame {
         jButton5.setPreferredSize(new java.awt.Dimension(110, 25));
         jButton5.setSelected(true);
         jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButton5MouseEntered(evt);
             }
@@ -407,14 +416,17 @@ public class UserManagement extends javax.swing.JInternalFrame {
         PnlMenu.setPreferredSize(new java.awt.Dimension(1200, 100));
         PnlMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btn_jobMain.setBackground(new java.awt.Color(255, 255, 255));
-        btn_jobMain.setForeground(new java.awt.Color(0, 174, 239));
+        btn_jobMain.setBackground(new java.awt.Color(153, 204, 255));
+        btn_jobMain.setForeground(new java.awt.Color(255, 255, 255));
         btn_jobMain.setText("Job Analysis");
         btn_jobMain.setBorder(null);
         btn_jobMain.setContentAreaFilled(false);
         btn_jobMain.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_jobMain.setOpaque(true);
         btn_jobMain.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_jobMainMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btn_jobMainMouseEntered(evt);
             }
@@ -427,10 +439,10 @@ public class UserManagement extends javax.swing.JInternalFrame {
                 btn_jobMainActionPerformed(evt);
             }
         });
-        PnlMenu.add(btn_jobMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 30, 190, 30));
+        PnlMenu.add(btn_jobMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 40, 190, 30));
 
-        btn_UserMain.setBackground(new java.awt.Color(255, 255, 255));
-        btn_UserMain.setForeground(new java.awt.Color(0, 174, 239));
+        btn_UserMain.setBackground(new java.awt.Color(0, 174, 238));
+        btn_UserMain.setForeground(new java.awt.Color(255, 255, 255));
         btn_UserMain.setText("User");
         btn_UserMain.setBorder(null);
         btn_UserMain.setContentAreaFilled(false);
@@ -449,16 +461,19 @@ public class UserManagement extends javax.swing.JInternalFrame {
                 btn_UserMainActionPerformed(evt);
             }
         });
-        PnlMenu.add(btn_UserMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 200, 30));
+        PnlMenu.add(btn_UserMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 190, 30));
 
-        btn_attendeceMain.setBackground(new java.awt.Color(255, 255, 255));
-        btn_attendeceMain.setForeground(new java.awt.Color(0, 174, 239));
+        btn_attendeceMain.setBackground(new java.awt.Color(153, 204, 255));
+        btn_attendeceMain.setForeground(new java.awt.Color(255, 255, 255));
         btn_attendeceMain.setText("Attendence");
         btn_attendeceMain.setBorder(null);
         btn_attendeceMain.setContentAreaFilled(false);
         btn_attendeceMain.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_attendeceMain.setOpaque(true);
         btn_attendeceMain.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_attendeceMainMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btn_attendeceMainMouseEntered(evt);
             }
@@ -471,16 +486,19 @@ public class UserManagement extends javax.swing.JInternalFrame {
                 btn_attendeceMainActionPerformed(evt);
             }
         });
-        PnlMenu.add(btn_attendeceMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 30, 200, 30));
+        PnlMenu.add(btn_attendeceMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 190, 30));
 
-        btn_EmployeeMain.setBackground(new java.awt.Color(255, 255, 255));
-        btn_EmployeeMain.setForeground(new java.awt.Color(0, 174, 239));
+        btn_EmployeeMain.setBackground(new java.awt.Color(153, 204, 255));
+        btn_EmployeeMain.setForeground(new java.awt.Color(255, 255, 255));
         btn_EmployeeMain.setText("Employee");
         btn_EmployeeMain.setBorder(null);
         btn_EmployeeMain.setContentAreaFilled(false);
         btn_EmployeeMain.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_EmployeeMain.setOpaque(true);
         btn_EmployeeMain.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_EmployeeMainMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btn_EmployeeMainMouseEntered(evt);
             }
@@ -493,16 +511,19 @@ public class UserManagement extends javax.swing.JInternalFrame {
                 btn_EmployeeMainActionPerformed(evt);
             }
         });
-        PnlMenu.add(btn_EmployeeMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, 200, 30));
+        PnlMenu.add(btn_EmployeeMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, 190, 30));
 
-        btn_payrollMain.setBackground(new java.awt.Color(255, 255, 255));
-        btn_payrollMain.setForeground(new java.awt.Color(0, 174, 239));
+        btn_payrollMain.setBackground(new java.awt.Color(153, 204, 255));
+        btn_payrollMain.setForeground(new java.awt.Color(255, 255, 255));
         btn_payrollMain.setText("Payroll");
         btn_payrollMain.setBorder(null);
         btn_payrollMain.setContentAreaFilled(false);
         btn_payrollMain.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_payrollMain.setOpaque(true);
         btn_payrollMain.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_payrollMainMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btn_payrollMainMouseEntered(evt);
             }
@@ -515,16 +536,19 @@ public class UserManagement extends javax.swing.JInternalFrame {
                 btn_payrollMainActionPerformed(evt);
             }
         });
-        PnlMenu.add(btn_payrollMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 30, 200, 30));
+        PnlMenu.add(btn_payrollMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 40, 190, 30));
 
-        btn_interviewMain.setBackground(new java.awt.Color(255, 255, 255));
-        btn_interviewMain.setForeground(new java.awt.Color(0, 174, 239));
+        btn_interviewMain.setBackground(new java.awt.Color(153, 204, 255));
+        btn_interviewMain.setForeground(new java.awt.Color(255, 255, 255));
         btn_interviewMain.setText("Interview & Candidate");
         btn_interviewMain.setBorder(null);
         btn_interviewMain.setContentAreaFilled(false);
         btn_interviewMain.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_interviewMain.setOpaque(true);
         btn_interviewMain.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_interviewMainMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btn_interviewMainMouseEntered(evt);
             }
@@ -537,13 +561,7 @@ public class UserManagement extends javax.swing.JInternalFrame {
                 btn_interviewMainActionPerformed(evt);
             }
         });
-        PnlMenu.add(btn_interviewMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, 200, 30));
-
-        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/MenuBar_Back_Main_HR.jpg"))); // NOI18N
-        jLabel17.setMaximumSize(new java.awt.Dimension(1190, 75));
-        jLabel17.setMinimumSize(new java.awt.Dimension(1190, 75));
-        jLabel17.setPreferredSize(new java.awt.Dimension(1190, 75));
-        PnlMenu.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        PnlMenu.add(btn_interviewMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 190, 30));
 
         getContentPane().add(PnlMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1190, 70));
 
@@ -786,6 +804,54 @@ public class UserManagement extends javax.swing.JInternalFrame {
         btn_add.setEnabled(true);
         btn_reset.setEnabled(true);
     }//GEN-LAST:event_btn_editActionPerformed
+
+    private void btn_interviewMainMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_interviewMainMouseClicked
+        // TODO add your handling code here:
+         InterviewManagement im = new InterviewManagement();
+        JDesktopPane desktopPane = getDesktopPane();
+        desktopPane.add(im).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_interviewMainMouseClicked
+
+    private void btn_EmployeeMainMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_EmployeeMainMouseClicked
+        // TODO add your handling code here:
+        EmployeeManagement em = new EmployeeManagement();
+        JDesktopPane desktopPane = getDesktopPane();
+        desktopPane.add(em).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_EmployeeMainMouseClicked
+
+    private void btn_attendeceMainMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_attendeceMainMouseClicked
+        // TODO add your handling code here:
+         AttendanceManagement am = new AttendanceManagement();
+        JDesktopPane desktopPane = getDesktopPane();
+        desktopPane.add(am).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_attendeceMainMouseClicked
+
+    private void btn_payrollMainMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_payrollMainMouseClicked
+        // TODO add your handling code here:
+         Payroll pr = new Payroll();
+        JDesktopPane desktopPane = getDesktopPane();
+        desktopPane.add(pr).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_payrollMainMouseClicked
+
+    private void btn_jobMainMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_jobMainMouseClicked
+        // TODO add your handling code here:
+        JobAnalysis ja = new JobAnalysis();
+        JDesktopPane desktopPane = getDesktopPane();
+        desktopPane.add(ja).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_jobMainMouseClicked
+
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+        // TODO add your handling code here:
+        MHome mh = new MHome();
+        JDesktopPane desktopPane = getDesktopPane();
+        desktopPane.add(mh).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton5MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PnlMenu;
