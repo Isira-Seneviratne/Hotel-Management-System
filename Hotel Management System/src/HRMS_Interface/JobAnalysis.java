@@ -34,7 +34,7 @@ public class JobAnalysis extends javax.swing.JInternalFrame {
         HMS_Methods hm = new HMS_Methods();
         hm.unmovableInternal(this);
         pnl_jobDetails.setVisible(true);
-        HR_Methods.loadTable(tbl_Job, "job", "jName");
+        HR_Methods.LoadTable(tbl_Job, "job", "jName");
     }
 
     public void EmptyJobForm() {
@@ -51,11 +51,11 @@ public class JobAnalysis extends javax.swing.JInternalFrame {
     public void UpdateJob() {
         try {
             //insert data to database
-            boolean status = HR_Methods.UpdateJOBInDB(txt_jid.getText(), txt_max.getText(), txt_availble.getText(), txt_basicSal.getText(),
+            boolean status = HR_Methods.UpdateJobInDB(txt_jid.getText(), txt_max.getText(), txt_availble.getText(), txt_basicSal.getText(),
                     txt_overTime.getText(), txt_halfDay.getText());
             if (status = true) {
                 JOptionPane.showMessageDialog(null, "Job Details updated Successfully");
-                HR_Methods.loadTable(tbl_Job, "job", "jName");
+                HR_Methods.LoadTable(tbl_Job, "job", "jName");
                 this.EmptyJobForm();
                 btn_update.setEnabled(false);
                 btn_reset.setEnabled(false);
@@ -699,7 +699,7 @@ public class JobAnalysis extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_logout2ActionPerformed
 
     private void tbl_JobMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_JobMouseClicked
-        hrm.CheckVecancie(tbl_Job, btn_open, btn_close);
+        hrm.CheckVacancy(tbl_Job, btn_open, btn_close);
     }//GEN-LAST:event_tbl_JobMouseClicked
 
     private void btn_editJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editJobActionPerformed
@@ -728,7 +728,7 @@ public class JobAnalysis extends javax.swing.JInternalFrame {
             
             JOptionPane.showMessageDialog(null, "Vacancie closed");
             btn_close.setEnabled(false);
-            HR_Methods.loadTable(tbl_Job, "job", "jName");
+            HR_Methods.LoadTable(tbl_Job, "job", "jName");
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -744,14 +744,14 @@ public class JobAnalysis extends javax.swing.JInternalFrame {
             
             JOptionPane.showMessageDialog(null, "Vacancie Opened");
             btn_close.setEnabled(false);
-            HR_Methods.loadTable(tbl_Job, "job", "jName");
+            HR_Methods.LoadTable(tbl_Job, "job", "jName");
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_btn_openActionPerformed
 
     private void btn_viewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_viewActionPerformed
-        HR_Methods.loadTable(tbl_Job, "job", "jName");
+        HR_Methods.LoadTable(tbl_Job, "job", "jName");
     }//GEN-LAST:event_btn_viewActionPerformed
 
     private void btn_jobSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_jobSearchActionPerformed

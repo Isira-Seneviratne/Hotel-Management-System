@@ -423,7 +423,7 @@ public class VendorDetails extends javax.swing.JInternalFrame {
             String tpnumber = jTextField3.getText();
             boolean tpvalidation = ValidationHRMS.isMobilePhone(tpnumber);
             String email = jTextField4.getText(); 
-            boolean mailvalidate = ValidationHRMS.emailValidate(email);
+            boolean mailvalidate = ValidationHRMS.validateEmail(email);
 
             if(mailvalidate) {
                 if(companyvalidation) {

@@ -41,7 +41,6 @@ public class MHome extends javax.swing.JInternalFrame {
         btn_event = new javax.swing.JButton();
         btn_custBooking = new javax.swing.JButton();
         btn_finance = new javax.swing.JButton();
-        btn_restaurant = new javax.swing.JButton();
         btn_transport = new javax.swing.JButton();
         btn_stock = new javax.swing.JButton();
         btn_beverage = new javax.swing.JButton();
@@ -92,7 +91,7 @@ public class MHome extends javax.swing.JInternalFrame {
                 btn_custBookingActionPerformed(evt);
             }
         });
-        pnl_hmsHome.add(btn_custBooking, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 330, 250, 200));
+        pnl_hmsHome.add(btn_custBooking, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 330, 250, 200));
 
         btn_finance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Finance_Small.png"))); // NOI18N
         btn_finance.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -109,17 +108,6 @@ public class MHome extends javax.swing.JInternalFrame {
             }
         });
         pnl_hmsHome.add(btn_finance, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, 250, 200));
-
-        btn_restaurant.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Restaurant_Small.png"))); // NOI18N
-        btn_restaurant.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btn_restaurantMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_restaurantMouseExited(evt);
-            }
-        });
-        pnl_hmsHome.add(btn_restaurant, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 330, 250, 200));
 
         btn_transport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Transport_Small.png"))); // NOI18N
         btn_transport.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -151,7 +139,7 @@ public class MHome extends javax.swing.JInternalFrame {
                 btn_stockActionPerformed(evt);
             }
         });
-        pnl_hmsHome.add(btn_stock, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 330, 250, 200));
+        pnl_hmsHome.add(btn_stock, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 330, 250, 200));
 
         btn_beverage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Beverage_Small.png"))); // NOI18N
         btn_beverage.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -167,7 +155,7 @@ public class MHome extends javax.swing.JInternalFrame {
                 btn_beverageActionPerformed(evt);
             }
         });
-        pnl_hmsHome.add(btn_beverage, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 250, 200));
+        pnl_hmsHome.add(btn_beverage, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 330, 250, 200));
 
         btn_hr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/HR_Small(low).png"))); // NOI18N
         btn_hr.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -281,14 +269,6 @@ public class MHome extends javax.swing.JInternalFrame {
     private void btn_financeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_financeMouseExited
         btn_finance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Finance_Small.png")));
     }//GEN-LAST:event_btn_financeMouseExited
-
-    private void btn_restaurantMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_restaurantMouseEntered
-        btn_restaurant.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Restaurant_Large.png")));
-    }//GEN-LAST:event_btn_restaurantMouseEntered
-
-    private void btn_restaurantMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_restaurantMouseExited
-        btn_restaurant.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Restaurant_Small.png")));
-    }//GEN-LAST:event_btn_restaurantMouseExited
 
     private void btn_transportMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_transportMouseEntered
         btn_transport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRMS_Images/Transport_Large.png")));
@@ -409,7 +389,6 @@ public class MHome extends javax.swing.JInternalFrame {
     private javax.swing.JButton btn_home2;
     public javax.swing.JButton btn_hr;
     private javax.swing.JButton btn_logout2;
-    public javax.swing.JButton btn_restaurant;
     public javax.swing.JButton btn_stock;
     public javax.swing.JButton btn_transport;
     private javax.swing.JLabel emp_background;

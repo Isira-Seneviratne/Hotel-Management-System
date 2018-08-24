@@ -15,27 +15,18 @@ import java.util.regex.Pattern;
 /**
  *
  * @author Prabas Gayadeeptha
+ * 
+ * @author Isira Seneviratne (19440268)
  */
 public class ValidationHRMS {
-    
-    public static boolean status = false;
-
-    public static boolean emailValidate(String email) {
-        //boolean status = false;
-        String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
-        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+    public static boolean validateEmail(String email) {
+        Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$");
         Matcher matcher = pattern.matcher(email);
-        status = matcher.matches();
-        return status;
+        return matcher.matches();
     }
 
     public static boolean isNumeric(String str) {
-        for (char c : str.toCharArray()) {
-            if (Character.isDigit(c)) {
-                return true;
-            }
-        }
-        return false;
+        return str.matches("^[0-9]*$");
     }
 
     public static boolean isLetter(String ltr) {
@@ -48,12 +39,11 @@ public class ValidationHRMS {
 
     @SuppressWarnings("CallToPrintStackTrace")
     public static boolean isValidDate(String date) {
-        Date gdate = null;
         String inputdate = "2017-09-23";
         try {
             DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             formatter.setLenient(false);
-            gdate = formatter.parse(inputdate);
+            formatter.parse(inputdate);
         } catch (ParseException e) {
             e.printStackTrace();
             return false;
@@ -143,7 +133,7 @@ public class ValidationHRMS {
         return false;
     }
 
-    public static boolean empidValidate(String eid) {
+    public static boolean empIDValidate(String eid) {
         return eid.length() == 5 && eid.matches("^[e][0-9]{4}$");
     }
 

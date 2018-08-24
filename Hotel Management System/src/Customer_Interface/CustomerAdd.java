@@ -331,7 +331,7 @@ void clearFields() {
             }else{
                 JOptionPane.showMessageDialog(null, "Errooor");
             }
-            if(CustomerValidation.emailValidate(TxtEmail.getText())){
+            if(CustomerValidation.validateEmail(TxtEmail.getText())){
             cus.setEmail(TxtEmail.getText().toString());}
             else{JOptionPane.showMessageDialog(null, "Errooor");}
             

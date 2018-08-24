@@ -42,8 +42,8 @@ public class Payroll extends javax.swing.JInternalFrame {
 
         HMS_Methods hm = new HMS_Methods();
         hm.unmovableInternal(this);
-        HR_Methods.getAttendenceDetatils(tbt_empDetails);
-        HR_Methods.getThisMonthPayments(tbl_payments, "sal_payment");
+        HR_Methods.GetAttendanceDetails(tbt_empDetails);
+        HR_Methods.GetThisMonthPayments(tbl_payments, "sal_payment");
     }
 
     public void AddPayment() {
@@ -53,8 +53,8 @@ public class Payroll extends javax.swing.JInternalFrame {
             btn_cancel.setEnabled(false);
             btn_pay.setEnabled(false);
             this.emptyPaymentForm();
-            HR_Methods.getAttendenceDetatils(tbt_empDetails);
-            HR_Methods.getThisMonthPayments(tbl_payments, "sal_payment");
+            HR_Methods.GetAttendanceDetails(tbt_empDetails);
+            HR_Methods.GetThisMonthPayments(tbl_payments, "sal_payment");
         } else {
             JOptionPane.showMessageDialog(null, "Cant save");
         }
@@ -610,7 +610,7 @@ public class Payroll extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_cancelActionPerformed
 
     private void btn_refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_refreshActionPerformed
-        HR_Methods.getAttendenceDetatils(tbt_empDetails);
+        HR_Methods.GetAttendanceDetails(tbt_empDetails);
     }//GEN-LAST:event_btn_refreshActionPerformed
 
     private void tbt_empDetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbt_empDetailsMouseClicked
@@ -886,15 +886,15 @@ public class Payroll extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_paySearchActionPerformed
 
     private void btn_thisMonthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_thisMonthActionPerformed
-        HR_Methods.getThisMonthPayments(tbl_payments, "sal_payment");
+        HR_Methods.GetThisMonthPayments(tbl_payments, "sal_payment");
     }//GEN-LAST:event_btn_thisMonthActionPerformed
 
     private void btn_viewAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_viewAllActionPerformed
-        HR_Methods.loadTable(tbl_payments, "sal_payment", "Month");
+        HR_Methods.LoadTable(tbl_payments, "sal_payment", "Month");
     }//GEN-LAST:event_btn_viewAllActionPerformed
 
     private void btn_calTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_calTotalActionPerformed
-        int total = hrm.SalaryCalculater(txt_bSal, txt_ot, txt_hDay, txt_add, txt_deduction);
+        int total = hrm.CalculateSalary(txt_bSal, txt_ot, txt_hDay, txt_add, txt_deduction);
         txt_total.setText(String.valueOf(total));
         btn_cancel.setEnabled(true);
         btn_pay.setEnabled(true);
@@ -902,8 +902,8 @@ public class Payroll extends javax.swing.JInternalFrame {
 
     private void btn_removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_removeActionPerformed
         hrm.RemoveData(tbl_payments, lbl_payrttblVal, "sal_payment", "paymentID");
-        HR_Methods.getAttendenceDetatils(tbt_empDetails);
-        HR_Methods.getThisMonthPayments(tbl_payments, "sal_payment");
+        HR_Methods.GetAttendanceDetails(tbt_empDetails);
+        HR_Methods.GetThisMonthPayments(tbl_payments, "sal_payment");
     }//GEN-LAST:event_btn_removeActionPerformed
 
     private void btn_reportPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reportPayActionPerformed

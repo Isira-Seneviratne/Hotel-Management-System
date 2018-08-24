@@ -36,7 +36,7 @@ public class EmployeeManagement extends javax.swing.JInternalFrame {
         conn = (Connection) MyDBConnection.connectDB();
         HMS_Methods hm = new HMS_Methods();
         hm.unmovableInternal(this);
-        HR_Methods.loadTable(tbl_employee, "employee", "Emp_ID");
+        HR_Methods.LoadTable(tbl_employee, "employee", "Emp_ID");
     }
 
     public void emptyTable(JTable table) {
@@ -429,7 +429,7 @@ public class EmployeeManagement extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_empSearchActionPerformed
 
     private void btn_viewallempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_viewallempActionPerformed
-        HR_Methods.loadTable(tbl_employee, "employee", "Emp_ID");
+        HR_Methods.LoadTable(tbl_employee, "employee", "Emp_ID");
     }//GEN-LAST:event_btn_viewallempActionPerformed
 
     private void txt_empSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_empSearchMouseClicked
@@ -454,7 +454,7 @@ public class EmployeeManagement extends javax.swing.JInternalFrame {
 
     private void btn_removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_removeActionPerformed
         hrm.RemoveData(tbl_employee, lbl_btntblvalidate, "employee", "Emp_ID");
-        HR_Methods.loadTable(tbl_employee, "employee", "Emp_ID");
+        HR_Methods.LoadTable(tbl_employee, "employee", "Emp_ID");
     }//GEN-LAST:event_btn_removeActionPerformed
 
     private void cmb_empSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_empSearchActionPerformed

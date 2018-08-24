@@ -47,7 +47,7 @@ public class InterviewManagement extends javax.swing.JInternalFrame {
         HMS_Methods hm = new HMS_Methods();
         hm.unmovableInternal(this);
 
-        HR_Methods.loadTable(tbl_candidate, "candidate", "candidateID");
+        HR_Methods.LoadTable(tbl_candidate, "candidate", "candidateID");
         conn = (Connection) MyDBConnection.connectDB();
 
     }
@@ -105,7 +105,7 @@ public class InterviewManagement extends javax.swing.JInternalFrame {
                     this.canEmptyVal_lbl();
                     this.buttonEnable(btn_canadd, false, btn_canupdate, false, btn_canreset, false);
                     this.panelVisible(false, true, false);
-                    HR_Methods.loadTable(tbl_candidate, "candidate", "candidateID");
+                    HR_Methods.LoadTable(tbl_candidate, "candidate", "candidateID");
                 } else {
                     JOptionPane.showMessageDialog(null, "Candidate Record cant save");
                 }
@@ -141,7 +141,7 @@ public class InterviewManagement extends javax.swing.JInternalFrame {
                     this.canEmptyVal_lbl();
                     this.buttonEnable(btn_canadd, false, btn_canupdate, false, btn_canreset, false);
                     this.panelVisible(false, true, false);
-                    HR_Methods.loadTable(tbl_candidate, "candidate", "candidateID");
+                    HR_Methods.LoadTable(tbl_candidate, "candidate", "candidateID");
                 } else {
                     JOptionPane.showMessageDialog(null, "Candidate Record cant Update");
                 }
@@ -167,7 +167,7 @@ public class InterviewManagement extends javax.swing.JInternalFrame {
                     JOptionPane.showMessageDialog(null, "interview schedule added Successfully");
                     this.scheduleEmptyForm();
                     this.scheduleEmptyVal_lbl();
-                    HR_Methods.loadTable(tbl_interview_schedule, "interview_schedule", "interID");
+                    HR_Methods.LoadTable(tbl_interview_schedule, "interview_schedule", "interID");
                     hrm.AutoGeneratePrimaryKey(lbl_iidVal, txt_interID, 'I', "interview_schedule", "interID");
                 } else {
                     JOptionPane.showMessageDialog(null, "interview schedule cant add");
@@ -194,7 +194,7 @@ public class InterviewManagement extends javax.swing.JInternalFrame {
                     JOptionPane.showMessageDialog(null, "interview schedule updated Successfully");
                     this.scheduleEmptyForm();
                     this.scheduleEmptyVal_lbl();
-                    HR_Methods.loadTable(tbl_interview_schedule, "interview_schedule", "date");
+                    HR_Methods.LoadTable(tbl_interview_schedule, "interview_schedule", "date");
                     hrm.AutoGeneratePrimaryKey(lbl_iidVal, txt_interID, 'I', "interview_schedule", "interID");
                 } else {
                     JOptionPane.showMessageDialog(null, "interview schedule cant update");
@@ -224,7 +224,7 @@ public class InterviewManagement extends javax.swing.JInternalFrame {
                     this.cmb_intBy.setEnabled(false);
                     this.cmb_status.setEnabled(false);
                     btn_updateStatus.setEnabled(false);
-                    HR_Methods.loadTable(tbl_interview_schedule, "interview_schedule", "date");
+                    HR_Methods.LoadTable(tbl_interview_schedule, "interview_schedule", "date");
                     hrm.AutoGeneratePrimaryKey(lbl_iidVal, txt_interID, 'I', "interview_schedule", "interID");
                 } else {
                     JOptionPane.showMessageDialog(null, "interview schedule cant update");
@@ -1918,7 +1918,7 @@ public class InterviewManagement extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        HR_Methods.loadTable(tbl_candidate, "candidate", "candidateID");
+        HR_Methods.LoadTable(tbl_candidate, "candidate", "candidateID");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btn_canaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_canaddActionPerformed
@@ -1978,7 +1978,7 @@ public class InterviewManagement extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         HR_Methods hm = new HR_Methods();
         hm.RemoveData(tbl_candidate, lbl_btntblvalidate, "candidate", "candidateID");
-        HR_Methods.loadTable(tbl_candidate, "candidate", "candidateID");
+        HR_Methods.LoadTable(tbl_candidate, "candidate", "candidateID");
     }//GEN-LAST:event_btn_canremoveActionPerformed
 
     private void txt_c_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_c_nameActionPerformed
@@ -2006,11 +2006,11 @@ public class InterviewManagement extends javax.swing.JInternalFrame {
 
     private void btn_removeScheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_removeScheduleActionPerformed
         hrm.RemoveData(tbl_interview_schedule, lbl_scheduleTblVali, "interview_schedule", "interID");
-        HR_Methods.loadTable(tbl_interview_schedule, "interview_schedule", "date");
+        HR_Methods.LoadTable(tbl_interview_schedule, "interview_schedule", "date");
     }//GEN-LAST:event_btn_removeScheduleActionPerformed
 
     private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
-        HR_Methods.loadTable(tbl_interview_schedule, "interview_schedule", "date");
+        HR_Methods.LoadTable(tbl_interview_schedule, "interview_schedule", "date");
     }//GEN-LAST:event_jButton26ActionPerformed
 
     private void txtA_qualificationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtA_qualificationActionPerformed
@@ -2221,7 +2221,7 @@ public class InterviewManagement extends javax.swing.JInternalFrame {
         canEmptyVal_lbl();
         this.panelVisible(false, true, false);
         this.buttonEnable(btn_canadd, false, btn_canupdate, false, btn_canreset, false);
-        HR_Methods.loadTable(tbl_candidate, "candidate", "candidateID");
+        HR_Methods.LoadTable(tbl_candidate, "candidate", "candidateID");
     }//GEN-LAST:event_btn_candidate1ActionPerformed
 
     private void btn_intSched1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_intSched1MouseEntered
@@ -2235,7 +2235,7 @@ public class InterviewManagement extends javax.swing.JInternalFrame {
     private void btn_intSched1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_intSched1ActionPerformed
         HR_Methods hm = new HR_Methods();
         hm.AutoGeneratePrimaryKey(lbl_iidVal, txt_interID, 'I', "interview_schedule", "interID");
-        HR_Methods.loadTable(tbl_interview_schedule, "interview_schedule", "date");
+        HR_Methods.LoadTable(tbl_interview_schedule, "interview_schedule", "date");
         this.panelVisible(false, false, true);
         this.scheduleEmptyForm();
         this.scheduleEmptyVal_lbl();
@@ -2338,7 +2338,7 @@ public class InterviewManagement extends javax.swing.JInternalFrame {
         canEmptyVal_lbl();
         this.panelVisible(false, true, false);
         this.buttonEnable(btn_canadd, false, btn_canupdate, false, btn_canreset, false);
-        HR_Methods.loadTable(tbl_candidate, "candidate", "candidateID");
+        HR_Methods.LoadTable(tbl_candidate, "candidate", "candidateID");
     }//GEN-LAST:event_btn_candidate2ActionPerformed
 
     private void btn_intSched2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_intSched2MouseEntered
@@ -2352,7 +2352,7 @@ public class InterviewManagement extends javax.swing.JInternalFrame {
     private void btn_intSched2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_intSched2ActionPerformed
         HR_Methods hm = new HR_Methods();
         hm.AutoGeneratePrimaryKey(lbl_iidVal, txt_interID, 'I', "interview_schedule", "interID");
-        HR_Methods.loadTable(tbl_interview_schedule, "interview_schedule", "date");
+        HR_Methods.LoadTable(tbl_interview_schedule, "interview_schedule", "date");
         this.panelVisible(false, false, true);
         this.scheduleEmptyForm();
         this.scheduleEmptyVal_lbl();

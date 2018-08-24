@@ -9,7 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -39,7 +38,7 @@ public class CusDBOperations {
             pst.setString(4, ad.getEmail());
             pst.setString(5, ad.getNIC());
             pst.setString(6, ad.getNationality());
-             pst.setString(6, ad.getCustomerType());
+            pst.setString(6, ad.getCustomerType());
             pst.setString(7, ad.getGender());
             pst.setString(8, ad.getComment());
            /* pst.setString(9, ad.getTo_date());
@@ -189,7 +188,7 @@ finally {
                 }
 
             } catch (HeadlessException | SQLException e) {
-                showMessageDialog(null, e);
+                JOptionPane.showMessageDialog(null, e);
             }
         }
     }

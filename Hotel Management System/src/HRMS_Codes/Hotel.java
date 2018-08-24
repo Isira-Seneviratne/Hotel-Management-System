@@ -10,7 +10,6 @@ package HRMS_Codes;
  * @author Prabas Gayadeeptha
  */
 public class Hotel {
-
     private String candidateID;
     private String fullname;
     private String initialname;

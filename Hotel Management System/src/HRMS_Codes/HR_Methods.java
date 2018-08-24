@@ -22,7 +22,6 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
-import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
 import lu.tudor.santec.jtimechooser.JTimeChooser;
@@ -30,20 +29,20 @@ import lu.tudor.santec.jtimechooser.JTimeChooser;
 /**
  *
  * @author Prabas Gayadeeptha
+ * 
+ * @author Isira Seneviratne (19440268)
  */
 public class HR_Methods {
-
-    static ResultSet rs = null;
-    static PreparedStatement pst = null;
-    static Connection conn = MyDBConnection.connectDB();
-     Hotel c = new Hotel();
+    private static ResultSet rs = null;
+    private static PreparedStatement pst = null;
+    private static Connection conn = MyDBConnection.connectDB();
+    private Hotel c = new Hotel();
 
     public static boolean status = false;
 
     public HR_Methods() {
     }
     
-
     public void MouseEnterEvent(JButton button) {
         Color blueColor = new Color(0, 174, 239);
         button.setBackground(blueColor);
@@ -124,7 +123,7 @@ public class HR_Methods {
         return status;
     }
 
-    public static boolean UpdateJOBInDB(String jid, String max, String avabl, String basic, String otime, String hday) {
+    public static boolean UpdateJobInDB(String jid, String max, String avabl, String basic, String otime, String hday) {
 
         status = false;
         String sql = "update job set Max='" + max + "',availble='" + avabl + "',"
@@ -153,8 +152,7 @@ public class HR_Methods {
         return status;
     }
     
-    public static boolean InsertAttandenceToDB(String empID, String fname) {
-
+    public static boolean InsertAttendanceToDB(String empID, String fname) {
         status = false;
         String sql = "INSERT INTO attendence (empid,eName,Date,att_time)"
                 + "VALUES ('" + empID + "','" + fname + "',CURDATE(),CURTIME())";
@@ -184,7 +182,6 @@ public class HR_Methods {
     }
 
     public static boolean UpdateSalaryPaymentInDB(String empID, String total) {
-
         status = false;
         String sql = "Update sal_payment set TotalSal='" + total + "' where employeeID='" + empID + "'";
         try {
@@ -242,7 +239,7 @@ public class HR_Methods {
         return status;
     }
 
-    public static ResultSet loadTable(JTable table, String DBTable, String order) {
+    public static ResultSet LoadTable(JTable table, String DBTable, String order) {
         try {
             String sql = "Select * from " + DBTable + " ORDER BY " + order + "";
             pst = conn.prepareStatement(sql);
@@ -254,7 +251,7 @@ public class HR_Methods {
         return rs;
     }
 
-    public static ResultSet getEmployeeName(JTable table) {
+    public static ResultSet GetEmployeeName(JTable table) {
         try {
             String sql = "Select employee.Emp_ID, employee.full_name from employee "
                     + "where Emp_ID NOT IN(Select empid from attendence "
@@ -268,7 +265,7 @@ public class HR_Methods {
         return rs;
     }
 
-    public static ResultSet getTodayAttendence(JTable table, String DBTable) {
+    public static ResultSet GetTodayAttendance(JTable table, String DBTable) {
         try {
             String sql = "SELECT * FROM " + DBTable + " where Date=CURDATE()";
             pst = conn.prepareStatement(sql);
@@ -280,7 +277,7 @@ public class HR_Methods {
         return rs;
     }
 
-    public static ResultSet getThisMonthPayments(JTable table, String DBTable) {
+    public static ResultSet GetThisMonthPayments(JTable table, String DBTable) {
         try {
             String sql = "SELECT * FROM " + DBTable + " where Month=EXTRACT(MONTH FROM CURDATE())";
             pst = conn.prepareStatement(sql);
@@ -292,7 +289,7 @@ public class HR_Methods {
         return rs;
     }
 
-    public static ResultSet getAttendenceDetatils(JTable table) {
+    public static ResultSet GetAttendanceDetails(JTable table) {
         try {
             String sql = "SELECT attendence.empid, attendence.eName, EXTRACT(MONTH FROM CURDATE()) 'Month', SUM(attendence.att_type='Full Day') 'aCount',"
                     + " SUM(attendence.att_type='Half Day') 'hCount', SUM(attendence.otHours) 'ot' from attendence "
@@ -348,7 +345,7 @@ public class HR_Methods {
         }
     }
 
-    public void LoadEmployeeNametoAttendence(JTable table, JTextField eid, JTextField fname) {
+    public void LoadEmployeeNameToAttendance(JTable table, JTextField eid, JTextField fname) {
         try {
             int rw = table.getSelectedRow();
             String tbl_click = (table.getModel().getValueAt(rw, 0).toString());
@@ -457,7 +454,7 @@ public class HR_Methods {
         }
     }
 
-    public void LoadEmployeeNametoLeave(JTable table, JTextField eid, JTextField fname) {
+    public void LoadEmployeeNameToLeave(JTable table, JTextField eid, JTextField fname) {
         try {
             int rw = table.getSelectedRow();
             String tbl_click = (table.getModel().getValueAt(rw, 0).toString());
@@ -733,9 +730,8 @@ public class HR_Methods {
                     validate.setText("");
                     table.setModel(DbUtils.resultSetToTableModel(rs));
                 }
-
             } catch (HeadlessException | SQLException e) {
-                showMessageDialog(null, e);
+                JOptionPane.showMessageDialog(null, e);
             }
         }
     }
@@ -760,7 +756,7 @@ public class HR_Methods {
         }
     }
 
-    public void CheckVecancie(JTable table, JButton open, JButton close) {
+    public void CheckVacancy(JTable table, JButton open, JButton close) {
         try {
             int rw = table.getSelectedRow();
             String tbl_click = (table.getModel().getValueAt(rw, 0).toString());
@@ -801,7 +797,7 @@ public class HR_Methods {
         }
     }
 
-    public int SalaryCalculater(JTextField basicSal, JTextField ot, JTextField halfDay, JTextField add, JTextField deduct) {
+    public int CalculateSalary(JTextField basicSal, JTextField ot, JTextField halfDay, JTextField add, JTextField deduct) {
         int total = Integer.parseInt(basicSal.getText()) + Integer.parseInt(ot.getText()) + Integer.parseInt(add.getText()) - Integer.parseInt(halfDay.getText()) - Integer.parseInt(deduct.getText());
         return total;
     }

@@ -9,7 +9,6 @@ package Customer_Interface;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -18,15 +17,13 @@ import java.util.regex.Pattern;
  * @author Prabas Gayadeeptha
  */
 public class CustomerValidation {
-    public static boolean status = false;
 
-    public static boolean emailValidate(String email) {
+    public static boolean validateEmail(String email) {
         //boolean status = false;
         String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
         Pattern pattern = Pattern.compile(EMAIL_PATTERN);
         Matcher matcher = pattern.matcher(email);
-        status = matcher.matches();
-        return status;
+        return matcher.matches();
     }
 
     public static boolean isNumeric(String str) {

@@ -46,8 +46,8 @@ Hotel c = new Hotel();
 
         HMS_Methods hm = new HMS_Methods();
         hm.unmovableInternal(this);
-        HR_Methods.getTodayAttendence(tbl_attendence, "attendence");
-        HR_Methods.getEmployeeName(tbl_empname);
+        HR_Methods.GetTodayAttendance(tbl_attendence, "attendence");
+        HR_Methods.GetEmployeeName(tbl_empname);
     }
 
     public void ButtonEnable(boolean attend, boolean leave, boolean cancel) {
@@ -59,11 +59,11 @@ Hotel c = new Hotel();
     @SuppressWarnings("DeadBranch")
     public void AddAttendence() {
         try {
-            boolean status = HR_Methods.InsertAttandenceToDB(txt_atteid.getText(), txt_atteName.getText());
+            boolean status = HR_Methods.InsertAttendanceToDB(txt_atteid.getText(), txt_atteName.getText());
             if (status = true) {
                 JOptionPane.showMessageDialog(null, "Attendence Record Seved Successfully");
-                HR_Methods.getTodayAttendence(tbl_attendence, "attendence");
-                HR_Methods.getEmployeeName(tbl_empname);
+                HR_Methods.GetTodayAttendance(tbl_attendence, "attendence");
+                HR_Methods.GetEmployeeName(tbl_empname);
                 txt_atteid.setText(null);
                 txt_atteName.setText(null);
                 this.ButtonEnable(false, false, false);
@@ -80,8 +80,8 @@ Hotel c = new Hotel();
             boolean status = HR_Methods.InsertLeaveToDB(txt_atteid.getText(), txt_atteName.getText());
             if (status = true) {
                 JOptionPane.showMessageDialog(null, "Leave Record Seved Successfully");
-                HR_Methods.getTodayAttendence(tbl_attendence, "attendence");
-                HR_Methods.getEmployeeName(tbl_empname);
+                HR_Methods.GetTodayAttendance(tbl_attendence, "attendence");
+                HR_Methods.GetEmployeeName(tbl_empname);
                 txt_atteid.setText(null);
                 txt_atteName.setText(null);
                 this.ButtonEnable(false, false, false);
@@ -619,7 +619,7 @@ Hotel c = new Hotel();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_viewallAttActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_viewallAttActionPerformed
-        HR_Methods.loadTable(tbl_attendence, "attendence", "Date");
+        HR_Methods.LoadTable(tbl_attendence, "attendence", "Date");
     }//GEN-LAST:event_btn_viewallAttActionPerformed
 
     private void txt_atteidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_atteidActionPerformed
@@ -648,8 +648,8 @@ Hotel c = new Hotel();
 
     private void btn_removeattndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_removeattndActionPerformed
         hrm.RemoveData(tbl_attendence, lbl_attEditRemove, "attendence", "attID");
-        HR_Methods.getTodayAttendence(tbl_attendence, "attendence");
-        HR_Methods.getEmployeeName(tbl_empname);
+        HR_Methods.GetTodayAttendance(tbl_attendence, "attendence");
+        HR_Methods.GetEmployeeName(tbl_empname);
     }//GEN-LAST:event_btn_removeattndActionPerformed
 
     private void txt_emp_attsearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_emp_attsearchMouseClicked
@@ -749,7 +749,7 @@ Hotel c = new Hotel();
     }//GEN-LAST:event_btn_empSearchActionPerformed
 
     private void btn_editattnd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editattnd1ActionPerformed
-        HR_Methods.getEmployeeName(tbl_empname);
+        HR_Methods.GetEmployeeName(tbl_empname);
     }//GEN-LAST:event_btn_editattnd1ActionPerformed
 
     private void btn_jobMainMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_jobMainMouseEntered
@@ -891,12 +891,12 @@ Hotel c = new Hotel();
     }//GEN-LAST:event_btn_UserMainActionPerformed
 
     private void tbl_empnameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_empnameMouseClicked
-        hrm.LoadEmployeeNametoAttendence(tbl_empname, txt_atteid, txt_atteName);
+        hrm.LoadEmployeeNameToAttendance(tbl_empname, txt_atteid, txt_atteName);
         this.ButtonEnable(true, false, true);
     }//GEN-LAST:event_tbl_empnameMouseClicked
 
     private void btn_viewallAtt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_viewallAtt1ActionPerformed
-        HR_Methods.getTodayAttendence(tbl_attendence, "attendence");
+        HR_Methods.GetTodayAttendance(tbl_attendence, "attendence");
     }//GEN-LAST:event_btn_viewallAtt1ActionPerformed
 
     private void tbl_attendenceKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbl_attendenceKeyPressed
@@ -905,7 +905,7 @@ Hotel c = new Hotel();
     private void tbl_attendenceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_attendenceMouseClicked
         txt_atteid.setText(null);
         txt_atteName.setText(null);
-        hrm.LoadEmployeeNametoLeave(tbl_attendence, txt_atteid, txt_atteName);
+        hrm.LoadEmployeeNameToLeave(tbl_attendence, txt_atteid, txt_atteName);
         if(txt_atteid.getText().isEmpty() || txt_atteName.getText().isEmpty()){
             this.ButtonEnable(false, false, false);
         }
