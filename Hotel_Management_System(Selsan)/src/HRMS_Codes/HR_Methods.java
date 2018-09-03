@@ -7,9 +7,7 @@ package HRMS_Codes;
 
 import HMS_Database.MyDBConnection;
 import HRMS_Interface.AddEmployee;
-import HRMS_Interface.AttendenceManagement;
 import HRMS_Interface.EmployeeManagement;
-import HRMS_Interface.JobAnalysis;
 import HRMS_Interface.MainLogin;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
@@ -27,7 +25,6 @@ import javax.swing.*;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
-import javax.swing.JDesktopPane;
 import lu.tudor.santec.jtimechooser.JTimeChooser;
 
 /**
