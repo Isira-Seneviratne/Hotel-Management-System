@@ -5,21 +5,38 @@
  */
 package StockManagement;
 
+import Main.MainWindow;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 /**
  *
  * @author isira
  */
 public class StockManagementWindow extends javax.swing.JFrame {
 
+    private static StockManagementWindow instance;
     /**
      * Creates new form StockManagementWindow
      */
     public StockManagementWindow() {
         initComponents();
+        
         jTabbedPane1.addTab("Food Items", new FoodItems());
         jTabbedPane1.addTab("Cleaning Items", new CleaningItems());
+        jTabbedPane1.addTab("Room Items", new RoomItems());
+        jTabbedPane1.addTab("Pending Orders", new PendingOrders());
+        jTabbedPane1.addTab("Vendor Details", new VendorDetails());
+        jTabbedPane1.addTab("Payments", new Payments());
+        jTabbedPane1.addTab("Kitchen Items", new KitchenItems());
     }
 
+    public synchronized static StockManagementWindow getInstance() {
+        if(instance == null)
+            instance = new StockManagementWindow();
+        return instance;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,14 +48,14 @@ public class StockManagementWindow extends javax.swing.JFrame {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 748, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
