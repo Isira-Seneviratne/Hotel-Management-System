@@ -48,12 +48,12 @@
                   <Component id="btnStockManagement" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnCusManagement" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="91" max="32767" attributes="0"/>
+              <EmptySpace pref="106" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnFinManagement" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnHRManagement" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
