@@ -32,9 +32,9 @@
                   <Component id="btnStockManagement" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="64" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnHRManagement" min="-2" pref="185" max="-2" attributes="0"/>
-                  <Component id="btnCusManagement" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="btnHRManagement" pref="185" max="32767" attributes="0"/>
+                  <Component id="btnCusManagement" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
           </Group>
