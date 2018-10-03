@@ -5,6 +5,7 @@
  */
 package Main;
 
+import FinanceManagement.FinanceManagementWindow;
 import StockManagement.StockManagementWindow;
 
 /**
@@ -64,6 +65,11 @@ public class MainWindow extends javax.swing.JFrame {
 
         btnFinManagement.setBackground(new java.awt.Color(204, 153, 0));
         btnFinManagement.setText("Finance Management");
+        btnFinManagement.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFinManagementActionPerformed(evt);
+            }
+        });
 
         btnHRManagement.setBackground(new java.awt.Color(51, 255, 51));
         btnHRManagement.setText("HR Management");
@@ -124,6 +130,13 @@ public class MainWindow extends javax.swing.JFrame {
         new Login().setVisible(true);
         dispose();
     }//GEN-LAST:event_btnLogoutMouseClicked
+
+    private void btnFinManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinManagementActionPerformed
+        // TODO add your handling code here:
+        FinanceManagementWindow fmw = new FinanceManagementWindow();
+        fmw.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnFinManagementActionPerformed
 
     /**
      * @param args the command line arguments

@@ -98,6 +98,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Finance Management"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFinManagementActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnHRManagement">
       <Properties>
