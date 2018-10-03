@@ -75,7 +75,8 @@ public class MainWindow extends javax.swing.JFrame {
         btnHRManagement.setText("HR Management");
         btnHRManagement.setOpaque(false);
 
-        btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Logout.png"))); // NOI18N
+        btnLogout.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        btnLogout.setText("Logout");
         btnLogout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnLogoutMouseClicked(evt);
@@ -98,7 +99,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap(92, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnLogout)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
