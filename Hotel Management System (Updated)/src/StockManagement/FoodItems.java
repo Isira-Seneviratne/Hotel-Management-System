@@ -63,14 +63,22 @@ public class FoodItems extends javax.swing.JPanel {
 
         jLabel7.setText("Expiry date");
 
+        btnAdd.setBackground(new java.awt.Color(102, 153, 255));
+        btnAdd.setForeground(new java.awt.Color(238, 238, 238));
         btnAdd.setText("Add");
 
+        btnDelete.setBackground(new java.awt.Color(204, 0, 0));
+        btnDelete.setForeground(new java.awt.Color(238, 238, 238));
         btnDelete.setText("Delete");
 
+        btnUpdate.setBackground(new java.awt.Color(51, 102, 0));
+        btnUpdate.setForeground(new java.awt.Color(238, 238, 238));
         btnUpdate.setText("Update");
 
+        btnClear.setBackground(new java.awt.Color(153, 153, 153));
         btnClear.setText("Clear");
 
+        btnGenReport.setBackground(new java.awt.Color(255, 255, 0));
         btnGenReport.setText("Generate Report");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
