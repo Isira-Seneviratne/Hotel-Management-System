@@ -7,7 +7,7 @@ package HRManagement;
 
 /**
  *
- * @author isira
+ * @author Irushi
  */
 public class HRManagementWindow extends javax.swing.JFrame {
 
@@ -32,7 +32,7 @@ public class HRManagementWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Exit.png"))); // NOI18N
+        btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Logout.png"))); // NOI18N
 
         btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Home.png"))); // NOI18N
 

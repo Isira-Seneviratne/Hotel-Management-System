@@ -67,8 +67,9 @@ public class MainWindow extends javax.swing.JFrame {
 
         btnHRManagement.setBackground(new java.awt.Color(51, 255, 51));
         btnHRManagement.setText("HR Management");
+        btnHRManagement.setOpaque(false);
 
-        btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Exit.png"))); // NOI18N
+        btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Logout.png"))); // NOI18N
         btnLogout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnLogoutMouseClicked(evt);
