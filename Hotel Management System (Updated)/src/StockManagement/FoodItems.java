@@ -7,7 +7,7 @@ package StockManagement;
 
 /**
  *
- * @author isira
+ * @author Isira
  */
 public class FoodItems extends javax.swing.JPanel {
 

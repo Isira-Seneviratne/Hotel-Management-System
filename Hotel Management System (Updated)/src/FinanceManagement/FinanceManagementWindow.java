@@ -7,7 +7,7 @@ package FinanceManagement;
 
 /**
  *
- * @author isira
+ * @author Lakshika
  */
 public class FinanceManagementWindow extends javax.swing.JFrame {
 

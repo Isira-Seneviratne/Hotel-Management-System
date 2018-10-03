@@ -7,7 +7,7 @@ package CustomerManagement;
 
 /**
  *
- * @author isira
+ * @author Upeksha
  */
 public class CustomerManagementWindow extends javax.swing.JFrame {
 

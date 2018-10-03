@@ -9,7 +9,7 @@ import StockManagement.StockManagementWindow;
 
 /**
  *
- * @author isira
+ * @author Isira
  */
 public class MainWindow extends javax.swing.JFrame {
 

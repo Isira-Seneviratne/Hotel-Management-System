@@ -12,7 +12,7 @@ import java.awt.event.WindowEvent;
 
 /**
  *
- * @author isira
+ * @author Isira
  */
 public class StockManagementWindow extends javax.swing.JFrame {
 
