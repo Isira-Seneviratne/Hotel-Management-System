@@ -24,10 +24,10 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="249" max="32767" attributes="0"/>
+              <EmptySpace pref="243" max="32767" attributes="0"/>
               <Component id="btnHome" min="-2" pref="50" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="btnLogout" min="-2" pref="77" max="-2" attributes="0"/>
+              <Component id="btnLogout" min="-2" pref="83" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -48,9 +48,6 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="btnLogout">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="12" style="1"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Logout"/>
       </Properties>
     </Component>
