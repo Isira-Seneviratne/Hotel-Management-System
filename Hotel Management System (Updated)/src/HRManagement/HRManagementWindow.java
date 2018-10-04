@@ -16,7 +16,7 @@ public class HRManagementWindow extends javax.swing.JFrame {
      */
     public HRManagementWindow() {
         initComponents();
-        jTabbedPane1.addTab("User", new User());
+        //jTabbedPane1.addTab("User", new User());
          
     }
 
