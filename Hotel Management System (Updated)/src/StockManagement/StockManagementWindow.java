@@ -12,7 +12,7 @@ import java.awt.event.WindowEvent;
 
 /**
  *
- * @author isira
+ * @author Isira
  */
 public class StockManagementWindow extends javax.swing.JFrame {
 
@@ -32,14 +32,6 @@ public class StockManagementWindow extends javax.swing.JFrame {
                 MainWindow.getInstance().setVisible(true);
             }
         });
-        
-        jTabbedPane1.addTab("Food Items", new FoodItems());
-        jTabbedPane1.addTab("Cleaning Items", new CleaningItems());
-        jTabbedPane1.addTab("Room Items", new RoomItems());
-        jTabbedPane1.addTab("Pending Orders", new PendingOrders());
-        jTabbedPane1.addTab("Vendor Details", new VendorDetails());
-        jTabbedPane1.addTab("Payments", new Payments());
-        jTabbedPane1.addTab("Kitchen Items", new KitchenItems());
     }
 
     public static StockManagementWindow getInstance() {
@@ -61,11 +53,26 @@ public class StockManagementWindow extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTabbedPane1 = new javax.swing.JTabbedPane();
+        foodItems1 = new StockManagement.FoodItems();
+        cleaningItems1 = new StockManagement.CleaningItems();
+        roomItems1 = new StockManagement.RoomItems();
+        pendingOrders1 = new StockManagement.PendingOrders();
+        vendorDetails1 = new StockManagement.VendorDetails();
+        payments1 = new StockManagement.Payments();
+        kitchenItems1 = new StockManagement.KitchenItems();
         btnHome = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Stock Management");
+
+        jTabbedPane1.addTab("Food Items", foodItems1);
+        jTabbedPane1.addTab("Cleaning Items", cleaningItems1);
+        jTabbedPane1.addTab("Room Items", roomItems1);
+        jTabbedPane1.addTab("Pending Orders", pendingOrders1);
+        jTabbedPane1.addTab("Vendor Details", vendorDetails1);
+        jTabbedPane1.addTab("Payments", payments1);
+        jTabbedPane1.addTab("Kitchen Items", kitchenItems1);
 
         jScrollPane1.setViewportView(jTabbedPane1);
         jTabbedPane1.getAccessibleContext().setAccessibleName("");
@@ -77,7 +84,7 @@ public class StockManagementWindow extends javax.swing.JFrame {
             }
         });
 
-        btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Logout.png"))); // NOI18N
+        btnLogout.setText("Logout");
         btnLogout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnLogoutMouseClicked(evt);
@@ -91,12 +98,12 @@ public class StockManagementWindow extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1410, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 650, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -163,7 +170,14 @@ public class StockManagementWindow extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnLogout;
+    private StockManagement.CleaningItems cleaningItems1;
+    private StockManagement.FoodItems foodItems1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private StockManagement.KitchenItems kitchenItems1;
+    private StockManagement.Payments payments1;
+    private StockManagement.PendingOrders pendingOrders1;
+    private StockManagement.RoomItems roomItems1;
+    private StockManagement.VendorDetails vendorDetails1;
     // End of variables declaration//GEN-END:variables
 }

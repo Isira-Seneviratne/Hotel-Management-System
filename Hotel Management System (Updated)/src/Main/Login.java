@@ -7,7 +7,7 @@ package Main;
 
 /**
  *
- * @author isira
+ * @author Isira
  */
 public class Login extends javax.swing.JFrame {
 

@@ -5,11 +5,14 @@
  */
 package Main;
 
+import CustomerManagement.CustomerManagementWindow;
+import FinanceManagement.FinanceManagementWindow;
+import HRManagement.HRManagementWindow;
 import StockManagement.StockManagementWindow;
 
 /**
  *
- * @author isira
+ * @author Isira
  */
 public class MainWindow extends javax.swing.JFrame {
 
@@ -61,15 +64,30 @@ public class MainWindow extends javax.swing.JFrame {
         btnCusManagement.setBackground(new java.awt.Color(255, 102, 102));
         btnCusManagement.setForeground(new java.awt.Color(255, 255, 255));
         btnCusManagement.setText("Customer Management");
+        btnCusManagement.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCusManagementMouseClicked(evt);
+            }
+        });
 
         btnFinManagement.setBackground(new java.awt.Color(204, 153, 0));
         btnFinManagement.setText("Finance Management");
+        btnFinManagement.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnFinManagementMouseClicked(evt);
+            }
+        });
 
         btnHRManagement.setBackground(new java.awt.Color(51, 255, 51));
         btnHRManagement.setText("HR Management");
         btnHRManagement.setOpaque(false);
+        btnHRManagement.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnHRManagementMouseClicked(evt);
+            }
+        });
 
-        btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Logout.png"))); // NOI18N
+        btnLogout.setText("Logout");
         btnLogout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnLogoutMouseClicked(evt);
@@ -92,7 +110,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap(92, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnLogout)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -125,40 +143,21 @@ public class MainWindow extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnLogoutMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void btnCusManagementMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCusManagementMouseClicked
+        new CustomerManagementWindow().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnCusManagementMouseClicked
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainWindow().setVisible(true);
-            }
-        });
-    }
+    private void btnHRManagementMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHRManagementMouseClicked
+        new HRManagementWindow().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnHRManagementMouseClicked
+
+    private void btnFinManagementMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFinManagementMouseClicked
+        FinanceManagementWindow fmw = new FinanceManagementWindow();
+        fmw.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnFinManagementMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCusManagement;
