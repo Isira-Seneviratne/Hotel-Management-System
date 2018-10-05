@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Properties;
 
 /**
  *
@@ -18,21 +20,29 @@ import java.sql.SQLException;
  */
 public class DatabaseConnectionFunctions {
     private static Connection con;
+    private static Statement stmt;
     private static Object monitor = new Object();
     
-    public static Connection getConnection() throws SQLException {
+    public static void createConnection() throws ClassNotFoundException, SQLException {
         synchronized(monitor) {
             if(con == null) {
-                con = DriverManager.getConnection("jdbc://localhost:3306/hotel_db", "", "");
+                Class.forName("com.mysql.jdbc.Driver");
+                
+                Properties connProps = new Properties();
+                connProps.put("user", "isira");
+                connProps.put("password", "!qAz@wSx");
+                connProps.put("useSSL", "false");
+                
+                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel_db", connProps);
+                stmt = con.createStatement();
             }
         }
-        return con;
     }
     
     //Generates a unique ID for a record in a given table, using the given starting character
     public static String generateIDForRecord(String startChar, String tableLoadString) throws SQLException {
         String id = startChar;
-        ResultSet rows = con.prepareStatement(tableLoadString).executeQuery();
+        ResultSet rows = stmt.executeQuery(tableLoadString);
         int curID;
         if(rows.last())
             curID = rows.getRow() + 1;
@@ -45,27 +55,32 @@ public class DatabaseConnectionFunctions {
     }
     
     //Inserts a new record and returns whether or not it was successful.
-    public static boolean insertRecord(String values, String tableName) throws SQLException {
-        return con.prepareStatement("INSERT INTO" + tableName + " VALUES(" + values + ")").execute();
+    public static boolean insertRecord(String tableName, String values) throws SQLException {
+        return stmt.execute("INSERT INTO" + tableName + " VALUES(" + values + ")");
     }
     
     //Updates a specific record and returns whether or not it was successful.
-    public static boolean updateRecord(String values, String tableName, String recordIDComp) throws SQLException {
-        return con.prepareStatement("UPDATE " + tableName + " SET " + values + " WHERE " + recordIDComp).execute();
+    public static boolean updateRecord(String tableName, String values, String recordIDComp) throws SQLException {
+        return stmt.execute("UPDATE " + tableName + " SET " + values + " WHERE " + recordIDComp);
     }
     
     //Retrieves all records from a table and returns a ResultSet containing said records.
     public static ResultSet getAllRecordsFromTable(String tableName) throws SQLException {
-        return con.prepareStatement("SELECT * FROM " + tableName).executeQuery();
+        return stmt.executeQuery("SELECT * FROM " + tableName);
     }
     
     //Retrieves specific records from a table and returns a ResultSet containing said records.
-    public static ResultSet getSpecificRecordsFromTable(String condition, String tableName) throws SQLException {
-        return con.prepareStatement("SELECT * FROM " + tableName + "WHERE " + condition).executeQuery();
+    public static ResultSet getSpecificRecordsFromTable(String tableName, String condition) throws SQLException {
+        return stmt.executeQuery("SELECT * FROM " + tableName + " WHERE " + condition);
     }
     
-    //Logs the user out of the system by notifying the database.
-    public static boolean logout(String uID) {
-        return false;   //Default value for now (will be implemented later)
+    //Attempts to log in the user and returns whether or not it was not successful.
+    public static boolean login(String username, String password) throws SQLException {
+        ResultSet user = getSpecificRecordsFromTable("Login", "username = '"+username+"' AND password = '"+password+"'");
+        if(user.next()) {
+            updateRecord("Login", "`Logged in?` = 'Yes'", "eID = '"+user.getString("eID")+"'");
+            return true;
+        }
+        return false;
     }
 }

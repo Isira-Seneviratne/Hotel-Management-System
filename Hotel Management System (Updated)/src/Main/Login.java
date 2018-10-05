@@ -5,6 +5,10 @@
  */
 package Main;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Isira
@@ -122,8 +126,32 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
-        MainWindow.getInstance().setVisible(true);
-        dispose();
+        try {
+            DatabaseConnectionFunctions.createConnection();
+        } catch(ClassNotFoundException e) {
+            JOptionPane.showMessageDialog(this, "The database driver could not be loaded.", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(this, "A database connection could not be established."
+                    + " Make sure that MySQL is running.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        try {
+            String username = txtUsername.getText(), password = new String(txtPassword.getPassword());
+            if(username.trim().equals("") || password.trim().equals("")) {
+                JOptionPane.showMessageDialog(this, "You have not entered a username and/or password.", "No username/password",
+                        JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            if(DatabaseConnectionFunctions.login(username, password)) {
+                MainWindow.getInstance().setVisible(true);
+                dispose();
+            }
+            else
+                JOptionPane.showMessageDialog(this, "The login details could not be found."
+                        + " Please make sure that they are correct.", "Invalid login", JOptionPane.ERROR_MESSAGE);
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(this, "An error occurred while logging in.", "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btnLoginMouseClicked
 
     /**
