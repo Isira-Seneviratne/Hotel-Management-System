@@ -5,7 +5,6 @@
  */
 package Main;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -150,7 +149,6 @@ public class Login extends javax.swing.JFrame {
                         + " Please make sure that they are correct.", "Invalid login", JOptionPane.ERROR_MESSAGE);
         } catch(SQLException e) {
             JOptionPane.showMessageDialog(this, "An error occurred while logging in.", "Error", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
         }
     }//GEN-LAST:event_btnLoginMouseClicked
 

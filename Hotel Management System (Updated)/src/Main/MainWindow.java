@@ -98,7 +98,7 @@ public class MainWindow extends javax.swing.JFrame {
         btnStockManagement.setText("Stock Management");
         btnStockManagement.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnStockManagementMouseClicked1(evt);
+                btnStockManagementMouseClicked(evt);
             }
         });
 
@@ -180,11 +180,6 @@ public class MainWindow extends javax.swing.JFrame {
         new FinanceManagementWindow().setVisible(true);
         dispose();
     }//GEN-LAST:event_btnFinManagementMouseClicked
-
-    private void btnStockManagementMouseClicked1(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStockManagementMouseClicked1
-        StockManagementWindow.getInstance().setVisible(true);
-        dispose();
-    }//GEN-LAST:event_btnStockManagementMouseClicked1
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCusManagement;

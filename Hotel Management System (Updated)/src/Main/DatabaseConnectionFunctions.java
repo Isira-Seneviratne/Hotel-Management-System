@@ -21,21 +21,18 @@ import java.util.Properties;
 public class DatabaseConnectionFunctions {
     private static Connection con;
     private static Statement stmt;
-    private static Object monitor = new Object();
     
     public static void createConnection() throws ClassNotFoundException, SQLException {
-        synchronized(monitor) {
-            if(con == null) {
-                Class.forName("com.mysql.jdbc.Driver");
-                
-                Properties connProps = new Properties();
-                connProps.put("user", "isira");
-                connProps.put("password", "!qAz@wSx");
-                connProps.put("useSSL", "false");
-                
-                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel_db", connProps);
-                stmt = con.createStatement();
-            }
+        if(con == null) {
+            Class.forName("com.mysql.jdbc.Driver");
+
+            Properties connProps = new Properties();
+            connProps.put("user", "isira");
+            connProps.put("password", "!qAz@wSx");
+            connProps.put("useSSL", "false");
+
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel_db", connProps);
+            stmt = con.createStatement();
         }
     }
     
@@ -55,13 +52,13 @@ public class DatabaseConnectionFunctions {
     }
     
     //Inserts a new record and returns whether or not it was successful.
-    public static boolean insertRecord(String tableName, String values) throws SQLException {
-        return stmt.execute("INSERT INTO" + tableName + " VALUES(" + values + ")");
+    public static void insertRecord(String tableName, String values) throws SQLException {
+        stmt.execute("INSERT INTO" + tableName + " VALUES(" + values + ")");
     }
     
     //Updates a specific record and returns whether or not it was successful.
-    public static boolean updateRecord(String tableName, String values, String recordIDComp) throws SQLException {
-        return stmt.execute("UPDATE " + tableName + " SET " + values + " WHERE " + recordIDComp);
+    public static void updateRecord(String tableName, String values, String recordIDComp) throws SQLException {
+        stmt.execute("UPDATE " + tableName + " SET " + values + " WHERE " + recordIDComp);
     }
     
     //Retrieves all records from a table and returns a ResultSet containing said records.

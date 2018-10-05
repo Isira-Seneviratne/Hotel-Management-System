@@ -151,7 +151,7 @@
             <Property name="text" type="java.lang.String" value="Stock Management"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnStockManagementMouseClicked1"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnStockManagementMouseClicked"/>
           </Events>
         </Component>
       </SubComponents>
