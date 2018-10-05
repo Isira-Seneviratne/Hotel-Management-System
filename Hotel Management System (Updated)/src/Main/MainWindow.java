@@ -93,6 +93,11 @@ public class MainWindow extends javax.swing.JFrame {
                 btnLogoutMouseClicked(evt);
             }
         });
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -158,6 +163,10 @@ public class MainWindow extends javax.swing.JFrame {
         fmw.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnFinManagementMouseClicked
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLogoutActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCusManagement;
