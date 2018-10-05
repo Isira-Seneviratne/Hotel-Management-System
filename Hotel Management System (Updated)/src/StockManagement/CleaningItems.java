@@ -47,6 +47,8 @@ public class CleaningItems extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(0, 0, 102));
+
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Cleaning Items"));
 
         jLabel2.setText("Item name");
@@ -175,6 +177,7 @@ public class CleaningItems extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(238, 238, 238));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Cleaning Items");
 

@@ -47,6 +47,8 @@ public class FoodItems extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(0, 0, 102));
+
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Food Items"));
 
         jLabel3.setText("Food name");
@@ -164,6 +166,7 @@ public class FoodItems extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(238, 238, 238));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Food Items");
 

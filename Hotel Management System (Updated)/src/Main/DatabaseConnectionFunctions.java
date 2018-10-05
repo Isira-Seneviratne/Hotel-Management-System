@@ -20,12 +20,13 @@ public class DatabaseConnectionFunctions {
     private static Connection con;
     private static Object monitor = new Object();
     
-    public static void startDBConnection() throws SQLException {
+    public static Connection getConnection() throws SQLException {
         synchronized(monitor) {
             if(con == null) {
                 con = DriverManager.getConnection("jdbc://localhost:3306/hotel_db", "", "");
             }
         }
+        return con;
     }
     
     //Generates a unique ID for a record in a given table, using the given starting character
