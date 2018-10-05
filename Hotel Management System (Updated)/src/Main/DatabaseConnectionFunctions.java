@@ -13,18 +13,19 @@ import java.sql.SQLException;
 /**
  *
  * @author Isira
+ * 
+ * This class contains functions related to database operations for the sake of code reusability.
  */
 public class DatabaseConnectionFunctions {
     private static Connection con;
     private static Object monitor = new Object();
     
-    public static Connection getConnection() throws SQLException {
+    public static void startDBConnection() throws SQLException {
         synchronized(monitor) {
             if(con == null) {
                 con = DriverManager.getConnection("jdbc://localhost:3306/hotel_db", "", "");
             }
         }
-        return con;
     }
     
     //Generates a unique ID for a record in a given table, using the given starting character
@@ -43,22 +44,22 @@ public class DatabaseConnectionFunctions {
     }
     
     //Inserts a new record and returns whether or not it was successful.
-    public boolean insertRecord(String values, String tableName) throws SQLException {
+    public static boolean insertRecord(String values, String tableName) throws SQLException {
         return con.prepareStatement("INSERT INTO" + tableName + " VALUES(" + values + ")").execute();
     }
     
     //Updates a specific record and returns whether or not it was successful.
-    public boolean updateRecord(String values, String tableName, String recordIDComp) throws SQLException {
+    public static boolean updateRecord(String values, String tableName, String recordIDComp) throws SQLException {
         return con.prepareStatement("UPDATE " + tableName + " SET " + values + " WHERE " + recordIDComp).execute();
     }
     
     //Retrieves all records from a table and returns a ResultSet containing said records.
-    public ResultSet getAllRecordsFromTable(String tableName) throws SQLException {
+    public static ResultSet getAllRecordsFromTable(String tableName) throws SQLException {
         return con.prepareStatement("SELECT * FROM " + tableName).executeQuery();
     }
     
     //Retrieves specific records from a table and returns a ResultSet containing said records.
-    public ResultSet getSpecificRecordsFromTable(String condition, String tableName) throws SQLException {
+    public static ResultSet getSpecificRecordsFromTable(String condition, String tableName) throws SQLException {
         return con.prepareStatement("SELECT * FROM " + tableName + "WHERE " + condition).executeQuery();
     }
 }
