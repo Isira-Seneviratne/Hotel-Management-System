@@ -64,21 +64,21 @@ public class CustomerReservation_management extends javax.swing.JInternalFrame {
         jPanel13 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         BtnSerch1 = new javax.swing.JButton();
-        cmbsearch1 = new javax.swing.JComboBox<>();
         Txtsearch1 = new javax.swing.JTextField();
+        cmbsearch2 = new javax.swing.JComboBox<>();
         jPanel8 = new javax.swing.JPanel();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jRadioButton5 = new javax.swing.JRadioButton();
-        jRadioButton6 = new javax.swing.JRadioButton();
+        jRadioButtonAll = new javax.swing.JRadioButton();
+        jRadioButtonRuby = new javax.swing.JRadioButton();
+        jRadioButtonPearl = new javax.swing.JRadioButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         jPanel14 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable_cus1 = new javax.swing.JTable();
         btnAdd1 = new javax.swing.JButton();
         btnDelete1 = new javax.swing.JButton();
         btnUpdate1 = new javax.swing.JButton();
         btnClear1 = new javax.swing.JButton();
         btnGenReport1 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTableHall = new javax.swing.JTable();
 
         setPreferredSize(new java.awt.Dimension(1200, 680));
 
@@ -252,40 +252,40 @@ public class CustomerReservation_management extends javax.swing.JInternalFrame {
                 BtnSerch1ActionPerformed(evt);
             }
         });
-        jPanel7.add(BtnSerch1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 80, 30));
+        jPanel7.add(BtnSerch1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 80, 30));
+        jPanel7.add(Txtsearch1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 160, 30));
 
-        cmbsearch1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Find a Customer by name", "Find a Customer by address" }));
-        jPanel7.add(cmbsearch1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 170, 30));
-        jPanel7.add(Txtsearch1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 160, 30));
+        cmbsearch2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Find a Hall by name", "Find a Hall by ID" }));
+        jPanel7.add(cmbsearch2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 150, 30));
 
-        jPanel13.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 30, 450, 60));
+        jPanel13.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 30, 440, 60));
 
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder("View Only"));
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jRadioButton4.setText("Room");
-        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+        jRadioButtonAll.setText("All");
+        jRadioButtonAll.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton4ActionPerformed(evt);
+                jRadioButtonAllActionPerformed(evt);
             }
         });
-        jPanel8.add(jRadioButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
+        jPanel8.add(jRadioButtonAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
 
-        jRadioButton5.setText("Hall");
-        jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
+        jRadioButtonRuby.setText("Hall Ruby");
+        jRadioButtonRuby.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton5ActionPerformed(evt);
+                jRadioButtonRubyActionPerformed(evt);
             }
         });
-        jPanel8.add(jRadioButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 52, -1, -1));
+        jPanel8.add(jRadioButtonRuby, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
-        jRadioButton6.setText("All ");
-        jRadioButton6.addActionListener(new java.awt.event.ActionListener() {
+        jRadioButtonPearl.setText("Hall Pearl");
+        jRadioButtonPearl.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton6ActionPerformed(evt);
+                jRadioButtonPearlActionPerformed(evt);
             }
         });
-        jPanel8.add(jRadioButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 78, -1, -1));
+        jPanel8.add(jRadioButtonPearl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
 
         jPanel13.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 110, 110));
 
@@ -307,25 +307,6 @@ public class CustomerReservation_management extends javax.swing.JInternalFrame {
         jPanel14.setBackground(new java.awt.Color(248, 248, 248));
         jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder("Customer Details"));
 
-        jTable_cus1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Name and surname / Company name", "Address", "Phone", "E-mail", "Gender", "NIC/ Passport", "Nationality", "Regular", "Blacklisted", "Comments"
-            }
-        ));
-        jScrollPane2.setViewportView(jTable_cus1);
-
         btnAdd1.setBackground(new java.awt.Color(102, 153, 255));
         btnAdd1.setForeground(new java.awt.Color(238, 238, 238));
         btnAdd1.setText("Add");
@@ -344,15 +325,36 @@ public class CustomerReservation_management extends javax.swing.JInternalFrame {
         btnGenReport1.setBackground(new java.awt.Color(255, 255, 0));
         btnGenReport1.setText("Generate Report");
 
+        jTableHall.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Booking ID", "Customer Name", "Reservation Date", "Hall Name", "Description", "Total Amount"
+            }
+        ));
+        jTableHall.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableHallMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(jTableHall);
+
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
         jPanel14Layout.setHorizontalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel14Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 9, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(487, Short.MAX_VALUE)
                 .addComponent(btnAdd1)
                 .addGap(18, 18, 18)
                 .addComponent(btnDelete1)
@@ -363,13 +365,17 @@ public class CustomerReservation_management extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnGenReport1)
                 .addGap(228, 228, 228))
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 1112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(85, 85, 85)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdd1)
                     .addComponent(btnDelete1)
@@ -379,7 +385,7 @@ public class CustomerReservation_management extends javax.swing.JInternalFrame {
                 .addContainerGap(99, Short.MAX_VALUE))
         );
 
-        jPanel5.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
+        jPanel5.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 1150, -1));
 
         jTabbedPane1.addTab("Reservation Information", jPanel5);
 
@@ -477,18 +483,6 @@ public class CustomerReservation_management extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_BtnSerch1ActionPerformed
 
-    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton4ActionPerformed
-
-    private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton5ActionPerformed
-
-    private void jRadioButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton6ActionPerformed
-
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
         /*String type = jComboBox1.getSelectedItem().toString();
         if (type.equals("Select Reservation type")) {
@@ -507,6 +501,26 @@ public class CustomerReservation_management extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jComboBox1PropertyChange
 
+    private void jRadioButtonAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonAllActionPerformed
+        // TODO add your handling code here:
+        //LoadbookingTable();
+    }//GEN-LAST:event_jRadioButtonAllActionPerformed
+
+    private void jRadioButtonRubyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonRubyActionPerformed
+        // TODO add your handling code here:
+        //LoadbookingTableRuby();
+    }//GEN-LAST:event_jRadioButtonRubyActionPerformed
+
+    private void jRadioButtonPearlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonPearlActionPerformed
+        // TODO add your handling code here:
+        //LoadbookingTablepearl();
+    }//GEN-LAST:event_jRadioButtonPearlActionPerformed
+
+    private void jTableHallMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableHallMouseClicked
+        // TODO add your handling code here:
+      
+    }//GEN-LAST:event_jTableHallMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnSerch;
@@ -524,7 +538,7 @@ public class CustomerReservation_management extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnUpdate1;
     private javax.swing.JComboBox<String> cmbsearch;
-    private javax.swing.JComboBox<String> cmbsearch1;
+    private javax.swing.JComboBox<String> cmbsearch2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel11;
@@ -540,14 +554,14 @@ public class CustomerReservation_management extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton5;
-    private javax.swing.JRadioButton jRadioButton6;
+    private javax.swing.JRadioButton jRadioButtonAll;
+    private javax.swing.JRadioButton jRadioButtonPearl;
+    private javax.swing.JRadioButton jRadioButtonRuby;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTableHall;
     private javax.swing.JTable jTable_cus;
-    private javax.swing.JTable jTable_cus1;
     // End of variables declaration//GEN-END:variables
 
     
