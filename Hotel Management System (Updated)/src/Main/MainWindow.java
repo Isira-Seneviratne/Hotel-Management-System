@@ -96,6 +96,11 @@ public class MainWindow extends javax.swing.JFrame {
                 btnLogoutMouseClicked(evt);
             }
         });
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -171,6 +176,10 @@ public class MainWindow extends javax.swing.JFrame {
         new FinanceManagementWindow().setVisible(true);
         dispose();
     }//GEN-LAST:event_btnFinManagementMouseClicked
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLogoutActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCusManagement;
