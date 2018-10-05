@@ -48,6 +48,7 @@ public class FoodItems extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 0, 102));
+        setMinimumSize(new java.awt.Dimension(1441, 327));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Food Items"));
 
