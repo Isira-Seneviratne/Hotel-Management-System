@@ -13,9 +13,6 @@ package CustomerManagement;
  * @author Upeksha
  */
 
-
-import java.util.Date;
-
 public class Customer {
  
     private int bookingID;

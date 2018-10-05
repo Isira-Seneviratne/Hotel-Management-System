@@ -6,14 +6,10 @@
 package CustomerManagement;
 
 //import HMS_Home.MHome;
-import FinanceManagement.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.swing.JDesktopPane;
-import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *

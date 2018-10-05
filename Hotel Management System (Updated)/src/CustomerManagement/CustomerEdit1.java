@@ -70,7 +70,7 @@ public class CustomerEdit1 extends javax.swing.JFrame {
         TxtaAddress = new javax.swing.JTextArea();
         jLabel10 = new javax.swing.JLabel();
         CheckRegular = new javax.swing.JCheckBox();
-        CheckBacklisted = new javax.swing.JCheckBox();
+        CheckBlacklisted = new javax.swing.JCheckBox();
         jPanel2 = new javax.swing.JPanel();
         BtnSave = new javax.swing.JButton();
         BtnCancle = new javax.swing.JButton();
@@ -137,11 +137,11 @@ public class CustomerEdit1 extends javax.swing.JFrame {
         CheckRegular.setForeground(new java.awt.Color(255, 255, 255));
         CheckRegular.setText("Regular");
 
-        CheckBacklisted.setBackground(new java.awt.Color(0, 0, 102));
-        buttonGroup1.add(CheckBacklisted);
-        CheckBacklisted.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        CheckBacklisted.setForeground(new java.awt.Color(255, 255, 255));
-        CheckBacklisted.setText("Backlisted");
+        CheckBlacklisted.setBackground(new java.awt.Color(0, 0, 102));
+        buttonGroup1.add(CheckBlacklisted);
+        CheckBlacklisted.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        CheckBlacklisted.setForeground(new java.awt.Color(255, 255, 255));
+        CheckBlacklisted.setText("Blacklisted");
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 102));
 
@@ -212,7 +212,7 @@ public class CustomerEdit1 extends javax.swing.JFrame {
                                 .addGap(87, 87, 87)
                                 .addComponent(CheckRegular)
                                 .addGap(40, 40, 40)
-                                .addComponent(CheckBacklisted))
+                                .addComponent(CheckBlacklisted))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -287,7 +287,7 @@ public class CustomerEdit1 extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(CheckRegular)
-                    .addComponent(CheckBacklisted))
+                    .addComponent(CheckBlacklisted))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(58, 58, 58))
@@ -421,7 +421,7 @@ void clearFields() {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnCancle;
     private javax.swing.JButton BtnSave;
-    private javax.swing.JCheckBox CheckBacklisted;
+    private javax.swing.JCheckBox CheckBlacklisted;
     private javax.swing.JCheckBox CheckRegular;
     private javax.swing.JComboBox<String> CmbNationality;
     private javax.swing.JTextField TxtEmail;

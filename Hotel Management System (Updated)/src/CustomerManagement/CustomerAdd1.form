@@ -71,7 +71,7 @@
                                   <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
                                   <Component id="CheckRegular" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                                  <Component id="CheckBacklisted" min="-2" max="-2" attributes="0"/>
+                                  <Component id="CheckBlacklisted" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -171,7 +171,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="CheckRegular" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="CheckBacklisted" min="-2" max="-2" attributes="0"/>
+                      <Component id="CheckBlacklisted" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
@@ -283,9 +283,6 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Verdana" size="12" style="0"/>
             </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color type="null"/>
-            </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="41">
                 <StringItem index="0" value="American"/>
@@ -394,7 +391,7 @@
             <Property name="text" type="java.lang.String" value="Regular"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="CheckBacklisted">
+        <Component class="javax.swing.JCheckBox" name="CheckBlacklisted">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="0" red="0" type="rgb"/>
@@ -408,7 +405,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Backlisted"/>
+            <Property name="text" type="java.lang.String" value="Blacklisted"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel2">

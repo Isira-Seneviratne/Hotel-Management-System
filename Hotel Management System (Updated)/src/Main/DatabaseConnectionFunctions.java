@@ -63,4 +63,9 @@ public class DatabaseConnectionFunctions {
     public static ResultSet getSpecificRecordsFromTable(String condition, String tableName) throws SQLException {
         return con.prepareStatement("SELECT * FROM " + tableName + "WHERE " + condition).executeQuery();
     }
+    
+    //Logs the user out of the system by notifying the database.
+    public static boolean logout(String uID) {
+        return false;   //Default value for now (will be implemented later)
+    }
 }
