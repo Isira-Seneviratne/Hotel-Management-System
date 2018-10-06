@@ -9,6 +9,8 @@ import CustomerManagement.CustomerManagementWindow;
 import FinanceManagement.FinanceManagementWindow;
 import HRManagement.HRManagementWindow;
 import StockManagement.StockManagementWindow;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,17 +20,22 @@ public class MainWindow extends javax.swing.JFrame {
 
     private static MainWindow instance;
     private static Object monitor = new Object();
+    private String curEID;
+    
     /**
      * Creates new form MainWindow
+     * @param eID
      */
-    public MainWindow() {
+    public MainWindow(String eID) {
         initComponents();
+        curEID = eID;
     }
 
-    public static MainWindow getInstance() {
+    //Ensures that only one instance of MainWindow can exist at a given time.
+    public static MainWindow getInstance(String eID) {
         synchronized(monitor) {
             if(instance == null)
-                instance = new MainWindow();
+                instance = new MainWindow(eID);
         }
         return instance;
     }
@@ -42,20 +49,19 @@ public class MainWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnStockManagement = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         btnCusManagement = new javax.swing.JButton();
         btnFinManagement = new javax.swing.JButton();
         btnHRManagement = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
+        btnStockManagement = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Main Window");
         setResizable(false);
 
-        btnStockManagement.setBackground(new java.awt.Color(51, 102, 255));
-        btnStockManagement.setForeground(new java.awt.Color(238, 238, 238));
-        btnStockManagement.setText("Stock Management");
-        btnStockManagement.addMouseListener(new java.awt.event.MouseAdapter() {
+        jPanel1.setBackground(new java.awt.Color(0, 0, 102));
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnStockManagementMouseClicked(evt);
             }
@@ -94,39 +100,63 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        btnStockManagement.setBackground(new java.awt.Color(51, 0, 153));
+        btnStockManagement.setForeground(new java.awt.Color(238, 238, 238));
+        btnStockManagement.setText("Stock Management");
+        btnStockManagement.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnStockManagementMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnLogout)
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnFinManagement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnStockManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnHRManagement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCusManagement))
+                .addGap(106, 106, 106))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCusManagement)
+                    .addComponent(btnStockManagement))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnHRManagement)
+                    .addComponent(btnFinManagement))
+                .addGap(73, 73, 73))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnFinManagement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnStockManagement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(77, 77, 77)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnHRManagement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCusManagement))
-                .addContainerGap(92, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnLogout)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnStockManagement)
-                    .addComponent(btnCusManagement))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnFinManagement)
-                    .addComponent(btnHRManagement))
-                .addGap(67, 67, 67))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -134,13 +164,21 @@ public class MainWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnStockManagementMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStockManagementMouseClicked
-        StockManagementWindow.getInstance().setVisible(true);
+        StockManagementWindow.getInstance(curEID).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnStockManagementMouseClicked
 
     private void btnLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogoutMouseClicked
-        new Login().setVisible(true);
-        dispose();
+        try {
+            DatabaseConnectionFunctions.logout(curEID);
+            JOptionPane.showMessageDialog(this, "Successfully logged out of the system.", "Success",
+                    JOptionPane.INFORMATION_MESSAGE);
+            new Login().setVisible(true);
+            dispose();
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(this, "A problem occurred while logging out."
+                    + " Make sure you are connected to the database.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnLogoutMouseClicked
 
     private void btnCusManagementMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCusManagementMouseClicked
@@ -154,8 +192,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHRManagementMouseClicked
 
     private void btnFinManagementMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFinManagementMouseClicked
-        FinanceManagementWindow fmw = new FinanceManagementWindow();
-        fmw.setVisible(true);
+        new FinanceManagementWindow().setVisible(true);
         dispose();
     }//GEN-LAST:event_btnFinManagementMouseClicked
 
@@ -165,5 +202,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton btnHRManagement;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnStockManagement;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

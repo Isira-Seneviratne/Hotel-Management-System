@@ -5,6 +5,8 @@
  */
 package FinanceManagement;
 
+import Main.MainWindow;
+
 /**
  *
  * @author Lakshika
@@ -1066,6 +1068,11 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
     private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton28ActionPerformed
+
+    private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
+        MainWindow.getInstance().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnHomeMouseClicked
 
     /**
      * @param args the command line arguments
