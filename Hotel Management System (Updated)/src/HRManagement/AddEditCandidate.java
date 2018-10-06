@@ -12,7 +12,6 @@ package HRManagement;
 public class AddEditCandidate extends javax.swing.JFrame {
 
     private String curEID;
-    
     /**
      * Creates new form AddEditCandidate
      * @param eID
@@ -234,12 +233,12 @@ public class AddEditCandidate extends javax.swing.JFrame {
         jLabel14.setText("Add/Edit Candidate");
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(0, 153, 102));
+        jButton1.setBackground(new java.awt.Color(42, 199, 42));
         jButton1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton1.setText("Add");
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 600, 90, -1));
 
-        jButton2.setBackground(new java.awt.Color(204, 102, 0));
+        jButton2.setBackground(new java.awt.Color(255, 204, 51));
         jButton2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton2.setText("Update");
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 600, -1, -1));
@@ -277,8 +276,10 @@ public class AddEditCandidate extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void backtButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backtButtonActionPerformed
-        new HRManagementWindow(curEID).setVisible(true);
-        dispose();
+        // TODO add your handling code here:
+        this.dispose();
+        HRManagementWindow hr = new HRManagementWindow(curEID);
+        hr.setVisible(true);
     }//GEN-LAST:event_backtButtonActionPerformed
 
     /**
