@@ -28,8 +28,8 @@ public class DatabaseConnectionFunctions {
             Class.forName("com.mysql.jdbc.Driver");
 
             Properties connProps = new Properties();
-            connProps.put("user", "user");
-            connProps.put("password", "abcd1234");
+            connProps.put("user", "root");
+            connProps.put("password", "");
             connProps.put("useSSL", "false");
 
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel_db", connProps);
@@ -37,7 +37,7 @@ public class DatabaseConnectionFunctions {
         }
     }
     
-    //Generates a unique ID for a record in a given table, using the given starting character.
+    //Generates a unique ID for a record in a given table, using the given starting character
     public static String generateIDForRecord(String startChar, String tableLoadString) throws SQLException {
         String id = startChar;
         ResultSet rows = stmt.executeQuery(tableLoadString);

@@ -42,7 +42,7 @@ public class Login extends javax.swing.JFrame {
         setTitle("Login");
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 102));
+        jPanel1.setBackground(new java.awt.Color(0, 0, 51));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(238, 238, 238));
@@ -54,8 +54,7 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(238, 238, 238));
         jLabel3.setText("Password");
 
-        btnLogin.setBackground(new java.awt.Color(51, 0, 51));
-        btnLogin.setForeground(new java.awt.Color(238, 238, 238));
+        btnLogin.setBackground(new java.awt.Color(153, 153, 153));
         btnLogin.setText("Login");
         btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -131,10 +130,7 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "The database driver could not be loaded.", "Error", JOptionPane.ERROR_MESSAGE);
         } catch(SQLException e) {
             JOptionPane.showMessageDialog(this, "A database connection could not be established."
-                    + " Make sure that MySQL is running and the database is properly configured.", "Error",
-                    JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
-            return;
+                    + " Make sure that MySQL is running.", "Error", JOptionPane.ERROR_MESSAGE);
         }
         try {
             String username = txtUsername.getText(), password = new String(txtPassword.getPassword());
