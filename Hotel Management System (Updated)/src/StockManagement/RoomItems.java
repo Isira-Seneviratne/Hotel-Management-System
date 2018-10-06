@@ -72,12 +72,15 @@ public class RoomItems extends javax.swing.JPanel {
         btnAdd.setForeground(new java.awt.Color(238, 238, 238));
         btnAdd.setText("Add");
 
+        jLabel3.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(238, 238, 238));
         jLabel3.setText("Room Number");
 
+        jLabel4.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(238, 238, 238));
         jLabel4.setText("Item name");
 
+        jLabel5.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(238, 238, 238));
         jLabel5.setText("Quantity");
 
@@ -142,6 +145,7 @@ public class RoomItems extends javax.swing.JPanel {
                 "Item ID", "Item name", "Room number", "Quantity"
             }
         ));
+        jTable1.setPreferredSize(new java.awt.Dimension(450, 0));
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -155,7 +159,7 @@ public class RoomItems extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 758, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 786, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

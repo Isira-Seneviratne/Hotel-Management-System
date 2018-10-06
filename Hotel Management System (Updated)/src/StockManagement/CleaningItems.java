@@ -53,18 +53,24 @@ public class CleaningItems extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(28, 48, 90));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cleaning Items", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(238, 238, 238))); // NOI18N
 
+        jLabel2.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(238, 238, 238));
         jLabel2.setText("Item name");
 
+        jLabel3.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(238, 238, 238));
         jLabel3.setText("Quantity");
 
+        jLabel4.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(238, 238, 238));
         jLabel4.setText("Price");
 
+        jLabel5.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(238, 238, 238));
         jLabel5.setText("Purchase date");
 
+        jLabel6.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(238, 238, 238));
         jLabel6.setText("Vendor");
 
         btnAdd.setBackground(new java.awt.Color(102, 153, 255));
@@ -90,11 +96,11 @@ public class CleaningItems extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addGap(47, 47, 47)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtItemName, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
+                .addComponent(txtItemName, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtQty, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -108,7 +114,7 @@ public class CleaningItems extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
+                        .addGap(84, 84, 84)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)

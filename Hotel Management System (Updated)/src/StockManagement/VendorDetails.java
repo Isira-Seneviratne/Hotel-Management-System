@@ -167,6 +167,7 @@ public class VendorDetails extends javax.swing.JPanel {
                 "Vendor ID", "Vendor name", "Address", "Telephone number", "Email"
             }
         ));
+        jTable1.setPreferredSize(new java.awt.Dimension(450, 0));
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

@@ -384,7 +384,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Date", "Reciept No", "Reciept Type", "Department", "Sale", "Payment", "Payment Method", "Sub Total ", "Tax", "Discount", "Total"
+                "Date", "Receipt No.", "Receipt Type", "Department", "Sale", "Payment", "Payment Method", "Sub Total ", "Tax", "Discount", "Total"
             }
         ));
         jTable7.setSelectionBackground(new java.awt.Color(255, 204, 204));
@@ -448,7 +448,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Date", "Reciept No", "Payment", "Sub Total", "Tax", "Discount", "Total"
+                "Date", "Receipt No.", "Payment", "Sub Total", "Tax", "Discount", "Total"
             }
         ));
         jTable2.setSelectionBackground(new java.awt.Color(255, 204, 204));
@@ -514,7 +514,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Date", "Reciept No", "Sale", "Sub Total", "Tax", "Discount", "Total"
+                "Date", "Receipt No.", "Sale", "Sub Total", "Tax", "Discount", "Total"
             }
         ));
         jTable3.setSelectionBackground(new java.awt.Color(255, 204, 204));
@@ -732,7 +732,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Cash Flows form Operating Activities", "Value", "Total"
+                "Cash Flows from Operating Activities", "Value", "Total"
             }
         ));
         jScrollPane18.setViewportView(jTable18);
@@ -757,7 +757,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Cash Flows form Financing Activities", "Value", "Total"
+                "Cash Flows from Financing Activities", "Value", "Total"
             }
         ));
         jScrollPane20.setViewportView(jTable20);
@@ -805,7 +805,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel26Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane20, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel26Layout.createSequentialGroup()
                         .addComponent(jScrollPane19, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1000,10 +1000,10 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         jPanel14.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 260, 50));
 
         btnHome1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Home.png"))); // NOI18N
-        jPanel14.add(btnHome1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 10, 50, 40));
+        jPanel14.add(btnHome1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 10, 50, 40));
 
         btnLogout1.setText("Logout");
-        jPanel14.add(btnLogout1, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 10, -1, 39));
+        jPanel14.add(btnLogout1, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 10, -1, 39));
 
         getContentPane().add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 970, 660));
 
