@@ -21,14 +21,17 @@ public class MainWindow extends javax.swing.JFrame {
     private static MainWindow instance;
     private static Object monitor = new Object();
     private String curEID;
+    
     /**
      * Creates new form MainWindow
+     * @param eID
      */
     public MainWindow(String eID) {
         initComponents();
         curEID = eID;
     }
 
+    //Ensures that only one instance of MainWindow can exist at a given time.
     public static MainWindow getInstance(String eID) {
         synchronized(monitor) {
             if(instance == null)
