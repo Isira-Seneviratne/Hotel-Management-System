@@ -9,6 +9,8 @@ import CustomerManagement.CustomerManagementWindow;
 import FinanceManagement.FinanceManagementWindow;
 import HRManagement.HRManagementWindow;
 import StockManagement.StockManagementWindow;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,17 +20,19 @@ public class MainWindow extends javax.swing.JFrame {
 
     private static MainWindow instance;
     private static Object monitor = new Object();
+    private String curEID;
     /**
      * Creates new form MainWindow
      */
-    public MainWindow() {
+    public MainWindow(String eID) {
         initComponents();
+        curEID = eID;
     }
 
-    public static MainWindow getInstance() {
+    public static MainWindow getInstance(String eID) {
         synchronized(monitor) {
             if(instance == null)
-                instance = new MainWindow();
+                instance = new MainWindow(eID);
         }
         return instance;
     }
@@ -157,13 +161,21 @@ public class MainWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnStockManagementMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStockManagementMouseClicked
-        StockManagementWindow.getInstance().setVisible(true);
+        StockManagementWindow.getInstance(curEID).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnStockManagementMouseClicked
 
     private void btnLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogoutMouseClicked
-        new Login().setVisible(true);
-        dispose();
+        try {
+            DatabaseConnectionFunctions.logout(curEID);
+            JOptionPane.showMessageDialog(this, "Successfully logged out of the system.", "Success",
+                    JOptionPane.INFORMATION_MESSAGE);
+            new Login().setVisible(true);
+            dispose();
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(this, "A problem occurred while logging out."
+                    + " Make sure you are connected to the database.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnLogoutMouseClicked
 
     private void btnCusManagementMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCusManagementMouseClicked

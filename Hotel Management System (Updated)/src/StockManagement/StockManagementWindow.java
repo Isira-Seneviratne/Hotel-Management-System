@@ -5,10 +5,13 @@
  */
 package StockManagement;
 
+import Main.DatabaseConnectionFunctions;
 import Main.Login;
 import Main.MainWindow;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,26 +21,29 @@ public class StockManagementWindow extends javax.swing.JFrame {
 
     private static StockManagementWindow instance;
     private static Object monitor = new Object();
+    private String curEID;
     /**
      * Creates new form StockManagementWindow
+     * @param eID
      */
-    public StockManagementWindow() {
+    public StockManagementWindow(String eID) {
         initComponents();
+        curEID = eID;
         
         //The following code was based on the following tutorial:
         //https://examples.javacodegeeks.com/desktop-java/awt/event/window-closing-event-handling/
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
-                MainWindow.getInstance().setVisible(true);
+                MainWindow.getInstance(curEID).setVisible(true);
             }
         });
     }
 
-    public static StockManagementWindow getInstance() {
+    public static StockManagementWindow getInstance(String eID) {
         synchronized(monitor) {
             if(instance == null)
-                instance = new StockManagementWindow();
+                instance = new StockManagementWindow(eID);
         }
         return instance;
     }
@@ -143,44 +149,17 @@ public class StockManagementWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLogoutMouseClicked
 
     private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
-        MainWindow.getInstance().setVisible(true);
-        dispose();
-    }//GEN-LAST:event_btnHomeMouseClicked
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(StockManagementWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(StockManagementWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(StockManagementWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(StockManagementWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            DatabaseConnectionFunctions.logout(curEID);
+            JOptionPane.showMessageDialog(this, "Successfully logged out of the system.", "Success",
+                    JOptionPane.INFORMATION_MESSAGE);
+            new Login().setVisible(true);
+            dispose();
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(this, "A problem occurred while logging out."
+                    + " Make sure you are connected to the database.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new StockManagementWindow().setVisible(true);
-            }
-        });
-    }
+    }//GEN-LAST:event_btnHomeMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHome;

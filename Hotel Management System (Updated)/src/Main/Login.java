@@ -141,7 +141,7 @@ public class Login extends javax.swing.JFrame {
                 return;
             }
             if(DatabaseConnectionFunctions.login(username, password)) {
-                MainWindow.getInstance().setVisible(true);
+                MainWindow.getInstance(DatabaseConnectionFunctions.getEID(username, password)).setVisible(true);
                 dispose();
             }
             else

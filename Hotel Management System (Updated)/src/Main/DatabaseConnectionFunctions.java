@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -79,5 +80,18 @@ public class DatabaseConnectionFunctions {
             return true;
         }
         return false;
+    }
+    
+    //Logs the user out of the system; if an issue occurs, a SQLException is thrown.
+    public static void logout(String eID) throws SQLException {
+        updateRecord("Login", "`Logged in?` = 'No'", "eID = '"+eID+"'");
+        JOptionPane.showMessageDialog(null, "Successfully logged out of the system.", "Logout", JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    //Returns the employee ID corresponding to the given username and password.
+    public static String getEID(String username, String password) throws SQLException {
+        ResultSet user = getSpecificRecordsFromTable("Login", "username = '"+username+"' AND password = '"+password+"'");
+        user.next();
+        return user.getString("eID");
     }
 }
