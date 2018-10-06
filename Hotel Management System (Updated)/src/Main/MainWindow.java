@@ -182,17 +182,17 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLogoutMouseClicked
 
     private void btnCusManagementMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCusManagementMouseClicked
-        new CustomerManagementWindow().setVisible(true);
+        new CustomerManagementWindow(curEID).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCusManagementMouseClicked
 
     private void btnHRManagementMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHRManagementMouseClicked
-        new HRManagementWindow().setVisible(true);
+        new HRManagementWindow(curEID).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnHRManagementMouseClicked
 
     private void btnFinManagementMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFinManagementMouseClicked
-        new FinanceManagementWindow().setVisible(true);
+        new FinanceManagementWindow(curEID).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnFinManagementMouseClicked
 

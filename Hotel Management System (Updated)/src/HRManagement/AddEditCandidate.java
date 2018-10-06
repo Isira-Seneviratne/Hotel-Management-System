@@ -11,11 +11,15 @@ package HRManagement;
  */
 public class AddEditCandidate extends javax.swing.JFrame {
 
+    private String curEID;
+    
     /**
      * Creates new form AddEditCandidate
+     * @param eID
      */
-    public AddEditCandidate() {
+    public AddEditCandidate(String eID) {
         initComponents();
+        curEID = eID;
     }
 
     /**
@@ -273,10 +277,8 @@ public class AddEditCandidate extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void backtButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backtButtonActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-        HRManagementWindow hr = new HRManagementWindow();
-        hr.setVisible(true);
+        new HRManagementWindow(curEID).setVisible(true);
+        dispose();
     }//GEN-LAST:event_backtButtonActionPerformed
 
     /**
@@ -309,7 +311,7 @@ public class AddEditCandidate extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddEditCandidate().setVisible(true);
+                new AddEditCandidate("").setVisible(true);
             }
         });
     }

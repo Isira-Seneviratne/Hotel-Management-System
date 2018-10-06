@@ -14,13 +14,14 @@ import Main.MainWindow;
  */
 public class HRManagementWindow extends javax.swing.JFrame {
 
+    private String curEID;
     /**
      * Creates new form HRManagementWindow
      */
-    public HRManagementWindow() {
+    public HRManagementWindow(String eID) {
         initComponents();
+        curEID = eID;
         //jTabbedPane1.addTab("User", new User());
-         
     }
 
     /**
@@ -1133,10 +1134,8 @@ public class HRManagementWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-        AddEditCandidate ae = new AddEditCandidate();
-        ae.setVisible(true);
+        new AddEditCandidate(curEID).setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
@@ -1182,10 +1181,8 @@ public class HRManagementWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-        // TODO add your handling code here:MainWindow
+        new Login().setVisible(true);
         dispose();
-        Login log = new Login();
-        log.setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     /**
@@ -1218,7 +1215,7 @@ public class HRManagementWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HRManagementWindow().setVisible(true);
+                new HRManagementWindow("").setVisible(true);
             }
         });
         

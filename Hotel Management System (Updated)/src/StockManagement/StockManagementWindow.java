@@ -74,7 +74,8 @@ public class StockManagementWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Stock Management");
-        setPreferredSize(new java.awt.Dimension(1422, 368));
+        setMinimumSize(new java.awt.Dimension(970, 660));
+        setPreferredSize(new java.awt.Dimension(970, 660));
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 102));
 

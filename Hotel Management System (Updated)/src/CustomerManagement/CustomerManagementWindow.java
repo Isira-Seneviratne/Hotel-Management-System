@@ -11,11 +11,15 @@ package CustomerManagement;
  */
 public class CustomerManagementWindow extends javax.swing.JFrame {
 
+    private String curEID;
+    
     /**
      * Creates new form CustomerManagementWindow
+     * @param eID
      */
-    public CustomerManagementWindow() {
+    public CustomerManagementWindow(String eID) {
         initComponents();
+        curEID = eID;
     }
 
     /**
@@ -575,7 +579,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CustomerManagementWindow().setVisible(true);
+                new CustomerManagementWindow("").setVisible(true);
             }
         });
     }

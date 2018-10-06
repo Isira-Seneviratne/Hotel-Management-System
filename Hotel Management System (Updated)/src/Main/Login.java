@@ -133,6 +133,8 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "A database connection could not be established."
                     + " Make sure that MySQL is running and the database is properly configured.", "Error",
                     JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+            return;
         }
         try {
             String username = txtUsername.getText(), password = new String(txtPassword.getPassword());

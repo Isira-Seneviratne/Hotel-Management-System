@@ -13,11 +13,13 @@ import Main.MainWindow;
  */
 public class FinanceManagementWindow extends javax.swing.JFrame {
 
+    private String curEID;
     /**
      * Creates new form FinanceManagement
      */
-    public FinanceManagementWindow() {
+    public FinanceManagementWindow(String eID) {
         initComponents();
+        curEID = eID;
     }
 
     /**
@@ -1070,8 +1072,8 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton28ActionPerformed
 
     private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
-        //MainWindow.getInstance().setVisible(true);
-        //dispose();
+        MainWindow.getInstance(curEID).setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnHomeMouseClicked
 
     /**
@@ -1105,7 +1107,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FinanceManagementWindow().setVisible(true);
+                new FinanceManagementWindow("").setVisible(true);
             }
         });
     }
