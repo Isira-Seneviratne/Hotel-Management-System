@@ -1070,8 +1070,8 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton28ActionPerformed
 
     private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
-        MainWindow.getInstance().setVisible(true);
-        dispose();
+        //MainWindow.getInstance().setVisible(true);
+        //dispose();
     }//GEN-LAST:event_btnHomeMouseClicked
 
     /**

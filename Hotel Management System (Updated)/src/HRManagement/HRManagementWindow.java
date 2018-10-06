@@ -1177,8 +1177,8 @@ public class HRManagementWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton22ActionPerformed
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        MainWindow.getInstance().setVisible(true);
-        dispose();
+        //MainWindow.getInstance().setVisible(true);
+        //dispose();
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
