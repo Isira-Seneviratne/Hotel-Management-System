@@ -28,8 +28,8 @@ public class DatabaseConnectionFunctions {
             Class.forName("com.mysql.jdbc.Driver");
 
             Properties connProps = new Properties();
-            connProps.put("user", "isira");
-            connProps.put("password", "!qAz@wSx");
+            connProps.put("user", "user");
+            connProps.put("password", "abcd1234");
             connProps.put("useSSL", "false");
 
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel_db", connProps);
