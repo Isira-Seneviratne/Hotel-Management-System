@@ -13,12 +13,13 @@ import Main.MainWindow;
  * @author Upeksha
  */
 public class CustomerManagementWindow extends javax.swing.JFrame {
-
+    private String curEID;
     /**
      * Creates new form CustomerManagementWindow
      */
-    public CustomerManagementWindow() {
+    public CustomerManagementWindow(String eID) {
         initComponents();
+        curEID = eID;
     }
 
     /**
@@ -101,6 +102,11 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 20, 60));
 
         btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Home.png"))); // NOI18N
+        btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnHomeMouseClicked(evt);
+            }
+        });
         btnHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHomeActionPerformed(evt);
@@ -767,6 +773,12 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         log.setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
+    private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
+        // TODO add your handling code here:
+        MainWindow.getInstance(curEID).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnHomeMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -812,7 +824,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CustomerManagementWindow().setVisible(true);
+                new CustomerManagementWindow("").setVisible(true);
             }
         });
     }

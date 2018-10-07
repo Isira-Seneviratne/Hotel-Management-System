@@ -85,6 +85,11 @@ public class StockManagementWindow extends javax.swing.JFrame {
                 btnHomeMouseClicked(evt);
             }
         });
+        btnHome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHomeActionPerformed(evt);
+            }
+        });
 
         btnLogout.setText("Logout");
         btnLogout.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -170,6 +175,10 @@ public class StockManagementWindow extends javax.swing.JFrame {
                     + " Make sure you are connected to the database.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnHomeMouseClicked
+
+    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnHomeActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHome;

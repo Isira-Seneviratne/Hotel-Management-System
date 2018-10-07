@@ -5,6 +5,7 @@
  */
 package FinanceManagement;
 
+import Main.Login;
 import Main.MainWindow;
 
 /**
@@ -1000,9 +1001,19 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         jPanel14.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 260, 50));
 
         btnHome1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Home.png"))); // NOI18N
+        btnHome1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnHome1MouseClicked(evt);
+            }
+        });
         jPanel14.add(btnHome1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 10, 50, 40));
 
         btnLogout1.setText("Logout");
+        btnLogout1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogout1ActionPerformed(evt);
+            }
+        });
         jPanel14.add(btnLogout1, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 10, -1, 39));
 
         getContentPane().add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 970, 660));
@@ -1075,6 +1086,19 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         MainWindow.getInstance(curEID).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnHomeMouseClicked
+
+    private void btnHome1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHome1MouseClicked
+        // TODO add your handling code here:
+        MainWindow.getInstance(curEID).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnHome1MouseClicked
+
+    private void btnLogout1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogout1ActionPerformed
+        // TODO add your handling code here:
+         dispose();
+        Login log = new Login();
+        log.setVisible(true);
+    }//GEN-LAST:event_btnLogout1ActionPerformed
 
     /**
      * @param args the command line arguments
