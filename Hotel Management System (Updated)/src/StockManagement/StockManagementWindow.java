@@ -31,8 +31,12 @@ public class StockManagementWindow extends javax.swing.JFrame {
         initComponents();
         curEID = eID;
         
-        //The following code was based on the following tutorial:
-        //https://examples.javacodegeeks.com/desktop-java/awt/event/window-closing-event-handling/
+        /* The following code was based on code included in the the following tutorial:
+         *
+         * Tsagklis, Ilias, Window closing event handling. November 11, 2012.
+         * https://examples.javacodegeeks.com/desktop-java/awt/event/window-closing-event-handling/
+         * Accessed October 5, 2018.
+         */
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
@@ -83,11 +87,6 @@ public class StockManagementWindow extends javax.swing.JFrame {
         btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnHomeMouseClicked(evt);
-            }
-        });
-        btnHome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHomeActionPerformed(evt);
             }
         });
 
@@ -159,11 +158,6 @@ public class StockManagementWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogoutMouseClicked
-        new Login().setVisible(true);
-        dispose();
-    }//GEN-LAST:event_btnLogoutMouseClicked
-
-    private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
         try {
             DatabaseConnectionFunctions.logout(curEID);
             JOptionPane.showMessageDialog(this, "Successfully logged out of the system.", "Success",
@@ -174,11 +168,12 @@ public class StockManagementWindow extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "A problem occurred while logging out."
                     + " Make sure you are connected to the database.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_btnHomeMouseClicked
+    }//GEN-LAST:event_btnLogoutMouseClicked
 
-    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnHomeActionPerformed
+    private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
+        MainWindow.getInstance(curEID).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnHomeMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHome;
