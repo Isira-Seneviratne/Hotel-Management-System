@@ -313,7 +313,8 @@ public class AddEditCandidate extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void backtButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backtButtonActionPerformed
-        dispose();
+        // TODO add your handling code here:
+        this.dispose();
         HRManagementWindow hr = new HRManagementWindow(curEID);
         hr.setVisible(true);
     }//GEN-LAST:event_backtButtonActionPerformed

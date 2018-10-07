@@ -1292,6 +1292,7 @@ public class HRManagementWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        // TODO add your handling code here:MainWindow
         dispose();
         Login log = new Login();
         log.setVisible(true);
