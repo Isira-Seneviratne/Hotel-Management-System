@@ -45,6 +45,7 @@ public class AddEditCandidate extends javax.swing.JFrame {
         jTextField6 = new javax.swing.JTextField();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
+        jPanel3 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -55,6 +56,7 @@ public class AddEditCandidate extends javax.swing.JFrame {
         jTextField9 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jPanel5 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -68,22 +70,25 @@ public class AddEditCandidate extends javax.swing.JFrame {
         jTextField15 = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         jTextField16 = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         backtButton = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 102));
+        jPanel1.setBackground(new java.awt.Color(0, 20, 60));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Personal Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 0, 13))); // NOI18N
+        jPanel6.setBackground(new java.awt.Color(28, 48, 90));
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Personal Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 0, 13), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Employee ID          :");
         jPanel6.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 33, -1, -1));
 
@@ -91,22 +96,27 @@ public class AddEditCandidate extends javax.swing.JFrame {
         jPanel6.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 30, 168, -1));
 
         jLabel2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Full Name               :");
         jPanel6.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 73, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Name with Initial    :");
         jPanel6.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 113, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("NIC                         :");
         jPanel6.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 153, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Gender                   :");
         jPanel6.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 192, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Date of Birth           :");
         jPanel6.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 234, -1, -1));
 
@@ -122,6 +132,8 @@ public class AddEditCandidate extends javax.swing.JFrame {
         jTextField6.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jPanel6.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 231, 168, -1));
 
+        jRadioButton1.setBackground(new java.awt.Color(28, 48, 90));
+        jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton1.setText("Male");
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,6 +142,8 @@ public class AddEditCandidate extends javax.swing.JFrame {
         });
         jPanel6.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 190, -1, -1));
 
+        jRadioButton2.setBackground(new java.awt.Color(28, 48, 90));
+        jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton2.setText("Female");
         jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,24 +152,33 @@ public class AddEditCandidate extends javax.swing.JFrame {
         });
         jPanel6.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 190, -1, -1));
 
-        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 390, 290));
+        jPanel3.setBackground(new java.awt.Color(28, 48, 90));
+        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel6.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 370, 260));
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Contact Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 0, 13))); // NOI18N
+        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 390, 290));
+
+        jPanel7.setBackground(new java.awt.Color(28, 48, 90));
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Contact Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 0, 13), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel7.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Address               :");
         jPanel7.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 43, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Home Number    :");
         jPanel7.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 153, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Mobile Number   :");
         jPanel7.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 193, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Email                  :");
         jPanel7.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 233, -1, -1));
 
@@ -174,20 +197,28 @@ public class AddEditCandidate extends javax.swing.JFrame {
 
         jPanel7.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 43, 160, -1));
 
-        jPanel1.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 390, 270));
+        jPanel5.setBackground(new java.awt.Color(28, 48, 90));
+        jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel7.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 370, 240));
 
-        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Employment Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 0, 13))); // NOI18N
+        jPanel1.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, 390, 270));
+
+        jPanel9.setBackground(new java.awt.Color(28, 48, 90));
+        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Employment Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 0, 13), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel11.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Department        :");
         jPanel9.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Designation        :");
         jPanel9.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
 
         jLabel13.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Applicant Date    :");
         jPanel9.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
@@ -206,6 +237,7 @@ public class AddEditCandidate extends javax.swing.JFrame {
         jPanel9.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 170, -1));
 
         jLabel15.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Qualifications      :");
         jPanel9.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
 
@@ -213,6 +245,7 @@ public class AddEditCandidate extends javax.swing.JFrame {
         jPanel9.add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 168, -1));
 
         jLabel16.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Degree               :");
         jPanel9.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
 
@@ -220,33 +253,33 @@ public class AddEditCandidate extends javax.swing.JFrame {
         jPanel9.add(jTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 168, -1));
 
         jLabel17.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Experience          :");
         jPanel9.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
 
         jTextField16.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jPanel9.add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, 168, -1));
 
-        jPanel1.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 370, 290));
+        jPanel4.setBackground(new java.awt.Color(28, 48, 90));
+        jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel9.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 350, 260));
 
-        jLabel14.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(238, 238, 238));
-        jLabel14.setText("Add/Edit Candidate");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
+        jPanel1.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 370, 290));
 
-        jButton1.setBackground(new java.awt.Color(42, 199, 42));
+        jButton1.setBackground(new java.awt.Color(0, 102, 0));
         jButton1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButton1.setText("Add");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 600, 90, -1));
+        jButton1.setText("Save");
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 630, 90, -1));
 
-        jButton2.setBackground(new java.awt.Color(255, 204, 51));
+        jButton2.setBackground(new java.awt.Color(0, 102, 255));
         jButton2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton2.setText("Update");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 600, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 630, -1, -1));
 
         jButton3.setBackground(new java.awt.Color(153, 153, 153));
         jButton3.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton3.setText("Reset");
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 600, -1, -1));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 630, -1, -1));
 
         backtButton.setText("Back");
         backtButton.addActionListener(new java.awt.event.ActionListener() {
@@ -256,7 +289,11 @@ public class AddEditCandidate extends javax.swing.JFrame {
         });
         jPanel1.add(backtButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 10, 70, 30));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 660));
+        jPanel2.setBackground(new java.awt.Color(28, 48, 90));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Add/Edit Candidate", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 790, 630));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 700));
 
         pack();
         setLocationRelativeTo(null);
@@ -329,7 +366,6 @@ public class AddEditCandidate extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
@@ -342,6 +378,10 @@ public class AddEditCandidate extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel9;
