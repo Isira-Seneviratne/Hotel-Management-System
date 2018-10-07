@@ -102,6 +102,7 @@ public class StockManagementWindow extends javax.swing.JFrame {
         jLabel1.setText("Stock Management");
 
         jTabbedPane1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jTabbedPane1.setPreferredSize(new java.awt.Dimension(746, 623));
         jTabbedPane1.addTab("Food Items", foodItems1);
         jTabbedPane1.addTab("Cleaning Items", cleaningItems1);
         jTabbedPane1.addTab("Room Items", roomItems1);

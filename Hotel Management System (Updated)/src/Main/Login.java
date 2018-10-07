@@ -19,6 +19,15 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        
+        try {
+            DatabaseConnectionFunctions.createConnection();
+        } catch(ClassNotFoundException e) {
+            JOptionPane.showMessageDialog(Login.this, "The database driver could not be loaded.", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(Login.this, "A database connection could not be established."
+                    + " Make sure that MySQL is running.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -106,15 +115,6 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
  
     private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
-        try {
-            DatabaseConnectionFunctions.createConnection();
-        } catch(ClassNotFoundException e) {
-            JOptionPane.showMessageDialog(this, "The database driver could not be loaded.", "Error", JOptionPane.ERROR_MESSAGE);
-        } catch(SQLException e) {
-            JOptionPane.showMessageDialog(this, "A database connection could not be established."
-                    + " Make sure that MySQL is running.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
         try {
             String username = txtUsername.getText(), password = new String(txtPassword.getPassword());
             if(username.trim().equals("") || password.trim().equals("")) {
