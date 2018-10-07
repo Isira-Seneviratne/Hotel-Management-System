@@ -5,11 +5,14 @@
  */
 package StockManagement;
 
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
 /**
  *
  * @author Isira
  */
-public class VendorDetails extends javax.swing.JPanel {
+public class VendorDetails extends javax.swing.JPanel implements ListSelectionListener {
 
     /**
      * Creates new form VendorDetails
@@ -18,6 +21,27 @@ public class VendorDetails extends javax.swing.JPanel {
         initComponents();
     }
 
+    //Checks to see if a table record is selected or not.
+    @Override
+    public void valueChanged(ListSelectionEvent lse) {
+        String tooltip = "A table record must be selected to use this button.";
+        if(jTable1.getSelectionModel().isSelectionEmpty()) {
+            btnUpdate.setEnabled(false);
+            btnDelete.setEnabled(false);
+            btnGenReport.setEnabled(false);
+            btnUpdate.setToolTipText(tooltip);
+            btnDelete.setToolTipText(tooltip);
+            btnGenReport.setToolTipText(tooltip);
+        } else {
+            btnUpdate.setEnabled(true);
+            btnDelete.setEnabled(true);
+            btnGenReport.setEnabled(true);
+            btnUpdate.setToolTipText(null);
+            btnDelete.setToolTipText(null);
+            btnGenReport.setToolTipText(null);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
