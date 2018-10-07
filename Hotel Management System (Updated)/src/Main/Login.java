@@ -5,7 +5,6 @@
  */
 package Main;
 
-import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -86,14 +85,9 @@ public class Login extends javax.swing.JFrame {
                 btnLoginMouseClicked(evt);
             }
         });
-        btnLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoginActionPerformed(evt);
-            }
-        });
         jPanel1.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 430, -1, -1));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Main/Icons/people.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Login.png"))); // NOI18N
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-230, 0, 640, 510));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -119,6 +113,7 @@ public class Login extends javax.swing.JFrame {
         } catch(SQLException e) {
             JOptionPane.showMessageDialog(this, "A database connection could not be established."
                     + " Make sure that MySQL is running.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
         try {
             String username = txtUsername.getText(), password = new String(txtPassword.getPassword());
@@ -140,19 +135,12 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoginMouseClicked
 
     private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
-        // TODO add your handling code here:
         txtPassword.requestFocus();
-        
     }//GEN-LAST:event_txtUsernameActionPerformed
 
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
-        // TODO add your handling code here:
         btnLogin.requestFocus();
     }//GEN-LAST:event_txtPasswordActionPerformed
-
-    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
      * @param args the command line arguments

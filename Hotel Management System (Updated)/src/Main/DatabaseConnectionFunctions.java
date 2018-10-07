@@ -23,8 +23,10 @@ public class DatabaseConnectionFunctions {
     private static Connection con;
     private static Statement stmt;
     
+    //Initializes the database connection, as well as the Statement object used to execute SQL queries.
+    //This only happens if these values have not been already initialized.
     public static void createConnection() throws ClassNotFoundException, SQLException {
-        if(con == null) {
+        if(con == null && stmt == null) {
             Class.forName("com.mysql.jdbc.Driver");
 
             Properties connProps = new Properties();

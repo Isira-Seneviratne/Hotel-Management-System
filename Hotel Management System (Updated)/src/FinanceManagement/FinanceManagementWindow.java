@@ -15,8 +15,10 @@ import Main.MainWindow;
 public class FinanceManagementWindow extends javax.swing.JFrame {
 
     private String curEID;
+    
     /**
      * Creates new form FinanceManagement
+     * @param eID
      */
     public FinanceManagementWindow(String eID) {
         initComponents();
@@ -154,8 +156,8 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         jTextField26 = new javax.swing.JTextField();
         jButton28 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        btnHome1 = new javax.swing.JButton();
-        btnLogout1 = new javax.swing.JButton();
+        btnHome = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1000,21 +1002,21 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         jLabel1.setText("Finance Management");
         jPanel14.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 260, 50));
 
-        btnHome1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Home.png"))); // NOI18N
-        btnHome1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Home.png"))); // NOI18N
+        btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnHome1MouseClicked(evt);
+                btnHomeMouseClicked(evt);
             }
         });
-        jPanel14.add(btnHome1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 10, 50, 40));
+        jPanel14.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 10, 50, 40));
 
-        btnLogout1.setText("Logout");
-        btnLogout1.addActionListener(new java.awt.event.ActionListener() {
+        btnLogout.setText("Logout");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLogout1ActionPerformed(evt);
+                btnLogoutActionPerformed(evt);
             }
         });
-        jPanel14.add(btnLogout1, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 10, -1, 39));
+        jPanel14.add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 10, -1, 39));
 
         getContentPane().add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 970, 660));
 
@@ -1082,23 +1084,16 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton28ActionPerformed
 
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        dispose();
+        Login log = new Login();
+        log.setVisible(true);
+    }//GEN-LAST:event_btnLogoutActionPerformed
+
     private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
         MainWindow.getInstance(curEID).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnHomeMouseClicked
-
-    private void btnHome1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHome1MouseClicked
-        // TODO add your handling code here:
-        MainWindow.getInstance(curEID).setVisible(true);
-        dispose();
-    }//GEN-LAST:event_btnHome1MouseClicked
-
-    private void btnLogout1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogout1ActionPerformed
-        // TODO add your handling code here:
-         dispose();
-        Login log = new Login();
-        log.setVisible(true);
-    }//GEN-LAST:event_btnLogout1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1137,8 +1132,8 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnHome1;
-    private javax.swing.JButton btnLogout1;
+    private javax.swing.JButton btnHome;
+    private javax.swing.JButton btnLogout;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;

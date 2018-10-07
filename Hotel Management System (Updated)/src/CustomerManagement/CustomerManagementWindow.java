@@ -13,9 +13,12 @@ import Main.MainWindow;
  * @author Upeksha
  */
 public class CustomerManagementWindow extends javax.swing.JFrame {
+    
     private String curEID;
+    
     /**
      * Creates new form CustomerManagementWindow
+     * @param eID
      */
     public CustomerManagementWindow(String eID) {
         initComponents();
