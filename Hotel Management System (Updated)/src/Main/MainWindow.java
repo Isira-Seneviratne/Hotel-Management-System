@@ -98,7 +98,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/HR.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Main/Icons/HR.png"))); // NOI18N
         jPanel11.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 110, -1));
 
         jPanel1.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 150, 170));
@@ -114,7 +114,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Customer.png"))); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Main/Icons/Customer.png"))); // NOI18N
         jPanel13.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -135,7 +135,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Finance Mgt .png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Main/Icons/Finance Mgt .png"))); // NOI18N
         jPanel12.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 110, -1));
 
         jPanel1.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, 150, 170));
@@ -149,7 +149,7 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel4.setText("Stock Management");
         jPanel14.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Stock.png"))); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Main/Icons/Stock.png"))); // NOI18N
         jPanel14.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 90, -1));
 
         jPanel1.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, 150, 170));

@@ -111,7 +111,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Icons/HR.png"/>
+                  <Image iconType="3" name="/Main/Icons/HR.png"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -168,7 +168,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Icons/Customer.png"/>
+                  <Image iconType="3" name="/Main/Icons/Customer.png"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -241,7 +241,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Icons/Finance Mgt .png"/>
+                  <Image iconType="3" name="/Main/Icons/Finance Mgt .png"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -292,7 +292,7 @@
             <Component class="javax.swing.JLabel" name="jLabel10">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Icons/Stock.png"/>
+                  <Image iconType="3" name="/Main/Icons/Stock.png"/>
                 </Property>
               </Properties>
               <Constraints>

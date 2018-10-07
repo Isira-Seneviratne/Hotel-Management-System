@@ -5,11 +5,14 @@
  */
 package StockManagement;
 
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
 /**
  *
  * @author Isira
  */
-public class RoomItems extends javax.swing.JPanel {
+public class RoomItems extends javax.swing.JPanel implements ListSelectionListener {
 
     /**
      * Creates new form RoomItems
@@ -18,6 +21,27 @@ public class RoomItems extends javax.swing.JPanel {
         initComponents();
     }
 
+    //Checks to see if a table record is selected or not.
+    @Override
+    public void valueChanged(ListSelectionEvent lse) {
+        String tooltip = "A table record must be selected to use this button.";
+        if(jTable1.getSelectionModel().isSelectionEmpty()) {
+            btnUpdate.setEnabled(false);
+            btnDelete.setEnabled(false);
+            btnGenReport.setEnabled(false);
+            btnUpdate.setToolTipText(tooltip);
+            btnDelete.setToolTipText(tooltip);
+            btnGenReport.setToolTipText(tooltip);
+        } else {
+            btnUpdate.setEnabled(true);
+            btnDelete.setEnabled(true);
+            btnGenReport.setEnabled(true);
+            btnUpdate.setToolTipText(null);
+            btnDelete.setToolTipText(null);
+            btnGenReport.setToolTipText(null);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -72,12 +96,15 @@ public class RoomItems extends javax.swing.JPanel {
         btnAdd.setForeground(new java.awt.Color(238, 238, 238));
         btnAdd.setText("Add");
 
+        jLabel3.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(238, 238, 238));
         jLabel3.setText("Room Number");
 
+        jLabel4.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(238, 238, 238));
         jLabel4.setText("Item name");
 
+        jLabel5.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(238, 238, 238));
         jLabel5.setText("Quantity");
 
@@ -142,6 +169,7 @@ public class RoomItems extends javax.swing.JPanel {
                 "Item ID", "Item name", "Room number", "Quantity"
             }
         ));
+        jTable1.setPreferredSize(new java.awt.Dimension(450, 0));
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -155,7 +183,7 @@ public class RoomItems extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 758, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 786, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

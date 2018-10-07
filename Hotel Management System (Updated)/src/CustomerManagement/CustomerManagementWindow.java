@@ -5,21 +5,20 @@
  */
 package CustomerManagement;
 
+import Main.Login;
+import Main.MainWindow;
+
 /**
  *
  * @author Upeksha
  */
 public class CustomerManagementWindow extends javax.swing.JFrame {
 
-    private String curEID;
-    
     /**
      * Creates new form CustomerManagementWindow
-     * @param eID
      */
-    public CustomerManagementWindow(String eID) {
+    public CustomerManagementWindow() {
         initComponents();
-        curEID = eID;
     }
 
     /**
@@ -31,26 +30,52 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnLogout = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         btnHome = new javax.swing.JButton();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel11 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        BtnSerch = new javax.swing.JButton();
-        cmbsearch = new javax.swing.JComboBox<>();
-        Txtsearch = new javax.swing.JTextField();
-        jPanel6 = new javax.swing.JPanel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jPanel12 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable_cus = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
+        jTabbedPane3 = new javax.swing.JTabbedPane();
+        jPanel22 = new javax.swing.JPanel();
+        jPanel20 = new javax.swing.JPanel();
+        jPanel18 = new javax.swing.JPanel();
+        BtnSerch3 = new javax.swing.JButton();
+        cmbsearch3 = new javax.swing.JComboBox<>();
+        Txtsearch3 = new javax.swing.JTextField();
+        jPanel19 = new javax.swing.JPanel();
+        jRadioButton7 = new javax.swing.JRadioButton();
+        jRadioButton8 = new javax.swing.JRadioButton();
+        jRadioButton9 = new javax.swing.JRadioButton();
+        jPanel21 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable_cus2 = new javax.swing.JTable();
+        jButton10 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel23 = new javax.swing.JPanel();
+        jPanel24 = new javax.swing.JPanel();
+        BtnSerch4 = new javax.swing.JButton();
+        cmbsearch4 = new javax.swing.JComboBox<>();
+        Txtsearch4 = new javax.swing.JTextField();
+        jPanel25 = new javax.swing.JPanel();
+        jRadioButton10 = new javax.swing.JRadioButton();
+        jRadioButton11 = new javax.swing.JRadioButton();
+        jRadioButton12 = new javax.swing.JRadioButton();
+        jPanel26 = new javax.swing.JPanel();
+        jButton13 = new javax.swing.JButton();
+        jButton14 = new javax.swing.JButton();
+        jButton15 = new javax.swing.JButton();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTableRoom = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel14 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTableHall = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         jPanel13 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         BtnSerch1 = new javax.swing.JButton();
@@ -60,16 +85,10 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         jRadioButtonAll = new javax.swing.JRadioButton();
         jRadioButtonRuby = new javax.swing.JRadioButton();
         jRadioButtonPearl = new javax.swing.JRadioButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jPanel14 = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTableHall = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 102));
+        setMinimumSize(new java.awt.Dimension(970, 660));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
@@ -79,87 +98,105 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
             }
         });
 
-        btnLogout.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        btnLogout.setText("Logout");
+        jPanel1.setBackground(new java.awt.Color(0, 20, 60));
 
         btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Home.png"))); // NOI18N
-
-        jTabbedPane1.setBackground(new java.awt.Color(0, 0, 102));
-        jTabbedPane1.setForeground(new java.awt.Color(102, 0, 51));
-        jTabbedPane1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jTabbedPane1.setPreferredSize(new java.awt.Dimension(1200, 680));
-
-        jPanel3.setBackground(new java.awt.Color(0, 0, 102));
-
-        jPanel11.setBackground(new java.awt.Color(0, 0, 102));
-        jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel4.setBackground(new java.awt.Color(0, 0, 102));
-        jPanel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        BtnSerch.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        BtnSerch.setText("Search");
-        BtnSerch.addActionListener(new java.awt.event.ActionListener() {
+        btnHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnSerchActionPerformed(evt);
+                btnHomeActionPerformed(evt);
             }
         });
-        jPanel4.add(BtnSerch, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 80, 30));
 
-        cmbsearch.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        cmbsearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Find a Customer by name", "Find a Customer by address" }));
-        jPanel4.add(cmbsearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 210, 30));
-        jPanel4.add(Txtsearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 160, 30));
-
-        jPanel11.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 30, 480, 60));
-
-        jPanel6.setBackground(new java.awt.Color(0, 0, 102));
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "View Only", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12), new java.awt.Color(255, 255, 255))); // NOI18N
-        jPanel6.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jRadioButton1.setBackground(new java.awt.Color(0, 0, 102));
-        jRadioButton1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton1.setText("Room");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnLogout.setText("Logout");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                btnLogoutActionPerformed(evt);
             }
         });
-        jPanel6.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
-        jRadioButton2.setBackground(new java.awt.Color(0, 0, 102));
-        jRadioButton2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton2.setText("Hall");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        jTabbedPane3.setBackground(new java.awt.Color(0, 0, 102));
+        jTabbedPane3.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jTabbedPane3.setPreferredSize(new java.awt.Dimension(1200, 680));
+
+        jPanel22.setBackground(new java.awt.Color(28, 48, 90));
+        jPanel22.setToolTipText("");
+
+        jPanel20.setBackground(new java.awt.Color(28, 48, 90));
+        jPanel20.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel18.setBackground(new java.awt.Color(28, 48, 90));
+        jPanel18.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel18.setToolTipText("");
+        jPanel18.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        BtnSerch3.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        BtnSerch3.setText("Search");
+        BtnSerch3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                BtnSerch3BtnSerchActionPerformed(evt);
             }
         });
-        jPanel6.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 52, -1, -1));
+        jPanel18.add(BtnSerch3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 80, 30));
 
-        jRadioButton3.setBackground(new java.awt.Color(0, 0, 102));
-        jRadioButton3.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jRadioButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton3.setText("All ");
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+        cmbsearch3.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        cmbsearch3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Find a Customer by name", "Find a Customer by address" }));
+        jPanel18.add(cmbsearch3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 210, 30));
+        jPanel18.add(Txtsearch3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 160, 30));
+
+        jPanel20.add(jPanel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, 480, 60));
+
+        jPanel19.setBackground(new java.awt.Color(28, 48, 90));
+        jPanel19.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "View Only", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel19.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel19.setToolTipText("");
+        jPanel19.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jRadioButton7.setBackground(new java.awt.Color(28, 48, 90));
+        jRadioButton7.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jRadioButton7.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButton7.setText("Room");
+        jRadioButton7.setToolTipText("");
+        jRadioButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
+                jRadioButton7jRadioButton1ActionPerformed(evt);
             }
         });
-        jPanel6.add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 78, -1, -1));
+        jPanel19.add(jRadioButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
-        jPanel11.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 20, 110, 120));
+        jRadioButton8.setBackground(new java.awt.Color(28, 48, 90));
+        jRadioButton8.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jRadioButton8.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButton8.setText("Hall");
+        jRadioButton8.setToolTipText("");
+        jRadioButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton8jRadioButton2ActionPerformed(evt);
+            }
+        });
+        jPanel19.add(jRadioButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 52, -1, -1));
 
-        jPanel12.setBackground(new java.awt.Color(0, 0, 102));
-        jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Customer Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 0, 12), new java.awt.Color(255, 255, 255))); // NOI18N
-        jPanel12.setForeground(new java.awt.Color(0, 0, 102));
+        jRadioButton9.setBackground(new java.awt.Color(28, 48, 90));
+        jRadioButton9.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jRadioButton9.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButton9.setText("All ");
+        jRadioButton9.setToolTipText("");
+        jRadioButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton9jRadioButton3ActionPerformed(evt);
+            }
+        });
+        jPanel19.add(jRadioButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 78, -1, -1));
 
-        jTable_cus.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jTable_cus.setModel(new javax.swing.table.DefaultTableModel(
+        jPanel20.add(jPanel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 110, 120));
+
+        jPanel21.setBackground(new java.awt.Color(28, 48, 90));
+        jPanel21.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Customer Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel21.setForeground(new java.awt.Color(0, 0, 102));
+        jPanel21.setToolTipText("");
+        jPanel21.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTable_cus2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jTable_cus2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
@@ -176,147 +213,59 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
                 "Name and surname / Company name", "Address", "Phone", "E-mail", "Gender", "NIC/ Passport", "Nationality", "Regular", "Blacklisted", "Comments"
             }
         ));
-        jScrollPane1.setViewportView(jTable_cus);
+        jScrollPane4.setViewportView(jTable_cus2);
 
-        jButton1.setBackground(new java.awt.Color(42, 199, 42));
-        jButton1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButton1.setText("Add");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jPanel21.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 38, 920, 260));
+
+        jButton10.setBackground(new java.awt.Color(42, 199, 42));
+        jButton10.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jButton10.setText("Add");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButton10jButton1ActionPerformed(evt);
             }
         });
+        jPanel21.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 320, 77, 31));
 
-        jButton2.setBackground(new java.awt.Color(255, 204, 51));
-        jButton2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButton2.setText("Update");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButton11.setBackground(new java.awt.Color(255, 204, 51));
+        jButton11.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jButton11.setText("Update");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButton11jButton2ActionPerformed(evt);
             }
         });
+        jPanel21.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 320, 90, 31));
 
-        jButton5.setBackground(new java.awt.Color(255, 51, 51));
-        jButton5.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButton5.setText("Delete");
+        jButton12.setBackground(new java.awt.Color(255, 51, 51));
+        jButton12.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jButton12.setText("Delete");
+        jPanel21.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 320, 78, 31));
 
-        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
-        jPanel12.setLayout(jPanel12Layout);
-        jPanel12Layout.setHorizontalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(214, 214, 214))))
+        javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
+        jPanel22.setLayout(jPanel22Layout);
+        jPanel22Layout.setHorizontalGroup(
+            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel22Layout.createSequentialGroup()
+                .addComponent(jPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, 935, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel12Layout.setVerticalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(75, Short.MAX_VALUE))
+        jPanel22Layout.setVerticalGroup(
+            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel22Layout.createSequentialGroup()
+                .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 1171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7))
-        );
+        jTabbedPane3.addTab("Customer Management", jPanel22);
 
-        jTabbedPane1.addTab("Customer Management", jPanel3);
-
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setBackground(new java.awt.Color(28, 48, 90));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel13.setBackground(new java.awt.Color(0, 0, 102));
-        jPanel13.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel7.setBackground(new java.awt.Color(0, 0, 102));
-        jPanel7.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        BtnSerch1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        BtnSerch1.setText("Search");
-        BtnSerch1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnSerch1ActionPerformed(evt);
-            }
-        });
-        jPanel7.add(BtnSerch1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 80, 30));
-        jPanel7.add(Txtsearch1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 160, 30));
-
-        cmbsearch2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        cmbsearch2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Find a Hall by name", "Find a Hall by ID" }));
-        jPanel7.add(cmbsearch2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 150, 30));
-
-        jPanel13.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 30, 440, 60));
-
-        jPanel8.setBackground(new java.awt.Color(0, 0, 102));
-        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "View Only", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), new java.awt.Color(255, 255, 255))); // NOI18N
-        jPanel8.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jRadioButtonAll.setBackground(new java.awt.Color(0, 0, 102));
-        jRadioButtonAll.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jRadioButtonAll.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButtonAll.setText("All");
-        jRadioButtonAll.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonAllActionPerformed(evt);
-            }
-        });
-        jPanel8.add(jRadioButtonAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 60, -1));
-
-        jRadioButtonRuby.setBackground(new java.awt.Color(0, 0, 102));
-        jRadioButtonRuby.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jRadioButtonRuby.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButtonRuby.setText("Hall Ruby");
-        jRadioButtonRuby.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonRubyActionPerformed(evt);
-            }
-        });
-        jPanel8.add(jRadioButtonRuby, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 90, -1));
-
-        jRadioButtonPearl.setBackground(new java.awt.Color(0, 0, 102));
-        jRadioButtonPearl.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jRadioButtonPearl.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButtonPearl.setText("Hall Pearl");
-        jRadioButtonPearl.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonPearlActionPerformed(evt);
-            }
-        });
-        jPanel8.add(jRadioButtonPearl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 90, -1));
-
-        jPanel13.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 110, 110));
+        jLayeredPane1.setMinimumSize(new java.awt.Dimension(940, 550));
+        jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jComboBox1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Reservation type", "Room", "Hall" }));
@@ -325,18 +274,166 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
                 jComboBox1ItemStateChanged(evt);
             }
         });
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
         jComboBox1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jComboBox1PropertyChange(evt);
             }
         });
-        jPanel13.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 200, 30));
+        jLayeredPane1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 200, 30));
 
-        jPanel5.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 1140, 140));
+        jPanel3.setBackground(new java.awt.Color(28, 48, 90));
+        jPanel3.setMinimumSize(new java.awt.Dimension(950, 550));
+        jPanel3.setPreferredSize(new java.awt.Dimension(950, 550));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel14.setBackground(new java.awt.Color(0, 0, 102));
-        jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Room Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel23.setBackground(new java.awt.Color(28, 48, 90));
+        jPanel23.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel24.setBackground(new java.awt.Color(28, 48, 90));
+        jPanel24.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel24.setToolTipText("");
+        jPanel24.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        BtnSerch4.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        BtnSerch4.setText("Search");
+        BtnSerch4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSerch4BtnSerchActionPerformed(evt);
+            }
+        });
+        jPanel24.add(BtnSerch4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 80, 30));
+
+        cmbsearch4.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        cmbsearch4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Find a Room by Customer Name", "Find a Room by Booking ID" }));
+        jPanel24.add(cmbsearch4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 230, 30));
+        jPanel24.add(Txtsearch4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 140, 30));
+
+        jPanel23.add(jPanel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, 480, 60));
+
+        jPanel25.setBackground(new java.awt.Color(28, 48, 90));
+        jPanel25.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "View Only", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel25.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel25.setToolTipText("");
+        jPanel25.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jRadioButton10.setBackground(new java.awt.Color(28, 48, 90));
+        jRadioButton10.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jRadioButton10.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButton10.setText("Single Room");
+        jRadioButton10.setToolTipText("");
+        jRadioButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton10jRadioButton1ActionPerformed(evt);
+            }
+        });
+        jPanel25.add(jRadioButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        jRadioButton11.setBackground(new java.awt.Color(28, 48, 90));
+        jRadioButton11.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jRadioButton11.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButton11.setText("Double Room");
+        jRadioButton11.setToolTipText("");
+        jRadioButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton11jRadioButton2ActionPerformed(evt);
+            }
+        });
+        jPanel25.add(jRadioButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
+
+        jRadioButton12.setBackground(new java.awt.Color(28, 48, 90));
+        jRadioButton12.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jRadioButton12.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButton12.setText("All ");
+        jRadioButton12.setToolTipText("");
+        jRadioButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton12jRadioButton3ActionPerformed(evt);
+            }
+        });
+        jPanel25.add(jRadioButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 78, -1, -1));
+
+        jPanel23.add(jPanel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 140, 120));
+
+        jPanel3.add(jPanel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 160));
+
+        jPanel26.setBackground(new java.awt.Color(28, 48, 90));
+        jPanel26.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Room Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel26.setForeground(new java.awt.Color(0, 0, 102));
+        jPanel26.setToolTipText("");
+        jPanel26.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton13.setBackground(new java.awt.Color(42, 199, 42));
+        jButton13.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jButton13.setText("Add");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel26.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 320, 77, 31));
+
+        jButton14.setBackground(new java.awt.Color(255, 204, 51));
+        jButton14.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jButton14.setText("Update");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel26.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 320, 90, 31));
+
+        jButton15.setBackground(new java.awt.Color(255, 51, 51));
+        jButton15.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jButton15.setText("Delete");
+        jPanel26.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 320, 78, 31));
+
+        jTableRoom.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jTableRoom.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Booking ID", "Customer Name", "Description", "Single Bed", "Double Bed", "Extra Bed", "Total Amount"
+            }
+        ));
+        jTableRoom.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableRoomMouseClicked(evt);
+            }
+        });
+        jScrollPane6.setViewportView(jTableRoom);
+
+        jPanel26.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 900, 270));
+
+        jPanel3.add(jPanel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 940, 370));
+
+        jLayeredPane1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 550));
+
+        jPanel2.setBackground(new java.awt.Color(28, 48, 90));
+        jPanel2.setMinimumSize(new java.awt.Dimension(950, 550));
+        jPanel2.setPreferredSize(new java.awt.Dimension(950, 550));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel14.setBackground(new java.awt.Color(28, 48, 90));
+        jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Hall Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel14.setToolTipText("");
+        jPanel14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTableHall.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jTableHall.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -361,6 +458,8 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(jTableHall);
 
+        jPanel14.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 29, 910, 270));
+
         jButton3.setBackground(new java.awt.Color(42, 199, 42));
         jButton3.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton3.setText("Add");
@@ -369,6 +468,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
+        jPanel14.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 330, 77, 31));
 
         jButton4.setBackground(new java.awt.Color(255, 204, 51));
         jButton4.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -378,86 +478,172 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
+        jPanel14.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 330, 90, 31));
 
         jButton6.setBackground(new java.awt.Color(255, 51, 51));
         jButton6.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton6.setText("Delete");
+        jPanel14.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 330, 78, 31));
 
-        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
-        jPanel14.setLayout(jPanel14Layout);
-        jPanel14Layout.setHorizontalGroup(
-            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(260, 260, 260))
-            .addGroup(jPanel14Layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 1112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 26, Short.MAX_VALUE))
-        );
-        jPanel14Layout.setVerticalGroup(
-            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel14Layout.createSequentialGroup()
+        jPanel2.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 940, 380));
+
+        jPanel13.setBackground(new java.awt.Color(28, 48, 90));
+        jPanel13.setToolTipText("");
+        jPanel13.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel7.setBackground(new java.awt.Color(28, 48, 90));
+        jPanel7.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel7.setToolTipText("");
+        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        BtnSerch1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        BtnSerch1.setText("Search");
+        BtnSerch1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSerch1ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(BtnSerch1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 80, 30));
+        jPanel7.add(Txtsearch1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 140, 30));
+
+        cmbsearch2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        cmbsearch2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Find a Hall by name", "Find a Hall by ID" }));
+        jPanel7.add(cmbsearch2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 170, 30));
+
+        jPanel13.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, 440, 60));
+
+        jPanel8.setBackground(new java.awt.Color(28, 48, 90));
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "View Only", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel8.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel8.setToolTipText("");
+        jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jRadioButtonAll.setBackground(new java.awt.Color(28, 48, 90));
+        jRadioButtonAll.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jRadioButtonAll.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButtonAll.setText("All");
+        jRadioButtonAll.setToolTipText("");
+        jRadioButtonAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonAllActionPerformed(evt);
+            }
+        });
+        jPanel8.add(jRadioButtonAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 60, -1));
+
+        jRadioButtonRuby.setBackground(new java.awt.Color(28, 48, 90));
+        jRadioButtonRuby.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jRadioButtonRuby.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButtonRuby.setText("Hall Ruby");
+        jRadioButtonRuby.setToolTipText("");
+        jRadioButtonRuby.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonRubyActionPerformed(evt);
+            }
+        });
+        jPanel8.add(jRadioButtonRuby, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 90, -1));
+
+        jRadioButtonPearl.setBackground(new java.awt.Color(28, 48, 90));
+        jRadioButtonPearl.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jRadioButtonPearl.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButtonPearl.setText("Hall Pearl");
+        jRadioButtonPearl.setToolTipText("");
+        jRadioButtonPearl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonPearlActionPerformed(evt);
+            }
+        });
+        jPanel8.add(jRadioButtonPearl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 90, -1));
+
+        jPanel13.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 110, 110));
+
+        jPanel2.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 160));
+
+        jLayeredPane1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 550));
+
+        jPanel5.add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 550));
+
+        jTabbedPane3.addTab("Reservation Information", jPanel5);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(826, Short.MAX_VALUE)
+                .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
-
-        jPanel5.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 1150, -1));
-
-        jTabbedPane1.addTab("Reservation Information", jPanel5);
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 1064, Short.MAX_VALUE)
-                        .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1196, Short.MAX_VALUE))
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        CustomerReservation_management CR = new CustomerReservation_management();
-        CR.setVisible(true);
+        
     }//GEN-LAST:event_formWindowOpened
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
-        CustomerReservation_management CR = new CustomerReservation_management();
-        CR.setVisible(true);
+        
     }//GEN-LAST:event_formWindowActivated
 
-    private void BtnSerchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSerchActionPerformed
+    private void jButton11jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11jButton2ActionPerformed
+        // TODO add your handling code here:
+        CustomerEdit ce = new CustomerEdit();
+        ce.setVisible(true);
+    }//GEN-LAST:event_jButton11jButton2ActionPerformed
+
+    private void jButton10jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10jButton1ActionPerformed
+        // TODO add your handling code here:
+        CustomerAdd ca = new CustomerAdd();
+        ca.setVisible(true);
+    }//GEN-LAST:event_jButton10jButton1ActionPerformed
+
+    private void jRadioButton9jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton9jRadioButton3ActionPerformed
+        // TODO add your handling code here:
+        //LoadCustomerTable();
+    }//GEN-LAST:event_jRadioButton9jRadioButton3ActionPerformed
+
+    private void jRadioButton8jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton8jRadioButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton8jRadioButton2ActionPerformed
+
+    private void jRadioButton7jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton7jRadioButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton7jRadioButton1ActionPerformed
+
+    private void BtnSerch3BtnSerchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSerch3BtnSerchActionPerformed
         // TODO add your handling code here:
         /* CusDBOperations ser = new CusDBOperations ();
         String select = cmbsearch.getSelectedItem().toString();
@@ -469,20 +655,81 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
             String sql = "Select * from customer where address LIKE '"+Txtsearch.getText()+"%'";
             ser.SearchData(jTable_cus,  Txtsearch, sql, "");
         }*/
-    }//GEN-LAST:event_BtnSerchActionPerformed
+    }//GEN-LAST:event_BtnSerch3BtnSerchActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        String type = jComboBox1.getSelectedItem().toString();
+        if (type.equals("Room")) {
+            jPanel2.setVisible(false);
+            jPanel3.setVisible(true);
+        } else if (type.equals("Hall")) {
+            jPanel2.setVisible(true);
+            jPanel3.setVisible(false);
+        }
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+    private void jComboBox1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jComboBox1PropertyChange
+
+    }//GEN-LAST:event_jComboBox1PropertyChange
+
+    private void BtnSerch4BtnSerchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSerch4BtnSerchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+        /* CusDBOperations ser = new CusDBOperations ();
+        String select = cmbsearch.getSelectedItem().toString();
+        if (select.equals("Find a Customer by name")) {
+            String sql = "Select * from customer where name LIKE '"+Txtsearch.getText()+"%'";
+            ser.SearchData(jTable_cus,  Txtsearch, sql, "");
 
-    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+        } else if (select.equals("Find a Customer by address")) {
+            String sql = "Select * from customer where address LIKE '"+Txtsearch.getText()+"%'";
+            ser.SearchData(jTable_cus,  Txtsearch, sql, "");
+        }*/
+    }//GEN-LAST:event_BtnSerch4BtnSerchActionPerformed
+
+    private void jRadioButton10jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton10jRadioButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton10jRadioButton1ActionPerformed
+
+    private void jRadioButton11jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton11jRadioButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton11jRadioButton2ActionPerformed
+
+    private void jRadioButton12jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton12jRadioButton3ActionPerformed
         // TODO add your handling code here:
         //LoadCustomerTable();
-    }//GEN-LAST:event_jRadioButton3ActionPerformed
+    }//GEN-LAST:event_jRadioButton12jRadioButton3ActionPerformed
+
+    private void jButton13jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13jButton1ActionPerformed
+        // TODO add your handling code here:
+        PaymentAddRoom ah = new PaymentAddRoom();
+        ah.setVisible(true);
+    }//GEN-LAST:event_jButton13jButton1ActionPerformed
+
+    private void jButton14jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14jButton2ActionPerformed
+        // TODO add your handling code here:
+        PaymentEditRoom ae = new PaymentEditRoom();
+        ae.setVisible(true);
+    }//GEN-LAST:event_jButton14jButton2ActionPerformed
+
+    private void jTableHallMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableHallMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTableHallMouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        PaymentAddHall ah = new PaymentAddHall();
+        ah.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        PaymentEditHall ae = new PaymentEditHall();
+        ae.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     private void BtnSerch1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSerch1ActionPerformed
         // TODO add your handling code here:
@@ -503,51 +750,22 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         //LoadbookingTablepearl();
     }//GEN-LAST:event_jRadioButtonPearlActionPerformed
 
-    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
-        /*String type = jComboBox1.getSelectedItem().toString();
-        if (type.equals("Select Reservation type")) {
-            pnl_Hall.setVisible(false);
-            pnl_Room.setVisible(false);
-        } else if (type.equals("Room")) {
-            pnl_Hall.setVisible(false);
-            pnl_Room.setVisible(true);
-        } else if (type.equals("Hall")) {
-            pnl_Hall.setVisible(true);
-            pnl_Room.setVisible(false);
-        }*/
-    }//GEN-LAST:event_jComboBox1ItemStateChanged
-
-    private void jComboBox1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jComboBox1PropertyChange
-
-    }//GEN-LAST:event_jComboBox1PropertyChange
-
-    private void jTableHallMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableHallMouseClicked
+    private void jTableRoomMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableRoomMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTableHallMouseClicked
+        
+    }//GEN-LAST:event_jTableRoomMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         // TODO add your handling code here:
-        CustomerAdd1 ca = new CustomerAdd1();
-        ca.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    
+    }//GEN-LAST:event_btnHomeActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
-        CustomerEdit1 ce = new CustomerEdit1();
-        ce.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        PaymentAddHall ah = new PaymentAddHall();
-        ah.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        PaymentEditHall ae = new PaymentEditHall();
-        ae.setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
+        this.dispose();
+        Login log = new Login();
+        log.setVisible(true);
+    }//GEN-LAST:event_btnLogoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -575,51 +793,85 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(CustomerManagementWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CustomerManagementWindow("").setVisible(true);
+                new CustomerManagementWindow().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnSerch;
     private javax.swing.JButton BtnSerch1;
-    private javax.swing.JTextField Txtsearch;
+    private javax.swing.JButton BtnSerch3;
+    private javax.swing.JButton BtnSerch4;
     private javax.swing.JTextField Txtsearch1;
+    private javax.swing.JTextField Txtsearch3;
+    private javax.swing.JTextField Txtsearch4;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnLogout;
-    private javax.swing.JComboBox<String> cmbsearch;
     private javax.swing.JComboBox<String> cmbsearch2;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> cmbsearch3;
+    private javax.swing.JComboBox<String> cmbsearch4;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
+    private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel20;
+    private javax.swing.JPanel jPanel21;
+    private javax.swing.JPanel jPanel22;
+    private javax.swing.JPanel jPanel23;
+    private javax.swing.JPanel jPanel24;
+    private javax.swing.JPanel jPanel25;
+    private javax.swing.JPanel jPanel26;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JRadioButton jRadioButton10;
+    private javax.swing.JRadioButton jRadioButton11;
+    private javax.swing.JRadioButton jRadioButton12;
+    private javax.swing.JRadioButton jRadioButton7;
+    private javax.swing.JRadioButton jRadioButton8;
+    private javax.swing.JRadioButton jRadioButton9;
     private javax.swing.JRadioButton jRadioButtonAll;
     private javax.swing.JRadioButton jRadioButtonPearl;
     private javax.swing.JRadioButton jRadioButtonRuby;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTable jTableHall;
-    private javax.swing.JTable jTable_cus;
+    private javax.swing.JTable jTableRoom;
+    private javax.swing.JTable jTable_cus2;
     // End of variables declaration//GEN-END:variables
 }
