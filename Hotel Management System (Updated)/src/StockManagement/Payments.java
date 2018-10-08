@@ -5,6 +5,9 @@
  */
 package StockManagement;
 
+import Main.DatabaseConnectionFunctions;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -19,6 +22,16 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
      */
     public Payments() {
         initComponents();
+        
+        //Loads the up-to-date table corresponding to this particular panel.
+        //As a placeholder, this loads the Login table. This will be altered to the relevant tables
+        //once they have been created.
+        try {
+            jTable1.setModel(DatabaseConnectionFunctions.getTableRecords("Login"));
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(null, "An error occurred while loading the table."
+                    , "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     //Checks to see if a table record is selected or not.
