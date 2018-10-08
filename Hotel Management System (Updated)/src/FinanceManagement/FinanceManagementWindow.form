@@ -382,7 +382,7 @@
                     <Component class="javax.swing.JButton" name="jButton15">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="99" green="66" red="0" type="rgb"/>
+                          <Color blue="0" green="66" red="0" type="rgb"/>
                         </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Verdana" size="12" style="0"/>
@@ -406,7 +406,7 @@
                     <Component class="javax.swing.JButton" name="jButton16">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="99" type="rgb"/>
+                          <Color blue="0" green="0" red="66" type="rgb"/>
                         </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Verdana" size="12" style="0"/>
@@ -436,7 +436,7 @@
                     <Component class="javax.swing.JButton" name="jButton3">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="66" red="0" type="rgb"/>
+                          <Color blue="99" green="99" red="99" type="rgb"/>
                         </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Verdana" size="12" style="0"/>
@@ -486,7 +486,7 @@
                     <Component class="javax.swing.JButton" name="jButton12">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="66" red="0" type="rgb"/>
+                          <Color blue="ff" green="66" red="0" type="rgb"/>
                         </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Verdana" size="12" style="0"/>
@@ -726,8 +726,8 @@
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                               <Table columnCount="11" rowCount="0">
                                 <Column editable="true" title="Date" type="java.lang.Object"/>
-                                <Column editable="true" title="Receipt No." type="java.lang.Object"/>
-                                <Column editable="true" title="Receipt Type" type="java.lang.Object"/>
+                                <Column editable="true" title="Reciept No" type="java.lang.Object"/>
+                                <Column editable="true" title="Reciept Type" type="java.lang.Object"/>
                                 <Column editable="true" title="Department" type="java.lang.Object"/>
                                 <Column editable="true" title="Sale" type="java.lang.Object"/>
                                 <Column editable="true" title="Payment" type="java.lang.Object"/>
@@ -772,12 +772,15 @@
                         <Component class="javax.swing.JLabel" name="jLabel3">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                              <Color blue="5a" green="30" red="1c" type="rgb"/>
                             </Property>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Verdana" size="12" style="0"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Date :"/>
+                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Reciept Date:"/>
                             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                               <Dimension value="[26, 16]"/>
                             </Property>
@@ -785,14 +788,14 @@
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="380" y="10" width="47" height="22"/>
+                              <AbsoluteConstraints x="340" y="10" width="-1" height="22"/>
                             </Constraint>
                           </Constraints>
                         </Component>
                         <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser1">
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="440" y="10" width="140" height="22"/>
+                              <AbsoluteConstraints x="430" y="10" width="140" height="22"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -851,51 +854,6 @@
                     <Property name="useNullLayout" type="boolean" value="false"/>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JButton" name="jButton9">
-                      <Properties>
-                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="99" green="66" red="0" type="rgb"/>
-                        </Property>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Verdana" size="12" style="0"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="Add"/>
-                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                            <LineBorder/>
-                          </Border>
-                        </Property>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton9ActionPerformed"/>
-                      </Events>
-                      <Constraints>
-                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="10" y="40" width="70" height="30"/>
-                        </Constraint>
-                      </Constraints>
-                    </Component>
-                    <Component class="javax.swing.JButton" name="jButton10">
-                      <Properties>
-                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="99" green="66" red="0" type="rgb"/>
-                        </Property>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Verdana" size="12" style="0"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="Add All"/>
-                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                            <LineBorder/>
-                          </Border>
-                        </Property>
-                      </Properties>
-                      <Constraints>
-                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="90" y="40" width="80" height="30"/>
-                        </Constraint>
-                      </Constraints>
-                    </Component>
                     <Container class="javax.swing.JScrollPane" name="jScrollPane2">
                       <AuxValues>
                         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -916,7 +874,7 @@
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                               <Table columnCount="7" rowCount="0">
                                 <Column editable="true" title="Date" type="java.lang.Object"/>
-                                <Column editable="true" title="Receipt No." type="java.lang.Object"/>
+                                <Column editable="true" title="Reciept No" type="java.lang.Object"/>
                                 <Column editable="true" title="Payment" type="java.lang.Object"/>
                                 <Column editable="true" title="Sub Total" type="java.lang.Object"/>
                                 <Column editable="true" title="Tax" type="java.lang.Object"/>
@@ -955,9 +913,13 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace pref="236" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jButton9" min="-2" pref="70" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jButton10" min="-2" pref="80" max="-2" attributes="0"/>
+                                  <EmptySpace pref="74" max="32767" attributes="0"/>
                                   <Component id="jButton7" min="-2" pref="80" max="-2" attributes="0"/>
-                                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jButton8" min="-2" pref="90" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
@@ -968,8 +930,14 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jButton7" min="-2" pref="30" max="-2" attributes="0"/>
-                                      <Component id="jButton8" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jButton10" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                          <Component id="jButton9" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jButton8" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                          <Component id="jButton7" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                                   <EmptySpace pref="227" max="32767" attributes="0"/>
                               </Group>
@@ -980,7 +948,7 @@
                         <Component class="javax.swing.JButton" name="jButton7">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="0" green="0" red="99" type="rgb"/>
+                              <Color blue="0" green="0" red="66" type="rgb"/>
                             </Property>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Verdana" size="12" style="0"/>
@@ -1005,7 +973,7 @@
                         <Component class="javax.swing.JButton" name="jButton8">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="0" green="0" red="99" type="rgb"/>
+                              <Color blue="0" green="0" red="66" type="rgb"/>
                             </Property>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Verdana" size="12" style="0"/>
@@ -1019,6 +987,41 @@
                           </Properties>
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton8ActionPerformed"/>
+                          </Events>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="jButton10">
+                          <Properties>
+                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="0" green="66" red="0" type="rgb"/>
+                            </Property>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Verdana" size="12" style="0"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Add All"/>
+                            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                                <LineBorder/>
+                              </Border>
+                            </Property>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="jButton9">
+                          <Properties>
+                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="0" green="66" red="0" type="rgb"/>
+                            </Property>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Verdana" size="12" style="0"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Add"/>
+                            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                                <LineBorder/>
+                              </Border>
+                            </Property>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton9ActionPerformed"/>
                           </Events>
                         </Component>
                       </SubComponents>
@@ -1072,7 +1075,7 @@
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                               <Table columnCount="7" rowCount="0">
                                 <Column editable="true" title="Date" type="java.lang.Object"/>
-                                <Column editable="true" title="Receipt No." type="java.lang.Object"/>
+                                <Column editable="true" title="Reciept No" type="java.lang.Object"/>
                                 <Column editable="true" title="Sale" type="java.lang.Object"/>
                                 <Column editable="true" title="Sub Total" type="java.lang.Object"/>
                                 <Column editable="true" title="Tax" type="java.lang.Object"/>
@@ -1115,9 +1118,9 @@
                                   <Component id="jButton11" min="-2" pref="73" max="-2" attributes="0"/>
                                   <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
                                   <Component id="jButton4" min="-2" pref="70" max="-2" attributes="0"/>
-                                  <EmptySpace pref="116" max="32767" attributes="0"/>
+                                  <EmptySpace pref="124" max="32767" attributes="0"/>
                                   <Component id="jButton5" min="-2" pref="76" max="-2" attributes="0"/>
-                                  <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jButton6" min="-2" pref="80" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
@@ -1127,11 +1130,13 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jButton5" min="-2" pref="31" max="-2" attributes="0"/>
-                                      <Component id="jButton6" min="-2" pref="31" max="-2" attributes="0"/>
-                                      <Component id="jButton11" min="-2" pref="33" max="-2" attributes="0"/>
-                                      <Component id="jButton4" min="-2" pref="31" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jButton6" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                          <Component id="jButton5" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="jButton11" pref="33" max="32767" attributes="0"/>
+                                      <Component id="jButton4" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace pref="223" max="32767" attributes="0"/>
                               </Group>
@@ -1142,7 +1147,7 @@
                         <Component class="javax.swing.JButton" name="jButton11">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="99" green="66" red="0" type="rgb"/>
+                              <Color blue="0" green="66" red="0" type="rgb"/>
                             </Property>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Verdana" size="12" style="0"/>
@@ -1161,7 +1166,7 @@
                         <Component class="javax.swing.JButton" name="jButton4">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="99" green="66" red="0" type="rgb"/>
+                              <Color blue="0" green="66" red="0" type="rgb"/>
                             </Property>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Verdana" size="12" style="0"/>
@@ -1177,7 +1182,7 @@
                         <Component class="javax.swing.JButton" name="jButton5">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="0" green="0" red="99" type="rgb"/>
+                              <Color blue="0" green="0" red="66" type="rgb"/>
                             </Property>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Verdana" size="12" style="0"/>
@@ -1202,7 +1207,7 @@
                         <Component class="javax.swing.JButton" name="jButton6">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="0" green="0" red="99" type="rgb"/>
+                              <Color blue="0" green="0" red="66" type="rgb"/>
                             </Property>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Verdana" size="12" style="0"/>
@@ -1545,7 +1550,7 @@
                     <Component class="javax.swing.JButton" name="jButton44">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="99" green="66" red="0" type="rgb"/>
+                          <Color blue="0" green="66" red="0" type="rgb"/>
                         </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Verdana" size="12" style="0"/>
@@ -1569,7 +1574,7 @@
                     <Component class="javax.swing.JButton" name="jButton45">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="99" red="99" type="rgb"/>
+                          <Color blue="99" green="99" red="99" type="rgb"/>
                         </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Verdana" size="12" style="0"/>
@@ -1652,7 +1657,7 @@
                       </AuxValues>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="16" y="29" width="462" height="190"/>
+                          <AbsoluteConstraints x="16" y="29" width="-1" height="190"/>
                         </Constraint>
                       </Constraints>
 
@@ -1662,7 +1667,7 @@
                           <Properties>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                               <Table columnCount="3" rowCount="0">
-                                <Column editable="true" title="Cash Flows from Operating Activities" type="java.lang.Object"/>
+                                <Column editable="true" title="Cash Flows form Operating Activities" type="java.lang.Object"/>
                                 <Column editable="true" title="Value" type="java.lang.Object"/>
                                 <Column editable="true" title="Total" type="java.lang.Object"/>
                               </Table>
@@ -1716,9 +1721,9 @@
                               <Group type="102" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="jScrollPane19" min="-2" pref="460" max="-2" attributes="0"/>
-                                          <EmptySpace pref="54" max="32767" attributes="0"/>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="jScrollPane19" min="-2" pref="443" max="-2" attributes="0"/>
+                                          <EmptySpace pref="71" max="32767" attributes="0"/>
                                           <Component id="jButton48" min="-2" pref="100" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                                           <Component id="jButton47" min="-2" max="-2" attributes="0"/>
@@ -1727,7 +1732,7 @@
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                          <Component id="jScrollPane20" min="-2" pref="422" max="-2" attributes="0"/>
+                                          <Component id="jScrollPane20" min="-2" pref="434" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -1739,12 +1744,8 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jScrollPane20" min="-2" pref="184" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace pref="8" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="jScrollPane19" min="-2" pref="162" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                      </Group>
                                       <Group type="102" alignment="1" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="jButton48" min="-2" pref="30" max="-2" attributes="0"/>
@@ -1755,6 +1756,7 @@
                                           </Group>
                                           <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                                       </Group>
+                                      <Component id="jScrollPane19" alignment="1" min="-2" pref="173" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -1814,7 +1816,7 @@
                               <Properties>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                   <Table columnCount="3" rowCount="0">
-                                    <Column editable="true" title="Cash Flows from Financing Activities" type="java.lang.Object"/>
+                                    <Column editable="true" title="Cash Flows form Financing Activities" type="java.lang.Object"/>
                                     <Column editable="true" title="Value" type="java.lang.Object"/>
                                     <Column editable="true" title="Total" type="java.lang.Object"/>
                                   </Table>
@@ -1848,7 +1850,7 @@
                         <Component class="javax.swing.JButton" name="jButton48">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="0" green="66" red="0" type="rgb"/>
+                              <Color blue="ff" green="66" red="0" type="rgb"/>
                             </Property>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Verdana" size="12" style="0"/>
@@ -1864,7 +1866,7 @@
                         <Component class="javax.swing.JButton" name="jButton47">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="0" green="0" red="99" type="rgb"/>
+                              <Color blue="0" green="0" red="66" type="rgb"/>
                             </Property>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Verdana" size="12" style="0"/>
@@ -1950,52 +1952,6 @@
                     <Property name="useNullLayout" type="boolean" value="false"/>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JLabel" name="jLabel40">
-                      <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Verdana" size="11" style="0"/>
-                        </Property>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="End Date  :"/>
-                      </Properties>
-                      <Constraints>
-                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="330" y="30" width="-1" height="25"/>
-                        </Constraint>
-                      </Constraints>
-                    </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel41">
-                      <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Verdana" size="11" style="0"/>
-                        </Property>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="Profit Duration :"/>
-                      </Properties>
-                      <Constraints>
-                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="10" y="30" width="-1" height="25"/>
-                        </Constraint>
-                      </Constraints>
-                    </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField23">
-                      <Constraints>
-                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="110" y="30" width="181" height="25"/>
-                        </Constraint>
-                      </Constraints>
-                    </Component>
-                    <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser7">
-                      <Constraints>
-                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="400" y="30" width="185" height="26"/>
-                        </Constraint>
-                      </Constraints>
-                    </Component>
                     <Component class="javax.swing.JButton" name="jButton52">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -2063,7 +2019,7 @@
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="10" y="72" width="470" height="330"/>
+                          <AbsoluteConstraints x="10" y="72" width="460" height="330"/>
                         </Constraint>
                       </Constraints>
 
@@ -2077,7 +2033,7 @@
                           </AuxValues>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="10" y="20" width="450" height="300"/>
+                              <AbsoluteConstraints x="10" y="20" width="440" height="300"/>
                             </Constraint>
                           </Constraints>
 
@@ -2130,7 +2086,7 @@
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="480" y="70" width="430" height="330"/>
+                          <AbsoluteConstraints x="470" y="70" width="440" height="330"/>
                         </Constraint>
                       </Constraints>
 
@@ -2144,7 +2100,7 @@
                           </AuxValues>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="10" y="20" width="410" height="300"/>
+                              <AbsoluteConstraints x="10" y="20" width="420" height="300"/>
                             </Constraint>
                           </Constraints>
 
@@ -2198,15 +2154,64 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <EmptySpace min="0" pref="906" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jLabel41" min="-2" pref="90" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jTextField23" min="-2" pref="181" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="jLabel40" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="jDateChooser7" min="-2" pref="185" max="-2" attributes="0"/>
+                                  <EmptySpace pref="343" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <EmptySpace min="0" pref="386" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="jDateChooser7" min="-2" pref="26" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jTextField23" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                          <Component id="jLabel41" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                          <Component id="jLabel40" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace pref="349" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                         </DimensionLayout>
                       </Layout>
+                      <SubComponents>
+                        <Component class="javax.swing.JTextField" name="jTextField23">
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel41">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Verdana" size="11" style="0"/>
+                            </Property>
+                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Pofit Duration:"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel40">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Verdana" size="11" style="0"/>
+                            </Property>
+                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="End Date  :"/>
+                          </Properties>
+                        </Component>
+                        <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser7">
+                        </Component>
+                      </SubComponents>
                     </Container>
                   </SubComponents>
                 </Container>
@@ -2348,7 +2353,7 @@
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="600" y="10" width="48" height="36"/>
+                              <AbsoluteConstraints x="590" y="10" width="48" height="36"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -2382,7 +2387,7 @@
                           </Events>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="820" y="10" width="70" height="26"/>
+                              <AbsoluteConstraints x="820" y="10" width="80" height="26"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -2413,31 +2418,25 @@
             </Constraint>
           </Constraints>
         </Component>
+        <Component class="javax.swing.JButton" name="btnLogout1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Logout"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="890" y="10" width="-1" height="39"/>
+            </Constraint>
+          </Constraints>
+        </Component>
         <Component class="javax.swing.JButton" name="btnHome">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Icons/Home.png"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnHomeMouseClicked"/>
-          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="810" y="10" width="50" height="40"/>
-            </Constraint>
-          </Constraints>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnLogout">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Logout"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLogoutActionPerformed"/>
-          </Events>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="880" y="10" width="-1" height="39"/>
+              <AbsoluteConstraints x="810" y="10" width="60" height="40"/>
             </Constraint>
           </Constraints>
         </Component>
