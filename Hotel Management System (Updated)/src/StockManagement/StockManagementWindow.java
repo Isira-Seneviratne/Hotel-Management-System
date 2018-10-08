@@ -80,8 +80,9 @@ public class StockManagementWindow extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Stock Management");
         setPreferredSize(new java.awt.Dimension(970, 660));
+        setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 102));
+        jPanel1.setBackground(new java.awt.Color(0, 20, 60));
 
         btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Home.png"))); // NOI18N
         btnHome.addMouseListener(new java.awt.event.MouseAdapter() {

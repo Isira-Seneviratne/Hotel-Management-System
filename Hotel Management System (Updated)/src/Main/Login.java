@@ -5,6 +5,7 @@
  */
 package Main;
 
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -27,9 +28,30 @@ public class Login extends javax.swing.JFrame {
         } catch(SQLException e) {
             JOptionPane.showMessageDialog(Login.this, "A database connection could not be established."
                     + " Make sure that MySQL is running.", "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
         }
     }
 
+    public void loadMainWindow() {
+        try {
+            String username = txtUsername.getText(), password = new String(txtPassword.getPassword());
+            if(username.trim().equals("") || password.trim().equals("")) {
+                JOptionPane.showMessageDialog(this, "You have not entered a username and/or password.", "No username/password",
+                        JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            if(DatabaseConnectionFunctions.login(username, password)) {
+                MainWindow.getInstance(DatabaseConnectionFunctions.getEID(username, password)).setVisible(true);
+                dispose();
+            }
+            else
+                JOptionPane.showMessageDialog(this, "The login details could not be found."
+                        + " Please make sure that they are correct.", "Invalid login", JOptionPane.ERROR_MESSAGE);
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(this, "An error occurred while logging in.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -94,6 +116,11 @@ public class Login extends javax.swing.JFrame {
                 btnLoginMouseClicked(evt);
             }
         });
+        btnLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnLoginKeyPressed(evt);
+            }
+        });
         jPanel1.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 430, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Login.png"))); // NOI18N
@@ -115,23 +142,7 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
  
     private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
-        try {
-            String username = txtUsername.getText(), password = new String(txtPassword.getPassword());
-            if(username.trim().equals("") || password.trim().equals("")) {
-                JOptionPane.showMessageDialog(this, "You have not entered a username and/or password.", "No username/password",
-                        JOptionPane.WARNING_MESSAGE);
-                return;
-            }
-            if(DatabaseConnectionFunctions.login(username, password)) {
-                MainWindow.getInstance(DatabaseConnectionFunctions.getEID(username, password)).setVisible(true);
-                dispose();
-            }
-            else
-                JOptionPane.showMessageDialog(this, "The login details could not be found."
-                        + " Please make sure that they are correct.", "Invalid login", JOptionPane.ERROR_MESSAGE);
-        } catch(SQLException e) {
-            JOptionPane.showMessageDialog(this, "An error occurred while logging in.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        loadMainWindow();
     }//GEN-LAST:event_btnLoginMouseClicked
 
     private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
@@ -141,6 +152,11 @@ public class Login extends javax.swing.JFrame {
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         btnLogin.requestFocus();
     }//GEN-LAST:event_txtPasswordActionPerformed
+
+    private void btnLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnLoginKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+            loadMainWindow();
+    }//GEN-LAST:event_btnLoginKeyPressed
 
     /**
      * @param args the command line arguments
