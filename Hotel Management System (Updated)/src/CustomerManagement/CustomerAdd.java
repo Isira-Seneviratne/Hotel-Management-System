@@ -150,6 +150,7 @@ public class CustomerAdd extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(28, 48, 90));
 
+        BtnSave.setBackground(new java.awt.Color(0, 51, 204));
         BtnSave.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         BtnSave.setText("Save");
         BtnSave.addActionListener(new java.awt.event.ActionListener() {
@@ -158,6 +159,7 @@ public class CustomerAdd extends javax.swing.JFrame {
             }
         });
 
+        BtnCancle1.setBackground(new java.awt.Color(204, 204, 204));
         BtnCancle1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         BtnCancle1.setText("Clear");
         BtnCancle1.addActionListener(new java.awt.event.ActionListener() {
