@@ -5,6 +5,7 @@
  */
 package FinanceManagement;
 
+import Main.Login;
 import Main.MainWindow;
 
 /**
@@ -12,12 +13,13 @@ import Main.MainWindow;
  * @author Lakshika
  */
 public class FinanceManagementWindow extends javax.swing.JFrame {
-
+    private String curEID;
     /**
      * Creates new form FinanceManagement
      */
-    public FinanceManagementWindow() {
+    public FinanceManagementWindow(String eID) {
         initComponents();
+        curEID = eID;
     }
 
     /**
@@ -1017,9 +1019,24 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         jPanel14.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 260, 50));
 
         btnLogout1.setText("Logout");
+        btnLogout1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogout1ActionPerformed(evt);
+            }
+        });
         jPanel14.add(btnLogout1, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 10, -1, 39));
 
         btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Home.png"))); // NOI18N
+        btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnHomeMouseClicked(evt);
+            }
+        });
+        btnHome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHomeActionPerformed(evt);
+            }
+        });
         jPanel14.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 10, 60, 40));
 
         getContentPane().add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 970, 660));
@@ -1093,6 +1110,19 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         //dispose();
     }//GEN-LAST:event_btnHomeMouseClicked
 
+    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
+        // TODO add your handling code here:
+        MainWindow.getInstance(curEID).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnHomeActionPerformed
+
+    private void btnLogout1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogout1ActionPerformed
+        // TODO add your handling code here:
+         dispose();
+        Login log = new Login();
+        log.setVisible(true);
+    }//GEN-LAST:event_btnLogout1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1124,7 +1154,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FinanceManagementWindow().setVisible(true);
+                new FinanceManagementWindow("").setVisible(true);
             }
         });
     }
