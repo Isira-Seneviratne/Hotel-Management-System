@@ -32,7 +32,15 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
         }
     }
 
-    //Checks to see if a table record is selected or not.
+    /* Checks to see if a table record is selected or not.
+     *
+     * The following code is based on code from the following tutorial (this is the case for the other
+     * panels under the StockManagement package as well):
+     *
+     * Oracle. How to Write a List Selection Listener.
+     * https://docs.oracle.com/javase/tutorial/uiswing/events/listselectionlistener.html
+     * Accessed October 7, 2018.
+     */
     @Override
     public void valueChanged(ListSelectionEvent lse) {
         String tooltip = "A table record must be selected to use this button.";
@@ -128,42 +136,42 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
         jLabel2.setForeground(new java.awt.Color(238, 238, 238));
         jLabel2.setText("Item ID");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, -1, -1));
-        jPanel1.add(txtItemID, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 115, -1));
+        jPanel1.add(txtItemID, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 140, -1));
 
         jLabel3.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(238, 238, 238));
         jLabel3.setText("Item name");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, -1));
 
         lblItemName.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.add(lblItemName, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, 200, 20));
+        jPanel1.add(lblItemName, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 200, 20));
 
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(238, 238, 238));
         jLabel4.setText("Quantity");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 30, -1, -1));
-        jPanel1.add(txtQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 30, 70, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, -1));
+        jPanel1.add(txtQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 70, -1));
 
         jLabel5.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(238, 238, 238));
         jLabel5.setText("Unit");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 101, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 100, -1, -1));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kilograms (kg)", "Grams (g)" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(216, 96, 145, -1));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 100, 150, -1));
 
         jLabel6.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(238, 238, 238));
         jLabel6.setText("Company");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 100, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 30, -1, -1));
 
-        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 100, 151, -1));
+        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 30, 151, -1));
 
         jLabel7.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(238, 238, 238));
         jLabel7.setText("Date of order");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 170, -1, -1));
-        jPanel1.add(datOrderDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 170, 130, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 160, -1, -1));
+        jPanel1.add(datOrderDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 160, 150, -1));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 59, 870, 270));
 

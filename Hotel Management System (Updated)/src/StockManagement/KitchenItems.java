@@ -32,7 +32,15 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
         }
     }
 
-    //Checks to see if a table record is selected or not.
+    /* Checks to see if a table record is selected or not.
+     *
+     * The following code is based on code from the following tutorial (this is the case for the other
+     * panels under the StockManagement package as well):
+     *
+     * Oracle. How to Write a List Selection Listener.
+     * https://docs.oracle.com/javase/tutorial/uiswing/events/listselectionlistener.html
+     * Accessed October 7, 2018.
+     */
     @Override
     public void valueChanged(ListSelectionEvent lse) {
         String tooltip = "A table record must be selected to use this button.";
@@ -110,27 +118,27 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
         btnUpdate.setForeground(new java.awt.Color(238, 238, 238));
         btnUpdate.setText("Update");
         btnUpdate.setEnabled(false);
-        jPanel1.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 220, -1, -1));
+        jPanel1.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 150, -1, -1));
 
         btnDelete.setBackground(new java.awt.Color(204, 0, 0));
         btnDelete.setForeground(new java.awt.Color(238, 238, 238));
         btnDelete.setText("Delete");
         btnDelete.setEnabled(false);
-        jPanel1.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, -1, -1));
+        jPanel1.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, -1, -1));
 
         btnAdd.setBackground(new java.awt.Color(102, 153, 255));
         btnAdd.setForeground(new java.awt.Color(238, 238, 238));
         btnAdd.setText("Add");
-        jPanel1.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, -1, -1));
+        jPanel1.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, -1, -1));
 
         btnClear.setBackground(new java.awt.Color(153, 153, 153));
         btnClear.setText("Clear");
-        jPanel1.add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 220, -1, -1));
+        jPanel1.add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 150, -1, -1));
 
         btnGenReport.setBackground(new java.awt.Color(255, 255, 0));
         btnGenReport.setText("Generate Report");
         btnGenReport.setEnabled(false);
-        jPanel1.add(btnGenReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 220, -1, -1));
+        jPanel1.add(btnGenReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 150, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(238, 238, 238));
@@ -142,9 +150,9 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
         jLabel4.setForeground(new java.awt.Color(238, 238, 238));
         jLabel4.setText("Quantity");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 70, -1, -1));
-        jPanel1.add(txtQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 60, 80, -1));
+        jPanel1.add(txtQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 70, 80, -1));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 47, 880, 320));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 47, 880, 200));
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -157,7 +165,7 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
         jTable2.setPreferredSize(new java.awt.Dimension(450, 0));
         jScrollPane2.setViewportView(jTable2);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 880, 220));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 880, 130));
     }// </editor-fold>//GEN-END:initComponents
 
 

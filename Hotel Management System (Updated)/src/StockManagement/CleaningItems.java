@@ -35,7 +35,7 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
     /* Checks to see if a table record is selected or not.
      *
      * The following code is based on code from the following tutorial (this is the case for the other
-     * panels under the StockManagement package as well, so this comment is not repeated for those):
+     * panels under the StockManagement package as well):
      *
      * Oracle. How to Write a List Selection Listener.
      * https://docs.oracle.com/javase/tutorial/uiswing/events/listselectionlistener.html
@@ -108,27 +108,27 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
         jLabel3.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(238, 238, 238));
         jLabel3.setText("Quantity");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, -1, -1));
-        jPanel1.add(txtQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 40, 112, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, -1, -1));
+        jPanel1.add(txtQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 70, -1));
 
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(238, 238, 238));
         jLabel4.setText("Price");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 40, -1, -1));
-        jPanel1.add(txtPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 40, 90, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, -1, -1));
+        jPanel1.add(txtPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 110, -1));
 
         jLabel5.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(238, 238, 238));
         jLabel5.setText("Purchase date");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, -1, -1));
-        jPanel1.add(datPurchase, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 120, 112, 20));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, -1, -1));
+        jPanel1.add(datPurchase, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 130, 130, 20));
 
         jLabel6.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(238, 238, 238));
         jLabel6.setText("Vendor");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, -1, -1));
 
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 132, -1));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 40, 132, -1));
 
         btnAdd.setBackground(new java.awt.Color(102, 153, 255));
         btnAdd.setForeground(new java.awt.Color(238, 238, 238));

@@ -9,6 +9,8 @@ import CustomerManagement.CustomerManagementWindow;
 import FinanceManagement.FinanceManagementWindow;
 import HRManagement.HRManagementWindow;
 import StockManagement.StockManagementWindow;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -29,6 +31,28 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow(String eID) {
         initComponents();
         curEID = eID;
+        
+        /* The following code was based on code included in the the following tutorial:
+         *
+         * Tsagklis, Ilias, Window closing event handling. November 11, 2012.
+         * https://examples.javacodegeeks.com/desktop-java/awt/event/window-closing-event-handling/
+         * Accessed October 5, 2018.
+         */
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent evt) {
+                try {
+                    DatabaseConnectionFunctions.logout(curEID);
+                    JOptionPane.showMessageDialog(null, "Successfully logged out of the system.", "Success",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    new Login().setVisible(true);
+                    dispose();
+                } catch(SQLException e) {
+                    JOptionPane.showMessageDialog(null, "A problem occurred while logging out."
+                            + " Make sure you are connected to the database.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
     }
 
     public static MainWindow getInstance(String eID) {
@@ -205,29 +229,25 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLogoutMouseClicked
 
     private void jPanel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel11MouseClicked
-        // TODO add your handling code here:
-         dispose();
+        dispose();
         HRManagementWindow hr = new HRManagementWindow("");
         hr.setVisible(true);
     }//GEN-LAST:event_jPanel11MouseClicked
 
     private void jPanel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel12MouseClicked
-        // TODO add your handling code here:
-         dispose();
+        dispose();
         FinanceManagementWindow fi = new FinanceManagementWindow("");
         fi.setVisible(true);
     }//GEN-LAST:event_jPanel12MouseClicked
 
     private void jPanel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel13MouseClicked
-        // TODO add your handling code here:
-         dispose();
+        dispose();
         CustomerManagementWindow cu = new CustomerManagementWindow("");
         cu.setVisible(true);
     }//GEN-LAST:event_jPanel13MouseClicked
 
     private void jPanel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel14MouseClicked
-        // TODO add your handling code here:
-         dispose();
+        dispose();
         StockManagementWindow cu = new StockManagementWindow("");
         cu.setVisible(true);
     }//GEN-LAST:event_jPanel14MouseClicked

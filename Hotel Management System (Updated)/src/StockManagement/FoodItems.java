@@ -32,7 +32,15 @@ public class FoodItems extends javax.swing.JPanel implements ListSelectionListen
         }
     }
 
-    //Checks to see if a table record is selected or not.
+    /* Checks to see if a table record is selected or not.
+     *
+     * The following code is based on code from the following tutorial (this is the case for the other
+     * panels under the StockManagement package as well):
+     *
+     * Oracle. How to Write a List Selection Listener.
+     * https://docs.oracle.com/javase/tutorial/uiswing/events/listselectionlistener.html
+     * Accessed October 7, 2018.
+     */
     @Override
     public void valueChanged(ListSelectionEvent lse) {
         String tooltip = "A table record must be selected to use this button.";
@@ -160,7 +168,7 @@ public class FoodItems extends javax.swing.JPanel implements ListSelectionListen
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 870, 279));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 870, 160));
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(238, 238, 238));

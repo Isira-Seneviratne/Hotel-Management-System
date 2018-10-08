@@ -23,12 +23,9 @@ public class Login extends javax.swing.JFrame {
         
         try {
             DatabaseConnectionFunctions.createConnection();
-        } catch(ClassNotFoundException e) {
-            JOptionPane.showMessageDialog(Login.this, "The database driver could not be loaded.", "Error", JOptionPane.ERROR_MESSAGE);
         } catch(SQLException e) {
             JOptionPane.showMessageDialog(Login.this, "A database connection could not be established."
                     + " Make sure that MySQL is running.", "Error", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
         }
     }
 

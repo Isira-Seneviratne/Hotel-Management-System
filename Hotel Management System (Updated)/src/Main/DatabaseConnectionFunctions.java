@@ -12,7 +12,6 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -28,10 +27,8 @@ public class DatabaseConnectionFunctions {
     /* Initializes the database connection, as well as the Statement object used to execute SQL queries.
      * This only happens if these values have not been already initialized.
      */
-    public static void createConnection() throws ClassNotFoundException, SQLException {
+    public static void createConnection() throws SQLException {
         if(con == null && stmt == null) {
-            Class.forName("com.mysql.jdbc.Driver");
-
             Properties connProps = new Properties();
             connProps.put("user", "user");
             connProps.put("password", "abcd1234");
@@ -43,15 +40,15 @@ public class DatabaseConnectionFunctions {
     }
     
     //Generates a unique ID for a record in a given table, using the given starting character.
-    public static String generateIDForRecord(String startChar, String tableLoadString) throws SQLException {
+    public static String generateIDForRecord(String startChar, String tableName) throws SQLException {
         String id = startChar;
-        ResultSet rows = stmt.executeQuery(tableLoadString);
+        ResultSet rows = stmt.executeQuery("SELECT * FROM " + tableName);
         int curID;
         if(rows.last())
             curID = rows.getRow() + 1;
         else
             curID = 1;
-        for(int i = 0; i < 9 - Integer.toString(rows.getRow()).length(); i++)
+        for(int i = 0; i < 9-Integer.toString(rows.getRow()).length(); i++)
             id += "0";
         id += curID;
         return id;
@@ -90,7 +87,6 @@ public class DatabaseConnectionFunctions {
     //Logs the user out of the system; if an issue occurs, a SQLException is thrown.
     public static void logout(String eID) throws SQLException {
         updateRecord("Login", "`Logged in?` = 'No'", "eID = '"+eID+"'");
-        JOptionPane.showMessageDialog(null, "Successfully logged out of the system.", "Logout", JOptionPane.INFORMATION_MESSAGE);
     }
     
     //Returns the employee ID corresponding to the given username and password.

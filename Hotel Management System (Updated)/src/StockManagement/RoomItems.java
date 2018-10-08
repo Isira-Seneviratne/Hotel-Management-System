@@ -32,7 +32,15 @@ public class RoomItems extends javax.swing.JPanel implements ListSelectionListen
         }
     }
 
-    //Checks to see if a table record is selected or not.
+    /* Checks to see if a table record is selected or not.
+     *
+     * The following code is based on code from the following tutorial (this is the case for the other
+     * panels under the StockManagement package as well):
+     *
+     * Oracle. How to Write a List Selection Listener.
+     * https://docs.oracle.com/javase/tutorial/uiswing/events/listselectionlistener.html
+     * Accessed October 7, 2018.
+     */
     @Override
     public void valueChanged(ListSelectionEvent lse) {
         String tooltip = "A table record must be selected to use this button.";

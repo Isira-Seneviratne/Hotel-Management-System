@@ -32,7 +32,15 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
         }
     }
 
-    //Checks to see if a table record is selected or not.
+    /* Checks to see if a table record is selected or not.
+     *
+     * The following code is based on code from the following tutorial (this is the case for the other
+     * panels under the StockManagement package as well):
+     *
+     * Oracle. How to Write a List Selection Listener.
+     * https://docs.oracle.com/javase/tutorial/uiswing/events/listselectionlistener.html
+     * Accessed October 7, 2018.
+     */
     @Override
     public void valueChanged(ListSelectionEvent lse) {
         String tooltip = "A table record must be selected to use this button.";
@@ -147,7 +155,7 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
         jLabel6.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(238, 238, 238));
         jLabel6.setText("Email");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 160, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 150, -1, -1));
         jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 150, 189, -1));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 53, 870, 240));
