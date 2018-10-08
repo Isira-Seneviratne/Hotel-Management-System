@@ -24,10 +24,8 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
         initComponents();
         
         //Loads the up-to-date table corresponding to this particular panel.
-        //As a placeholder, this loads the Login table. This will be altered to the relevant tables
-        //once they have been created.
         try {
-            jTable1.setModel(DatabaseConnectionFunctions.getTableRecords("Login"));
+            jTable1.setModel(DatabaseConnectionFunctions.getTableRecords("Payments"));
         } catch(SQLException e) {
             JOptionPane.showMessageDialog(null, "An error occurred while loading the table."
                     , "Error", JOptionPane.ERROR_MESSAGE);
@@ -127,7 +125,7 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
 
         jLabel6.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(238, 238, 238));
-        jLabel6.setText("Date");
+        jLabel6.setText("Payment Date");
 
         jLabel7.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(238, 238, 238));

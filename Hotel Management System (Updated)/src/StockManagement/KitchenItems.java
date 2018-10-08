@@ -24,10 +24,8 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
         initComponents();
         
         //Loads the up-to-date table corresponding to this particular panel.
-        //As a placeholder, this loads the Login table. This will be altered to the relevant tables
-        //once they have been created.
         try {
-            jTable1.setModel(DatabaseConnectionFunctions.getTableRecords("Login"));
+            jTable1.setModel(DatabaseConnectionFunctions.getTableRecords("Kitchen_Items"));
         } catch(SQLException e) {
             JOptionPane.showMessageDialog(null, "An error occurred while loading the table."
                     , "Error", JOptionPane.ERROR_MESSAGE);

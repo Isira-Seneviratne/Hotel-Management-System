@@ -1,55 +1,198 @@
-CREATE DATABASE  IF NOT EXISTS `hotel_db` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `hotel_db`;
--- MySQL dump 10.13  Distrib 8.0.12, for Linux (x86_64)
+-- phpMyAdmin SQL Dump
+-- version 4.8.3
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost    Database: hotel_db
--- ------------------------------------------------------
--- Server version	8.0.12
+-- Host: localhost
+-- Generation Time: Oct 08, 2018 at 06:18 AM
+-- Server version: 8.0.12
+-- PHP Version: 7.2.10
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
- SET NAMES utf8 ;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `hotel_db`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Cleaning_Items`
+--
+
+CREATE TABLE `Cleaning_Items` (
+  `Item ID` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Item Name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Quantity` int(11) NOT NULL,
+  `Price` float NOT NULL,
+  `Vendor ID` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Food_Items`
+--
+
+CREATE TABLE `Food_Items` (
+  `Food ID` varchar(10) NOT NULL,
+  `Food Name` varchar(100) NOT NULL,
+  `Quantity` int(11) NOT NULL,
+  `Price` float NOT NULL,
+  `Purchase Date` date NOT NULL,
+  `Expiry Date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Kitchen_Items`
+--
+
+CREATE TABLE `Kitchen_Items` (
+  `Item ID` varchar(10) NOT NULL,
+  `Item Name` varchar(100) NOT NULL,
+  `Quantity` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `Login`
 --
 
-DROP TABLE IF EXISTS `Login`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
 CREATE TABLE `Login` (
   `eID` varchar(10) NOT NULL,
   `Username` varchar(100) DEFAULT NULL,
   `Password` varchar(50) DEFAULT NULL,
-  `Logged in?` varchar(3) DEFAULT 'No',
-  PRIMARY KEY (`eID`)
+  `Logged in?` varchar(3) DEFAULT 'No'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `Login`
 --
 
-LOCK TABLES `Login` WRITE;
-/*!40000 ALTER TABLE `Login` DISABLE KEYS */;
-INSERT INTO `Login` VALUES ('E000000001','isira123','abcd1234','No');
-/*!40000 ALTER TABLE `Login` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+INSERT INTO `Login` (`eID`, `Username`, `Password`, `Logged in?`) VALUES
+('E000000001', 'isira123', 'abcd1234', 'Yes');
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Payments`
+--
+
+CREATE TABLE `Payments` (
+  `Payment ID` varchar(10) NOT NULL,
+  `Company ID` varchar(10) NOT NULL,
+  `Item ID` varchar(10) NOT NULL,
+  `Quantity` int(11) NOT NULL,
+  `Payment Date` date NOT NULL,
+  `Price` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Pending_Orders`
+--
+
+CREATE TABLE `Pending_Orders` (
+  `Order ID` varchar(10) NOT NULL,
+  `Item ID` varchar(10) NOT NULL,
+  `Quantity` int(11) NOT NULL,
+  `Unit` varchar(5) NOT NULL,
+  `Vendor ID` varchar(10) NOT NULL,
+  `Date of order` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Room_Items`
+--
+
+CREATE TABLE `Room_Items` (
+  `Item ID` varchar(10) NOT NULL,
+  `Item Name` varchar(100) NOT NULL,
+  `Room Number` varchar(10) NOT NULL,
+  `Quantity` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Vendor_Details`
+--
+
+CREATE TABLE `Vendor_Details` (
+  `Vendor ID` varchar(10) NOT NULL,
+  `Vendor Name` varchar(100) NOT NULL,
+  `Address` varchar(150) NOT NULL,
+  `Telephone Number` varchar(15) NOT NULL,
+  `Email` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `Cleaning_Items`
+--
+ALTER TABLE `Cleaning_Items`
+  ADD PRIMARY KEY (`Item ID`);
+
+--
+-- Indexes for table `Food_Items`
+--
+ALTER TABLE `Food_Items`
+  ADD PRIMARY KEY (`Food ID`);
+
+--
+-- Indexes for table `Kitchen_Items`
+--
+ALTER TABLE `Kitchen_Items`
+  ADD PRIMARY KEY (`Item ID`);
+
+--
+-- Indexes for table `Login`
+--
+ALTER TABLE `Login`
+  ADD PRIMARY KEY (`eID`);
+
+--
+-- Indexes for table `Payments`
+--
+ALTER TABLE `Payments`
+  ADD PRIMARY KEY (`Payment ID`);
+
+--
+-- Indexes for table `Pending_Orders`
+--
+ALTER TABLE `Pending_Orders`
+  ADD PRIMARY KEY (`Order ID`);
+
+--
+-- Indexes for table `Room_Items`
+--
+ALTER TABLE `Room_Items`
+  ADD PRIMARY KEY (`Item ID`);
+
+--
+-- Indexes for table `Vendor_Details`
+--
+ALTER TABLE `Vendor_Details`
+  ADD PRIMARY KEY (`Vendor ID`);
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2018-10-05 19:15:53
