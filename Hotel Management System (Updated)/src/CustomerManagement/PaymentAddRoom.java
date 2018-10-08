@@ -254,6 +254,7 @@ public class PaymentAddRoom extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
 
+        BtnSave.setBackground(new java.awt.Color(0, 51, 204));
         BtnSave.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         BtnSave.setText("Save");
         BtnSave.addActionListener(new java.awt.event.ActionListener() {

@@ -89,6 +89,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         jRadioButtonAll = new javax.swing.JRadioButton();
         jRadioButtonRuby = new javax.swing.JRadioButton();
         jRadioButtonPearl = new javax.swing.JRadioButton();
+        jLabel32 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 102));
@@ -103,6 +104,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         });
 
         jPanel1.setBackground(new java.awt.Color(0, 20, 60));
+        jPanel1.setForeground(new java.awt.Color(102, 102, 102));
 
         btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Home.png"))); // NOI18N
         btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -123,7 +125,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
             }
         });
 
-        jTabbedPane3.setBackground(new java.awt.Color(0, 0, 102));
+        jTabbedPane3.setBackground(new java.awt.Color(102, 102, 102));
         jTabbedPane3.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jTabbedPane3.setPreferredSize(new java.awt.Dimension(1200, 680));
 
@@ -226,7 +228,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
 
         jPanel21.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 38, 920, 260));
 
-        jButton10.setBackground(new java.awt.Color(42, 199, 42));
+        jButton10.setBackground(new java.awt.Color(0, 51, 204));
         jButton10.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton10.setText("Add");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
@@ -236,7 +238,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         });
         jPanel21.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 320, 77, 31));
 
-        jButton11.setBackground(new java.awt.Color(255, 204, 51));
+        jButton11.setBackground(new java.awt.Color(0, 153, 51));
         jButton11.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton11.setText("Update");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
@@ -246,9 +248,14 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         });
         jPanel21.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 320, 90, 31));
 
-        jButton12.setBackground(new java.awt.Color(255, 51, 51));
+        jButton12.setBackground(new java.awt.Color(153, 0, 0));
         jButton12.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton12.setText("Delete");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
         jPanel21.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 320, 78, 31));
 
         javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
@@ -376,7 +383,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         jPanel26.setToolTipText("");
         jPanel26.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton13.setBackground(new java.awt.Color(42, 199, 42));
+        jButton13.setBackground(new java.awt.Color(0, 51, 204));
         jButton13.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton13.setText("Add");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
@@ -386,7 +393,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         });
         jPanel26.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 320, 77, 31));
 
-        jButton14.setBackground(new java.awt.Color(255, 204, 51));
+        jButton14.setBackground(new java.awt.Color(0, 153, 51));
         jButton14.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton14.setText("Update");
         jButton14.addActionListener(new java.awt.event.ActionListener() {
@@ -396,7 +403,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         });
         jPanel26.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 320, 90, 31));
 
-        jButton15.setBackground(new java.awt.Color(255, 51, 51));
+        jButton15.setBackground(new java.awt.Color(153, 0, 0));
         jButton15.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton15.setText("Delete");
         jPanel26.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 320, 78, 31));
@@ -573,12 +580,18 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
 
         jTabbedPane3.addTab("Reservation Information", jPanel5);
 
+        jLabel32.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
+        jLabel32.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel32.setText("Customer Management");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(826, Short.MAX_VALUE)
+                .addGap(42, 42, 42)
+                .addComponent(jLabel32)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 507, Short.MAX_VALUE)
                 .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -594,10 +607,11 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel32))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addGap(22, 22, 22))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -608,9 +622,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -782,6 +794,10 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnHomeMouseClicked
 
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton12ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -854,6 +870,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel13;
