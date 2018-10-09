@@ -13,13 +13,24 @@ import Main.MainWindow;
  * @author Lakshika
  */
 public class FinanceManagementWindow extends javax.swing.JFrame {
+    
     private String curEID;
+    private static FinanceManagementWindow instance;
+    
     /**
      * Creates new form FinanceManagement
+     * @param eID
      */
     public FinanceManagementWindow(String eID) {
         initComponents();
         curEID = eID;
+    }
+    
+    public static FinanceManagementWindow getInstance(String eID) {
+        if(instance == null) {
+            instance = new FinanceManagementWindow(eID);
+        }
+        return instance;
     }
 
     /**

@@ -70,8 +70,15 @@ public class DatabaseConnectionFunctions {
     }
     
     //Retrieves specific records from a table and returns a ResultSet containing said records.
-    public static ResultSet getSpecificRecordsFromTable(String tableName, String condition) throws SQLException {
+    public static ResultSet getSpecificRecordsFromTable(String tableName, String condition)
+            throws SQLException {
         return stmt.executeQuery("SELECT * FROM " + tableName + " WHERE " + condition);
+    }
+    
+    //Retrieves data stored in specific fields from a table and returns a ResultSet containing said data.
+    public static ResultSet getSpecificFieldsFromTable(String tableName, String fields)
+            throws SQLException {
+        return stmt.executeQuery("SELECT " + fields + " FROM " + tableName);
     }
     
     //Attempts to log in the user and returns whether or not it was not successful.

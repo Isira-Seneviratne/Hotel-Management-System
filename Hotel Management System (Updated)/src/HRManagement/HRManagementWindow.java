@@ -13,7 +13,9 @@ import Main.MainWindow;
  * @author Irushi
  */
 public class HRManagementWindow extends javax.swing.JFrame {
+    
     private String curEID;
+    private static HRManagementWindow instance;
     /**
      * Creates new form HRManagementWindow
      * @param eID
@@ -25,6 +27,13 @@ public class HRManagementWindow extends javax.swing.JFrame {
         //jTabbedPane1.addTab("User", new User());
     }
 
+    public static HRManagementWindow getInstance(String eID) {
+        if(instance == null) {
+            instance = new HRManagementWindow(eID);
+        }
+        return instance;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -1316,11 +1325,9 @@ public class HRManagementWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton32ActionPerformed
 
     private void jButton36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton36ActionPerformed
-        // TODO add your handling code here:
         dispose();
-        AddEditCandidate ae = new AddEditCandidate("");
+        AddEditCandidate ae = new AddEditCandidate(curEID);
         ae.setVisible(true);
-        
     }//GEN-LAST:event_jButton36ActionPerformed
 
     private void jButton38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton38ActionPerformed

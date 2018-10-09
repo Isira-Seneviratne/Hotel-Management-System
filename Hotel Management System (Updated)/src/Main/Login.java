@@ -25,7 +25,9 @@ public class Login extends javax.swing.JFrame {
             DatabaseConnectionFunctions.createConnection();
         } catch(SQLException e) {
             JOptionPane.showMessageDialog(Login.this, "A database connection could not be established."
-                    + " Make sure that MySQL is running.", "Error", JOptionPane.ERROR_MESSAGE);
+                    + "\nMake sure that MySQL is running and that the database has been properly set up."
+                    + "\n\n" + "Error: " + e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 

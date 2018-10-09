@@ -6,6 +6,7 @@
 package StockManagement;
 
 import Main.DatabaseConnectionFunctions;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
@@ -30,6 +31,35 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
             JOptionPane.showMessageDialog(null, "An error occurred while loading the table."
                     , "Error", JOptionPane.ERROR_MESSAGE);
         }
+        
+        //Loads the vendor IDs from the Vendor_Details table.
+        try {
+            ResultSet vendorIDs = DatabaseConnectionFunctions.getSpecificFieldsFromTable("Vendor_Details", "`Vendor ID`");
+            while(vendorIDs.next()) {
+                cmbVendorID.addItem(vendorIDs.getString(1));
+            }
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(null, "An error occurred while loading the vendor IDs.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        //Loads the IDs of cleaning and food items from their respective tables.
+        try {
+            ResultSet cleaningItemIDs = DatabaseConnectionFunctions.getSpecificFieldsFromTable("Cleaning"
+                    + "_Items", "`Item ID`");
+            while(cleaningItemIDs.next()) {
+                cmbItemID.addItem(cleaningItemIDs.getString(1));
+            }
+            
+            ResultSet foodItemIDs = DatabaseConnectionFunctions.getSpecificFieldsFromTable("Food_Items",
+                            "`Item ID`");
+            while(foodItemIDs.next()) {
+                cmbItemID.addItem(foodItemIDs.getString(1));
+            }
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(null, "An error occurred while loading the item IDs.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /* Checks to see if a table record is selected or not.
@@ -43,7 +73,7 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
      */
     @Override
     public void valueChanged(ListSelectionEvent lse) {
-        String tooltip = "A table record must be selected to use this button.";
+        String tooltip = "Select a record from the table to enable the button.";
         if(jTable1.getSelectionModel().isSelectionEmpty()) {
             btnUpdate.setEnabled(false);
             btnDelete.setEnabled(false);
@@ -78,15 +108,15 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
         btnClear = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        txtCompID = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtItemID = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtQty = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel7 = new javax.swing.JLabel();
         txtPrice = new javax.swing.JTextField();
+        cmbVendorID = new javax.swing.JComboBox<>();
+        cmbItemID = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -101,52 +131,75 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 12, 880, -1));
 
         jPanel1.setBackground(new java.awt.Color(28, 48, 90));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Payments", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(238, 238, 238))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Payments", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(238, 238, 238))); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnGenReport.setBackground(new java.awt.Color(255, 255, 0));
         btnGenReport.setText("Generate Report");
         btnGenReport.setEnabled(false);
+        btnGenReport.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnGenReportMouseClicked(evt);
+            }
+        });
         jPanel1.add(btnGenReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 210, -1, -1));
 
         btnAdd.setBackground(new java.awt.Color(102, 153, 255));
         btnAdd.setForeground(new java.awt.Color(238, 238, 238));
         btnAdd.setText("Add");
+        btnAdd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAddMouseClicked(evt);
+            }
+        });
         jPanel1.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, -1, -1));
 
         btnDelete.setBackground(new java.awt.Color(204, 0, 0));
         btnDelete.setForeground(new java.awt.Color(238, 238, 238));
         btnDelete.setText("Delete");
         btnDelete.setEnabled(false);
+        btnDelete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDeleteMouseClicked(evt);
+            }
+        });
         jPanel1.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, -1, -1));
 
         btnClear.setBackground(new java.awt.Color(153, 153, 153));
         btnClear.setText("Clear");
+        btnClear.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnClearMouseClicked(evt);
+            }
+        });
         jPanel1.add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 210, -1, -1));
 
         btnUpdate.setBackground(new java.awt.Color(51, 102, 0));
         btnUpdate.setForeground(new java.awt.Color(238, 238, 238));
         btnUpdate.setText("Update");
         btnUpdate.setEnabled(false);
+        btnUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnUpdateMouseClicked(evt);
+            }
+        });
         jPanel1.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(238, 238, 238));
-        jLabel3.setText("Company ID");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, -1, -1));
-        jPanel1.add(txtCompID, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, 124, -1));
+        jLabel3.setText("Vendor ID");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(238, 238, 238));
         jLabel4.setText("Item ID");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, -1, -1));
-        jPanel1.add(txtItemID, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 100, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(238, 238, 238));
         jLabel5.setText("Quantity");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, -1, -1));
-        jPanel1.add(txtQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 77, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, -1, -1));
+        jPanel1.add(txtQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, 77, -1));
 
         jLabel6.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(238, 238, 238));
@@ -156,9 +209,13 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
 
         jLabel7.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(238, 238, 238));
-        jLabel7.setText("Price");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 100, -1, -1));
+        jLabel7.setText("Price (Rs.)");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 100, -1, -1));
         jPanel1.add(txtPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 100, 90, -1));
+
+        jPanel1.add(cmbVendorID, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, 130, -1));
+
+        jPanel1.add(cmbItemID, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 130, -1));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 47, 880, 270));
 
@@ -175,6 +232,26 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 880, 220));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddMouseClicked
+
+    private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDeleteMouseClicked
+
+    private void btnUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnUpdateMouseClicked
+
+    private void btnClearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClearMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnClearMouseClicked
+
+    private void btnGenReportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenReportMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGenReportMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
@@ -182,6 +259,8 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnGenReport;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JComboBox<String> cmbItemID;
+    private javax.swing.JComboBox<String> cmbVendorID;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
@@ -192,8 +271,6 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtCompID;
-    private javax.swing.JTextField txtItemID;
     private javax.swing.JTextField txtPrice;
     private javax.swing.JTextField txtQty;
     // End of variables declaration//GEN-END:variables

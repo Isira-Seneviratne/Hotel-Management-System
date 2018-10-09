@@ -15,6 +15,7 @@ import Main.MainWindow;
 public class CustomerManagementWindow extends javax.swing.JFrame {
     
     private String curEID;
+    private static CustomerManagementWindow instance;
     
     /**
      * Creates new form CustomerManagementWindow
@@ -25,6 +26,13 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         curEID = eID;
     }
 
+    public static CustomerManagementWindow getInstance(String eID) {
+        if(instance == null) {
+            instance = new CustomerManagementWindow(eID);
+        }
+        return instance;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

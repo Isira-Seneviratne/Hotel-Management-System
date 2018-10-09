@@ -49,7 +49,8 @@ public class MainWindow extends javax.swing.JFrame {
                     dispose();
                 } catch(SQLException e) {
                     JOptionPane.showMessageDialog(null, "A problem occurred while logging out."
-                            + " Make sure you are connected to the database.", "Error", JOptionPane.ERROR_MESSAGE);
+                            + "\nMake sure you are connected to the database."
+                            + "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -230,26 +231,22 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void jPanel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel11MouseClicked
         dispose();
-        HRManagementWindow hr = new HRManagementWindow("");
-        hr.setVisible(true);
+        HRManagementWindow.getInstance(curEID).setVisible(true);
     }//GEN-LAST:event_jPanel11MouseClicked
 
     private void jPanel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel12MouseClicked
         dispose();
-        FinanceManagementWindow fi = new FinanceManagementWindow("");
-        fi.setVisible(true);
+        FinanceManagementWindow.getInstance(curEID).setVisible(true);
     }//GEN-LAST:event_jPanel12MouseClicked
 
     private void jPanel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel13MouseClicked
         dispose();
-        CustomerManagementWindow cu = new CustomerManagementWindow("");
-        cu.setVisible(true);
+        CustomerManagementWindow.getInstance(curEID).setVisible(true);
     }//GEN-LAST:event_jPanel13MouseClicked
 
     private void jPanel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel14MouseClicked
         dispose();
-        StockManagementWindow cu = new StockManagementWindow("");
-        cu.setVisible(true);
+        StockManagementWindow.getInstance(curEID).setVisible(true);
     }//GEN-LAST:event_jPanel14MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

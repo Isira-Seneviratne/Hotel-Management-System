@@ -20,7 +20,6 @@ import javax.swing.JOptionPane;
 public class StockManagementWindow extends javax.swing.JFrame {
 
     private static StockManagementWindow instance;
-    private static Object monitor = new Object();
     private String curEID;
     
     /**
@@ -47,9 +46,8 @@ public class StockManagementWindow extends javax.swing.JFrame {
 
     //Ensures that only one instance of StockManagementWindow can exist at a given time.
     public static StockManagementWindow getInstance(String eID) {
-        synchronized(monitor) {
-            if(instance == null)
-                instance = new StockManagementWindow(eID);
+        if(instance == null) {
+            instance = new StockManagementWindow(eID);
         }
         return instance;
     }
