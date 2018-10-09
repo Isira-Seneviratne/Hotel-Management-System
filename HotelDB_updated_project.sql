@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 08, 2018 at 06:18 AM
+-- Generation Time: Oct 09, 2018 at 02:32 AM
 -- Server version: 8.0.12
 -- PHP Version: 7.2.10
 
@@ -33,7 +33,8 @@ CREATE TABLE `Cleaning_Items` (
   `Item Name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `Quantity` int(11) NOT NULL,
   `Price` float NOT NULL,
-  `Vendor ID` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
+  `Vendor ID` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Purchase Date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -47,6 +48,7 @@ CREATE TABLE `Food_Items` (
   `Food Name` varchar(100) NOT NULL,
   `Quantity` int(11) NOT NULL,
   `Price` float NOT NULL,
+  `Vendor ID` varchar(10) NOT NULL,
   `Purchase Date` date NOT NULL,
   `Expiry Date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
@@ -91,7 +93,7 @@ INSERT INTO `Login` (`eID`, `Username`, `Password`, `Logged in?`) VALUES
 
 CREATE TABLE `Payments` (
   `Payment ID` varchar(10) NOT NULL,
-  `Company ID` varchar(10) NOT NULL,
+  `Vendor ID` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `Item ID` varchar(10) NOT NULL,
   `Quantity` int(11) NOT NULL,
   `Payment Date` date NOT NULL,
