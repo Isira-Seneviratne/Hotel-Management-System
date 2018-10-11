@@ -41,7 +41,8 @@ public class Login extends javax.swing.JFrame {
             }
             if(DatabaseConnectionFunctions.login(username, password)) {
                 dispose();
-                MainWindow.getInstance(DatabaseConnectionFunctions.getEID(username, password)).setVisible(true);
+                //MainWindow.getInstance(DatabaseConnectionFunctions.getEID(username, password)).setVisible(true);
+                new ProgressWindow(DatabaseConnectionFunctions.getEID(username, password)).setVisible(true);
             }
             else
                 JOptionPane.showMessageDialog(this, "The login details could not be found."

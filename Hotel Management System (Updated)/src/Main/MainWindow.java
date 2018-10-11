@@ -9,8 +9,6 @@ import CustomerManagement.CustomerManagementWindow;
 import FinanceManagement.FinanceManagementWindow;
 import HRManagement.HRManagementWindow;
 import StockManagement.StockManagementWindow;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
