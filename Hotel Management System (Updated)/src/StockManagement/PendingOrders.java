@@ -57,6 +57,9 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
             btnUpdate.setToolTipText(null);
             btnDelete.setToolTipText(null);
             btnGenReport.setToolTipText(null);
+            
+            int curRow = jTable1.getSelectedRow();
+            
         }
     }
     
@@ -230,6 +233,7 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+        jTable1.getSelectionModel().addListSelectionListener(this);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 341, 870, 208));
     }// </editor-fold>//GEN-END:initComponents

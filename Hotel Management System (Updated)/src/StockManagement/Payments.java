@@ -8,6 +8,7 @@ package StockManagement;
 import Main.DatabaseConnectionFunctions;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -18,6 +19,9 @@ import javax.swing.event.ListSelectionListener;
  */
 public class Payments extends javax.swing.JPanel implements ListSelectionListener {
 
+    private DefaultComboBoxModel<String> cmbVendorIDModel = new DefaultComboBoxModel<>();
+    private DefaultComboBoxModel<String> cmbItemIDModel = new DefaultComboBoxModel<>();
+    
     /**
      * Creates new form Payments
      */
@@ -53,6 +57,9 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
             btnUpdate.setToolTipText(null);
             btnDelete.setToolTipText(null);
             btnGenReport.setToolTipText(null);
+            
+            int curRow = jTable1.getSelectedRow();
+            
         }
     }
     
@@ -68,9 +75,11 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
         //Loads the vendor IDs from the Vendor_Details table.
         try {
             ResultSet vendorIDs = DatabaseConnectionFunctions.getSpecificFieldsFromTable("Vendor_Details", "`Vendor ID`");
+            cmbVendorIDModel.removeAllElements();
             while(vendorIDs.next()) {
-                cmbVendorID.addItem(vendorIDs.getString(1));
+                cmbVendorIDModel.addElement(vendorIDs.getString(1));
             }
+            cmbVendorID.setModel(cmbItemIDModel);
         } catch(SQLException e) {
             JOptionPane.showMessageDialog(null, "An error occurred while loading the vendor IDs:\n"+e.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
@@ -135,7 +144,7 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 12, 880, -1));
 
         jPanel1.setBackground(new java.awt.Color(28, 48, 90));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Payments", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(238, 238, 238))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Payments", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(238, 238, 238))); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnGenReport.setBackground(new java.awt.Color(255, 255, 0));
@@ -232,6 +241,7 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+        jTable1.getSelectionModel().addListSelectionListener(this);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 880, 220));
     }// </editor-fold>//GEN-END:initComponents

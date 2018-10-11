@@ -6,6 +6,7 @@
 package StockManagement;
 
 import Main.DatabaseConnectionFunctions;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.DefaultComboBoxModel;
@@ -55,6 +56,25 @@ public class FoodItems extends javax.swing.JPanel implements ListSelectionListen
             btnUpdate.setToolTipText(null);
             btnDelete.setToolTipText(null);
             btnGenReport.setToolTipText(null);
+            
+            int curRow = jTable1.getSelectedRow();
+            txtFoodName.setText(jTable1.getValueAt(curRow, 1).toString());
+            txtQty.setText(jTable1.getValueAt(curRow, 2).toString());
+            String unit = jTable1.getValueAt(curRow, 3).toString();
+            switch (unit) {
+                case "kg":
+                    cmbUnit.setSelectedIndex(1);
+                    break;
+                case "g":
+                    cmbUnit.setSelectedIndex(2);
+                    break;
+                default:
+                    cmbUnit.setSelectedIndex(-1);
+                    break;
+            }
+            txtPrice.setText(jTable1.getValueAt(curRow, 4).toString());
+            cmbVendorID.setSelectedIndex(cmbVendorIDModel.getIndexOf(jTable1.getValueAt(curRow, 5)));
+            datPurchaseDate.setDate((Date) jTable1.getValueAt(curRow, 6));
         }
     }
     
@@ -70,6 +90,7 @@ public class FoodItems extends javax.swing.JPanel implements ListSelectionListen
         //Loads the vendor IDs from the Vendor Details table into the Vendor ID combo box.
         try {
             ResultSet vendorIDs = DatabaseConnectionFunctions.getSpecificFieldsFromTable("Vendor_Details", "`Vendor ID`");
+            cmbVendorIDModel.removeAllElements();
             while(vendorIDs.next())
                 cmbVendorIDModel.addElement(vendorIDs.getString(1));
             cmbVendorID.setModel(cmbVendorIDModel);
@@ -139,7 +160,7 @@ public class FoodItems extends javax.swing.JPanel implements ListSelectionListen
         jLabel5.setText("Price (Rs.)");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 30, -1, -1));
         jPanel1.add(txtPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 30, 80, -1));
-        jPanel1.add(datPurchaseDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 70, 98, -1));
+        jPanel1.add(datPurchaseDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 70, 150, 20));
 
         jLabel6.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(238, 238, 238));
@@ -149,8 +170,8 @@ public class FoodItems extends javax.swing.JPanel implements ListSelectionListen
         jLabel7.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(238, 238, 238));
         jLabel7.setText("Expiry date");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, -1, -1));
-        jPanel1.add(datExpiryDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 160, 98, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 160, -1, -1));
+        jPanel1.add(datExpiryDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 160, 150, -1));
 
         btnAdd.setBackground(new java.awt.Color(102, 153, 255));
         btnAdd.setForeground(new java.awt.Color(238, 238, 238));
@@ -225,10 +246,11 @@ public class FoodItems extends javax.swing.JPanel implements ListSelectionListen
 
             },
             new String [] {
-                "Food ID", "Food name", "Quantity", "Price", "Purchase Date", "Expiry Date"
+                "Food ID", "Food name", "Quantity", "Unit", "Price", "Vendor ID", "Purchase Date", "Expiry Date"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+        jTable1.getSelectionModel().addListSelectionListener(this);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 870, 160));
 
@@ -252,7 +274,9 @@ public class FoodItems extends javax.swing.JPanel implements ListSelectionListen
     }//GEN-LAST:event_btnUpdateMouseClicked
 
     private void btnClearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClearMouseClicked
-        // TODO add your handling code here:
+        txtFoodName.setText("");
+        cmbUnit.setSelectedIndex(-1);
+        cmbVendorID.setSelectedIndex(-1);
     }//GEN-LAST:event_btnClearMouseClicked
 
     private void btnGenReportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenReportMouseClicked

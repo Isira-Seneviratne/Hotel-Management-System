@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -38,7 +39,7 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
     @Override
     public void valueChanged(ListSelectionEvent lse) {
         String tooltip = "A table record must be selected to use this button.";
-        if(jTable1.getSelectionModel().isSelectionEmpty()) {
+        if(jTable2.getSelectionModel().isSelectionEmpty()) {
             btnUpdate.setEnabled(false);
             btnDelete.setEnabled(false);
             btnGenReport.setEnabled(false);
@@ -53,18 +54,18 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
             btnDelete.setToolTipText(null);
             btnGenReport.setToolTipText(null);
             
-            int curRow = jTable1.getSelectedRow();
-            txtVendName.setText(jTable1.getValueAt(curRow, 1).toString());
-            txtAddress.setText(jTable1.getValueAt(curRow, 2).toString());
-            txtTelNumber.setText(jTable1.getValueAt(curRow, 3).toString());
-            txtEmail.setText(jTable1.getValueAt(curRow, 4).toString());
+            int curRow = jTable2.getSelectedRow();
+            txtVendName.setText(jTable2.getValueAt(curRow, 1).toString());
+            txtAddress.setText(jTable2.getValueAt(curRow, 2).toString());
+            txtTelNumber.setText(jTable2.getValueAt(curRow, 3).toString());
+            txtEmail.setText(jTable2.getValueAt(curRow, 4).toString());
         }
     }
     
     public void loadTable() {
         //Loads the up-to-date table corresponding to this particular panel.
         try {
-            jTable1.setModel(DatabaseConnectionFunctions.getTableRecords("Vendor_Details"));
+            jTable2.setModel(DatabaseConnectionFunctions.getTableRecords("`Vendor_Details`"));
         } catch(SQLException e) {
             JOptionPane.showMessageDialog(null, "An error occurred while loading the table:\n"+e.getMessage()
                     , "Error", JOptionPane.ERROR_MESSAGE);
@@ -96,8 +97,8 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
         txtTelNumber = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(28, 48, 90));
         setMinimumSize(new java.awt.Dimension(0, 0));
@@ -195,18 +196,17 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 53, 870, 240));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Vendor ID", "Vendor name", "Address", "Telephone number", "Email"
+                "Vendor ID", "Vendor Name", "Address", "Telephone Number", "Email"
             }
         ));
-        jTable1.setPreferredSize(new java.awt.Dimension(450, 0));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane3.setViewportView(jTable2);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 300, 860, 231));
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 870, 190));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
@@ -242,9 +242,9 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable2;
     private javax.swing.JTextArea txtAddress;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtTelNumber;

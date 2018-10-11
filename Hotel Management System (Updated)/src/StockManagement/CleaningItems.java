@@ -61,7 +61,7 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
             txtQty.setText(jTable1.getValueAt(curRow, 2).toString());
             txtPrice.setText(jTable1.getValueAt(curRow, 3).toString());
             cmbVendorID.setSelectedIndex(cmbVendorIDModel.getIndexOf(jTable1.getValueAt(curRow, 4)));
-            datPurchase.setDate((java.util.Date) jTable1.getValueAt(curRow, 5));
+            datPurchaseDate.setDate((java.util.Date) jTable1.getValueAt(curRow, 5));
         }
     }
     
@@ -77,6 +77,7 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
         //Retrieves all stored vendor IDs and loads them in the vendor ID control.
         try {
             ResultSet vendorIDs = DatabaseConnectionFunctions.getSpecificFieldsFromTable("Vendor_Details", "`Vendor ID`");
+            cmbVendorIDModel.removeAllElements();
             while(vendorIDs.next()) {
                 cmbVendorIDModel.addElement(vendorIDs.getString(1));
             }
@@ -104,7 +105,7 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
         jLabel4 = new javax.swing.JLabel();
         txtPrice = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        datPurchase = new com.toedter.calendar.JDateChooser();
+        datPurchaseDate = new com.toedter.calendar.JDateChooser();
         jLabel6 = new javax.swing.JLabel();
         cmbVendorID = new javax.swing.JComboBox<>();
         btnAdd = new javax.swing.JButton();
@@ -147,7 +148,7 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
         jLabel5.setForeground(new java.awt.Color(238, 238, 238));
         jLabel5.setText("Purchase date");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 140, -1, -1));
-        jPanel1.add(datPurchase, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 140, 130, 20));
+        jPanel1.add(datPurchaseDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 140, 130, 20));
 
         jLabel6.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(238, 238, 238));
@@ -197,7 +198,7 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
                 btnClearMouseClicked(evt);
             }
         });
-        jPanel1.add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 210, -1, 20));
+        jPanel1.add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 210, -1, 30));
 
         btnGenReport.setBackground(new java.awt.Color(255, 255, 0));
         btnGenReport.setText("Generate Report");
@@ -253,7 +254,7 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
             return;
         }
         
-        purDate = datPurchase.getDate();
+        purDate = datPurchaseDate.getDate();
         
         try {
             String itemID = DatabaseConnectionFunctions.generateIDForRecord("C", "Cleaning_Items");
@@ -274,7 +275,11 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
     }//GEN-LAST:event_btnUpdateMouseClicked
 
     private void btnClearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClearMouseClicked
-        // TODO add your handling code here:
+        txtItemName.setText("");
+        txtQty.setText("");
+        txtPrice.setText("");
+        cmbVendorID.setSelectedIndex(-1);
+        datPurchaseDate.setDate(null);
     }//GEN-LAST:event_btnClearMouseClicked
 
     private void btnGenReportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenReportMouseClicked
@@ -289,7 +294,7 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
     private javax.swing.JButton btnGenReport;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cmbVendorID;
-    private com.toedter.calendar.JDateChooser datPurchase;
+    private com.toedter.calendar.JDateChooser datPurchaseDate;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

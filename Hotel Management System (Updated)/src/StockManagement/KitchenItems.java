@@ -50,6 +50,10 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
             btnUpdate.setToolTipText(null);
             btnDelete.setToolTipText(null);
             btnGenReport.setToolTipText(null);
+            
+            int curRow = jTable1.getSelectedRow();
+            txtItemName.setText(jTable1.getValueAt(curRow, 1).toString());
+            txtQty.setText(jTable1.getValueAt(curRow, 2).toString());
         }
     }
     
@@ -191,6 +195,7 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
         ));
         jTable2.setPreferredSize(new java.awt.Dimension(450, 0));
         jScrollPane2.setViewportView(jTable2);
+        jTable2.getSelectionModel().addListSelectionListener(this);
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 880, 270));
     }// </editor-fold>//GEN-END:initComponents

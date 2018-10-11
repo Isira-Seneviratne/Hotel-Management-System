@@ -52,6 +52,11 @@ public class RoomItems extends javax.swing.JPanel implements ListSelectionListen
             btnUpdate.setToolTipText(null);
             btnDelete.setToolTipText(null);
             btnGenReport.setToolTipText(null);
+            
+            int curRow = jTable1.getSelectedRow();
+            txtItemName.setText(jTable1.getValueAt(curRow, 1).toString());
+            txtRoomNum.setText(jTable1.getValueAt(curRow, 2).toString());
+            txtQty.setText(jTable1.getValueAt(curRow, 3).toString());
         }
     }
     
@@ -185,6 +190,7 @@ public class RoomItems extends javax.swing.JPanel implements ListSelectionListen
         ));
         jTable1.setPreferredSize(new java.awt.Dimension(450, 0));
         jScrollPane1.setViewportView(jTable1);
+        jTable1.getSelectionModel().addListSelectionListener(this);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 312, 870, 220));
     }// </editor-fold>//GEN-END:initComponents
