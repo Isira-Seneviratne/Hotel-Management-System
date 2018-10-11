@@ -76,11 +76,11 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         jButton12 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jTable5 = new javax.swing.JTable();
         jPanel20 = new javax.swing.JPanel();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jLabel10 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTable5 = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
@@ -127,8 +127,6 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         jButton45 = new javax.swing.JButton();
         jPanel25 = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
-        jScrollPane18 = new javax.swing.JScrollPane();
-        jTable18 = new javax.swing.JTable();
         jPanel26 = new javax.swing.JPanel();
         jScrollPane19 = new javax.swing.JScrollPane();
         jTable19 = new javax.swing.JTable();
@@ -137,6 +135,8 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         jButton48 = new javax.swing.JButton();
         jButton47 = new javax.swing.JButton();
         jButton46 = new javax.swing.JButton();
+        jScrollPane21 = new javax.swing.JScrollPane();
+        jTable21 = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jButton52 = new javax.swing.JButton();
@@ -186,7 +186,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Date                  :");
+        jLabel8.setText("Date                :");
         jPanel11.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 34, 111, 23));
 
         jLabel15.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
@@ -201,7 +201,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
 
         jLabel17.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setText("Payment Type  :");
+        jLabel17.setText("Payment Type   :");
         jPanel11.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 120, 120, 20));
 
         jLabel18.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
@@ -211,7 +211,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
 
         jLabel11.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Amount                :");
+        jLabel11.setText("Amount               :");
         jPanel11.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 130, -1));
 
         jLabel19.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
@@ -221,7 +221,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
 
         jLabel20.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel20.setText("Sub Total              :");
+        jLabel20.setText("Sub Total            :");
         jPanel11.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, -1, -1));
 
         jLabel21.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
@@ -231,7 +231,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
 
         jLabel22.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel22.setText("Discount :");
+        jLabel22.setText("Discount  :");
         jPanel11.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 90, 80, -1));
         jPanel11.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(139, 77, 170, 26));
         jPanel11.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 170, 26));
@@ -267,7 +267,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         jButton15.setBackground(new java.awt.Color(0, 102, 0));
         jButton15.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton15.setText("Add");
-        jButton15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton15.setBorder(null);
         jButton15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton15ActionPerformed(evt);
@@ -275,10 +275,10 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         });
         jPanel11.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 210, 80, 33));
 
-        jButton16.setBackground(new java.awt.Color(102, 0, 0));
+        jButton16.setBackground(new java.awt.Color(171, 5, 9));
         jButton16.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton16.setText("Delete");
-        jButton16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton16.setBorder(null);
         jButton16.setMaximumSize(new java.awt.Dimension(97, 25));
         jButton16.setMinimumSize(new java.awt.Dimension(97, 25));
         jButton16.setPreferredSize(new java.awt.Dimension(97, 25));
@@ -287,7 +287,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         jButton3.setBackground(new java.awt.Color(153, 153, 153));
         jButton3.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton3.setText("Reset");
-        jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton3.setBorder(null);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -304,12 +304,14 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
             }
         });
         jPanel11.add(jButton24, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 190, 80, 30));
+
+        jDateChooser3.setName("dt"); // NOI18N
         jPanel11.add(jDateChooser3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 170, -1));
 
         jButton12.setBackground(new java.awt.Color(0, 102, 255));
         jButton12.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton12.setText("Update");
-        jButton12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton12.setBorder(null);
         jPanel11.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 210, 80, 30));
 
         jPanel1.setBackground(new java.awt.Color(28, 48, 90));
@@ -334,6 +336,13 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Search All Utility Payments by date", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel20.setBackground(new java.awt.Color(28, 48, 90));
+        jPanel20.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel10.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Reciept Date :");
+
         jTable5.setFont(new java.awt.Font("Verdana", 1, 11)); // NOI18N
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -346,15 +355,6 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         jTable5.setSelectionBackground(new java.awt.Color(255, 204, 204));
         jScrollPane5.setViewportView(jTable5);
 
-        jPanel12.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 890, 180));
-
-        jPanel20.setBackground(new java.awt.Color(28, 48, 90));
-        jPanel20.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        jLabel10.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Reciept Date :");
-
         javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
         jPanel20.setLayout(jPanel20Layout);
         jPanel20Layout.setHorizontalGroup(
@@ -362,18 +362,24 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
             .addGroup(jPanel20Layout.createSequentialGroup()
                 .addGap(307, 307, 307)
                 .addComponent(jLabel10)
-                .addGap(20, 20, 20)
+                .addGap(18, 18, 18)
                 .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(359, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel20Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 890, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel20Layout.setVerticalGroup(
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel20Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(189, Short.MAX_VALUE))
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jPanel12.add(jPanel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 910, 230));
@@ -418,7 +424,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton1.setText("Receipts Report");
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jButton1.setBorder(null);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -449,23 +455,23 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         jTable2.setSelectionBackground(new java.awt.Color(255, 204, 204));
         jScrollPane2.setViewportView(jTable2);
 
-        jPanel10.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 420, 210));
+        jPanel10.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 410, 210));
 
         jPanel23.setBackground(new java.awt.Color(28, 48, 90));
         jPanel23.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButton7.setBackground(new java.awt.Color(102, 0, 0));
+        jButton7.setBackground(new java.awt.Color(171, 5, 9));
         jButton7.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton7.setText("Delete");
-        jButton7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton7.setBorder(null);
         jButton7.setMaximumSize(new java.awt.Dimension(97, 25));
         jButton7.setMinimumSize(new java.awt.Dimension(97, 25));
         jButton7.setPreferredSize(new java.awt.Dimension(97, 25));
 
-        jButton8.setBackground(new java.awt.Color(102, 0, 0));
+        jButton8.setBackground(new java.awt.Color(171, 5, 9));
         jButton8.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton8.setText("Delete All");
-        jButton8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton8.setBorder(null);
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
@@ -475,12 +481,12 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         jButton10.setBackground(new java.awt.Color(0, 102, 0));
         jButton10.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton10.setText("Add All");
-        jButton10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton10.setBorder(null);
 
         jButton9.setBackground(new java.awt.Color(0, 102, 0));
         jButton9.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton9.setText("Add");
-        jButton9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton9.setBorder(null);
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
@@ -546,7 +552,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         jButton11.setBackground(new java.awt.Color(0, 102, 0));
         jButton11.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton11.setText("Add");
-        jButton11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton11.setBorder(null);
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton11ActionPerformed(evt);
@@ -556,20 +562,20 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         jButton4.setBackground(new java.awt.Color(0, 102, 0));
         jButton4.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton4.setText("Add All");
-        jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton4.setBorder(null);
 
-        jButton5.setBackground(new java.awt.Color(102, 0, 0));
+        jButton5.setBackground(new java.awt.Color(171, 5, 9));
         jButton5.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton5.setText("Delete");
-        jButton5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton5.setBorder(null);
         jButton5.setMaximumSize(new java.awt.Dimension(97, 25));
         jButton5.setMinimumSize(new java.awt.Dimension(97, 25));
         jButton5.setPreferredSize(new java.awt.Dimension(97, 25));
 
-        jButton6.setBackground(new java.awt.Color(102, 0, 0));
+        jButton6.setBackground(new java.awt.Color(171, 5, 9));
         jButton6.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton6.setText("Delete All");
-        jButton6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton6.setBorder(null);
 
         javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
         jPanel22.setLayout(jPanel22Layout);
@@ -643,8 +649,8 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
 
         jLabel55.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel55.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel55.setText("End Date  :");
-        jPanel19.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 72, -1, 25));
+        jLabel55.setText("End Date               :");
+        jPanel19.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 72, 130, 25));
         jPanel19.add(jDateChooser6, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 77, 186, -1));
 
         jPanel24.setBackground(new java.awt.Color(28, 48, 90));
@@ -696,8 +702,8 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
 
         jLabel58.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel58.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel58.setText("Add To :");
-        jPanel15.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 77, -1, -1));
+        jLabel58.setText("Add To      :");
+        jPanel15.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 77, 80, -1));
 
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Operating Activities", "Investing Activities", "Financing Activities" }));
         jPanel15.add(jComboBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(99, 73, 181, 25));
@@ -705,7 +711,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         jButton44.setBackground(new java.awt.Color(0, 102, 0));
         jButton44.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton44.setText("Add");
-        jButton44.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton44.setBorder(null);
         jButton44.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton44ActionPerformed(evt);
@@ -716,7 +722,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         jButton45.setBackground(new java.awt.Color(153, 153, 153));
         jButton45.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton45.setText("Reset");
-        jButton45.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton45.setBorder(null);
         jButton45.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton45ActionPerformed(evt);
@@ -746,20 +752,9 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         jPanel16.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "View Cash Flows", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable18.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Cash Flows form Operating Activities", "Value", "Total"
-            }
-        ));
-        jScrollPane18.setViewportView(jTable18);
-
-        jPanel16.add(jScrollPane18, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 29, -1, 190));
-
         jPanel26.setBackground(new java.awt.Color(28, 48, 90));
         jPanel26.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel26.setPreferredSize(new java.awt.Dimension(854, 300));
 
         jTable19.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -784,12 +779,12 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         jButton48.setBackground(new java.awt.Color(0, 102, 255));
         jButton48.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton48.setText("Update");
-        jButton48.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton48.setBorder(null);
 
-        jButton47.setBackground(new java.awt.Color(102, 0, 0));
+        jButton47.setBackground(new java.awt.Color(171, 5, 9));
         jButton47.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton47.setText("Delete");
-        jButton47.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton47.setBorder(null);
         jButton47.setMaximumSize(new java.awt.Dimension(97, 25));
         jButton47.setMinimumSize(new java.awt.Dimension(97, 25));
         jButton47.setPreferredSize(new java.awt.Dimension(97, 25));
@@ -797,43 +792,62 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         jButton46.setBackground(new java.awt.Color(0, 153, 51));
         jButton46.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton46.setText("Calculate");
-        jButton46.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton46.setBorder(null);
+
+        jTable21.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Cash Flows form Investingting Activities", "Value", "Total"
+            }
+        ));
+        jScrollPane21.setViewportView(jTable21);
 
         javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
         jPanel26.setLayout(jPanel26Layout);
         jPanel26Layout.setHorizontalGroup(
             jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel26Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel26Layout.createSequentialGroup()
-                        .addComponent(jScrollPane19, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                    .addGroup(jPanel26Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(jPanel26Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane20, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel26Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
                         .addComponent(jButton48, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton47, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
-                        .addComponent(jButton46, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel26Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jScrollPane20, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(50, 50, 50)
+                        .addComponent(jButton46, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel26Layout.setVerticalGroup(
             jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel26Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane20, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane20, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane19, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
                 .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel26Layout.createSequentialGroup()
-                        .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton48, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jButton46, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton47, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel26Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
+                        .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton46, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton47, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton48, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(59, 59, 59))
-                    .addComponent(jScrollPane19, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel26Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane21, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         jPanel16.add(jPanel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 910, 380));
@@ -1007,13 +1021,13 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         jButton28.setBackground(new java.awt.Color(0, 153, 51));
         jButton28.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton28.setText("Calculate");
-        jButton28.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton28.setBorder(null);
         jButton28.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton28ActionPerformed(evt);
             }
         });
-        jPanel28.add(jButton28, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 10, 80, 26));
+        jPanel28.add(jButton28, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 10, 80, 30));
 
         jPanel13.add(jPanel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 910, 50));
 
@@ -1030,14 +1044,16 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         jPanel14.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 260, 50));
 
         btnLogout1.setText("Logout");
+        btnLogout1.setBorder(null);
         btnLogout1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLogout1ActionPerformed(evt);
             }
         });
-        jPanel14.add(btnLogout1, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 10, -1, 39));
+        jPanel14.add(btnLogout1, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 10, 60, 39));
 
         btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Home.png"))); // NOI18N
+        btnHome.setBorder(null);
         btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnHomeMouseClicked(evt);
@@ -1048,7 +1064,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
                 btnHomeActionPerformed(evt);
             }
         });
-        jPanel14.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 10, 60, 40));
+        jPanel14.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 10, 50, 40));
 
         getContentPane().add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 970, 660));
 
@@ -1262,20 +1278,20 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane14;
-    private javax.swing.JScrollPane jScrollPane18;
     private javax.swing.JScrollPane jScrollPane19;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane20;
+    private javax.swing.JScrollPane jScrollPane21;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable13;
     private javax.swing.JTable jTable14;
-    private javax.swing.JTable jTable18;
     private javax.swing.JTable jTable19;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable20;
+    private javax.swing.JTable jTable21;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable5;
     private javax.swing.JTable jTable7;
