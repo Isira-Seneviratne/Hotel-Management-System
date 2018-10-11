@@ -67,7 +67,7 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
         //Loads the up-to-date table corresponding to this particular panel.
         try {
             jTable1.setModel(DatabaseConnectionFunctions.getTableRecords("Payments"));
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "An error occurred while loading the table:\n"+e.getMessage()
                     , "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -76,11 +76,11 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
         try {
             ResultSet vendorIDs = DatabaseConnectionFunctions.getSpecificFieldsFromTable("Vendor_Details", "`Vendor ID`");
             cmbVendorIDModel.removeAllElements();
-            while(vendorIDs.next()) {
+            while (vendorIDs.next()) {
                 cmbVendorIDModel.addElement(vendorIDs.getString(1));
             }
             cmbVendorID.setModel(cmbItemIDModel);
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "An error occurred while loading the vendor IDs:\n"+e.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -89,16 +89,16 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
         try {
             ResultSet cleaningItemIDs = DatabaseConnectionFunctions.getSpecificFieldsFromTable("Cleaning"
                     + "_Items", "`Item ID`");
-            while(cleaningItemIDs.next()) {
+            while (cleaningItemIDs.next()) {
                 cmbItemID.addItem(cleaningItemIDs.getString(1));
             }
             
             ResultSet foodItemIDs = DatabaseConnectionFunctions.getSpecificFieldsFromTable("Food_Items",
                             "`Food ID`");
-            while(foodItemIDs.next()) {
+            while (foodItemIDs.next()) {
                 cmbItemID.addItem(foodItemIDs.getString(1));
             }
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "An error occurred while loading the item IDs:\n"+e.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -125,7 +125,7 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
         jLabel5 = new javax.swing.JLabel();
         txtQty = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        datPaymentDate = new com.toedter.calendar.JDateChooser();
         jLabel7 = new javax.swing.JLabel();
         txtPrice = new javax.swing.JTextField();
         cmbVendorID = new javax.swing.JComboBox<>();
@@ -149,6 +149,7 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
 
         btnGenReport.setBackground(new java.awt.Color(255, 255, 0));
         btnGenReport.setText("Generate Report");
+        btnGenReport.setToolTipText("Select a record from the table to enable the button.");
         btnGenReport.setEnabled(false);
         btnGenReport.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -170,6 +171,7 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
         btnDelete.setBackground(new java.awt.Color(204, 0, 0));
         btnDelete.setForeground(new java.awt.Color(238, 238, 238));
         btnDelete.setText("Delete");
+        btnDelete.setToolTipText("Select a record from the table to enable the button.");
         btnDelete.setEnabled(false);
         btnDelete.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -190,6 +192,7 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
         btnUpdate.setBackground(new java.awt.Color(51, 102, 0));
         btnUpdate.setForeground(new java.awt.Color(238, 238, 238));
         btnUpdate.setText("Update");
+        btnUpdate.setToolTipText("Select a record from the table to enable the button.");
         btnUpdate.setEnabled(false);
         btnUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -218,7 +221,7 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
         jLabel6.setForeground(new java.awt.Color(238, 238, 238));
         jLabel6.setText("Payment Date");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 50, -1, -1));
-        jPanel1.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 50, 130, -1));
+        jPanel1.add(datPaymentDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 50, 130, 30));
 
         jLabel7.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(238, 238, 238));
@@ -259,7 +262,11 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
     }//GEN-LAST:event_btnUpdateMouseClicked
 
     private void btnClearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClearMouseClicked
-        // TODO add your handling code here:
+        cmbVendorID.setSelectedIndex(-1);
+        cmbItemID.setSelectedIndex(-1);
+        txtQty.setText("");
+        datPaymentDate.setDate(null);
+        txtPrice.setText("");
     }//GEN-LAST:event_btnClearMouseClicked
 
     private void btnGenReportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenReportMouseClicked
@@ -275,7 +282,7 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cmbItemID;
     private javax.swing.JComboBox<String> cmbVendorID;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser datPaymentDate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

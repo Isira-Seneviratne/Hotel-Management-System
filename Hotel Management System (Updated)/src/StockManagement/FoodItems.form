@@ -127,7 +127,7 @@
         <Component class="com.toedter.calendar.JDateChooser" name="datPurchaseDate">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="600" y="70" width="150" height="20"/>
+              <AbsoluteConstraints x="600" y="70" width="150" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -198,6 +198,7 @@
               <Color blue="ee" green="ee" red="ee" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Delete"/>
+            <Property name="toolTipText" type="java.lang.String" value="Select a record from the table to enable the button."/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
@@ -218,6 +219,7 @@
               <Color blue="ee" green="ee" red="ee" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Update"/>
+            <Property name="toolTipText" type="java.lang.String" value="Select a record from the table to enable the button."/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
@@ -251,6 +253,7 @@
               <Color blue="0" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Generate Report"/>
+            <Property name="toolTipText" type="java.lang.String" value="Select a record from the table to enable the button."/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>

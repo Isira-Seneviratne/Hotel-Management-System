@@ -8,6 +8,8 @@ package StockManagement;
 import Main.DatabaseConnectionFunctions;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
@@ -69,7 +71,7 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
         //Loads the up-to-date table corresponding to this particular panel.
         try {
             jTable1.setModel(DatabaseConnectionFunctions.getTableRecords("Cleaning_Items"));
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "An error occurred while loading the table:\n"+e.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -77,12 +79,13 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
         //Retrieves all stored vendor IDs and loads them in the vendor ID control.
         try {
             ResultSet vendorIDs = DatabaseConnectionFunctions.getSpecificFieldsFromTable("Vendor_Details", "`Vendor ID`");
-            cmbVendorIDModel.removeAllElements();
-            while(vendorIDs.next()) {
+            
+            cmbVendorIDModel.removeAllElements();   //Needed to prevent duplicate elements being inserted, as the object is not destroyed when switching.
+            while (vendorIDs.next()) {
                 cmbVendorIDModel.addElement(vendorIDs.getString(1));
             }
             cmbVendorID.setModel(cmbVendorIDModel);
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "An error occurred while loading the stored vendor IDs:\n"+e.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -129,26 +132,26 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
         jLabel2.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(238, 238, 238));
         jLabel2.setText("Item name");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, -1, -1));
-        jPanel1.add(txtItemName, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, 155, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, -1, -1));
+        jPanel1.add(txtItemName, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 155, -1));
 
         jLabel3.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(238, 238, 238));
         jLabel3.setText("Quantity");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, -1, -1));
-        jPanel1.add(txtQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 70, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, -1, -1));
+        jPanel1.add(txtQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 70, -1));
 
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(238, 238, 238));
         jLabel4.setText("Price (Rs.)");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, -1, -1));
-        jPanel1.add(txtPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 110, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, -1, -1));
+        jPanel1.add(txtPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, 110, -1));
 
         jLabel5.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(238, 238, 238));
         jLabel5.setText("Purchase date");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 140, -1, -1));
-        jPanel1.add(datPurchaseDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 140, 130, 20));
+        jPanel1.add(datPurchaseDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 140, 130, 30));
 
         jLabel6.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(238, 238, 238));
@@ -160,12 +163,13 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
         btnAdd.setBackground(new java.awt.Color(102, 153, 255));
         btnAdd.setForeground(new java.awt.Color(238, 238, 238));
         btnAdd.setText("Add");
+        btnAdd.setToolTipText("");
         btnAdd.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAddMouseClicked(evt);
             }
         });
-        jPanel1.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, -1, -1));
+        jPanel1.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, -1, -1));
 
         btnDelete.setBackground(new java.awt.Color(204, 0, 0));
         btnDelete.setForeground(new java.awt.Color(238, 238, 238));
@@ -177,7 +181,7 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
                 btnDeleteMouseClicked(evt);
             }
         });
-        jPanel1.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, -1, -1));
+        jPanel1.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, -1, -1));
 
         btnUpdate.setBackground(new java.awt.Color(51, 102, 0));
         btnUpdate.setForeground(new java.awt.Color(238, 238, 238));
@@ -189,7 +193,7 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
                 btnUpdateMouseClicked(evt);
             }
         });
-        jPanel1.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, -1, -1));
+        jPanel1.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 210, -1, -1));
 
         btnClear.setBackground(new java.awt.Color(153, 153, 153));
         btnClear.setText("Clear");
@@ -198,7 +202,7 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
                 btnClearMouseClicked(evt);
             }
         });
-        jPanel1.add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 210, -1, 30));
+        jPanel1.add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 210, -1, 30));
 
         btnGenReport.setBackground(new java.awt.Color(255, 255, 0));
         btnGenReport.setText("Generate Report");
@@ -209,7 +213,7 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
                 btnGenReportMouseClicked(evt);
             }
         });
-        jPanel1.add(btnGenReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 210, -1, -1));
+        jPanel1.add(btnGenReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 210, -1, -1));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 53, 860, 260));
 
@@ -234,14 +238,22 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
-        String itemName = txtItemName.getText();
+        String itemName;
         int qty;
         float price;
         java.util.Date purDate; //Class not imported in order to avoid confusion between java.util.Date and java.sql.Date
         
+        if(txtItemName.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "An item name cannot be blank.", "Invalid item name", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        else {
+            itemName = txtItemName.getText();
+        }
+        
         try {
             qty = Integer.parseInt(txtQty.getText());
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "You have not entered a valid integer for the quantity.",
                     "Error", JOptionPane.ERROR_MESSAGE);
             txtQty.requestFocus();
@@ -250,28 +262,92 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
         
         try {
             price = Float.parseFloat(txtPrice.getText());
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "You have not entered a valid floating point number for the price"
+                    + ", or it has too many decimal points.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
-        purDate = datPurchaseDate.getDate();
+        try {
+            purDate = datPurchaseDate.getDate();
+            purDate.getTime();
+        } catch(NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "You have entered an invalid date.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         
         try {
             String itemID = DatabaseConnectionFunctions.generateIDForRecord("C", "Cleaning_Items");
-            DatabaseConnectionFunctions.insertRecord("Cleaning_Items", itemID+","+itemName+","+
-                    qty+","+price+","+new java.sql.Date(purDate.getTime()));
-        } catch(SQLException e) {
-            JOptionPane.showMessageDialog(this, "An error occurred while inserting the record: "+e.getMessage(), "Error",
+            DatabaseConnectionFunctions.insertRecord("Cleaning_Items", "'"+itemID+"','"+itemName+"',"
+                    +qty+","+price+",'"+cmbVendorID.getSelectedItem().toString()+"','"
+                    +new java.sql.Date(purDate.getTime())+"'");
+            loadTableAndComboBox();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "An error occurred while inserting the record:\n"+e.getMessage(), "Error",
                     JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAddMouseClicked
 
     private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
-        // TODO add your handling code here:
+        try {
+            DatabaseConnectionFunctions.deleteRecord("Cleaning_Items",
+                    "`Item ID`='"+jTable1.getValueAt(jTable1.getSelectedRow(), 0)+"'");
+            loadTableAndComboBox();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "An error occurred while deleting the selected record:\n"+e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnDeleteMouseClicked
 
     private void btnUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseClicked
-        // TODO add your handling code here:
+        String itemName;
+        int qty;
+        float price;
+        java.util.Date purDate; //Class not imported in order to avoid confusion between java.util.Date and java.sql.Date
+        
+        if(txtItemName.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "An item name cannot be blank.", "Invalid item name", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        else {
+            itemName = txtItemName.getText();
+        }
+        
+        try {
+            qty = Integer.parseInt(txtQty.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "You have not entered a valid integer for the quantity.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            txtQty.requestFocus();
+            return;
+        }
+        
+        try {
+            price = Float.parseFloat(txtPrice.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "You have not entered a valid floating point number for the price"
+                    + ", or it has too many decimal points.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        try {
+            purDate = datPurchaseDate.getDate();
+            purDate.getTime();
+        } catch(NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "You have entered an invalid date.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        try {
+            DatabaseConnectionFunctions.updateRecord("Cleaning_Items",
+                    "", "`Item ID`='"+jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+            loadTableAndComboBox();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "An error occurred while updating the selected record:\n"+e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnUpdateMouseClicked
 
     private void btnClearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClearMouseClicked

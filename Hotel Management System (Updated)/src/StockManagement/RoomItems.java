@@ -111,6 +111,7 @@ public class RoomItems extends javax.swing.JPanel implements ListSelectionListen
 
         btnGenReport.setBackground(new java.awt.Color(255, 255, 0));
         btnGenReport.setText("Generate Report");
+        btnGenReport.setToolTipText("Select a record from the table to enable the button.");
         btnGenReport.setEnabled(false);
         btnGenReport.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -122,6 +123,7 @@ public class RoomItems extends javax.swing.JPanel implements ListSelectionListen
         btnDelete.setBackground(new java.awt.Color(204, 0, 0));
         btnDelete.setForeground(new java.awt.Color(238, 238, 238));
         btnDelete.setText("Delete");
+        btnDelete.setToolTipText("Select a record from the table to enable the button.");
         btnDelete.setEnabled(false);
         btnDelete.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -133,6 +135,7 @@ public class RoomItems extends javax.swing.JPanel implements ListSelectionListen
         btnUpdate.setBackground(new java.awt.Color(51, 102, 0));
         btnUpdate.setForeground(new java.awt.Color(238, 238, 238));
         btnUpdate.setText("Update");
+        btnUpdate.setToolTipText("Select a record from the table to enable the button.");
         btnUpdate.setEnabled(false);
         btnUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -153,6 +156,7 @@ public class RoomItems extends javax.swing.JPanel implements ListSelectionListen
         btnAdd.setBackground(new java.awt.Color(102, 153, 255));
         btnAdd.setForeground(new java.awt.Color(238, 238, 238));
         btnAdd.setText("Add");
+        btnAdd.setToolTipText("");
         btnAdd.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAddMouseClicked(evt);
@@ -162,7 +166,7 @@ public class RoomItems extends javax.swing.JPanel implements ListSelectionListen
 
         jLabel3.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(238, 238, 238));
-        jLabel3.setText("Room Number");
+        jLabel3.setText("Room number");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 60, -1, -1));
         jPanel1.add(txtRoomNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 60, 130, -1));
 
@@ -196,7 +200,31 @@ public class RoomItems extends javax.swing.JPanel implements ListSelectionListen
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
-        // TODO add your handling code here:
+        String itemName, roomNum;
+        int qty;
+        
+        if(txtItemName.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "An item name cannot be blank or consist of only whitespace characters.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        } else {
+            itemName = txtItemName.getText();
+        }
+        
+        if(txtRoomNum.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "A room number cannot be blank or consist of only whitespace characters.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        } else {
+            roomNum = txtRoomNum.getText();
+        }
+        
+        try {
+            qty = Integer.parseInt(txtQty.getText());
+        } catch(NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "You have entered an invalid integer value for the quantity.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnAddMouseClicked
 
     private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
@@ -208,11 +236,13 @@ public class RoomItems extends javax.swing.JPanel implements ListSelectionListen
     }//GEN-LAST:event_btnUpdateMouseClicked
 
     private void btnClearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClearMouseClicked
-        // TODO add your handling code here:
+        txtItemName.setText("");
+        txtRoomNum.setText("");
+        txtQty.setText("");
     }//GEN-LAST:event_btnClearMouseClicked
 
     private void btnGenReportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenReportMouseClicked
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnGenReportMouseClicked
 
 

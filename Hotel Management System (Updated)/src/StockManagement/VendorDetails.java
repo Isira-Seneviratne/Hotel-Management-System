@@ -55,7 +55,7 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
             btnGenReport.setToolTipText(null);
             
             int curRow = jTable2.getSelectedRow();
-            txtVendName.setText(jTable2.getValueAt(curRow, 1).toString());
+            txtVendorName.setText(jTable2.getValueAt(curRow, 1).toString());
             txtAddress.setText(jTable2.getValueAt(curRow, 2).toString());
             txtTelNumber.setText(jTable2.getValueAt(curRow, 3).toString());
             txtEmail.setText(jTable2.getValueAt(curRow, 4).toString());
@@ -93,7 +93,7 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
         txtAddress = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtVendName = new javax.swing.JTextField();
+        txtVendorName = new javax.swing.JTextField();
         txtTelNumber = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
@@ -116,13 +116,14 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
 
         btnGenReport.setBackground(new java.awt.Color(255, 255, 0));
         btnGenReport.setText("Generate Report");
+        btnGenReport.setToolTipText("Select a record from the table to enable the button.");
         btnGenReport.setEnabled(false);
         btnGenReport.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnGenReportMouseClicked(evt);
             }
         });
-        jPanel1.add(btnGenReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 200, -1, -1));
+        jPanel1.add(btnGenReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 220, -1, -1));
 
         btnAdd.setBackground(new java.awt.Color(102, 153, 255));
         btnAdd.setForeground(new java.awt.Color(238, 238, 238));
@@ -132,18 +133,19 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
                 btnAddMouseClicked(evt);
             }
         });
-        jPanel1.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 198, -1, -1));
+        jPanel1.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, -1, -1));
 
         btnDelete.setBackground(new java.awt.Color(204, 0, 0));
         btnDelete.setForeground(new java.awt.Color(238, 238, 238));
         btnDelete.setText("Delete");
+        btnDelete.setToolTipText("Select a record from the table to enable the button.");
         btnDelete.setEnabled(false);
         btnDelete.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnDeleteMouseClicked(evt);
             }
         });
-        jPanel1.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, -1, -1));
+        jPanel1.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, -1, -1));
 
         btnClear.setBackground(new java.awt.Color(153, 153, 153));
         btnClear.setText("Clear");
@@ -152,18 +154,19 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
                 btnClearMouseClicked(evt);
             }
         });
-        jPanel1.add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 200, -1, -1));
+        jPanel1.add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 220, -1, -1));
 
         btnUpdate.setBackground(new java.awt.Color(51, 102, 0));
         btnUpdate.setForeground(new java.awt.Color(238, 238, 238));
         btnUpdate.setText("Update");
+        btnUpdate.setToolTipText("Select a record from the table to enable the button.");
         btnUpdate.setEnabled(false);
         btnUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnUpdateMouseClicked(evt);
             }
         });
-        jPanel1.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 200, -1, -1));
+        jPanel1.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(238, 238, 238));
@@ -185,7 +188,7 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
         jLabel5.setForeground(new java.awt.Color(238, 238, 238));
         jLabel5.setText("Telephone number");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 90, -1, -1));
-        jPanel1.add(txtVendName, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 30, 189, -1));
+        jPanel1.add(txtVendorName, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 30, 189, -1));
         jPanel1.add(txtTelNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, 189, -1));
 
         jLabel6.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
@@ -194,7 +197,7 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 150, -1, -1));
         jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 150, 189, -1));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 53, 870, 240));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 53, 870, 270));
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -206,7 +209,7 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
         ));
         jScrollPane3.setViewportView(jTable2);
 
-        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 870, 190));
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 870, 190));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
@@ -222,7 +225,10 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
     }//GEN-LAST:event_btnUpdateMouseClicked
 
     private void btnClearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClearMouseClicked
-        // TODO add your handling code here:
+        txtAddress.setText("");
+        txtVendorName.setText("");
+        txtTelNumber.setText("");
+        txtEmail.setText("");
     }//GEN-LAST:event_btnClearMouseClicked
 
     private void btnGenReportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenReportMouseClicked
@@ -248,6 +254,6 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
     private javax.swing.JTextArea txtAddress;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtTelNumber;
-    private javax.swing.JTextField txtVendName;
+    private javax.swing.JTextField txtVendorName;
     // End of variables declaration//GEN-END:variables
 }

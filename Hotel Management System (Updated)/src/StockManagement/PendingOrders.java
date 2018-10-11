@@ -59,7 +59,7 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
             btnGenReport.setToolTipText(null);
             
             int curRow = jTable1.getSelectedRow();
-            
+            cmbItemID.setSelectedIndex(cmbItemIDModel.getIndexOf(jTable1.getValueAt(curRow, 1)));
         }
     }
     
@@ -67,20 +67,22 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
         //Loads the up-to-date table corresponding to this particular panel.
         try {
             jTable1.setModel(DatabaseConnectionFunctions.getTableRecords("Pending_Orders"));
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "An error occurred while loading the table:\n"+e.getMessage()
                     , "Error", JOptionPane.ERROR_MESSAGE);
         }
         
         //Loads the stored item IDs and adds them to the Item ID combo box.
         try {
-            itemIDsAndNames = DatabaseConnectionFunctions.getResultsFromUnionQuery("Food_Items", "Kitchen_Items",
+            itemIDsAndNames = DatabaseConnectionFunctions.getResultsFromUnionQuery("Food_Items", "Cleaning_Items",
                     "`Food ID` as `Item ID`, `Food Name` as `Item Name`", "`Item ID`, `Item Name`");
+            cmbItemIDModel.removeAllElements();
             while(itemIDsAndNames.next())
                 cmbItemIDModel.addElement(itemIDsAndNames.getString(1));
-            
-        } catch(SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
+            cmbItemID.setModel(cmbItemIDModel);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "An error occurred while retrieving all purchasable items:\n"
+                    +e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -132,6 +134,7 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
         btnDelete.setBackground(new java.awt.Color(204, 0, 0));
         btnDelete.setForeground(new java.awt.Color(238, 238, 238));
         btnDelete.setText("Delete");
+        btnDelete.setToolTipText("Select a record from the table to enable the button.");
         btnDelete.setEnabled(false);
         btnDelete.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -142,6 +145,7 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
 
         btnGenReport.setBackground(new java.awt.Color(255, 255, 0));
         btnGenReport.setText("Generate Report");
+        btnGenReport.setToolTipText("Select a record from the table to enable the button.");
         btnGenReport.setEnabled(false);
         btnGenReport.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -163,6 +167,7 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
         btnUpdate.setBackground(new java.awt.Color(51, 102, 0));
         btnUpdate.setForeground(new java.awt.Color(238, 238, 238));
         btnUpdate.setText("Update");
+        btnUpdate.setToolTipText("Select a record from the table to enable the button.");
         btnUpdate.setEnabled(false);
         btnUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -218,7 +223,7 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
         jLabel7.setForeground(new java.awt.Color(238, 238, 238));
         jLabel7.setText("Date of order");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 160, -1, -1));
-        jPanel1.add(datOrderDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 160, 150, -1));
+        jPanel1.add(datOrderDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 160, 150, 30));
 
         jPanel1.add(cmbItemID, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 130, -1));
 
@@ -229,7 +234,7 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
 
             },
             new String [] {
-                "Item ID", "Item name", "Quantity", "Unit", "Company", "Date of Order"
+                "Order ID", "Item ID", "Item name", "Quantity", "Unit", "Company", "Date of Order"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -251,7 +256,10 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
     }//GEN-LAST:event_btnUpdateMouseClicked
 
     private void btnClearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClearMouseClicked
-        // TODO add your handling code here:
+        cmbItemID.setSelectedIndex(-1);
+        cmbVendorID.setSelectedIndex(-1);
+        lblItemName.setText("");
+        txtQty.setText("");
     }//GEN-LAST:event_btnClearMouseClicked
 
     private void btnGenReportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenReportMouseClicked
