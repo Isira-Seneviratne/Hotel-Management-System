@@ -23,13 +23,7 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
     public VendorDetails() {
         initComponents();
         
-        //Loads the up-to-date table corresponding to this particular panel.
-        try {
-            jTable1.setModel(DatabaseConnectionFunctions.getTableRecords("Vendor_Details"));
-        } catch(SQLException e) {
-            JOptionPane.showMessageDialog(null, "An error occurred while loading the table."
-                    , "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        loadTable();
     }
 
     /* Checks to see if a table record is selected or not.
@@ -58,6 +52,22 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
             btnUpdate.setToolTipText(null);
             btnDelete.setToolTipText(null);
             btnGenReport.setToolTipText(null);
+            
+            int curRow = jTable1.getSelectedRow();
+            txtVendName.setText(jTable1.getValueAt(curRow, 1).toString());
+            txtAddress.setText(jTable1.getValueAt(curRow, 2).toString());
+            txtTelNumber.setText(jTable1.getValueAt(curRow, 3).toString());
+            txtEmail.setText(jTable1.getValueAt(curRow, 4).toString());
+        }
+    }
+    
+    public void loadTable() {
+        //Loads the up-to-date table corresponding to this particular panel.
+        try {
+            jTable1.setModel(DatabaseConnectionFunctions.getTableRecords("Vendor_Details"));
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(null, "An error occurred while loading the table:\n"+e.getMessage()
+                    , "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -79,7 +89,7 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
         btnUpdate = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtAddress = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtVendName = new javax.swing.JTextField();
@@ -97,10 +107,10 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
         jLabel1.setForeground(new java.awt.Color(238, 238, 238));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Vendor Details");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 12, 697, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 12, 870, -1));
 
         jPanel1.setBackground(new java.awt.Color(28, 48, 90));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Vendor Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(238, 238, 238))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Vendor Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(238, 238, 238))); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnGenReport.setBackground(new java.awt.Color(255, 255, 0));
@@ -159,9 +169,9 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
         jLabel3.setText("Address");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, -1));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        txtAddress.setColumns(20);
+        txtAddress.setRows(5);
+        jScrollPane2.setViewportView(txtAddress);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, 140, 140));
 
@@ -235,7 +245,7 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea txtAddress;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtTelNumber;
     private javax.swing.JTextField txtVendName;

@@ -6,7 +6,9 @@
 package StockManagement;
 
 import Main.DatabaseConnectionFunctions;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -17,19 +19,16 @@ import javax.swing.event.ListSelectionListener;
  */
 public class PendingOrders extends javax.swing.JPanel implements ListSelectionListener {
 
+    private ResultSet itemIDsAndNames;
+    private DefaultComboBoxModel<String> cmbVendorIDModel = new DefaultComboBoxModel<>();
+    private DefaultComboBoxModel<String> cmbItemIDModel = new DefaultComboBoxModel<>();
     /**
      * Creates new form PendingOrders
      */
     public PendingOrders() {
         initComponents();
         
-        //Loads the up-to-date table corresponding to this particular panel.
-        try {
-            jTable1.setModel(DatabaseConnectionFunctions.getTableRecords("Pending_Orders"));
-        } catch(SQLException e) {
-            JOptionPane.showMessageDialog(null, "An error occurred while loading the table."
-                    , "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        loadTableAndComboBoxes();
     }
 
     /* Checks to see if a table record is selected or not.
@@ -61,6 +60,27 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
         }
     }
     
+    public void loadTableAndComboBoxes() {
+        //Loads the up-to-date table corresponding to this particular panel.
+        try {
+            jTable1.setModel(DatabaseConnectionFunctions.getTableRecords("Pending_Orders"));
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(null, "An error occurred while loading the table:\n"+e.getMessage()
+                    , "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        //Loads the stored item IDs and adds them to the Item ID combo box.
+        try {
+            itemIDsAndNames = DatabaseConnectionFunctions.getResultsFromUnionQuery("Food_Items", "Kitchen_Items",
+                    "`Food ID` as `Item ID`, `Food Name` as `Item Name`", "`Item ID`, `Item Name`");
+            while(itemIDsAndNames.next())
+                cmbItemIDModel.addElement(itemIDsAndNames.getString(1));
+            
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -85,7 +105,7 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
         jLabel5 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cmbVendorID = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         datOrderDate = new com.toedter.calendar.JDateChooser();
         cmbItemID = new javax.swing.JComboBox<>();
@@ -100,10 +120,10 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
         jLabel1.setForeground(new java.awt.Color(238, 238, 238));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Pending Orders");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 18, 712, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 18, 870, -1));
 
         jPanel1.setBackground(new java.awt.Color(28, 48, 90));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Orders", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(238, 238, 238))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Orders", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(238, 238, 238))); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnDelete.setBackground(new java.awt.Color(204, 0, 0));
@@ -186,10 +206,10 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
 
         jLabel6.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(238, 238, 238));
-        jLabel6.setText("Vendor Name");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, -1, -1));
+        jLabel6.setText("Vendor ID");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 30, -1, -1));
 
-        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 30, 151, -1));
+        jPanel1.add(cmbVendorID, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 30, 151, -1));
 
         jLabel7.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(238, 238, 238));
@@ -242,9 +262,9 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
     private javax.swing.JButton btnGenReport;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cmbItemID;
+    private javax.swing.JComboBox<String> cmbVendorID;
     private com.toedter.calendar.JDateChooser datOrderDate;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

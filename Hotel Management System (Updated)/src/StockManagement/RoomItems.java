@@ -23,13 +23,7 @@ public class RoomItems extends javax.swing.JPanel implements ListSelectionListen
     public RoomItems() {
         initComponents();
         
-        //Loads the up-to-date table corresponding to this particular panel.
-        try {
-            jTable1.setModel(DatabaseConnectionFunctions.getTableRecords("Room_Items"));
-        } catch(SQLException e) {
-            JOptionPane.showMessageDialog(null, "An error occurred while loading the table."
-                    , "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        loadTable();
     }
 
     /* Checks to see if a table record is selected or not.
@@ -58,6 +52,16 @@ public class RoomItems extends javax.swing.JPanel implements ListSelectionListen
             btnUpdate.setToolTipText(null);
             btnDelete.setToolTipText(null);
             btnGenReport.setToolTipText(null);
+        }
+    }
+    
+    public void loadTable() {
+        //Loads the up-to-date table corresponding to this particular panel.
+        try {
+            jTable1.setModel(DatabaseConnectionFunctions.getTableRecords("Room_Items"));
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(null, "An error occurred while loading the table:\n"+e.getMessage()
+                    , "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -94,10 +98,10 @@ public class RoomItems extends javax.swing.JPanel implements ListSelectionListen
         jLabel1.setForeground(new java.awt.Color(238, 238, 238));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Room Items");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 12, 696, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 12, 870, -1));
 
         jPanel1.setBackground(new java.awt.Color(28, 48, 90));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Room Items", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(238, 238, 238))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Room Items", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(238, 238, 238))); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnGenReport.setBackground(new java.awt.Color(255, 255, 0));

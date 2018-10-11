@@ -8,6 +8,7 @@ package StockManagement;
 import Main.DatabaseConnectionFunctions;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -18,30 +19,14 @@ import javax.swing.event.ListSelectionListener;
  */
 public class CleaningItems extends javax.swing.JPanel implements ListSelectionListener {
 
+    private DefaultComboBoxModel<String> cmbVendorIDModel = new DefaultComboBoxModel<>();
     /**
      * Creates new form CleaningItems
      */
     public CleaningItems() {
         initComponents();
         
-        //Loads the up-to-date table corresponding to this particular panel.
-        try {
-            jTable1.setModel(DatabaseConnectionFunctions.getTableRecords("Cleaning_Items"));
-        } catch(SQLException e) {
-            JOptionPane.showMessageDialog(null, "An error occurred while loading the table.",
-                    "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        
-        //Adds all stored vendor names to the selection control.
-        try {
-            ResultSet vendorIDs = DatabaseConnectionFunctions.getSpecificFieldsFromTable("Vendor_Details", "`Vendor ID`");
-            while(vendorIDs.next()) {
-                cmbVendor.addItem(vendorIDs.getString(1));
-            }
-        } catch(SQLException e) {
-            JOptionPane.showMessageDialog(null, "An error occurred while loading the stored vendors.",
-                    "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        loadTableAndComboBox();
     }
 
     /* Checks to see if a table record is selected or not.
@@ -73,7 +58,32 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
             
             int curRow = jTable1.getSelectedRow();
             txtItemName.setText(jTable1.getValueAt(curRow, 1).toString());
-            
+            txtQty.setText(jTable1.getValueAt(curRow, 2).toString());
+            txtPrice.setText(jTable1.getValueAt(curRow, 3).toString());
+            cmbVendorID.setSelectedIndex(cmbVendorIDModel.getIndexOf(jTable1.getValueAt(curRow, 4)));
+            datPurchase.setDate((java.util.Date) jTable1.getValueAt(curRow, 5));
+        }
+    }
+    
+    public void loadTableAndComboBox() {
+        //Loads the up-to-date table corresponding to this particular panel.
+        try {
+            jTable1.setModel(DatabaseConnectionFunctions.getTableRecords("Cleaning_Items"));
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(null, "An error occurred while loading the table:\n"+e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        //Retrieves all stored vendor IDs and loads them in the vendor ID control.
+        try {
+            ResultSet vendorIDs = DatabaseConnectionFunctions.getSpecificFieldsFromTable("Vendor_Details", "`Vendor ID`");
+            while(vendorIDs.next()) {
+                cmbVendorIDModel.addElement(vendorIDs.getString(1));
+            }
+            cmbVendorID.setModel(cmbVendorIDModel);
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(null, "An error occurred while loading the stored vendor IDs:\n"+e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -96,7 +106,7 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
         jLabel5 = new javax.swing.JLabel();
         datPurchase = new com.toedter.calendar.JDateChooser();
         jLabel6 = new javax.swing.JLabel();
-        cmbVendor = new javax.swing.JComboBox<>();
+        cmbVendorID = new javax.swing.JComboBox<>();
         btnAdd = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
@@ -112,7 +122,7 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(28, 48, 90));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cleaning Items", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(238, 238, 238))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cleaning Items", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(238, 238, 238))); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
@@ -124,27 +134,27 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
         jLabel3.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(238, 238, 238));
         jLabel3.setText("Quantity");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, -1, -1));
-        jPanel1.add(txtQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, 70, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, -1, -1));
+        jPanel1.add(txtQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 70, -1));
 
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(238, 238, 238));
         jLabel4.setText("Price (Rs.)");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, -1, -1));
-        jPanel1.add(txtPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, 110, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, -1, -1));
+        jPanel1.add(txtPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 110, -1));
 
         jLabel5.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(238, 238, 238));
         jLabel5.setText("Purchase date");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 130, -1, -1));
-        jPanel1.add(datPurchase, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 130, 130, 20));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 140, -1, -1));
+        jPanel1.add(datPurchase, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 140, 130, 20));
 
         jLabel6.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(238, 238, 238));
         jLabel6.setText("Vendor ID");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 40, -1, -1));
 
-        jPanel1.add(cmbVendor, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 40, 132, -1));
+        jPanel1.add(cmbVendorID, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 40, 132, -1));
 
         btnAdd.setBackground(new java.awt.Color(102, 153, 255));
         btnAdd.setForeground(new java.awt.Color(238, 238, 238));
@@ -226,7 +236,7 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
         String itemName = txtItemName.getText();
         int qty;
         float price;
-        java.util.Date purDate;
+        java.util.Date purDate; //Class not imported in order to avoid confusion between java.util.Date and java.sql.Date
         
         try {
             qty = Integer.parseInt(txtQty.getText());
@@ -250,7 +260,7 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
             DatabaseConnectionFunctions.insertRecord("Cleaning_Items", itemID+","+itemName+","+
                     qty+","+price+","+new java.sql.Date(purDate.getTime()));
         } catch(SQLException e) {
-            JOptionPane.showMessageDialog(this, "An error occurred while inserting the record.", "Error",
+            JOptionPane.showMessageDialog(this, "An error occurred while inserting the record: "+e.getMessage(), "Error",
                     JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAddMouseClicked
@@ -278,7 +288,7 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnGenReport;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JComboBox<String> cmbVendor;
+    private javax.swing.JComboBox<String> cmbVendorID;
     private com.toedter.calendar.JDateChooser datPurchase;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

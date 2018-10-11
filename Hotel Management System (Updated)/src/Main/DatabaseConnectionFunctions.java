@@ -33,6 +33,7 @@ public class DatabaseConnectionFunctions {
             connProps.put("user", "user");
             connProps.put("password", "abcd1234");
             connProps.put("useSSL", "false");
+            connProps.put("allowPublicKeyRetrieval", "true");
 
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel_db", connProps);
             stmt = con.createStatement();
@@ -79,6 +80,13 @@ public class DatabaseConnectionFunctions {
     public static ResultSet getSpecificFieldsFromTable(String tableName, String fields)
             throws SQLException {
         return stmt.executeQuery("SELECT " + fields + " FROM " + tableName);
+    }
+    
+    //Retrieves the ResultSet from a union operation between two tables.
+    public static ResultSet getResultsFromUnionQuery(String table1, String table2,
+            String table1Fields, String table2Fields) throws SQLException {
+        return stmt.executeQuery("SELECT " + table1Fields + " FROM " + table1 + " UNION "
+                + "SELECT " + table2Fields + " FROM " + table2);
     }
     
     //Attempts to log in the user and returns whether or not it was not successful.

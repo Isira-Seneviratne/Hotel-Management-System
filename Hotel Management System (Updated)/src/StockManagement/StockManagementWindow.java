@@ -12,6 +12,9 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.JTabbedPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 /**
  *
@@ -40,6 +43,22 @@ public class StockManagementWindow extends javax.swing.JFrame {
             @Override
             public void windowClosed(WindowEvent e) {
                 MainWindow.getInstance(curEID).setVisible(true);
+            }
+        });
+        
+        jTabbedPane1.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent ce) {
+                JTabbedPane curPane = (JTabbedPane) ce.getSource();
+                int index = curPane.getSelectedIndex();
+                switch(index) {
+                    case 0:
+                        foodItems1.loadTableAndComboBox();
+                        break;
+                    case 4:
+                        vendorDetails1.loadTable();
+                        break;
+                }
             }
         });
     }

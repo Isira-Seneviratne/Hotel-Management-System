@@ -22,14 +22,6 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
      */
     public KitchenItems() {
         initComponents();
-        
-        //Loads the up-to-date table corresponding to this particular panel.
-        try {
-            jTable1.setModel(DatabaseConnectionFunctions.getTableRecords("Kitchen_Items"));
-        } catch(SQLException e) {
-            JOptionPane.showMessageDialog(null, "An error occurred while loading the table."
-                    , "Error", JOptionPane.ERROR_MESSAGE);
-        }
     }
 
     /* Checks to see if a table record is selected or not.
@@ -58,6 +50,16 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
             btnUpdate.setToolTipText(null);
             btnDelete.setToolTipText(null);
             btnGenReport.setToolTipText(null);
+        }
+    }
+    
+    public void loadTable() {
+        //Loads the up-to-date table corresponding to this particular panel.
+        try {
+            jTable1.setModel(DatabaseConnectionFunctions.getTableRecords("Kitchen_Items"));
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(null, "An error occurred while loading the table:\n"+e.getMessage()
+                    , "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -111,7 +113,7 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 12, 880, -1));
 
         jPanel1.setBackground(new java.awt.Color(28, 48, 90));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Kitchen Items", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(238, 238, 238))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Kitchen Items", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(238, 238, 238))); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnUpdate.setBackground(new java.awt.Color(51, 102, 0));
@@ -190,7 +192,7 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
         jTable2.setPreferredSize(new java.awt.Dimension(450, 0));
         jScrollPane2.setViewportView(jTable2);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 880, 130));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 880, 270));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked

@@ -24,42 +24,7 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
     public Payments() {
         initComponents();
         
-        //Loads the up-to-date table corresponding to this particular panel.
-        try {
-            jTable1.setModel(DatabaseConnectionFunctions.getTableRecords("Payments"));
-        } catch(SQLException e) {
-            JOptionPane.showMessageDialog(null, "An error occurred while loading the table."
-                    , "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        
-        //Loads the vendor IDs from the Vendor_Details table.
-        try {
-            ResultSet vendorIDs = DatabaseConnectionFunctions.getSpecificFieldsFromTable("Vendor_Details", "`Vendor ID`");
-            while(vendorIDs.next()) {
-                cmbVendorID.addItem(vendorIDs.getString(1));
-            }
-        } catch(SQLException e) {
-            JOptionPane.showMessageDialog(null, "An error occurred while loading the vendor IDs.",
-                    "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        
-        //Loads the IDs of cleaning and food items from their respective tables.
-        try {
-            ResultSet cleaningItemIDs = DatabaseConnectionFunctions.getSpecificFieldsFromTable("Cleaning"
-                    + "_Items", "`Item ID`");
-            while(cleaningItemIDs.next()) {
-                cmbItemID.addItem(cleaningItemIDs.getString(1));
-            }
-            
-            ResultSet foodItemIDs = DatabaseConnectionFunctions.getSpecificFieldsFromTable("Food_Items",
-                            "`Item ID`");
-            while(foodItemIDs.next()) {
-                cmbItemID.addItem(foodItemIDs.getString(1));
-            }
-        } catch(SQLException e) {
-            JOptionPane.showMessageDialog(null, "An error occurred while loading the item IDs.",
-                    "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        loadTableAndComboBoxes();
     }
 
     /* Checks to see if a table record is selected or not.
@@ -88,6 +53,45 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
             btnUpdate.setToolTipText(null);
             btnDelete.setToolTipText(null);
             btnGenReport.setToolTipText(null);
+        }
+    }
+    
+    public void loadTableAndComboBoxes() {
+        //Loads the up-to-date table corresponding to this particular panel.
+        try {
+            jTable1.setModel(DatabaseConnectionFunctions.getTableRecords("Payments"));
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(null, "An error occurred while loading the table:\n"+e.getMessage()
+                    , "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        //Loads the vendor IDs from the Vendor_Details table.
+        try {
+            ResultSet vendorIDs = DatabaseConnectionFunctions.getSpecificFieldsFromTable("Vendor_Details", "`Vendor ID`");
+            while(vendorIDs.next()) {
+                cmbVendorID.addItem(vendorIDs.getString(1));
+            }
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(null, "An error occurred while loading the vendor IDs:\n"+e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        //Loads the IDs of cleaning and food items from their respective tables.
+        try {
+            ResultSet cleaningItemIDs = DatabaseConnectionFunctions.getSpecificFieldsFromTable("Cleaning"
+                    + "_Items", "`Item ID`");
+            while(cleaningItemIDs.next()) {
+                cmbItemID.addItem(cleaningItemIDs.getString(1));
+            }
+            
+            ResultSet foodItemIDs = DatabaseConnectionFunctions.getSpecificFieldsFromTable("Food_Items",
+                            "`Food ID`");
+            while(foodItemIDs.next()) {
+                cmbItemID.addItem(foodItemIDs.getString(1));
+            }
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(null, "An error occurred while loading the item IDs:\n"+e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     

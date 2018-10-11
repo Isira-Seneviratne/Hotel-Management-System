@@ -38,7 +38,7 @@ public class MainWindow extends javax.swing.JFrame {
          * https://examples.javacodegeeks.com/desktop-java/awt/event/window-closing-event-handling/
          * Accessed October 5, 2018.
          */
-        addWindowListener(new WindowAdapter() {
+        /*addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent evt) {
                 try {
@@ -46,14 +46,13 @@ public class MainWindow extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Successfully logged out of the system.", "Success",
                             JOptionPane.INFORMATION_MESSAGE);
                     new Login().setVisible(true);
-                    dispose();
                 } catch(SQLException e) {
                     JOptionPane.showMessageDialog(null, "A problem occurred while logging out."
                             + "\nMake sure you are connected to the database."
                             + "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
-        });
+        });*/
     }
 
     public static MainWindow getInstance(String eID) {
@@ -107,7 +106,7 @@ public class MainWindow extends javax.swing.JFrame {
                 btnLogoutMouseClicked(evt);
             }
         });
-        jPanel1.add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 20, -1, 35));
+        jPanel1.add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 20, -1, 35));
 
         jPanel11.setBackground(new java.awt.Color(0, 0, 51));
         jPanel11.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -213,7 +212,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void btnStockManagementMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStockManagementMouseClicked
         StockManagementWindow.getInstance(curEID).setVisible(true);
-        dispose();
+        setVisible(false);
     }//GEN-LAST:event_btnStockManagementMouseClicked
 
     private void btnLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogoutMouseClicked

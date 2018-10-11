@@ -6,7 +6,9 @@
 package StockManagement;
 
 import Main.DatabaseConnectionFunctions;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -17,19 +19,14 @@ import javax.swing.event.ListSelectionListener;
  */
 public class FoodItems extends javax.swing.JPanel implements ListSelectionListener {
 
+    private DefaultComboBoxModel<String> cmbVendorIDModel = new DefaultComboBoxModel<>();
     /**
      * Creates new form FoodItems
      */
     public FoodItems() {
         initComponents();
         
-        //Loads the up-to-date table corresponding to this particular panel.
-        try {
-            jTable1.setModel(DatabaseConnectionFunctions.getTableRecords("Food_Items"));
-        } catch(SQLException e) {
-            JOptionPane.showMessageDialog(null, "An error occurred while loading the table."
-            , "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        loadTableAndComboBox();
     }
 
     /* Checks to see if a table record is selected or not.
@@ -61,6 +58,27 @@ public class FoodItems extends javax.swing.JPanel implements ListSelectionListen
         }
     }
     
+    public void loadTableAndComboBox() {
+        //Loads the up-to-date table corresponding to this particular panel.
+        try {
+            jTable1.setModel(DatabaseConnectionFunctions.getTableRecords("Food_Items"));
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(null, "An error occurred while loading the table:\n"+e.getMessage()
+            , "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        //Loads the vendor IDs from the Vendor Details table into the Vendor ID combo box.
+        try {
+            ResultSet vendorIDs = DatabaseConnectionFunctions.getSpecificFieldsFromTable("Vendor_Details", "`Vendor ID`");
+            while(vendorIDs.next())
+                cmbVendorIDModel.addElement(vendorIDs.getString(1));
+            cmbVendorID.setModel(cmbVendorIDModel);
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(null, "An error occurred while loading the stored vendor IDs:\n"+e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -87,8 +105,8 @@ public class FoodItems extends javax.swing.JPanel implements ListSelectionListen
         btnClear = new javax.swing.JButton();
         btnGenReport = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cmbUnit = new javax.swing.JComboBox<>();
+        cmbVendorID = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -190,10 +208,10 @@ public class FoodItems extends javax.swing.JPanel implements ListSelectionListen
         jLabel1.setText("Unit");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kilograms (kg)", "Grams (g)" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 120, -1));
+        cmbUnit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kilograms (kg)", "Grams (g)" }));
+        jPanel1.add(cmbUnit, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 130, -1));
 
-        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 120, -1));
+        jPanel1.add(cmbVendorID, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 130, -1));
 
         jLabel8.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(240, 240, 240));
@@ -248,10 +266,10 @@ public class FoodItems extends javax.swing.JPanel implements ListSelectionListen
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnGenReport;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JComboBox<String> cmbUnit;
+    private javax.swing.JComboBox<String> cmbVendorID;
     private com.toedter.calendar.JDateChooser datExpiryDate;
     private com.toedter.calendar.JDateChooser datPurchaseDate;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

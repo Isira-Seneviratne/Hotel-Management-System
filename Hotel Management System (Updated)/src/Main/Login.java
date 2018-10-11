@@ -23,7 +23,7 @@ public class Login extends javax.swing.JFrame {
         
         try {
             DatabaseConnectionFunctions.createConnection();
-        } catch(SQLException e) {
+        }  catch(SQLException e) {
             JOptionPane.showMessageDialog(Login.this, "A database connection could not be established."
                     + "\nMake sure that MySQL is running and that the database has been properly set up."
                     + "\n\n" + "Error: " + e.getMessage(),
@@ -40,8 +40,8 @@ public class Login extends javax.swing.JFrame {
                 return;
             }
             if(DatabaseConnectionFunctions.login(username, password)) {
-                MainWindow.getInstance(DatabaseConnectionFunctions.getEID(username, password)).setVisible(true);
                 dispose();
+                MainWindow.getInstance(DatabaseConnectionFunctions.getEID(username, password)).setVisible(true);
             }
             else
                 JOptionPane.showMessageDialog(this, "The login details could not be found."
