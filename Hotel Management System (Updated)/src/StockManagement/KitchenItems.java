@@ -208,7 +208,14 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
     }//GEN-LAST:event_btnAddMouseClicked
 
     private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
-        // TODO add your handling code here:
+        try {
+            DatabaseConnectionFunctions.deleteRecord("Kitchen_Items",
+                    "='"+jTable1.getValueAt(jTable1.getSelectedRow(), 0)+"'");
+            loadTable();
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(this, "An error occurred while deleting the selected record:\n"+e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnDeleteMouseClicked
 
     private void btnUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseClicked
@@ -216,7 +223,8 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
     }//GEN-LAST:event_btnUpdateMouseClicked
 
     private void btnClearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClearMouseClicked
-        // TODO add your handling code here:
+        txtItemName.setText("");
+        txtQty.setText("");
     }//GEN-LAST:event_btnClearMouseClicked
 
     private void btnGenReportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenReportMouseClicked

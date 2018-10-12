@@ -217,7 +217,14 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
     }//GEN-LAST:event_btnAddMouseClicked
 
     private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
-        // TODO add your handling code here:
+        try {
+            DatabaseConnectionFunctions.deleteRecord("Vendor_Details", "='"
+                    +jTable2.getValueAt(jTable2.getSelectedRow(), 0)+"'");
+            loadTable();
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(this, "An error occurred while deleting the selected record:\n"+e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnDeleteMouseClicked
 
     private void btnUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseClicked
