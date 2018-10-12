@@ -216,7 +216,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnStockManagementMouseClicked
 
     private void btnLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogoutMouseClicked
-        if(JOptionPane.showConfirmDialog(this, "You will be logged out of the system.\n\nDo you wish to continue?",
+        if (JOptionPane.showConfirmDialog(this, "You will be logged out of the system.\n\nDo you wish to continue?",
                 "Exit", JOptionPane.YES_NO_CANCEL_OPTION) == JOptionPane.YES_OPTION) {
             try {
                 DatabaseConnectionFunctions.logout(curEID);

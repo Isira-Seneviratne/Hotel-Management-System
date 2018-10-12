@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -209,11 +208,16 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
         ));
         jScrollPane3.setViewportView(jTable2);
 
-        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 870, 190));
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 870, 200));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
-        // TODO add your handling code here:
+        String address, vendorName, phoneNo, email;
+        
+        address = txtAddress.getText();
+        if (address.trim().equals(""))
+            JOptionPane.showMessageDialog(this, "An address cannot be blank or have only whitespace characters.",
+                    "Invalid address", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_btnAddMouseClicked
 
     private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked

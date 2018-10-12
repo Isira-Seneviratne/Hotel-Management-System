@@ -8,8 +8,6 @@ package StockManagement;
 import Main.DatabaseConnectionFunctions;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
@@ -21,7 +19,12 @@ import javax.swing.event.ListSelectionListener;
  */
 public class CleaningItems extends javax.swing.JPanel implements ListSelectionListener {
 
+    /* These DefaultComboBoxModel objects are required in order to search by index for specific
+     * combo box items when selecting one of the records in the table, so that the values will be
+     * displayed in the input controls as well.
+     */
     private DefaultComboBoxModel<String> cmbVendorIDModel = new DefaultComboBoxModel<>();
+    
     /**
      * Creates new form CleaningItems
      */
@@ -72,7 +75,7 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
         try {
             jTable1.setModel(DatabaseConnectionFunctions.getTableRecords("Cleaning_Items"));
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "An error occurred while loading the table:\n"+e.getMessage(),
+            JOptionPane.showMessageDialog(null, "An error occurred while loading the table:\n\n"+e.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
         
@@ -80,13 +83,16 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
         try {
             ResultSet vendorIDs = DatabaseConnectionFunctions.getSpecificFieldsFromTable("Vendor_Details", "`Vendor ID`");
             
-            cmbVendorIDModel.removeAllElements();   //Needed to prevent duplicate elements being inserted, as the object is not destroyed when switching.
+            //Needed to prevent duplicate elements being inserted, as the CleaningItems object is not destroyed when
+            //switching between tabs in the JTabbedPane.
+            cmbVendorIDModel.removeAllElements();
+            
             while (vendorIDs.next()) {
                 cmbVendorIDModel.addElement(vendorIDs.getString(1));
             }
             cmbVendorID.setModel(cmbVendorIDModel);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "An error occurred while loading the stored vendor IDs:\n"+e.getMessage(),
+            JOptionPane.showMessageDialog(null, "An error occurred while loading the stored vendor IDs:\n\n"+e.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -238,13 +244,15 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
-        String itemName;
+        String itemName, vendorID;
         int qty;
         float price;
         java.util.Date purDate; //Class not imported in order to avoid confusion between java.util.Date and java.sql.Date
         
         if(txtItemName.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(this, "An item name cannot be blank.", "Invalid item name", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "An item name cannot be blank"
+                    + " or consist of only whitespace characters.", "Invalid item name",
+                    JOptionPane.WARNING_MESSAGE);
             return;
         }
         else {
@@ -269,10 +277,19 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
             return;
         }
         
+        if(cmbVendorID.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(this, "Select the vendor ID this item belongs to.", "Vendor not selected",
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        else {
+            vendorID = cmbVendorID.getSelectedItem().toString();
+        }
+        
         try {
             purDate = datPurchaseDate.getDate();
             purDate.getTime();
-        } catch(NullPointerException e) {
+        } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(this, "You have entered an invalid date.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -280,11 +297,10 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
         try {
             String itemID = DatabaseConnectionFunctions.generateIDForRecord("C", "Cleaning_Items");
             DatabaseConnectionFunctions.insertRecord("Cleaning_Items", "'"+itemID+"','"+itemName+"',"
-                    +qty+","+price+",'"+cmbVendorID.getSelectedItem().toString()+"','"
-                    +new java.sql.Date(purDate.getTime())+"'");
+                    +qty+","+price+",'"+vendorID+"','"+new java.sql.Date(purDate.getTime())+"'");
             loadTableAndComboBox();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "An error occurred while inserting the record:\n"+e.getMessage(), "Error",
+            JOptionPane.showMessageDialog(this, "An error occurred while inserting the record:\n\n"+e.getMessage(), "Error",
                     JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAddMouseClicked
@@ -295,19 +311,21 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
                     "`Item ID`='"+jTable1.getValueAt(jTable1.getSelectedRow(), 0)+"'");
             loadTableAndComboBox();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "An error occurred while deleting the selected record:\n"+e.getMessage(),
+            JOptionPane.showMessageDialog(this, "An error occurred while deleting the selected record:\n\n"+e.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnDeleteMouseClicked
 
     private void btnUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseClicked
-        String itemName;
+        String itemName, vendorID = cmbVendorID.getSelectedItem().toString();
         int qty;
         float price;
         java.util.Date purDate; //Class not imported in order to avoid confusion between java.util.Date and java.sql.Date
         
         if(txtItemName.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(this, "An item name cannot be blank.", "Invalid item name", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "An item name cannot be blank"
+                    + " or consist of only whitespace characters.", "Invalid item name",
+                    JOptionPane.WARNING_MESSAGE);
             return;
         }
         else {
@@ -335,17 +353,18 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
         try {
             purDate = datPurchaseDate.getDate();
             purDate.getTime();
-        } catch(NullPointerException e) {
+        } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(this, "You have entered an invalid date.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
         try {
             DatabaseConnectionFunctions.updateRecord("Cleaning_Items",
-                    "", "`Item ID`='"+jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+                    "`Item Name`='"+itemName+"',"+qty+","+price+",'"+vendorID+"','"+new java.sql.Date(purDate.getTime())+"'",
+                    "`Item ID`='"+jTable1.getValueAt(jTable1.getSelectedRow(), 0));
             loadTableAndComboBox();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "An error occurred while updating the selected record:\n"+e.getMessage(),
+            JOptionPane.showMessageDialog(this, "An error occurred while updating the selected record:\n\n"+e.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnUpdateMouseClicked

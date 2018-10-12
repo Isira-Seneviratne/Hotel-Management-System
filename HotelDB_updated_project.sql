@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 11, 2018 at 11:48 AM
+-- Generation Time: Oct 12, 2018 at 05:40 AM
 -- Server version: 8.0.12
 -- PHP Version: 7.2.11
 
@@ -32,6 +32,13 @@ CREATE TABLE `CleaningFoodItems_Vendors` (
   `Item ID` varchar(10) NOT NULL,
   `Vendor ID` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+--
+-- Dumping data for table `CleaningFoodItems_Vendors`
+--
+
+INSERT INTO `CleaningFoodItems_Vendors` (`Item ID`, `Vendor ID`) VALUES
+('C000000001', 'V000000001');
 
 -- --------------------------------------------------------
 
@@ -93,6 +100,13 @@ CREATE TABLE `Kitchen_Items` (
   `Quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `Kitchen_Items`
+--
+
+INSERT INTO `Kitchen_Items` (`Item ID`, `Item Name`, `Quantity`) VALUES
+('K000000001', 'Non-stick frying pan', 10);
+
 -- --------------------------------------------------------
 
 --
@@ -128,6 +142,13 @@ CREATE TABLE `Payments` (
   `Price` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `Payments`
+--
+
+INSERT INTO `Payments` (`Payment ID`, `Vendor ID`, `Item ID`, `Quantity`, `Payment Date`, `Price`) VALUES
+('P000000001', 'V000000001', 'C000000001', 10, '2018-10-03', 5000);
+
 -- --------------------------------------------------------
 
 --
@@ -143,6 +164,13 @@ CREATE TABLE `Pending_Orders` (
   `Date of order` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `Pending_Orders`
+--
+
+INSERT INTO `Pending_Orders` (`Order ID`, `Item ID`, `Quantity`, `Unit`, `Vendor ID`, `Date of order`) VALUES
+('O000000001', 'C000000001', 10, 'None', 'V000000001', '2018-10-04');
+
 -- --------------------------------------------------------
 
 --
@@ -152,9 +180,16 @@ CREATE TABLE `Pending_Orders` (
 CREATE TABLE `Room_Items` (
   `Item ID` varchar(10) NOT NULL,
   `Item Name` varchar(100) NOT NULL,
-  `Room Number` varchar(10) NOT NULL,
+  `Room Number` int(4) NOT NULL,
   `Quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `Room_Items`
+--
+
+INSERT INTO `Room_Items` (`Item ID`, `Item Name`, `Room Number`, `Quantity`) VALUES
+('R000000001', 'High-Definition Television (HDTV)', 123, 1);
 
 -- --------------------------------------------------------
 

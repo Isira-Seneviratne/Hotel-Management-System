@@ -182,7 +182,7 @@ public class RoomItems extends javax.swing.JPanel implements ListSelectionListen
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 60, -1, -1));
         jPanel1.add(txtQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 60, 70, -1));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 53, 870, 240));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 53, 870, 260));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -192,16 +192,15 @@ public class RoomItems extends javax.swing.JPanel implements ListSelectionListen
                 "Item ID", "Item name", "Room number", "Quantity"
             }
         ));
-        jTable1.setPreferredSize(new java.awt.Dimension(450, 0));
         jScrollPane1.setViewportView(jTable1);
         jTable1.getSelectionModel().addListSelectionListener(this);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 312, 870, 220));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 870, 220));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
-        String itemName, roomNum;
-        int qty;
+        String itemName;
+        int qty, roomNum;
         
         if(txtItemName.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(this, "An item name cannot be blank or consist of only whitespace characters.",
@@ -211,12 +210,12 @@ public class RoomItems extends javax.swing.JPanel implements ListSelectionListen
             itemName = txtItemName.getText();
         }
         
-        if(txtRoomNum.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(this, "A room number cannot be blank or consist of only whitespace characters.",
-                    "Error", JOptionPane.ERROR_MESSAGE);
+        try {
+            roomNum = Integer.parseInt(txtRoomNum.getText());
+        } catch(NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "You have entered an invalid integer value for the room number.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
             return;
-        } else {
-            roomNum = txtRoomNum.getText();
         }
         
         try {
@@ -224,15 +223,62 @@ public class RoomItems extends javax.swing.JPanel implements ListSelectionListen
         } catch(NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "You have entered an invalid integer value for the quantity.", "Error",
                     JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        try {
+            String itemID = DatabaseConnectionFunctions.generateIDForRecord("R", "Room_Items");
+            DatabaseConnectionFunctions.insertRecord("Room_Items", "'"+itemID+"','"+itemName+"',"+roomNum+","+qty);
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(this, "An error occurred while inserting the record:\n"+e.getMessage(), "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAddMouseClicked
 
     private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
-        // TODO add your handling code here:
+        try {
+            DatabaseConnectionFunctions.deleteRecord("`Room Items`", "");
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(this, "An error occurred while deleting the selected record:\n\n"+e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnDeleteMouseClicked
 
     private void btnUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseClicked
-        // TODO add your handling code here:
+        String itemName;
+        int qty, roomNum;
+        
+        if(txtItemName.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "An item name cannot be blank or consist of only whitespace characters.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        } else {
+            itemName = txtItemName.getText();
+        }
+        
+        try {
+            roomNum = Integer.parseInt(txtRoomNum.getText());
+        } catch(NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "You have entered an invalid integer value for the room number.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        try {
+            qty = Integer.parseInt(txtQty.getText());
+        } catch(NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "You have entered an invalid integer value for the quantity.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        try {
+            DatabaseConnectionFunctions.updateRecord("", "",
+                    "`Room ID`='"+jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(this, "An error occurred while updating the selected record:\n"+e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnUpdateMouseClicked
 
     private void btnClearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClearMouseClicked
@@ -242,7 +288,7 @@ public class RoomItems extends javax.swing.JPanel implements ListSelectionListen
     }//GEN-LAST:event_btnClearMouseClicked
 
     private void btnGenReportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenReportMouseClicked
-        
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnGenReportMouseClicked
 
 

@@ -111,7 +111,6 @@ public class FoodItems extends javax.swing.JPanel implements ListSelectionListen
 
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        txtFoodName = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtQty = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -129,6 +128,8 @@ public class FoodItems extends javax.swing.JPanel implements ListSelectionListen
         cmbUnit = new javax.swing.JComboBox<>();
         cmbVendorID = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtFoodName = new javax.swing.JTextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
@@ -146,8 +147,7 @@ public class FoodItems extends javax.swing.JPanel implements ListSelectionListen
         jLabel3.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(238, 238, 238));
         jLabel3.setText("Food name");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, -1, -1));
-        jPanel1.add(txtFoodName, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, 160, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(238, 238, 238));
@@ -230,17 +230,23 @@ public class FoodItems extends javax.swing.JPanel implements ListSelectionListen
         jLabel1.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Unit");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, -1, -1));
 
         cmbUnit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kilograms (kg)", "Grams (g)" }));
-        jPanel1.add(cmbUnit, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 130, -1));
+        jPanel1.add(cmbUnit, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, 130, -1));
 
-        jPanel1.add(cmbVendorID, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 130, -1));
+        jPanel1.add(cmbVendorID, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 130, -1));
 
         jLabel8.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(240, 240, 240));
         jLabel8.setText("Vendor ID");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, -1, -1));
+
+        txtFoodName.setColumns(20);
+        txtFoodName.setRows(5);
+        jScrollPane2.setViewportView(txtFoodName);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 240, 40));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 50, 870, -1));
 
@@ -255,7 +261,7 @@ public class FoodItems extends javax.swing.JPanel implements ListSelectionListen
         jScrollPane1.setViewportView(jTable1);
         jTable1.getSelectionModel().addListSelectionListener(this);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 870, 160));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 870, 200));
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(238, 238, 238));
@@ -265,7 +271,16 @@ public class FoodItems extends javax.swing.JPanel implements ListSelectionListen
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
-        // TODO add your handling code here:
+        String foodName, unit, vendorID;
+        int qty;
+        float price;
+        java.util.Date purDate, expDate;
+        
+        foodName = txtFoodName.getText();
+        if(foodName.trim().equals("")) {
+            
+            return;
+        }
     }//GEN-LAST:event_btnAddMouseClicked
 
     private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
@@ -307,8 +322,9 @@ public class FoodItems extends javax.swing.JPanel implements ListSelectionListen
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtFoodName;
+    private javax.swing.JTextArea txtFoodName;
     private javax.swing.JTextField txtPrice;
     private javax.swing.JTextField txtQty;
     // End of variables declaration//GEN-END:variables

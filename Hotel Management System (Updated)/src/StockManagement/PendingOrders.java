@@ -27,7 +27,7 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
      */
     public PendingOrders() {
         initComponents();
-        
+        txtItemName.setEditable(false);
         loadTableAndComboBoxes();
     }
 
@@ -68,7 +68,7 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
         try {
             jTable1.setModel(DatabaseConnectionFunctions.getTableRecords("Pending_Orders"));
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "An error occurred while loading the table:\n"+e.getMessage()
+            JOptionPane.showMessageDialog(null, "An error occurred while loading the table:\n\n"+e.getMessage()
                     , "Error", JOptionPane.ERROR_MESSAGE);
         }
         
@@ -81,7 +81,7 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
                 cmbItemIDModel.addElement(itemIDsAndNames.getString(1));
             cmbItemID.setModel(cmbItemIDModel);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "An error occurred while retrieving all purchasable items:\n"
+            JOptionPane.showMessageDialog(this, "An error occurred while retrieving all purchasable items:\n\n"
                     +e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -104,7 +104,6 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
         btnClear = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        lblItemName = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtQty = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -114,6 +113,8 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
         jLabel7 = new javax.swing.JLabel();
         datOrderDate = new com.toedter.calendar.JDateChooser();
         cmbItemID = new javax.swing.JComboBox<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtItemName = new javax.swing.JTextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -193,10 +194,7 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
         jLabel3.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(238, 238, 238));
         jLabel3.setText("Item name");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, -1));
-
-        lblItemName.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.add(lblItemName, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 200, 20));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(238, 238, 238));
@@ -227,6 +225,15 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
 
         jPanel1.add(cmbItemID, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 130, -1));
 
+        jScrollPane3.setPreferredSize(new java.awt.Dimension(250, 50));
+        jScrollPane3.setRequestFocusEnabled(false);
+
+        txtItemName.setColumns(20);
+        txtItemName.setRows(5);
+        jScrollPane3.setViewportView(txtItemName);
+
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 170, 50));
+
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 59, 870, 270));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -244,7 +251,11 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
-        // TODO add your handling code here:
+        String itemID, vendorID, unit;
+        java.util.Date orderDate;
+        int qty;
+        
+        
     }//GEN-LAST:event_btnAddMouseClicked
 
     private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
@@ -258,7 +269,7 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
     private void btnClearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClearMouseClicked
         cmbItemID.setSelectedIndex(-1);
         cmbVendorID.setSelectedIndex(-1);
-        lblItemName.setText("");
+        txtItemName.setText("");
         txtQty.setText("");
     }//GEN-LAST:event_btnClearMouseClicked
 
@@ -286,8 +297,9 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
-    private javax.swing.JLabel lblItemName;
+    private javax.swing.JTextArea txtItemName;
     private javax.swing.JTextField txtQty;
     // End of variables declaration//GEN-END:variables
 }

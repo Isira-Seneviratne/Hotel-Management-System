@@ -59,7 +59,11 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
             btnGenReport.setToolTipText(null);
             
             int curRow = jTable1.getSelectedRow();
-            
+            cmbVendorID.setSelectedIndex(cmbVendorIDModel.getIndexOf(jTable1.getValueAt(curRow, 1)));
+            cmbItemID.setSelectedIndex(cmbItemIDModel.getIndexOf(jTable1.getValueAt(curRow, 2)));
+            txtQty.setText(jTable1.getValueAt(curRow, 3).toString());
+            datPaymentDate.setDate((java.sql.Date) jTable1.getValueAt(curRow, 4));
+            txtPrice.setText(jTable1.getValueAt(curRow, 5).toString());
         }
     }
     
@@ -68,7 +72,7 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
         try {
             jTable1.setModel(DatabaseConnectionFunctions.getTableRecords("Payments"));
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "An error occurred while loading the table:\n"+e.getMessage()
+            JOptionPane.showMessageDialog(null, "An error occurred while loading the table:\n\n"+e.getMessage()
                     , "Error", JOptionPane.ERROR_MESSAGE);
         }
         
@@ -79,7 +83,7 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
             while (vendorIDs.next()) {
                 cmbVendorIDModel.addElement(vendorIDs.getString(1));
             }
-            cmbVendorID.setModel(cmbItemIDModel);
+            cmbVendorID.setModel(cmbVendorIDModel);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "An error occurred while loading the vendor IDs:\n"+e.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
@@ -89,17 +93,20 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
         try {
             ResultSet cleaningItemIDs = DatabaseConnectionFunctions.getSpecificFieldsFromTable("Cleaning"
                     + "_Items", "`Item ID`");
+            cmbItemIDModel.removeAllElements();
             while (cleaningItemIDs.next()) {
-                cmbItemID.addItem(cleaningItemIDs.getString(1));
+                cmbItemIDModel.addElement(cleaningItemIDs.getString(1));
             }
             
             ResultSet foodItemIDs = DatabaseConnectionFunctions.getSpecificFieldsFromTable("Food_Items",
                             "`Food ID`");
             while (foodItemIDs.next()) {
-                cmbItemID.addItem(foodItemIDs.getString(1));
+                cmbItemIDModel.addElement(foodItemIDs.getString(1));
             }
+            
+            cmbItemID.setModel(cmbItemIDModel);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "An error occurred while loading the item IDs:\n"+e.getMessage(),
+            JOptionPane.showMessageDialog(null, "An error occurred while loading the item IDs:\n\n"+e.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -240,7 +247,7 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
 
             },
             new String [] {
-                "Payment ID", "Company ID", "Item ID", "Quantity", "Date", "Price"
+                "Payment ID", "Vendor ID", "Item ID", "Quantity", "Date", "Price"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
