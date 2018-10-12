@@ -5,7 +5,6 @@
  */
 package StockManagement;
 
-import Main.DatabaseConnectionFunctions;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.DefaultComboBoxModel;
@@ -59,27 +58,31 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
             btnGenReport.setToolTipText(null);
             
             int curRow = jTable1.getSelectedRow();
-            
+            cmbVendorID.setSelectedIndex(cmbVendorIDModel.getIndexOf(jTable1.getValueAt(curRow, 1)));
+            cmbItemID.setSelectedIndex(cmbItemIDModel.getIndexOf(jTable1.getValueAt(curRow, 2)));
+            txtQty.setText(jTable1.getValueAt(curRow, 3).toString());
+            datPaymentDate.setDate((java.sql.Date) jTable1.getValueAt(curRow, 4));
+            txtPrice.setText(jTable1.getValueAt(curRow, 5).toString());
         }
     }
     
     public void loadTableAndComboBoxes() {
         //Loads the up-to-date table corresponding to this particular panel.
         try {
-            jTable1.setModel(DatabaseConnectionFunctions.getTableRecords("Payments"));
+            jTable1.setModel(StockManagement.DatabaseConnectionFunctions.getTableRecords("Payments"));
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "An error occurred while loading the table:\n"+e.getMessage()
+            JOptionPane.showMessageDialog(null, "An error occurred while loading the table:\n\n"+e.getMessage()
                     , "Error", JOptionPane.ERROR_MESSAGE);
         }
         
         //Loads the vendor IDs from the Vendor_Details table.
         try {
-            ResultSet vendorIDs = DatabaseConnectionFunctions.getSpecificFieldsFromTable("Vendor_Details", "`Vendor ID`");
+            ResultSet vendorIDs = StockManagement.DatabaseConnectionFunctions.getSpecificFieldsFromTable("Vendor_Details", "`Vendor ID`");
             cmbVendorIDModel.removeAllElements();
             while (vendorIDs.next()) {
                 cmbVendorIDModel.addElement(vendorIDs.getString(1));
             }
-            cmbVendorID.setModel(cmbItemIDModel);
+            cmbVendorID.setModel(cmbVendorIDModel);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "An error occurred while loading the vendor IDs:\n"+e.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
@@ -87,19 +90,22 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
         
         //Loads the IDs of cleaning and food items from their respective tables.
         try {
-            ResultSet cleaningItemIDs = DatabaseConnectionFunctions.getSpecificFieldsFromTable("Cleaning"
+            ResultSet cleaningItemIDs = StockManagement.DatabaseConnectionFunctions.getSpecificFieldsFromTable("Cleaning"
                     + "_Items", "`Item ID`");
+            cmbItemIDModel.removeAllElements();
             while (cleaningItemIDs.next()) {
-                cmbItemID.addItem(cleaningItemIDs.getString(1));
+                cmbItemIDModel.addElement(cleaningItemIDs.getString(1));
             }
             
-            ResultSet foodItemIDs = DatabaseConnectionFunctions.getSpecificFieldsFromTable("Food_Items",
+            ResultSet foodItemIDs = StockManagement.DatabaseConnectionFunctions.getSpecificFieldsFromTable("Food_Items",
                             "`Food ID`");
             while (foodItemIDs.next()) {
-                cmbItemID.addItem(foodItemIDs.getString(1));
+                cmbItemIDModel.addElement(foodItemIDs.getString(1));
             }
+            
+            cmbItemID.setModel(cmbItemIDModel);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "An error occurred while loading the item IDs:\n"+e.getMessage(),
+            JOptionPane.showMessageDialog(null, "An error occurred while loading the item IDs:\n\n"+e.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -240,7 +246,7 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
 
             },
             new String [] {
-                "Payment ID", "Company ID", "Item ID", "Quantity", "Date", "Price"
+                "Payment ID", "Vendor ID", "Item ID", "Quantity", "Date", "Price"
             }
         ));
         jScrollPane1.setViewportView(jTable1);

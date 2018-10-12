@@ -5,7 +5,6 @@
  */
 package StockManagement;
 
-import Main.DatabaseConnectionFunctions;
 import Main.Login;
 import Main.MainWindow;
 import java.awt.event.WindowAdapter;
@@ -41,7 +40,7 @@ public class StockManagementWindow extends javax.swing.JFrame {
          */
         addWindowListener(new WindowAdapter() {
             @Override
-            public void windowClosed(WindowEvent e) {
+            public void windowClosing(WindowEvent e) {
                 MainWindow.getInstance(curEID).setVisible(true);
             }
         });
@@ -175,15 +174,18 @@ public class StockManagementWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogoutMouseClicked
-        try {
-            DatabaseConnectionFunctions.logout(curEID);
-            JOptionPane.showMessageDialog(this, "Successfully logged out of the system.", "Success",
-                    JOptionPane.INFORMATION_MESSAGE);
-            new Login().setVisible(true);
-            dispose();
-        } catch(SQLException e) {
-            JOptionPane.showMessageDialog(this, "A problem occurred while logging out."
-                    + " Make sure you are connected to the database.", "Error", JOptionPane.ERROR_MESSAGE);
+        if (JOptionPane.showConfirmDialog(this, "You will be logged out of the system.\n\nDo you wish to continue?",
+                "Exit", JOptionPane.YES_NO_CANCEL_OPTION) == JOptionPane.YES_OPTION) {
+            try {
+                StockManagement.DatabaseConnectionFunctions.logout(curEID);
+                JOptionPane.showMessageDialog(this, "Successfully logged out of the system.", "Success",
+                        JOptionPane.INFORMATION_MESSAGE);
+                new Login().setVisible(true);
+                dispose();
+            } catch(SQLException e) {
+                JOptionPane.showMessageDialog(this, "A problem occurred while logging out."
+                        + " Make sure you are connected to the database.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btnLogoutMouseClicked
 

@@ -41,15 +41,19 @@ public class MainWindow extends javax.swing.JFrame {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent evt) {
-                try {
-                    DatabaseConnectionFunctions.logout(curEID);
-                    JOptionPane.showMessageDialog(null, "Successfully logged out of the system.", "Success",
-                            JOptionPane.INFORMATION_MESSAGE);
-                    new Login().setVisible(true);
-                } catch(SQLException e) {
-                    JOptionPane.showMessageDialog(null, "A problem occurred while logging out."
-                            + "\nMake sure you are connected to the database."
-                            + "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                if (JOptionPane.showConfirmDialog(MainWindow.this, "You will be logged out of the system.\n\n"
+                        + "Do you wish to continue?",
+                        "Exit", JOptionPane.YES_NO_CANCEL_OPTION) == JOptionPane.YES_OPTION) {
+                    try {
+                        StockManagement.DatabaseConnectionFunctions.logout(curEID);
+                        JOptionPane.showMessageDialog(MainWindow.this, "Successfully logged out of the system.", "Success",
+                                JOptionPane.INFORMATION_MESSAGE);
+                        new Login().setVisible(true);
+                        dispose();
+                    } catch(SQLException e) {
+                        JOptionPane.showMessageDialog(MainWindow.this, "A problem occurred while logging out."
+                                + " Make sure you are connected to the database.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
         });
@@ -216,10 +220,10 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnStockManagementMouseClicked
 
     private void btnLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogoutMouseClicked
-        if(JOptionPane.showConfirmDialog(this, "You will be logged out of the system.\n\nDo you wish to continue?",
+        if (JOptionPane.showConfirmDialog(this, "You will be logged out of the system.\n\nDo you wish to continue?",
                 "Exit", JOptionPane.YES_NO_CANCEL_OPTION) == JOptionPane.YES_OPTION) {
             try {
-                DatabaseConnectionFunctions.logout(curEID);
+                StockManagement.DatabaseConnectionFunctions.logout(curEID);
                 JOptionPane.showMessageDialog(this, "Successfully logged out of the system.", "Success",
                         JOptionPane.INFORMATION_MESSAGE);
                 new Login().setVisible(true);

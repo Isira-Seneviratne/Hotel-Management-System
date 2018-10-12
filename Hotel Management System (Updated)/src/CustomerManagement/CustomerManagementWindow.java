@@ -5,15 +5,21 @@
  */
 package CustomerManagement;
 
+import Main.DatabaseBasicOps;
 import Main.Login;
 import Main.MainWindow;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
 
 /**
  *
  * @author Upeksha
  */
 public class CustomerManagementWindow extends javax.swing.JFrame {
-    
     private String curEID;
     private static CustomerManagementWindow instance;
     
@@ -26,6 +32,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         curEID = eID;
     }
 
+    //This code was added by Isira for the sake of consistency between the main windows.
     public static CustomerManagementWindow getInstance(String eID) {
         if(instance == null) {
             instance = new CustomerManagementWindow(eID);
@@ -59,9 +66,9 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         jPanel21 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable_cus2 = new javax.swing.JTable();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        BtnDelete = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -115,6 +122,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(102, 102, 102));
 
         btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Home.png"))); // NOI18N
+        btnHome.setToolTipText("go to home window");
         btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnHomeMouseClicked(evt);
@@ -127,6 +135,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         });
 
         btnLogout.setText("Logout");
+        btnLogout.setToolTipText("Click to logout");
         btnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLogoutActionPerformed(evt);
@@ -150,6 +159,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
 
         BtnSerch3.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         BtnSerch3.setText("Search");
+        BtnSerch3.setToolTipText("Click to search customer");
         BtnSerch3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnSerch3BtnSerchActionPerformed(evt);
@@ -167,7 +177,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         jPanel19.setBackground(new java.awt.Color(28, 48, 90));
         jPanel19.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "View Only", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel19.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel19.setToolTipText("");
+        jPanel19.setToolTipText("It will show Room, Hall and All details");
         jPanel19.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jRadioButton7.setBackground(new java.awt.Color(28, 48, 90));
@@ -236,35 +246,38 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
 
         jPanel21.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 38, 920, 260));
 
-        jButton10.setBackground(new java.awt.Color(0, 51, 204));
-        jButton10.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButton10.setText("Add");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        btnAdd.setBackground(new java.awt.Color(0, 102, 0));
+        btnAdd.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        btnAdd.setText("Add");
+        btnAdd.setToolTipText("Click to add customer");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10jButton1ActionPerformed(evt);
+                btnAddjButton1ActionPerformed(evt);
             }
         });
-        jPanel21.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 320, 77, 31));
+        jPanel21.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 320, 77, 31));
 
-        jButton11.setBackground(new java.awt.Color(0, 153, 51));
-        jButton11.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButton11.setText("Update");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdate.setBackground(new java.awt.Color(0, 102, 255));
+        btnUpdate.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        btnUpdate.setText("Update");
+        btnUpdate.setToolTipText("Click to update customer");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11jButton2ActionPerformed(evt);
+                btnUpdatejButton2ActionPerformed(evt);
             }
         });
-        jPanel21.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 320, 90, 31));
+        jPanel21.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 320, 90, 31));
 
-        jButton12.setBackground(new java.awt.Color(153, 0, 0));
-        jButton12.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButton12.setText("Delete");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
+        BtnDelete.setBackground(new java.awt.Color(171, 5, 9));
+        BtnDelete.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        BtnDelete.setText("Delete");
+        BtnDelete.setToolTipText("Click to detele customer");
+        BtnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
+                BtnDeleteActionPerformed(evt);
             }
         });
-        jPanel21.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 320, 78, 31));
+        jPanel21.add(BtnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 320, 78, 31));
 
         javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
         jPanel22.setLayout(jPanel22Layout);
@@ -293,6 +306,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
 
         jComboBox1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Reservation type", "Room", "Hall" }));
+        jComboBox1.setToolTipText("Select Hall reservation or Room reservation");
         jComboBox1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBox1ItemStateChanged(evt);
@@ -325,6 +339,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
 
         BtnSerch4.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         BtnSerch4.setText("Search");
+        BtnSerch4.setToolTipText("Click to search Room by customer name or room ID");
         BtnSerch4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnSerch4BtnSerchActionPerformed(evt);
@@ -342,7 +357,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         jPanel25.setBackground(new java.awt.Color(28, 48, 90));
         jPanel25.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "View Only", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel25.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel25.setToolTipText("");
+        jPanel25.setToolTipText("It will show Room, Hall and All details");
         jPanel25.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jRadioButton10.setBackground(new java.awt.Color(28, 48, 90));
@@ -391,9 +406,10 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         jPanel26.setToolTipText("");
         jPanel26.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton13.setBackground(new java.awt.Color(0, 51, 204));
+        jButton13.setBackground(new java.awt.Color(0, 102, 0));
         jButton13.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton13.setText("Add");
+        jButton13.setToolTipText("Click to Add room details");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton13jButton1ActionPerformed(evt);
@@ -401,9 +417,10 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         });
         jPanel26.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 320, 77, 31));
 
-        jButton14.setBackground(new java.awt.Color(0, 153, 51));
+        jButton14.setBackground(new java.awt.Color(0, 102, 255));
         jButton14.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton14.setText("Update");
+        jButton14.setToolTipText("Click to update room details");
         jButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton14jButton2ActionPerformed(evt);
@@ -411,9 +428,10 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         });
         jPanel26.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 320, 90, 31));
 
-        jButton15.setBackground(new java.awt.Color(153, 0, 0));
+        jButton15.setBackground(new java.awt.Color(171, 5, 9));
         jButton15.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton15.setText("Delete");
+        jButton15.setToolTipText("Click to delete room details");
         jPanel26.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 320, 78, 31));
 
         jTableRoom.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -484,9 +502,10 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
 
         jPanel14.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 29, 910, 270));
 
-        jButton3.setBackground(new java.awt.Color(42, 199, 42));
+        jButton3.setBackground(new java.awt.Color(0, 102, 0));
         jButton3.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton3.setText("Add");
+        jButton3.setToolTipText("Click to add hall details");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -494,9 +513,10 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         });
         jPanel14.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 330, 77, 31));
 
-        jButton4.setBackground(new java.awt.Color(255, 204, 51));
+        jButton4.setBackground(new java.awt.Color(0, 102, 255));
         jButton4.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton4.setText("Update");
+        jButton4.setToolTipText("Click to update hall details");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -504,9 +524,10 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         });
         jPanel14.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 330, 90, 31));
 
-        jButton6.setBackground(new java.awt.Color(255, 51, 51));
+        jButton6.setBackground(new java.awt.Color(171, 5, 9));
         jButton6.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton6.setText("Delete");
+        jButton6.setToolTipText("click to delete hall details");
         jPanel14.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 330, 78, 31));
 
         jPanel2.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 940, 380));
@@ -522,6 +543,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
 
         BtnSerch1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         BtnSerch1.setText("Search");
+        BtnSerch1.setToolTipText("Click to search hall details");
         BtnSerch1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnSerch1ActionPerformed(evt);
@@ -539,7 +561,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         jPanel8.setBackground(new java.awt.Color(28, 48, 90));
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "View Only", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel8.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel8.setToolTipText("");
+        jPanel8.setToolTipText("can veiw only hall pearl, hall Ruby and all details");
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jRadioButtonAll.setBackground(new java.awt.Color(28, 48, 90));
@@ -642,26 +664,57 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         
     }//GEN-LAST:event_formWindowOpened
 
+    public void LoadCustomerTable() {
+
+    }
+     /*public void valueChanged(ListSelectionEvent lse) {
+        String tooltip = "Select a record from the table to enable the button.";
+        if(jTable1.getSelectionModel().isSelectionEmpty()) {
+            btnUpdate.setEnabled(false);
+            btnDelete.setEnabled(false);
+            btnGenReport.setEnabled(false);
+            btnUpdate.setToolTipText(tooltip);
+            btnDelete.setToolTipText(tooltip);
+            btnGenReport.setToolTipText(tooltip);
+        } else {
+            btnUpdate.setEnabled(true);
+            btnDelete.setEnabled(true);
+            btnGenReport.setEnabled(true);
+            btnUpdate.setToolTipText(null);
+            btnDelete.setToolTipText(null);
+            btnGenReport.setToolTipText(null);
+            
+            int curRow = jTable1.getSelectedRow();
+            txtItemName.setText(jTable1.getValueAt(curRow, 1).toString());
+            txtQty.setText(jTable1.getValueAt(curRow, 2).toString());
+            txtPrice.setText(jTable1.getValueAt(curRow, 3).toString());
+            cmbVendorID.setSelectedIndex(cmbVendorIDModel.getIndexOf(jTable1.getValueAt(curRow, 4)));
+            datPurchaseDate.setDate((java.util.Date) jTable1.getValueAt(curRow, 5));
+        }
+    }*/
+    
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
         
     }//GEN-LAST:event_formWindowActivated
 
-    private void jButton11jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11jButton2ActionPerformed
+    private void btnUpdatejButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdatejButton2ActionPerformed
         // TODO add your handling code here:
         CustomerEdit ce = new CustomerEdit();
         ce.setVisible(true);
-    }//GEN-LAST:event_jButton11jButton2ActionPerformed
+    }//GEN-LAST:event_btnUpdatejButton2ActionPerformed
 
-    private void jButton10jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10jButton1ActionPerformed
+    private void btnAddjButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddjButton1ActionPerformed
         // TODO add your handling code here:
         CustomerAdd ca = new CustomerAdd();
         ca.setVisible(true);
-    }//GEN-LAST:event_jButton10jButton1ActionPerformed
-
+        
+       
+    }//GEN-LAST:event_btnAddjButton1ActionPerformed
+    //btnAdd.setToolTipText("Customer details will add");
     private void jRadioButton9jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton9jRadioButton3ActionPerformed
         // TODO add your handling code here:
-        //LoadCustomerTable();
+        LoadCustomerTable();
     }//GEN-LAST:event_jRadioButton9jRadioButton3ActionPerformed
 
     private void jRadioButton8jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton8jRadioButton2ActionPerformed
@@ -783,7 +836,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_jTableRoomMouseClicked
-
+   
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         // TODO add your handling code here:
     
@@ -802,9 +855,9 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnHomeMouseClicked
 
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+    private void BtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDeleteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton12ActionPerformed
+    }//GEN-LAST:event_BtnDeleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -857,20 +910,20 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnDelete;
     private javax.swing.JButton BtnSerch1;
     private javax.swing.JButton BtnSerch3;
     private javax.swing.JButton BtnSerch4;
     private javax.swing.JTextField Txtsearch1;
     private javax.swing.JTextField Txtsearch3;
     private javax.swing.JTextField Txtsearch4;
+    private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cmbsearch2;
     private javax.swing.JComboBox<String> cmbsearch3;
     private javax.swing.JComboBox<String> cmbsearch4;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;

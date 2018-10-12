@@ -24,7 +24,7 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         
         try {
-            DatabaseConnectionFunctions.createConnection();
+            DatabaseBasicOps.createConnection();
         }  catch(SQLException e) {
             JOptionPane.showMessageDialog(Login.this, "A database connection could not be established."
                     + "\nMake sure that MySQL is running and that the database has been properly set up."
@@ -36,7 +36,7 @@ public class Login extends javax.swing.JFrame {
             @Override
             public void windowClosing(WindowEvent evt) {
                 try {
-                    DatabaseConnectionFunctions.closeConnection();
+                    DatabaseBasicOps.closeConnection();
                 } catch(SQLException e) {
                     JOptionPane.showMessageDialog(null, "An error occurred while closing the database connection:\n"+e.getMessage(),
                             "Error", JOptionPane.ERROR_MESSAGE);
@@ -55,11 +55,11 @@ public class Login extends javax.swing.JFrame {
                         JOptionPane.WARNING_MESSAGE);
                 return;
             }
-            if(DatabaseConnectionFunctions.login(username, password)) {
+            if(StockManagement.DatabaseConnectionFunctions.login(username, password)) {
                 dispose();
                 
                 //Loads the window with the progress bar, which in turn loads the main window.
-                ProgressWindow progWin = new ProgressWindow(DatabaseConnectionFunctions.getEID(username, password));
+                ProgressWindow progWin = new ProgressWindow(StockManagement.DatabaseConnectionFunctions.getEID(username, password));
                 progWin.setVisible(true);
                 progWin.startLoading();
             }
