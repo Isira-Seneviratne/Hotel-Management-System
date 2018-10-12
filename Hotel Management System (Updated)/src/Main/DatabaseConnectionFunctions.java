@@ -40,6 +40,10 @@ public class DatabaseConnectionFunctions {
         }
     }
     
+    public static void closeConnection() throws SQLException {
+        con.close();
+    }
+    
     //Generates a unique ID for a record in a given table, using the given starting character.
     public static String generateIDForRecord(String startChar, String tableName) throws SQLException {
         String id = startChar;
@@ -57,7 +61,7 @@ public class DatabaseConnectionFunctions {
     
     //Inserts a new record. If something goes wrong, a SQLException will be thrown.
     public static void insertRecord(String tableName, String values) throws SQLException {
-        stmt.execute("INSERT INTO" + tableName + " VALUES(" + values + ")");
+        stmt.execute("INSERT INTO " + tableName + " VALUES(" + values + ")");
     }
     
     //Updates a specific record or set of records.

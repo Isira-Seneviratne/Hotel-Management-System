@@ -9,6 +9,8 @@ import CustomerManagement.CustomerManagementWindow;
 import FinanceManagement.FinanceManagementWindow;
 import HRManagement.HRManagementWindow;
 import StockManagement.StockManagementWindow;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -36,9 +38,9 @@ public class MainWindow extends javax.swing.JFrame {
          * https://examples.javacodegeeks.com/desktop-java/awt/event/window-closing-event-handling/
          * Accessed October 5, 2018.
          */
-        /*addWindowListener(new WindowAdapter() {
+        addWindowListener(new WindowAdapter() {
             @Override
-            public void windowClosed(WindowEvent evt) {
+            public void windowClosing(WindowEvent evt) {
                 try {
                     DatabaseConnectionFunctions.logout(curEID);
                     JOptionPane.showMessageDialog(null, "Successfully logged out of the system.", "Success",
@@ -50,7 +52,7 @@ public class MainWindow extends javax.swing.JFrame {
                             + "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
-        });*/
+        });
     }
 
     public static MainWindow getInstance(String eID) {
@@ -86,7 +88,7 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Main Window");
         setResizable(false);
 
@@ -210,19 +212,22 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void btnStockManagementMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStockManagementMouseClicked
         StockManagementWindow.getInstance(curEID).setVisible(true);
-        setVisible(false);
+        dispose();
     }//GEN-LAST:event_btnStockManagementMouseClicked
 
     private void btnLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogoutMouseClicked
-        try {
-            DatabaseConnectionFunctions.logout(curEID);
-            JOptionPane.showMessageDialog(this, "Successfully logged out of the system.", "Success",
-                    JOptionPane.INFORMATION_MESSAGE);
-            new Login().setVisible(true);
-            dispose();
-        } catch(SQLException e) {
-            JOptionPane.showMessageDialog(this, "A problem occurred while logging out."
-                    + " Make sure you are connected to the database.", "Error", JOptionPane.ERROR_MESSAGE);
+        if (JOptionPane.showConfirmDialog(this, "You will be logged out of the system.\n\nDo you wish to continue?",
+                "Exit", JOptionPane.YES_NO_CANCEL_OPTION) == JOptionPane.YES_OPTION) {
+            try {
+                DatabaseConnectionFunctions.logout(curEID);
+                JOptionPane.showMessageDialog(this, "Successfully logged out of the system.", "Success",
+                        JOptionPane.INFORMATION_MESSAGE);
+                new Login().setVisible(true);
+                dispose();
+            } catch(SQLException e) {
+                JOptionPane.showMessageDialog(this, "A problem occurred while logging out."
+                        + " Make sure you are connected to the database.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btnLogoutMouseClicked
 

@@ -50,6 +50,10 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
             btnUpdate.setToolTipText(null);
             btnDelete.setToolTipText(null);
             btnGenReport.setToolTipText(null);
+            
+            int curRow = jTable1.getSelectedRow();
+            txtItemName.setText(jTable1.getValueAt(curRow, 1).toString());
+            txtQty.setText(jTable1.getValueAt(curRow, 2).toString());
         }
     }
     
@@ -57,8 +61,8 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
         //Loads the up-to-date table corresponding to this particular panel.
         try {
             jTable1.setModel(DatabaseConnectionFunctions.getTableRecords("Kitchen_Items"));
-        } catch(SQLException e) {
-            JOptionPane.showMessageDialog(null, "An error occurred while loading the table:\n"+e.getMessage()
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "An error occurred while loading the table:\n\n"+e.getMessage()
                     , "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -82,9 +86,10 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
         btnClear = new javax.swing.JButton();
         btnGenReport = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        txtItemName = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtQty = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtItemName = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
 
@@ -119,24 +124,26 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
         btnUpdate.setBackground(new java.awt.Color(51, 102, 0));
         btnUpdate.setForeground(new java.awt.Color(238, 238, 238));
         btnUpdate.setText("Update");
+        btnUpdate.setToolTipText("Select a record from the table to enable the button.");
         btnUpdate.setEnabled(false);
         btnUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnUpdateMouseClicked(evt);
             }
         });
-        jPanel1.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 150, -1, -1));
+        jPanel1.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, -1, -1));
 
         btnDelete.setBackground(new java.awt.Color(204, 0, 0));
         btnDelete.setForeground(new java.awt.Color(238, 238, 238));
         btnDelete.setText("Delete");
+        btnDelete.setToolTipText("Select a record from the table to enable the button.");
         btnDelete.setEnabled(false);
         btnDelete.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnDeleteMouseClicked(evt);
             }
         });
-        jPanel1.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, -1, -1));
+        jPanel1.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, -1, -1));
 
         btnAdd.setBackground(new java.awt.Color(102, 153, 255));
         btnAdd.setForeground(new java.awt.Color(238, 238, 238));
@@ -146,7 +153,7 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
                 btnAddMouseClicked(evt);
             }
         });
-        jPanel1.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, -1, -1));
+        jPanel1.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, -1, -1));
 
         btnClear.setBackground(new java.awt.Color(153, 153, 153));
         btnClear.setText("Clear");
@@ -155,23 +162,23 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
                 btnClearMouseClicked(evt);
             }
         });
-        jPanel1.add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 150, -1, -1));
+        jPanel1.add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 200, -1, -1));
 
         btnGenReport.setBackground(new java.awt.Color(255, 255, 0));
         btnGenReport.setText("Generate Report");
+        btnGenReport.setToolTipText("Select a record from the table to enable the button.");
         btnGenReport.setEnabled(false);
         btnGenReport.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnGenReportMouseClicked(evt);
             }
         });
-        jPanel1.add(btnGenReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 150, -1, -1));
+        jPanel1.add(btnGenReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 200, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(238, 238, 238));
         jLabel3.setText("Item name");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 67, -1, -1));
-        jPanel1.add(txtItemName, new org.netbeans.lib.awtextra.AbsoluteConstraints(241, 64, 198, -1));
 
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(238, 238, 238));
@@ -179,7 +186,13 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 70, -1, -1));
         jPanel1.add(txtQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 70, 80, -1));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 47, 880, 200));
+        txtItemName.setColumns(20);
+        txtItemName.setRows(5);
+        jScrollPane3.setViewportView(txtItemName);
+
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, 200, 60));
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 47, 880, 270));
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -191,12 +204,39 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
         ));
         jTable2.setPreferredSize(new java.awt.Dimension(450, 0));
         jScrollPane2.setViewportView(jTable2);
+        jTable2.getSelectionModel().addListSelectionListener(this);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 880, 270));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 880, 220));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
-        // TODO add your handling code here:
+        String itemName;
+        int qty;
+        
+        itemName = txtItemName.getText();
+        if(itemName.trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "An item name cannot be blank"
+                    + " or consist of only whitespace characters.", "Invalid item name",
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        try {
+            qty = Integer.parseInt(txtQty.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "You have not entered a valid integer for the quantity.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            txtQty.requestFocus();
+            return;
+        }
+        
+        try {
+            String itemID = DatabaseConnectionFunctions.generateIDForRecord("K", "Kitchen_Items");
+            DatabaseConnectionFunctions.insertRecord("Kitchen_Items", "");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "An error occurred while inserting the record:\n\n"+e.getMessage(), "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnAddMouseClicked
 
     private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
@@ -204,11 +244,38 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
     }//GEN-LAST:event_btnDeleteMouseClicked
 
     private void btnUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseClicked
-        // TODO add your handling code here:
+        String itemName;
+        int qty;
+        
+        itemName = txtItemName.getText();
+        if(itemName.trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "An item name cannot be blank"
+                    + " or consist of only whitespace characters.", "Invalid item name",
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        try {
+            qty = Integer.parseInt(txtQty.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "You have not entered a valid integer for the quantity.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            txtQty.requestFocus();
+            return;
+        }
+        
+        try {
+            DatabaseConnectionFunctions.updateRecord("Kitchen_Items", "",
+                    "`Kitchen ID`='"+jTable1.getValueAt(jTable1.getSelectedRow(), 0)+"'");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "An error occurred while updating the selected record:\n\n"+e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnUpdateMouseClicked
 
     private void btnClearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClearMouseClicked
-        // TODO add your handling code here:
+        txtItemName.setText("");
+        txtQty.setText("");
     }//GEN-LAST:event_btnClearMouseClicked
 
     private void btnGenReportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenReportMouseClicked
@@ -228,9 +295,10 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTextField txtItemName;
+    private javax.swing.JTextArea txtItemName;
     private javax.swing.JTextField txtQty;
     // End of variables declaration//GEN-END:variables
 }

@@ -11,13 +11,17 @@ package Main;
  */
 public class ProgressWindow extends javax.swing.JFrame {
 
+    private String eID;
     /**
      * Creates new form ProgressWindow
      * @param eID
      */
     public ProgressWindow(String eID) {
         initComponents();
-        
+        this.eID = eID;
+    }
+
+    public void startLoading() {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -26,7 +30,7 @@ public class ProgressWindow extends javax.swing.JFrame {
             }
         }).start();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

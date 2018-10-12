@@ -6,6 +6,8 @@
 package Main;
 
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -29,11 +31,25 @@ public class Login extends javax.swing.JFrame {
                     + "\n\n" + "Error: " + e.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
+        
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent evt) {
+                try {
+                    DatabaseConnectionFunctions.closeConnection();
+                } catch(SQLException e) {
+                    JOptionPane.showMessageDialog(null, "An error occurred while closing the database connection:\n"+e.getMessage(),
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
     }
 
     public void loadMainWindow() {
         try {
             String username = txtUsername.getText(), password = new String(txtPassword.getPassword());
+            
+            //Ensures that username and password fields cannot be blank or contain only whitespace characters.
             if(username.trim().equals("") || password.trim().equals("")) {
                 JOptionPane.showMessageDialog(this, "You have not entered a username and/or password.", "No username/password",
                         JOptionPane.WARNING_MESSAGE);
@@ -41,8 +57,11 @@ public class Login extends javax.swing.JFrame {
             }
             if(DatabaseConnectionFunctions.login(username, password)) {
                 dispose();
-                //MainWindow.getInstance(DatabaseConnectionFunctions.getEID(username, password)).setVisible(true);
-                new ProgressWindow(DatabaseConnectionFunctions.getEID(username, password)).setVisible(true);
+                
+                //Loads the window with the progress bar, which in turn loads the main window.
+                ProgressWindow progWin = new ProgressWindow(DatabaseConnectionFunctions.getEID(username, password));
+                progWin.setVisible(true);
+                progWin.startLoading();
             }
             else
                 JOptionPane.showMessageDialog(this, "The login details could not be found."

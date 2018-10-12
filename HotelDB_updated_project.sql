@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 09, 2018 at 02:32 AM
+-- Generation Time: Oct 12, 2018 at 05:40 AM
 -- Server version: 8.0.12
--- PHP Version: 7.2.10
+-- PHP Version: 7.2.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,6 +25,24 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `CleaningFoodItems_Vendors`
+--
+
+CREATE TABLE `CleaningFoodItems_Vendors` (
+  `Item ID` varchar(10) NOT NULL,
+  `Vendor ID` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+--
+-- Dumping data for table `CleaningFoodItems_Vendors`
+--
+
+INSERT INTO `CleaningFoodItems_Vendors` (`Item ID`, `Vendor ID`) VALUES
+('C000000001', 'V000000001');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `Cleaning_Items`
 --
 
@@ -37,6 +55,15 @@ CREATE TABLE `Cleaning_Items` (
   `Purchase Date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `Cleaning_Items`
+--
+
+INSERT INTO `Cleaning_Items` (`Item ID`, `Item Name`, `Quantity`, `Price`, `Vendor ID`, `Purchase Date`) VALUES
+('C000000001', 'Mop', 10, 500, 'V000000001', '2018-10-01'),
+('C000000002', 'Broom', 100, 100, 'V000000001', '2018-10-01'),
+('C000000003', 'Bucket', 55, 105.5, 'V000000001', '2018-10-01');
+
 -- --------------------------------------------------------
 
 --
@@ -47,11 +74,19 @@ CREATE TABLE `Food_Items` (
   `Food ID` varchar(10) NOT NULL,
   `Food Name` varchar(100) NOT NULL,
   `Quantity` int(11) NOT NULL,
+  `Unit` varchar(2) NOT NULL,
   `Price` float NOT NULL,
   `Vendor ID` varchar(10) NOT NULL,
   `Purchase Date` date NOT NULL,
   `Expiry Date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+--
+-- Dumping data for table `Food_Items`
+--
+
+INSERT INTO `Food_Items` (`Food ID`, `Food Name`, `Quantity`, `Unit`, `Price`, `Vendor ID`, `Purchase Date`, `Expiry Date`) VALUES
+('F000000001', 'Donut with Strawberry Icing', 100, 'kg', 50, 'V000000002', '2018-10-01', '2018-12-01');
 
 -- --------------------------------------------------------
 
@@ -64,6 +99,13 @@ CREATE TABLE `Kitchen_Items` (
   `Item Name` varchar(100) NOT NULL,
   `Quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `Kitchen_Items`
+--
+
+INSERT INTO `Kitchen_Items` (`Item ID`, `Item Name`, `Quantity`) VALUES
+('K000000001', 'Non-stick frying pan', 10);
 
 -- --------------------------------------------------------
 
@@ -83,7 +125,7 @@ CREATE TABLE `Login` (
 --
 
 INSERT INTO `Login` (`eID`, `Username`, `Password`, `Logged in?`) VALUES
-('E000000001', 'isira123', 'abcd1234', 'Yes');
+('E000000001', 'isira123', 'abcd1234', 'No');
 
 -- --------------------------------------------------------
 
@@ -100,6 +142,13 @@ CREATE TABLE `Payments` (
   `Price` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `Payments`
+--
+
+INSERT INTO `Payments` (`Payment ID`, `Vendor ID`, `Item ID`, `Quantity`, `Payment Date`, `Price`) VALUES
+('P000000001', 'V000000001', 'C000000001', 10, '2018-10-03', 5000);
+
 -- --------------------------------------------------------
 
 --
@@ -115,6 +164,13 @@ CREATE TABLE `Pending_Orders` (
   `Date of order` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `Pending_Orders`
+--
+
+INSERT INTO `Pending_Orders` (`Order ID`, `Item ID`, `Quantity`, `Unit`, `Vendor ID`, `Date of order`) VALUES
+('O000000001', 'C000000001', 10, 'None', 'V000000001', '2018-10-04');
+
 -- --------------------------------------------------------
 
 --
@@ -124,9 +180,16 @@ CREATE TABLE `Pending_Orders` (
 CREATE TABLE `Room_Items` (
   `Item ID` varchar(10) NOT NULL,
   `Item Name` varchar(100) NOT NULL,
-  `Room Number` varchar(10) NOT NULL,
+  `Room Number` int(4) NOT NULL,
   `Quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `Room_Items`
+--
+
+INSERT INTO `Room_Items` (`Item ID`, `Item Name`, `Room Number`, `Quantity`) VALUES
+('R000000001', 'High-Definition Television (HDTV)', 123, 1);
 
 -- --------------------------------------------------------
 
@@ -143,8 +206,21 @@ CREATE TABLE `Vendor_Details` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Dumping data for table `Vendor_Details`
+--
+
+INSERT INTO `Vendor_Details` (`Vendor ID`, `Vendor Name`, `Address`, `Telephone Number`, `Email`) VALUES
+('V000000001', 'Jonathan\'s Cleaning Supplies', '95/C, Baseline Road, Colombo', '0117234289', 'cleaningsupplies@gmail.com');
+
+--
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `CleaningFoodItems_Vendors`
+--
+ALTER TABLE `CleaningFoodItems_Vendors`
+  ADD PRIMARY KEY (`Item ID`,`Vendor ID`);
 
 --
 -- Indexes for table `Cleaning_Items`
