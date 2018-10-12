@@ -263,28 +263,28 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField3">
+                    <Component class="javax.swing.JTextField" name="txtReNo">
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="139" y="77" width="170" height="26"/>
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField4">
+                    <Component class="javax.swing.JTextField" name="paytype">
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="140" y="120" width="170" height="26"/>
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField5">
+                    <Component class="javax.swing.JTextField" name="billType">
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="140" y="160" width="170" height="26"/>
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField6">
+                    <Component class="javax.swing.JTextField" name="dep">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Finance Department"/>
                       </Properties>
@@ -294,14 +294,14 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField7">
+                    <Component class="javax.swing.JTextField" name="amnt">
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="460" y="80" width="170" height="26"/>
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JComboBox" name="jComboBox1">
+                    <Component class="javax.swing.JComboBox" name="cmbPayM">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="2">
@@ -319,16 +319,16 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField8">
+                    <Component class="javax.swing.JTextField" name="subT">
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="460" y="160" width="170" height="26"/>
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField9">
+                    <Component class="javax.swing.JTextField" name="disc">
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField9ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="discActionPerformed"/>
                       </Events>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -336,7 +336,7 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField10">
+                    <Component class="javax.swing.JTextField" name="tax">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Rs."/>
                       </Properties>
@@ -346,7 +346,7 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField11">
+                    <Component class="javax.swing.JTextField" name="percent">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="%"/>
                       </Properties>
@@ -372,7 +372,7 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField12">
+                    <Component class="javax.swing.JTextField" name="total">
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="730" y="120" width="180" height="26"/>
@@ -393,6 +393,7 @@
                         </Property>
                       </Properties>
                       <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton15MouseClicked"/>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton15ActionPerformed"/>
                       </Events>
                       <Constraints>
@@ -413,6 +414,7 @@
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="null"/>
                         </Property>
+                        <Property name="enabled" type="boolean" value="false"/>
                         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[97, 25]"/>
                         </Property>
@@ -423,6 +425,9 @@
                           <Dimension value="[97, 25]"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton16ActionPerformed"/>
+                      </Events>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="630" y="210" width="80" height="33"/>
@@ -470,7 +475,7 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser3">
+                    <Component class="com.toedter.calendar.JDateChooser" name="DatePickPayDate">
                       <Properties>
                         <Property name="name" type="java.lang.String" value="dt" noResource="true"/>
                       </Properties>
@@ -492,7 +497,11 @@
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="null"/>
                         </Property>
+                        <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton12ActionPerformed"/>
+                      </Events>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="730" y="210" width="80" height="30"/>
@@ -579,7 +588,7 @@
                                   <EmptySpace min="-2" pref="307" max="-2" attributes="0"/>
                                   <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jDateChooser2" min="-2" pref="138" max="-2" attributes="0"/>
+                                  <Component id="DatePickPayTable" min="-2" pref="138" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
@@ -594,7 +603,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="jDateChooser2" min="-2" pref="26" max="-2" attributes="0"/>
+                                      <Component id="DatePickPayTable" min="-2" pref="26" max="-2" attributes="0"/>
                                       <Component id="jLabel10" min="-2" pref="25" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace pref="9" max="32767" attributes="0"/>
@@ -605,7 +614,10 @@
                         </DimensionLayout>
                       </Layout>
                       <SubComponents>
-                        <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser2">
+                        <Component class="com.toedter.calendar.JDateChooser" name="DatePickPayTable">
+                          <Events>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="DatePickPayTableMouseClicked"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel10">
                           <Properties>
@@ -625,7 +637,7 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JTable" name="jTable5">
+                            <Component class="javax.swing.JTable" name="jTablePayments">
                               <Properties>
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                   <Font name="Verdana" size="11" style="1"/>
@@ -652,6 +664,9 @@
                                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                                 </Property>
                               </Properties>
+                              <Events>
+                                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTablePaymentsMouseClicked"/>
+                              </Events>
                             </Component>
                           </SubComponents>
                         </Container>
@@ -715,7 +730,7 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTable" name="jTable7">
+                        <Component class="javax.swing.JTable" name="jTableReceipts">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Verdana" size="11" style="1"/>
@@ -789,7 +804,7 @@
                             </Constraint>
                           </Constraints>
                         </Component>
-                        <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser1">
+                        <Component class="com.toedter.calendar.JDateChooser" name="DatepickReceipts">
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                               <AbsoluteConstraints x="430" y="10" width="140" height="22"/>
@@ -841,7 +856,7 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="490" y="230" width="450" height="310"/>
+                      <AbsoluteConstraints x="480" y="230" width="460" height="310"/>
                     </Constraint>
                   </Constraints>
 
@@ -855,13 +870,13 @@
                       </AuxValues>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="20" y="80" width="410" height="210"/>
+                          <AbsoluteConstraints x="20" y="80" width="420" height="210"/>
                         </Constraint>
                       </Constraints>
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTable" name="jTable2">
+                        <Component class="javax.swing.JTable" name="jTableExpense">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Verdana" size="11" style="1"/>
@@ -900,44 +915,12 @@
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="10" y="20" width="430" height="280"/>
+                          <AbsoluteConstraints x="10" y="20" width="440" height="280"/>
                         </Constraint>
                       </Constraints>
 
-                      <Layout>
-                        <DimensionLayout dim="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jButton9" min="-2" pref="70" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jButton10" min="-2" pref="80" max="-2" attributes="0"/>
-                                  <EmptySpace pref="74" max="32767" attributes="0"/>
-                                  <Component id="jButton7" min="-2" pref="80" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jButton8" min="-2" pref="90" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                        </DimensionLayout>
-                        <DimensionLayout dim="1">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jButton10" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                          <Component id="jButton9" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jButton8" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                          <Component id="jButton7" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace pref="227" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                        </DimensionLayout>
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+                        <Property name="useNullLayout" type="boolean" value="false"/>
                       </Layout>
                       <SubComponents>
                         <Component class="javax.swing.JButton" name="jButton7">
@@ -952,6 +935,7 @@
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="null"/>
                             </Property>
+                            <Property name="enabled" type="boolean" value="false"/>
                             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                               <Dimension value="[97, 25]"/>
                             </Property>
@@ -962,6 +946,11 @@
                               <Dimension value="[97, 25]"/>
                             </Property>
                           </Properties>
+                          <Constraints>
+                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                              <AbsoluteConstraints x="290" y="20" width="60" height="30"/>
+                            </Constraint>
+                          </Constraints>
                         </Component>
                         <Component class="javax.swing.JButton" name="jButton8">
                           <Properties>
@@ -972,13 +961,20 @@
                               <Font name="Verdana" size="12" style="0"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Delete All"/>
+                            <Property name="toolTipText" type="java.lang.String" value="Select more than one value from reciept table to delete"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="null"/>
                             </Property>
+                            <Property name="enabled" type="boolean" value="false"/>
                           </Properties>
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton8ActionPerformed"/>
                           </Events>
+                          <Constraints>
+                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                              <AbsoluteConstraints x="360" y="20" width="70" height="30"/>
+                            </Constraint>
+                          </Constraints>
                         </Component>
                         <Component class="javax.swing.JButton" name="jButton10">
                           <Properties>
@@ -989,10 +985,19 @@
                               <Font name="Verdana" size="12" style="0"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Add All"/>
+                            <Property name="toolTipText" type="java.lang.String" value="Select more than one value in receipt table to add"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="null"/>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton10ActionPerformed"/>
+                          </Events>
+                          <Constraints>
+                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                              <AbsoluteConstraints x="220" y="20" width="60" height="30"/>
+                            </Constraint>
+                          </Constraints>
                         </Component>
                         <Component class="javax.swing.JButton" name="jButton9">
                           <Properties>
@@ -1010,6 +1015,34 @@
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton9ActionPerformed"/>
                           </Events>
+                          <Constraints>
+                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                              <AbsoluteConstraints x="150" y="20" width="60" height="30"/>
+                            </Constraint>
+                          </Constraints>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel4">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Verdana" size="11" style="0"/>
+                            </Property>
+                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Receipt No:"/>
+                          </Properties>
+                          <Constraints>
+                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                              <AbsoluteConstraints x="10" y="30" width="70" height="-1"/>
+                            </Constraint>
+                          </Constraints>
+                        </Component>
+                        <Component class="javax.swing.JTextField" name="RepsNo1">
+                          <Constraints>
+                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                              <AbsoluteConstraints x="80" y="20" width="60" height="30"/>
+                            </Constraint>
+                          </Constraints>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -1034,7 +1067,7 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="10" y="230" width="480" height="310"/>
+                      <AbsoluteConstraints x="10" y="230" width="470" height="310"/>
                     </Constraint>
                   </Constraints>
 
@@ -1048,13 +1081,13 @@
                       </AuxValues>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="20" y="80" width="440" height="210"/>
+                          <AbsoluteConstraints x="20" y="80" width="430" height="210"/>
                         </Constraint>
                       </Constraints>
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTable" name="jTable3">
+                        <Component class="javax.swing.JTable" name="jTableIncome">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Verdana" size="11" style="1"/>
@@ -1093,42 +1126,12 @@
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="10" y="20" width="460" height="280"/>
+                          <AbsoluteConstraints x="10" y="20" width="450" height="280"/>
                         </Constraint>
                       </Constraints>
 
-                      <Layout>
-                        <DimensionLayout dim="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jButton11" min="-2" pref="73" max="-2" attributes="0"/>
-                                  <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
-                                  <Component id="jButton4" min="-2" pref="70" max="-2" attributes="0"/>
-                                  <EmptySpace pref="124" max="32767" attributes="0"/>
-                                  <Component id="jButton5" min="-2" pref="76" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jButton6" min="-2" pref="80" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                        </DimensionLayout>
-                        <DimensionLayout dim="1">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jButton6" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                                          <Component id="jButton5" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="jButton11" pref="33" max="32767" attributes="0"/>
-                                      <Component id="jButton4" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace pref="223" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                        </DimensionLayout>
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+                        <Property name="useNullLayout" type="boolean" value="false"/>
                       </Layout>
                       <SubComponents>
                         <Component class="javax.swing.JButton" name="jButton11">
@@ -1147,6 +1150,11 @@
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton11ActionPerformed"/>
                           </Events>
+                          <Constraints>
+                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                              <AbsoluteConstraints x="160" y="20" width="60" height="30"/>
+                            </Constraint>
+                          </Constraints>
                         </Component>
                         <Component class="javax.swing.JButton" name="jButton4">
                           <Properties>
@@ -1157,10 +1165,19 @@
                               <Font name="Verdana" size="12" style="0"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Add All"/>
+                            <Property name="toolTipText" type="java.lang.String" value="Select more than one value in receipt table to add"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="null"/>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
+                          </Events>
+                          <Constraints>
+                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                              <AbsoluteConstraints x="230" y="20" width="60" height="30"/>
+                            </Constraint>
+                          </Constraints>
                         </Component>
                         <Component class="javax.swing.JButton" name="jButton5">
                           <Properties>
@@ -1174,6 +1191,7 @@
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="null"/>
                             </Property>
+                            <Property name="enabled" type="boolean" value="false"/>
                             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                               <Dimension value="[97, 25]"/>
                             </Property>
@@ -1184,6 +1202,14 @@
                               <Dimension value="[97, 25]"/>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
+                          </Events>
+                          <Constraints>
+                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                              <AbsoluteConstraints x="300" y="20" width="60" height="31"/>
+                            </Constraint>
+                          </Constraints>
                         </Component>
                         <Component class="javax.swing.JButton" name="jButton6">
                           <Properties>
@@ -1194,10 +1220,43 @@
                               <Font name="Verdana" size="12" style="0"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Delete All"/>
+                            <Property name="toolTipText" type="java.lang.String" value="Select more than one value from reciept table to delete"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="null"/>
                             </Property>
+                            <Property name="enabled" type="boolean" value="false"/>
                           </Properties>
+                          <Constraints>
+                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                              <AbsoluteConstraints x="370" y="20" width="70" height="31"/>
+                            </Constraint>
+                          </Constraints>
+                        </Component>
+                        <Component class="javax.swing.JTextField" name="RepsNo">
+                          <Properties>
+                            <Property name="toolTipText" type="java.lang.String" value="Enter receipt no you need to add"/>
+                          </Properties>
+                          <Constraints>
+                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                              <AbsoluteConstraints x="80" y="20" width="60" height="30"/>
+                            </Constraint>
+                          </Constraints>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel2">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Verdana" size="11" style="0"/>
+                            </Property>
+                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Receipt No:"/>
+                          </Properties>
+                          <Constraints>
+                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                              <AbsoluteConstraints x="10" y="30" width="70" height="-1"/>
+                            </Constraint>
+                          </Constraints>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -1326,14 +1385,13 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JComboBox" name="jComboBox2">
+                    <Component class="javax.swing.JComboBox" name="cmbCFSperiod">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="4">
-                            <StringItem index="0" value="Item 1"/>
-                            <StringItem index="1" value="Item 2"/>
-                            <StringItem index="2" value="Item 3"/>
-                            <StringItem index="3" value="Item 4"/>
+                          <StringArray count="3">
+                            <StringItem index="0" value="Day"/>
+                            <StringItem index="1" value="Week"/>
+                            <StringItem index="2" value="Year"/>
                           </StringArray>
                         </Property>
                       </Properties>
@@ -1362,7 +1420,10 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser6">
+                    <Component class="com.toedter.calendar.JDateChooser" name="DatePickCFS">
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="DatePickCFSMouseClicked"/>
+                      </Events>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="167" y="77" width="186" height="-1"/>
@@ -1445,7 +1506,7 @@
                     <Property name="useNullLayout" type="boolean" value="false"/>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JTextField" name="jTextField29">
+                    <Component class="javax.swing.JTextField" name="txtCFSRecord">
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="99" y="29" width="181" height="25"/>
@@ -1468,7 +1529,7 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField30">
+                    <Component class="javax.swing.JTextField" name="txtCFSValue">
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="352" y="29" width="181" height="25"/>
@@ -1507,7 +1568,7 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JComboBox" name="jComboBox5">
+                    <Component class="javax.swing.JComboBox" name="cmbCFSAddTo">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="3">
@@ -1654,12 +1715,10 @@
                                       <Group type="102" attributes="0">
                                           <EmptySpace max="32767" attributes="0"/>
                                           <Component id="jScrollPane19" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="jScrollPane21" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -1713,11 +1772,11 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JTable" name="jTable19">
+                            <Component class="javax.swing.JTable" name="jTableCFSOperating">
                               <Properties>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                   <Table columnCount="3" rowCount="0">
-                                    <Column editable="true" title="Cash Flows form Investingting Activities" type="java.lang.Object"/>
+                                    <Column editable="true" title="Cash Flows form Operating Activities" type="java.lang.Object"/>
                                     <Column editable="true" title="Value" type="java.lang.Object"/>
                                     <Column editable="true" title="Total" type="java.lang.Object"/>
                                   </Table>
@@ -1745,6 +1804,9 @@
                                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                                 </Property>
                               </Properties>
+                              <Events>
+                                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTableCFSOperatingMouseClicked"/>
+                              </Events>
                             </Component>
                           </SubComponents>
                         </Container>
@@ -1755,7 +1817,7 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JTable" name="jTable20">
+                            <Component class="javax.swing.JTable" name="jTableCFSFinancing">
                               <Properties>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                   <Table columnCount="3" rowCount="0">
@@ -1787,6 +1849,9 @@
                                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                                 </Property>
                               </Properties>
+                              <Events>
+                                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTableCFSFinancingMouseClicked"/>
+                              </Events>
                             </Component>
                           </SubComponents>
                         </Container>
@@ -1802,7 +1867,11 @@
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="null"/>
                             </Property>
+                            <Property name="enabled" type="boolean" value="false"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton48ActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="jButton47">
                           <Properties>
@@ -1816,6 +1885,7 @@
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="null"/>
                             </Property>
+                            <Property name="enabled" type="boolean" value="false"/>
                             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                               <Dimension value="[97, 25]"/>
                             </Property>
@@ -1826,6 +1896,9 @@
                               <Dimension value="[97, 25]"/>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton47ActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="jButton46">
                           <Properties>
@@ -1840,6 +1913,10 @@
                               <Border info="null"/>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton46MouseClicked"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton46ActionPerformed"/>
+                          </Events>
                         </Component>
                         <Container class="javax.swing.JScrollPane" name="jScrollPane21">
                           <AuxValues>
@@ -1848,7 +1925,7 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JTable" name="jTable21">
+                            <Component class="javax.swing.JTable" name="jTableCFSInvesting">
                               <Properties>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                   <Table columnCount="3" rowCount="0">
@@ -1880,6 +1957,10 @@
                                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                                 </Property>
                               </Properties>
+                              <Events>
+                                <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="jTableCFSInvestingMouseDragged"/>
+                                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTableCFSInvestingMouseClicked"/>
+                              </Events>
                             </Component>
                           </SubComponents>
                         </Container>
@@ -2018,7 +2099,7 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JTable" name="jTable13">
+                            <Component class="javax.swing.JTable" name="jTableProfIncomes">
                               <Properties>
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                   <Font name="Verdana" size="11" style="1"/>
@@ -2085,7 +2166,7 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JTable" name="jTable14">
+                            <Component class="javax.swing.JTable" name="jTableProfExpenses">
                               <Properties>
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                   <Font name="Verdana" size="11" style="1"/>
@@ -2137,35 +2218,47 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel41" min="-2" pref="90" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jTextField23" min="-2" pref="181" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="jcmbProfitPeriod" min="-2" pref="86" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
                                   <Component id="jLabel40" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jDateChooser7" min="-2" pref="185" max="-2" attributes="0"/>
-                                  <EmptySpace pref="343" max="32767" attributes="0"/>
+                                  <Component id="DatePickProfitFrom" min="-2" pref="185" max="-2" attributes="0"/>
+                                  <EmptySpace pref="387" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <Component id="cmbCFSperiod1" min="-2" pref="186" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="jDateChooser7" min="-2" pref="26" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="DatePickProfitFrom" min="-2" pref="26" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jTextField23" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                                           <Component id="jLabel41" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                                           <Component id="jLabel40" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                          <Component id="jcmbProfitPeriod" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace pref="349" max="32767" attributes="0"/>
+                                  <EmptySpace pref="348" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <Component id="cmbCFSperiod1" min="-2" pref="23" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                         </DimensionLayout>
                       </Layout>
                       <SubComponents>
-                        <Component class="javax.swing.JTextField" name="jTextField23">
-                        </Component>
                         <Component class="javax.swing.JLabel" name="jLabel41">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -2188,7 +2281,45 @@
                             <Property name="text" type="java.lang.String" value="End Date  :"/>
                           </Properties>
                         </Component>
-                        <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser7">
+                        <Component class="com.toedter.calendar.JDateChooser" name="DatePickProfitFrom">
+                          <Properties>
+                            <Property name="toolTipText" type="java.lang.String" value="Select the end date for the duration"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="DatePickProfitFromMouseClicked"/>
+                          </Events>
+                        </Component>
+                        <Component class="javax.swing.JComboBox" name="cmbCFSperiod1">
+                          <Properties>
+                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                              <StringArray count="4">
+                                <StringItem index="0" value="Item 1"/>
+                                <StringItem index="1" value="Item 2"/>
+                                <StringItem index="2" value="Item 3"/>
+                                <StringItem index="3" value="Item 4"/>
+                              </StringArray>
+                            </Property>
+                          </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                          </AuxValues>
+                        </Component>
+                        <Component class="javax.swing.JComboBox" name="jcmbProfitPeriod">
+                          <Properties>
+                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                              <StringArray count="3">
+                                <StringItem index="0" value="Day"/>
+                                <StringItem index="1" value="Week"/>
+                                <StringItem index="2" value="Year"/>
+                              </StringArray>
+                            </Property>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jcmbProfitPeriodActionPerformed"/>
+                          </Events>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                          </AuxValues>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -2255,7 +2386,7 @@
                             </Constraint>
                           </Constraints>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField24">
+                        <Component class="javax.swing.JTextField" name="txtProfTotExpense">
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                               <AbsoluteConstraints x="120" y="10" width="152" height="26"/>
@@ -2294,9 +2425,9 @@
                             </Constraint>
                           </Constraints>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField25">
+                        <Component class="javax.swing.JTextField" name="txtProfTotIncome">
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField25ActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtProfTotIncomeActionPerformed"/>
                           </Events>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -2336,9 +2467,9 @@
                             </Constraint>
                           </Constraints>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField26">
+                        <Component class="javax.swing.JTextField" name="txtProfTotProfit">
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField26ActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtProfTotProfitActionPerformed"/>
                           </Events>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -2426,7 +2557,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="810" y="10" width="50" height="40"/>
+              <AbsoluteConstraints x="830" y="10" width="50" height="40"/>
             </Constraint>
           </Constraints>
         </Component>

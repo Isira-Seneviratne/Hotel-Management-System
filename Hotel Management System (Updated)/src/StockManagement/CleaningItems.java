@@ -122,7 +122,7 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(28, 48, 90));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cleaning Items", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(238, 238, 238))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cleaning Items", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(238, 238, 238))); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
@@ -164,6 +164,11 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
                 btnAddMouseClicked(evt);
             }
         });
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, -1, -1));
 
         btnDelete.setBackground(new java.awt.Color(204, 0, 0));
@@ -174,6 +179,11 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
         btnDelete.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnDeleteMouseClicked(evt);
+            }
+        });
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
             }
         });
         jPanel1.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, -1, -1));
@@ -280,6 +290,14 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
     private void btnGenReportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenReportMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGenReportMouseClicked
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -30,8 +30,8 @@ public class DatabaseConnectionFunctions {
     public static void createConnection() throws SQLException {
         if(con == null && stmt == null) {
             Properties connProps = new Properties();
-            connProps.put("user", "user");
-            connProps.put("password", "abcd1234");
+            connProps.put("user", "root");
+            connProps.put("password", "");
             connProps.put("useSSL", "false");
             connProps.put("allowPublicKeyRetrieval", "true");
 
