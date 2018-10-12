@@ -257,6 +257,7 @@ public class PaymentAddRoom extends javax.swing.JFrame {
         BtnSave.setBackground(new java.awt.Color(0, 51, 204));
         BtnSave.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         BtnSave.setText("Save");
+        BtnSave.setToolTipText("Click to save details");
         BtnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnSaveActionPerformed(evt);
@@ -265,6 +266,7 @@ public class PaymentAddRoom extends javax.swing.JFrame {
 
         BtnCancle.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         BtnCancle.setText("Clear");
+        BtnCancle.setToolTipText("Click to clear fields");
         BtnCancle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnCancleActionPerformed(evt);

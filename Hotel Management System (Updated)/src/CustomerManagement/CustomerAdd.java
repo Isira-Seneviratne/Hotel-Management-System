@@ -27,7 +27,7 @@ public class CustomerAdd extends javax.swing.JFrame {
     java.util.Date date;
 
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost:3306/hotel_management_system";
+    static final String DB_URL = "jdbc:mysql://localhost:3306/hotel_db";
 
     static final String USERNAME = "root";
     static final String PASSWORD = "";
@@ -47,6 +47,7 @@ public class CustomerAdd extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup3 = new javax.swing.ButtonGroup();
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -62,23 +63,25 @@ public class CustomerAdd extends javax.swing.JFrame {
         Txtphone = new javax.swing.JTextField();
         TxtEmail = new javax.swing.JTextField();
         TxtNIC = new javax.swing.JTextField();
-        TxtGender = new javax.swing.JTextField();
         CmbNationality = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         TxtaComments = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         TxtaAddress = new javax.swing.JTextArea();
         jLabel10 = new javax.swing.JLabel();
-        CheckRegular = new javax.swing.JCheckBox();
-        CheckBacklisted = new javax.swing.JCheckBox();
         jPanel2 = new javax.swing.JPanel();
         BtnSave = new javax.swing.JButton();
-        BtnCancle1 = new javax.swing.JButton();
+        BtnClear = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
+        RbnRegular = new javax.swing.JRadioButton();
+        RbnBlacklist = new javax.swing.JRadioButton();
+        RbnMale = new javax.swing.JRadioButton();
+        RbnFemale = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(28, 48, 90));
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -131,40 +134,25 @@ public class CustomerAdd extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Remark          :");
 
-        CheckRegular.setBackground(new java.awt.Color(28, 48, 90));
-        buttonGroup1.add(CheckRegular);
-        CheckRegular.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        CheckRegular.setForeground(new java.awt.Color(255, 255, 255));
-        CheckRegular.setText("Regular");
-
-        CheckBacklisted.setBackground(new java.awt.Color(28, 48, 90));
-        buttonGroup1.add(CheckBacklisted);
-        CheckBacklisted.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        CheckBacklisted.setForeground(new java.awt.Color(255, 255, 255));
-        CheckBacklisted.setText("Backlisted");
-        CheckBacklisted.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CheckBacklistedActionPerformed(evt);
-            }
-        });
-
         jPanel2.setBackground(new java.awt.Color(28, 48, 90));
 
         BtnSave.setBackground(new java.awt.Color(0, 51, 204));
         BtnSave.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         BtnSave.setText("Save");
+        BtnSave.setToolTipText("Click to save details");
         BtnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnSaveActionPerformed(evt);
             }
         });
 
-        BtnCancle1.setBackground(new java.awt.Color(204, 204, 204));
-        BtnCancle1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        BtnCancle1.setText("Clear");
-        BtnCancle1.addActionListener(new java.awt.event.ActionListener() {
+        BtnClear.setBackground(new java.awt.Color(204, 204, 204));
+        BtnClear.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        BtnClear.setText("Clear");
+        BtnClear.setToolTipText("Click to clear fields");
+        BtnClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCancle1ActionPerformed(evt);
+                BtnClearActionPerformed(evt);
             }
         });
 
@@ -176,7 +164,7 @@ public class CustomerAdd extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BtnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(BtnCancle1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BtnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -185,7 +173,7 @@ public class CustomerAdd extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(BtnSave, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-                    .addComponent(BtnCancle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(BtnClear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -193,10 +181,39 @@ public class CustomerAdd extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Customer Information");
 
+        RbnRegular.setBackground(new java.awt.Color(28, 48, 90));
+        buttonGroup3.add(RbnRegular);
+        RbnRegular.setForeground(new java.awt.Color(255, 255, 255));
+        RbnRegular.setText("Regular");
+
+        RbnBlacklist.setBackground(new java.awt.Color(28, 48, 90));
+        buttonGroup3.add(RbnBlacklist);
+        RbnBlacklist.setForeground(new java.awt.Color(255, 255, 255));
+        RbnBlacklist.setText("Backlisted");
+
+        RbnMale.setBackground(new java.awt.Color(28, 48, 90));
+        buttonGroup1.add(RbnMale);
+        RbnMale.setForeground(new java.awt.Color(255, 255, 255));
+        RbnMale.setText("Male");
+        RbnMale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RbnMaleActionPerformed(evt);
+            }
+        });
+
+        RbnFemale.setBackground(new java.awt.Color(28, 48, 90));
+        buttonGroup1.add(RbnFemale);
+        RbnFemale.setForeground(new java.awt.Color(255, 255, 255));
+        RbnFemale.setText("Female");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -210,44 +227,45 @@ public class CustomerAdd extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel7)
-                        .addGap(46, 46, 46))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGap(87, 87, 87)
-                                .addComponent(CheckRegular)
-                                .addGap(40, 40, 40)
-                                .addComponent(CheckBacklisted))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(RbnRegular)
+                                .addGap(28, 28, 28)
+                                .addComponent(RbnBlacklist)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(TxtGender, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(Txtphone, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(TxtNIC, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(30, 30, 30)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(TxtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(CmbNationality, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(TxtName, javax.swing.GroupLayout.Alignment.LEADING))))
-                        .addContainerGap())))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(RbnMale)
+                                        .addGap(26, 26, 26)
+                                        .addComponent(RbnFemale))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(Txtphone, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(TxtNIC, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGap(30, 30, 30)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(TxtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(CmbNationality, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(TxtName, javax.swing.GroupLayout.Alignment.LEADING)))))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(57, 57, 57))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(46, 46, 46))))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,7 +282,7 @@ public class CustomerAdd extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -283,19 +301,20 @@ public class CustomerAdd extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TxtGender, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(RbnMale)
+                            .addComponent(RbnFemale)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(70, 70, 70)))
-                .addGap(17, 17, 17)
+                .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CheckRegular)
-                    .addComponent(CheckBacklisted))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(RbnRegular)
+                    .addComponent(RbnBlacklist))
+                .addGap(9, 9, 9)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(58, 58, 58))
         );
@@ -320,8 +339,9 @@ void clearFields() {
         TxtEmail.setText(null);
         TxtNIC.setText(null);
         CmbNationality.setAction(null);
-        TxtGender.setText(null);
+        //TxtGender.setText(null);
        TxtaComments.setText(null);
+       RbnMale.setText(null);
  
 
     }
@@ -332,38 +352,38 @@ void clearFields() {
 
     private void BtnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSaveActionPerformed
         // TODO add your handling code here:
-       /*  Customer cus = new Customer();
+         Customer cus = new Customer();
 
         if (TxtName.getText().isEmpty() || TxtaAddress.getText().isEmpty() || Txtphone.getText().isEmpty() || TxtEmail.getText().isEmpty()|| TxtNIC.getText().isEmpty()|| 
-                TxtGender.getText().isEmpty() || TxtaComments.getText().isEmpty()) {
+                RbnMale.getText().isEmpty() || TxtaComments.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please Enter Valid Inputs.");
         } else {
             //cus.setCustomerId(Integer.parseInt(txt_CustomerID.getText()));
             if(CustomerValidation.isLetter(TxtName.getText())){
             cus.setcustomerName(TxtName.getText().toString());}
-            else{JOptionPane.showMessageDialog(null, "Errooor");}
+            else{JOptionPane.showMessageDialog(null, "Invalid Inputs");}
             
             cus.setaddress(TxtaAddress.getText().toString());
-            cus.setCustomerType(buttonGroup1.getSelection().toString());
+            cus.setCustomerType(buttonGroup3.getSelection().toString());
                     
             if(CustomerValidation.isNumeric(Txtphone.getText())){
             cus.setphone(Txtphone.getText().toString());
             }else{
-                JOptionPane.showMessageDialog(null, "Errooor");
+                JOptionPane.showMessageDialog(null, "Invalid Inputs");
             }
             if(CustomerValidation.emailValidate(TxtEmail.getText())){
             cus.setemail(TxtEmail.getText().toString());}
-            else{JOptionPane.showMessageDialog(null, "Errooor");}
+            else{JOptionPane.showMessageDialog(null, "Invalid Inputs");}
             
             if(CustomerValidation.nicValidation(TxtNIC.getText())){
             cus.setnic(TxtNIC.getText().toString());}
-            else{JOptionPane.showMessageDialog(null, "Errooor");}
+            else{JOptionPane.showMessageDialog(null, "Invalid Inputs");}
             
             cus.setnationality(CmbNationality.getSelectedItem().toString());
             
-            if(CustomerValidation.isLetter(TxtGender.getText())){
-            cus.setgender(TxtGender.getText().toString());}
-            else{JOptionPane.showMessageDialog(null, "Errooor");}
+            if(CustomerValidation.isLetter(RbnMale.getText())){
+            cus.setgender(RbnMale.getText().toString());}
+            else{JOptionPane.showMessageDialog(null,"Invalid Inputs");}
             
             cus.setcomment(TxtaComments.getText().toString());
             
@@ -375,17 +395,17 @@ void clearFields() {
             
 
         }
-        */
+       
     }//GEN-LAST:event_BtnSaveActionPerformed
 
-    private void CheckBacklistedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBacklistedActionPerformed
+    private void BtnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnClearActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_CheckBacklistedActionPerformed
+        clearFields();
+    }//GEN-LAST:event_BtnClearActionPerformed
 
-    private void BtnCancle1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancle1ActionPerformed
+    private void RbnMaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RbnMaleActionPerformed
         // TODO add your handling code here:
-        this.dispose();
-    }//GEN-LAST:event_BtnCancle1ActionPerformed
+    }//GEN-LAST:event_RbnMaleActionPerformed
 
     /**
      * @param args the command line arguments
@@ -430,19 +450,21 @@ void clearFields() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnCancle1;
+    private javax.swing.JButton BtnClear;
     private javax.swing.JButton BtnSave;
-    private javax.swing.JCheckBox CheckBacklisted;
-    private javax.swing.JCheckBox CheckRegular;
     private javax.swing.JComboBox<String> CmbNationality;
+    private javax.swing.JRadioButton RbnBlacklist;
+    private javax.swing.JRadioButton RbnFemale;
+    private javax.swing.JRadioButton RbnMale;
+    private javax.swing.JRadioButton RbnRegular;
     private javax.swing.JTextField TxtEmail;
-    private javax.swing.JTextField TxtGender;
     private javax.swing.JTextField TxtNIC;
     private javax.swing.JTextField TxtName;
     private javax.swing.JTextArea TxtaAddress;
     private javax.swing.JTextArea TxtaComments;
     private javax.swing.JTextField Txtphone;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
