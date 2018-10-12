@@ -5,7 +5,6 @@
  */
 package StockManagement;
 
-import Main.DatabaseConnectionFunctions;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.DefaultComboBoxModel;
@@ -19,7 +18,7 @@ import javax.swing.event.ListSelectionListener;
  */
 public class PendingOrders extends javax.swing.JPanel implements ListSelectionListener {
 
-    private ResultSet itemIDsAndNames;
+    private ResultSet itemIDsAndNames, vendorIDs;
     private DefaultComboBoxModel<String> cmbVendorIDModel = new DefaultComboBoxModel<>();
     private DefaultComboBoxModel<String> cmbItemIDModel = new DefaultComboBoxModel<>();
     /**
@@ -28,6 +27,7 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
     public PendingOrders() {
         initComponents();
         txtItemName.setEditable(false);
+        
         loadTableAndComboBoxes();
     }
 
@@ -59,14 +59,18 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
             btnGenReport.setToolTipText(null);
             
             int curRow = jTable1.getSelectedRow();
-            cmbItemID.setSelectedIndex(cmbItemIDModel.getIndexOf(jTable1.getValueAt(curRow, 1)));
+            //cmbVendorID.
+            cmbItemID.setSelectedIndex(cmbItemIDModel.getIndexOf(jTable1.getValueAt(curRow, 2)));
+            txtItemName.setText(jTable1.getValueAt(curRow, 3).toString());
+            txtQty.setText(jTable1.getValueAt(curRow, 4).toString());
+            
         }
     }
     
     public void loadTableAndComboBoxes() {
         //Loads the up-to-date table corresponding to this particular panel.
         try {
-            jTable1.setModel(DatabaseConnectionFunctions.getTableRecords("Pending_Orders"));
+            jTable1.setModel(StockManagement.DatabaseConnectionFunctions.getTableRecords("Pending_Orders"));
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "An error occurred while loading the table:\n\n"+e.getMessage()
                     , "Error", JOptionPane.ERROR_MESSAGE);
@@ -74,7 +78,7 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
         
         //Loads the stored item IDs and adds them to the Item ID combo box.
         try {
-            itemIDsAndNames = DatabaseConnectionFunctions.getResultsFromUnionQuery("Food_Items", "Cleaning_Items",
+            itemIDsAndNames = StockManagement.DatabaseConnectionFunctions.getResultsFromUnionQuery("Food_Items", "Cleaning_Items",
                     "`Food ID` as `Item ID`, `Food Name` as `Item Name`", "`Item ID`, `Item Name`");
             cmbItemIDModel.removeAllElements();
             while(itemIDsAndNames.next())
@@ -82,6 +86,18 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
             cmbItemID.setModel(cmbItemIDModel);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "An error occurred while retrieving all purchasable items:\n\n"
+                    +e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        //Loads stored vendor IDs.
+        try {
+            vendorIDs = StockManagement.DatabaseConnectionFunctions.getSpecificFieldsFromTable("Vendor_Details", "`Vendor ID`");
+            cmbVendorIDModel.removeAllElements();
+            while(vendorIDs.next())
+                cmbVendorIDModel.addElement(vendorIDs.getString(1));
+            cmbVendorID.setModel(cmbVendorIDModel);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "An error occurred while retrieving the vendor IDs:\n\n"
                     +e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -207,7 +223,7 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
         jLabel5.setText("Unit");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 100, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kilograms (kg)", "Grams (g)" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kilograms (kg)", "Grams (g)", "None" }));
         jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 100, 150, -1));
 
         jLabel6.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
@@ -241,7 +257,7 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
 
             },
             new String [] {
-                "Order ID", "Item ID", "Item name", "Quantity", "Unit", "Company", "Date of Order"
+                "Order ID", "Vendor ID", "Item ID", "Item name", "Quantity", "Unit", "Company", "Date of Order"
             }
         ));
         jScrollPane1.setViewportView(jTable1);

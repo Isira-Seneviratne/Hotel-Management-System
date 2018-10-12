@@ -5,7 +5,6 @@
  */
 package StockManagement;
 
-import Main.DatabaseConnectionFunctions;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.DefaultComboBoxModel;
@@ -70,7 +69,7 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
     public void loadTableAndComboBoxes() {
         //Loads the up-to-date table corresponding to this particular panel.
         try {
-            jTable1.setModel(DatabaseConnectionFunctions.getTableRecords("Payments"));
+            jTable1.setModel(StockManagement.DatabaseConnectionFunctions.getTableRecords("Payments"));
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "An error occurred while loading the table:\n\n"+e.getMessage()
                     , "Error", JOptionPane.ERROR_MESSAGE);
@@ -78,7 +77,7 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
         
         //Loads the vendor IDs from the Vendor_Details table.
         try {
-            ResultSet vendorIDs = DatabaseConnectionFunctions.getSpecificFieldsFromTable("Vendor_Details", "`Vendor ID`");
+            ResultSet vendorIDs = StockManagement.DatabaseConnectionFunctions.getSpecificFieldsFromTable("Vendor_Details", "`Vendor ID`");
             cmbVendorIDModel.removeAllElements();
             while (vendorIDs.next()) {
                 cmbVendorIDModel.addElement(vendorIDs.getString(1));
@@ -91,14 +90,14 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
         
         //Loads the IDs of cleaning and food items from their respective tables.
         try {
-            ResultSet cleaningItemIDs = DatabaseConnectionFunctions.getSpecificFieldsFromTable("Cleaning"
+            ResultSet cleaningItemIDs = StockManagement.DatabaseConnectionFunctions.getSpecificFieldsFromTable("Cleaning"
                     + "_Items", "`Item ID`");
             cmbItemIDModel.removeAllElements();
             while (cleaningItemIDs.next()) {
                 cmbItemIDModel.addElement(cleaningItemIDs.getString(1));
             }
             
-            ResultSet foodItemIDs = DatabaseConnectionFunctions.getSpecificFieldsFromTable("Food_Items",
+            ResultSet foodItemIDs = StockManagement.DatabaseConnectionFunctions.getSpecificFieldsFromTable("Food_Items",
                             "`Food ID`");
             while (foodItemIDs.next()) {
                 cmbItemIDModel.addElement(foodItemIDs.getString(1));

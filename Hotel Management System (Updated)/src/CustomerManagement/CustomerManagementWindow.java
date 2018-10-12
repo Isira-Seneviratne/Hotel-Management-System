@@ -5,6 +5,7 @@
  */
 package CustomerManagement;
 
+import Main.DatabaseBasicOps;
 import Main.Login;
 import Main.MainWindow;
 import java.sql.Connection;
@@ -19,16 +20,6 @@ import javax.swing.event.ListSelectionEvent;
  * @author Upeksha
  */
 public class CustomerManagementWindow extends javax.swing.JFrame {
-    Connection conn = null;
-    PreparedStatement pst = null;
-    ResultSet rs = null;
-    
-     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost:3306/hotel_db";
-
-    static final String USERNAME = "root";
-    static final String PASSWORD = "";
-    private String rbtngenderCAND;
     private String curEID;
     private static CustomerManagementWindow instance;
     
@@ -41,6 +32,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         curEID = eID;
     }
 
+    //This code was added by Isira for the sake of consistency between the main windows.
     public static CustomerManagementWindow getInstance(String eID) {
         if(instance == null) {
             instance = new CustomerManagementWindow(eID);
@@ -672,15 +664,8 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         
     }//GEN-LAST:event_formWindowOpened
 
-      public void LoadCustomerTable() {
-        try {
-            String sql = "Select * from customer";
-            pst = conn.prepareStatement(sql);
-            rs = pst.executeQuery();
-//            jTable_cus.setModel(DbUtils.resultSetToTableModel(rs));
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Cant load Customer Table");
-        }
+    public void LoadCustomerTable() {
+
     }
      /*public void valueChanged(ListSelectionEvent lse) {
         String tooltip = "Select a record from the table to enable the button.";

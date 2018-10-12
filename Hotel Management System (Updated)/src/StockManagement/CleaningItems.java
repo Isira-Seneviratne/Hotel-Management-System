@@ -5,7 +5,6 @@
  */
 package StockManagement;
 
-import Main.DatabaseConnectionFunctions;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.DefaultComboBoxModel;
@@ -73,7 +72,7 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
     public void loadTableAndComboBox() {
         //Loads the up-to-date table corresponding to this particular panel.
         try {
-            jTable1.setModel(DatabaseConnectionFunctions.getTableRecords("Cleaning_Items"));
+            jTable1.setModel(StockManagement.DatabaseConnectionFunctions.getTableRecords("Cleaning_Items"));
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "An error occurred while loading the table:\n\n"+e.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
@@ -81,7 +80,7 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
         
         //Retrieves all stored vendor IDs and loads them in the vendor ID control.
         try {
-            ResultSet vendorIDs = DatabaseConnectionFunctions.getSpecificFieldsFromTable("Vendor_Details", "`Vendor ID`");
+            ResultSet vendorIDs = StockManagement.DatabaseConnectionFunctions.getSpecificFieldsFromTable("Vendor_Details", "`Vendor ID`");
             
             //Needed to prevent duplicate elements being inserted, as the CleaningItems object is not destroyed when
             //switching between tabs in the JTabbedPane.
@@ -132,7 +131,7 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(28, 48, 90));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cleaning Items", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(238, 238, 238))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cleaning Items", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(238, 238, 238))); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
@@ -185,11 +184,6 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
         btnDelete.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnDeleteMouseClicked(evt);
-            }
-        });
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
             }
         });
         jPanel1.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, -1, -1));
@@ -300,8 +294,8 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
         }
         
         try {
-            String itemID = DatabaseConnectionFunctions.generateIDForRecord("C", "Cleaning_Items");
-            DatabaseConnectionFunctions.insertRecord("Cleaning_Items", "'"+itemID+"','"+itemName+"',"
+            String itemID = StockManagement.DatabaseConnectionFunctions.generateIDForRecord("C", "Cleaning_Items");
+            StockManagement.DatabaseConnectionFunctions.insertRecord("Cleaning_Items", "'"+itemID+"','"+itemName+"',"
                     +qty+","+price+",'"+vendorID+"','"+new java.sql.Date(purDate.getTime())+"'");
             loadTableAndComboBox();
         } catch (SQLException e) {
@@ -312,7 +306,7 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
 
     private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
         try {
-            DatabaseConnectionFunctions.deleteRecord("Cleaning_Items",
+            StockManagement.DatabaseConnectionFunctions.deleteRecord("Cleaning_Items",
                     "`Item ID`='"+jTable1.getValueAt(jTable1.getSelectedRow(), 0)+"'");
             loadTableAndComboBox();
         } catch (SQLException e) {
@@ -364,7 +358,7 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
         }
         
         try {
-            DatabaseConnectionFunctions.updateRecord("Cleaning_Items",
+            StockManagement.DatabaseConnectionFunctions.updateRecord("Cleaning_Items",
                     "`Item Name`='"+itemName+"',"+qty+","+price+",'"+vendorID+"','"+new java.sql.Date(purDate.getTime())+"'",
                     "`Item ID`='"+jTable1.getValueAt(jTable1.getSelectedRow(), 0));
             loadTableAndComboBox();
@@ -385,14 +379,6 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
     private void btnGenReportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenReportMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGenReportMouseClicked
-
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAddActionPerformed
-
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDeleteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

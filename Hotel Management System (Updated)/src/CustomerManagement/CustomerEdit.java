@@ -6,7 +6,7 @@
 package CustomerManagement;
 
 //import com.mysql.jdbc.Connection;
-import Main.DatabaseConnectionFunctions;
+import Main.DatabaseBasicOps;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -39,7 +39,7 @@ public class CustomerEdit extends javax.swing.JFrame {
     public CustomerEdit() {
         initComponents();
          try{
-             DatabaseConnectionFunctions.createConnection();
+             DatabaseBasicOps.createConnection();
          }
          catch(SQLException e){
              

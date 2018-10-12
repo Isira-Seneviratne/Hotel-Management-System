@@ -5,7 +5,6 @@
  */
 package StockManagement;
 
-import Main.DatabaseConnectionFunctions;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
@@ -63,7 +62,7 @@ public class RoomItems extends javax.swing.JPanel implements ListSelectionListen
     public void loadTable() {
         //Loads the up-to-date table corresponding to this particular panel.
         try {
-            jTable1.setModel(DatabaseConnectionFunctions.getTableRecords("Room_Items"));
+            jTable1.setModel(StockManagement.DatabaseConnectionFunctions.getTableRecords("Room_Items"));
         } catch(SQLException e) {
             JOptionPane.showMessageDialog(null, "An error occurred while loading the table:\n"+e.getMessage()
                     , "Error", JOptionPane.ERROR_MESSAGE);
@@ -227,8 +226,8 @@ public class RoomItems extends javax.swing.JPanel implements ListSelectionListen
         }
         
         try {
-            String itemID = DatabaseConnectionFunctions.generateIDForRecord("R", "Room_Items");
-            DatabaseConnectionFunctions.insertRecord("Room_Items", "'"+itemID+"','"+itemName+"',"+roomNum+","+qty);
+            String itemID = StockManagement.DatabaseConnectionFunctions.generateIDForRecord("R", "Room_Items");
+            StockManagement.DatabaseConnectionFunctions.insertRecord("Room_Items", "'"+itemID+"','"+itemName+"',"+roomNum+","+qty);
         } catch(SQLException e) {
             JOptionPane.showMessageDialog(this, "An error occurred while inserting the record:\n"+e.getMessage(), "Error",
                     JOptionPane.ERROR_MESSAGE);
@@ -237,7 +236,7 @@ public class RoomItems extends javax.swing.JPanel implements ListSelectionListen
 
     private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
         try {
-            DatabaseConnectionFunctions.deleteRecord("`Room Items`", "");
+            StockManagement.DatabaseConnectionFunctions.deleteRecord("`Room Items`", "");
         } catch(SQLException e) {
             JOptionPane.showMessageDialog(this, "An error occurred while deleting the selected record:\n\n"+e.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
@@ -273,7 +272,7 @@ public class RoomItems extends javax.swing.JPanel implements ListSelectionListen
         }
         
         try {
-            DatabaseConnectionFunctions.updateRecord("", "",
+            StockManagement.DatabaseConnectionFunctions.updateRecord("", "",
                     "`Room ID`='"+jTable1.getValueAt(jTable1.getSelectedRow(), 0));
         } catch(SQLException e) {
             JOptionPane.showMessageDialog(this, "An error occurred while updating the selected record:\n"+e.getMessage(),

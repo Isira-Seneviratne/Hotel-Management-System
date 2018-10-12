@@ -5,7 +5,6 @@
  */
 package StockManagement;
 
-import Main.DatabaseConnectionFunctions;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
@@ -64,7 +63,7 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
     public void loadTable() {
         //Loads the up-to-date table corresponding to this particular panel.
         try {
-            jTable2.setModel(DatabaseConnectionFunctions.getTableRecords("`Vendor_Details`"));
+            jTable2.setModel(StockManagement.DatabaseConnectionFunctions.getTableRecords("`Vendor_Details`"));
         } catch(SQLException e) {
             JOptionPane.showMessageDialog(null, "An error occurred while loading the table:\n"+e.getMessage()
                     , "Error", JOptionPane.ERROR_MESSAGE);
@@ -215,9 +214,33 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
         String address, vendorName, phoneNo, email;
         
         address = txtAddress.getText();
-        if (address.trim().equals(""))
+        if (address.trim().equals("")) {
             JOptionPane.showMessageDialog(this, "An address cannot be blank or have only whitespace characters.",
                     "Invalid address", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        vendorName = txtVendorName.getText();
+        if (vendorName.trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "A vendor name cannot be blank or have only whitespace characters.",
+                    "Invalid vendor name", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        phoneNo = txtTelNumber.getText();
+        if (!phoneNo.matches("0[0-9]{9}")) {
+            JOptionPane.showMessageDialog(this, "You have entered an invalid phone number.\n\nA phone number starts with 0"
+                    + " and has 9 other numeric characters.",
+                    "Invalid phone number", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        email = txtEmail.getText();
+        if (!email.matches("[A-Za-z]([A-Za-z0-9]*)@([a-z]*)\\.[a-z]{2,3}")) {
+            JOptionPane.showMessageDialog(this, "You have entered an invalid email.",
+                    "Invalid email", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
     }//GEN-LAST:event_btnAddMouseClicked
 
     private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked

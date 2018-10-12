@@ -6,6 +6,7 @@
 package CustomerManagement;
 
 //import com.mysql.jdbc.Connection;
+import Main.DatabaseBasicOps;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;

@@ -27,6 +27,7 @@ public class HRManagementWindow extends javax.swing.JFrame {
         //jTabbedPane1.addTab("User", new User());
     }
 
+    //This code was added by Isira.
     public static HRManagementWindow getInstance(String eID) {
         if(instance == null) {
             instance = new HRManagementWindow(eID);

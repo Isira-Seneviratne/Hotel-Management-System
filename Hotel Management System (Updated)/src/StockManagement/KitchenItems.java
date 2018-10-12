@@ -5,7 +5,6 @@
  */
 package StockManagement;
 
-import Main.DatabaseConnectionFunctions;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
@@ -60,7 +59,7 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
     public void loadTable() {
         //Loads the up-to-date table corresponding to this particular panel.
         try {
-            jTable1.setModel(DatabaseConnectionFunctions.getTableRecords("Kitchen_Items"));
+            jTable1.setModel(StockManagement.DatabaseConnectionFunctions.getTableRecords("Kitchen_Items"));
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "An error occurred while loading the table:\n\n"+e.getMessage()
                     , "Error", JOptionPane.ERROR_MESSAGE);
@@ -231,8 +230,8 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
         }
         
         try {
-            String itemID = DatabaseConnectionFunctions.generateIDForRecord("K", "Kitchen_Items");
-            DatabaseConnectionFunctions.insertRecord("Kitchen_Items", "");
+            String itemID = StockManagement.DatabaseConnectionFunctions.generateIDForRecord("K", "Kitchen_Items");
+            StockManagement.DatabaseConnectionFunctions.insertRecord("Kitchen_Items", "");
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "An error occurred while inserting the record:\n\n"+e.getMessage(), "Error",
                     JOptionPane.ERROR_MESSAGE);
@@ -265,7 +264,7 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
         }
         
         try {
-            DatabaseConnectionFunctions.updateRecord("Kitchen_Items", "",
+            StockManagement.DatabaseConnectionFunctions.updateRecord("Kitchen_Items", "",
                     "`Kitchen ID`='"+jTable1.getValueAt(jTable1.getSelectedRow(), 0)+"'");
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "An error occurred while updating the selected record:\n\n"+e.getMessage(),

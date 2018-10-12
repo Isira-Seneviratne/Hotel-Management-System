@@ -5,7 +5,6 @@
  */
 package StockManagement;
 
-import Main.DatabaseConnectionFunctions;
 import Main.Login;
 import Main.MainWindow;
 import java.awt.event.WindowAdapter;
@@ -178,7 +177,7 @@ public class StockManagementWindow extends javax.swing.JFrame {
         if (JOptionPane.showConfirmDialog(this, "You will be logged out of the system.\n\nDo you wish to continue?",
                 "Exit", JOptionPane.YES_NO_CANCEL_OPTION) == JOptionPane.YES_OPTION) {
             try {
-                DatabaseConnectionFunctions.logout(curEID);
+                StockManagement.DatabaseConnectionFunctions.logout(curEID);
                 JOptionPane.showMessageDialog(this, "Successfully logged out of the system.", "Success",
                         JOptionPane.INFORMATION_MESSAGE);
                 new Login().setVisible(true);

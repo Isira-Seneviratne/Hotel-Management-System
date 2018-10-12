@@ -46,6 +46,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         curEID = eID;
     }
     
+    //This code was added by Isira for the sake of consistency between the main windows.
     public static FinanceManagementWindow getInstance(String eID) {
         if(instance == null) {
             instance = new FinanceManagementWindow(eID);
