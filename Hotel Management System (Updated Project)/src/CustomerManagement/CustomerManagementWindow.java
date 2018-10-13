@@ -22,7 +22,14 @@ import javax.swing.event.ListSelectionEvent;
 public class CustomerManagementWindow extends javax.swing.JFrame {
     private String curEID;
     private static CustomerManagementWindow instance;
+    private static Connection con;
+     PreparedStatement pst = null;
+    ResultSet rs = null;
     
+    public static void createConnection() throws SQLException {
+        con = DatabaseBasicOps.createConnection();
+    }
+
     /**
      * Creates new form CustomerManagementWindow
      * @param eID
@@ -30,6 +37,51 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
     public CustomerManagementWindow(String eID) {
         initComponents();
         curEID = eID;
+    }
+    
+    public void LoadCustomerTable() {
+        try {
+            String sql = "Select * from customer";
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+            
+//            jTable_cus.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Cant load Customer Table");
+        }
+    }
+    
+    public void LoadbookingTablepearl() {
+        try {
+            String sql = "SELECT * FROM `hall` WHERE Hall_name= \"pearl\"";
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+            //jTableHall.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Cant load Booking Table");
+        }
+    }
+    
+     public void LoadbookingTableRuby() {
+        try {
+            String sql = "SELECT * FROM `hall` WHERE Hall_name= \"Ruby\"";
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+//            jTableHall.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Cant load Booking Table");
+        }
+    }
+
+    public void LoadbookingTable() {
+        try {
+            String sql = "Select * from hall";
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+//            jTableHall.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Cant load Booking Table");
+        }
     }
 
     //This code was added by Isira for the sake of consistency between the main windows.
@@ -57,15 +109,15 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         jPanel20 = new javax.swing.JPanel();
         jPanel18 = new javax.swing.JPanel();
         BtnSerch3 = new javax.swing.JButton();
-        cmbsearch3 = new javax.swing.JComboBox<>();
-        Txtsearch3 = new javax.swing.JTextField();
+        cmbsearch = new javax.swing.JComboBox<>();
+        Txtsearch = new javax.swing.JTextField();
         jPanel19 = new javax.swing.JPanel();
         jRadioButton7 = new javax.swing.JRadioButton();
         jRadioButton8 = new javax.swing.JRadioButton();
         jRadioButton9 = new javax.swing.JRadioButton();
         jPanel21 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable_cus2 = new javax.swing.JTable();
+        jTable_cus = new javax.swing.JTable();
         btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         BtnDelete = new javax.swing.JButton();
@@ -167,10 +219,10 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         });
         jPanel18.add(BtnSerch3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 80, 30));
 
-        cmbsearch3.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        cmbsearch3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Find a Customer by name", "Find a Customer by address" }));
-        jPanel18.add(cmbsearch3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 210, 30));
-        jPanel18.add(Txtsearch3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 160, 30));
+        cmbsearch.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        cmbsearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Find a Customer by name", "Find a Customer by address" }));
+        jPanel18.add(cmbsearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 210, 30));
+        jPanel18.add(Txtsearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 160, 30));
 
         jPanel20.add(jPanel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, 480, 60));
 
@@ -224,8 +276,8 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         jPanel21.setToolTipText("");
         jPanel21.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable_cus2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jTable_cus2.setModel(new javax.swing.table.DefaultTableModel(
+        jTable_cus.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jTable_cus.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
@@ -242,7 +294,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
                 "Name and surname / Company name", "Address", "Phone", "E-mail", "Gender", "NIC/ Passport", "Nationality", "Regular", "Blacklisted", "Comments"
             }
         ));
-        jScrollPane4.setViewportView(jTable_cus2);
+        jScrollPane4.setViewportView(jTable_cus);
 
         jPanel21.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 38, 920, 260));
 
@@ -554,6 +606,11 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
 
         cmbsearch2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         cmbsearch2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Find a Hall by name", "Find a Hall by ID" }));
+        cmbsearch2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbsearch2ActionPerformed(evt);
+            }
+        });
         jPanel7.add(cmbsearch2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 170, 30));
 
         jPanel13.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, 440, 60));
@@ -664,34 +721,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         
     }//GEN-LAST:event_formWindowOpened
 
-    public void LoadCustomerTable() {
-
-    }
-     /*public void valueChanged(ListSelectionEvent lse) {
-        String tooltip = "Select a record from the table to enable the button.";
-        if(jTable1.getSelectionModel().isSelectionEmpty()) {
-            btnUpdate.setEnabled(false);
-            btnDelete.setEnabled(false);
-            btnGenReport.setEnabled(false);
-            btnUpdate.setToolTipText(tooltip);
-            btnDelete.setToolTipText(tooltip);
-            btnGenReport.setToolTipText(tooltip);
-        } else {
-            btnUpdate.setEnabled(true);
-            btnDelete.setEnabled(true);
-            btnGenReport.setEnabled(true);
-            btnUpdate.setToolTipText(null);
-            btnDelete.setToolTipText(null);
-            btnGenReport.setToolTipText(null);
-            
-            int curRow = jTable1.getSelectedRow();
-            txtItemName.setText(jTable1.getValueAt(curRow, 1).toString());
-            txtQty.setText(jTable1.getValueAt(curRow, 2).toString());
-            txtPrice.setText(jTable1.getValueAt(curRow, 3).toString());
-            cmbVendorID.setSelectedIndex(cmbVendorIDModel.getIndexOf(jTable1.getValueAt(curRow, 4)));
-            datPurchaseDate.setDate((java.util.Date) jTable1.getValueAt(curRow, 5));
-        }
-    }*/
+   
     
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
@@ -727,7 +757,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
 
     private void BtnSerch3BtnSerchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSerch3BtnSerchActionPerformed
         // TODO add your handling code here:
-        /* CusDBOperations ser = new CusDBOperations ();
+         CusDBOperations ser = new CusDBOperations ();
         String select = cmbsearch.getSelectedItem().toString();
         if (select.equals("Find a Customer by name")) {
             String sql = "Select * from customer where name LIKE '"+Txtsearch.getText()+"%'";
@@ -736,7 +766,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         } else if (select.equals("Find a Customer by address")) {
             String sql = "Select * from customer where address LIKE '"+Txtsearch.getText()+"%'";
             ser.SearchData(jTable_cus,  Txtsearch, sql, "");
-        }*/
+        }
     }//GEN-LAST:event_BtnSerch3BtnSerchActionPerformed
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
@@ -760,7 +790,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
 
     private void BtnSerch4BtnSerchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSerch4BtnSerchActionPerformed
         // TODO add your handling code here:
-        /* CusDBOperations ser = new CusDBOperations ();
+         CusDBOperations ser = new CusDBOperations ();
         String select = cmbsearch.getSelectedItem().toString();
         if (select.equals("Find a Customer by name")) {
             String sql = "Select * from customer where name LIKE '"+Txtsearch.getText()+"%'";
@@ -769,7 +799,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         } else if (select.equals("Find a Customer by address")) {
             String sql = "Select * from customer where address LIKE '"+Txtsearch.getText()+"%'";
             ser.SearchData(jTable_cus,  Txtsearch, sql, "");
-        }*/
+        }
     }//GEN-LAST:event_BtnSerch4BtnSerchActionPerformed
 
     private void jRadioButton10jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton10jRadioButton1ActionPerformed
@@ -782,7 +812,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
 
     private void jRadioButton12jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton12jRadioButton3ActionPerformed
         // TODO add your handling code here:
-        //LoadCustomerTable();
+        LoadCustomerTable();
     }//GEN-LAST:event_jRadioButton12jRadioButton3ActionPerformed
 
     private void jButton13jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13jButton1ActionPerformed
@@ -819,17 +849,17 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
 
     private void jRadioButtonAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonAllActionPerformed
         // TODO add your handling code here:
-        //LoadbookingTable();
+        LoadbookingTable();
     }//GEN-LAST:event_jRadioButtonAllActionPerformed
 
     private void jRadioButtonRubyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonRubyActionPerformed
         // TODO add your handling code here:
-        //LoadbookingTableRuby();
+        LoadbookingTableRuby();
     }//GEN-LAST:event_jRadioButtonRubyActionPerformed
 
     private void jRadioButtonPearlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonPearlActionPerformed
         // TODO add your handling code here:
-        //LoadbookingTablepearl();
+         LoadbookingTablepearl();
     }//GEN-LAST:event_jRadioButtonPearlActionPerformed
 
     private void jTableRoomMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableRoomMouseClicked
@@ -858,6 +888,10 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
     private void BtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDeleteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BtnDeleteActionPerformed
+
+    private void cmbsearch2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbsearch2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbsearch2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -914,15 +948,15 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
     private javax.swing.JButton BtnSerch1;
     private javax.swing.JButton BtnSerch3;
     private javax.swing.JButton BtnSerch4;
+    private javax.swing.JTextField Txtsearch;
     private javax.swing.JTextField Txtsearch1;
-    private javax.swing.JTextField Txtsearch3;
     private javax.swing.JTextField Txtsearch4;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JComboBox<String> cmbsearch;
     private javax.swing.JComboBox<String> cmbsearch2;
-    private javax.swing.JComboBox<String> cmbsearch3;
     private javax.swing.JComboBox<String> cmbsearch4;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
@@ -965,6 +999,6 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTable jTableHall;
     private javax.swing.JTable jTableRoom;
-    private javax.swing.JTable jTable_cus2;
+    private javax.swing.JTable jTable_cus;
     // End of variables declaration//GEN-END:variables
 }
