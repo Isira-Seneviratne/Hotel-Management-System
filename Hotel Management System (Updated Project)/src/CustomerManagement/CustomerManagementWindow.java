@@ -29,7 +29,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
     public static void createConnection() throws SQLException {
         con = DatabaseBasicOps.createConnection();
     }
-
+   
     /**
      * Creates new form CustomerManagementWindow
      * @param eID
