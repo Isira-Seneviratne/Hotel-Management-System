@@ -62,7 +62,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         }
     }
     
-     public void LoadbookingTableRuby() {
+     public void LoadbookingTableRuby(){
         try {
             String sql = "SELECT * FROM `hall` WHERE Hall_name= \"Ruby\"";
             pst = con.prepareStatement(sql);
