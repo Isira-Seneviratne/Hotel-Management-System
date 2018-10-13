@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 13, 2018 at 01:10 AM
+-- Generation Time: Oct 13, 2018 at 10:35 AM
 -- Server version: 8.0.12
 -- PHP Version: 7.2.11
 
@@ -88,24 +88,6 @@ INSERT INTO `Login` (`eID`, `Username`, `Password`, `Logged in?`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Stock_CleaningFoodItems_Vendors`
---
-
-CREATE TABLE `Stock_CleaningFoodItems_Vendors` (
-  `Item ID` varchar(10) NOT NULL,
-  `Vendor ID` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
-
---
--- Dumping data for table `Stock_CleaningFoodItems_Vendors`
---
-
-INSERT INTO `Stock_CleaningFoodItems_Vendors` (`Item ID`, `Vendor ID`) VALUES
-('C000000001', 'V000000001');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `Stock_Cleaning_Items`
 --
 
@@ -149,7 +131,7 @@ CREATE TABLE `Stock_Food_Items` (
 --
 
 INSERT INTO `Stock_Food_Items` (`Food ID`, `Food Name`, `Quantity`, `Unit`, `Price`, `Vendor ID`, `Purchase Date`, `Expiry Date`) VALUES
-('F000000001', 'Donut with Strawberry Icing', 100, 'kg', 50, 'V000000002', '2018-10-01', '2018-12-01');
+('F000000001', 'Donut with Strawberry Icing and Sprinkles', 100, 'kg', 50, 'V000000002', '2018-10-01', '2018-12-01');
 
 -- --------------------------------------------------------
 
@@ -253,7 +235,8 @@ CREATE TABLE `Stock_Vendor_Details` (
 --
 
 INSERT INTO `Stock_Vendor_Details` (`Vendor ID`, `Vendor Name`, `Address`, `Telephone Number`, `Email`) VALUES
-('V000000001', 'Jonathan\'s Cleaning Supplies', '95/C, Baseline Road, Colombo', '0117234289', 'cleaningsupplies@gmail.com');
+('V000000001', 'Jonathan\'s Cleaning Supplies', '95/C, New Line Road, Colombo', '0117234289', 'cleaningsupplies@gmail.com'),
+('V000000002', 'Bluebell Bakers', '227/A, Baseline Road, Colombo', '0118234453', 'bluebell@telecom.lk');
 
 --
 -- Indexes for dumped tables
@@ -264,12 +247,6 @@ INSERT INTO `Stock_Vendor_Details` (`Vendor ID`, `Vendor Name`, `Address`, `Tele
 --
 ALTER TABLE `Login`
   ADD PRIMARY KEY (`eID`);
-
---
--- Indexes for table `Stock_CleaningFoodItems_Vendors`
---
-ALTER TABLE `Stock_CleaningFoodItems_Vendors`
-  ADD PRIMARY KEY (`Item ID`,`Vendor ID`);
 
 --
 -- Indexes for table `Stock_Cleaning_Items`
