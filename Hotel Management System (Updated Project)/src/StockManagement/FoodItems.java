@@ -54,26 +54,12 @@ public class FoodItems extends javax.swing.JPanel implements ListSelectionListen
             
             int curRow = jTable1.getSelectedRow();
             txtFoodName.setText(jTable1.getValueAt(curRow, 1).toString());
-            txtQty.setText(jTable1.getValueAt(curRow, 2).toString());
-            String unit = jTable1.getValueAt(curRow, 3).toString();
-            switch (unit) {
-                case "kg":
-                    cmbUnit.setSelectedIndex(0);
-                    break;
-                case "g":
-                    cmbUnit.setSelectedIndex(1);
-                    break;
-                case "None":
-                    cmbUnit.setSelectedIndex(2);
-                    break;
-                default:
-                    cmbUnit.setSelectedIndex(-1);
-                    break;
-            }
-            
+            txtQuantity.setText(jTable1.getValueAt(curRow, 2).toString());
+            NonDBFunctions.setCmbToUnit(cmbUnit, jTable1, 3);
             txtPrice.setText(jTable1.getValueAt(curRow, 4).toString());
             cmbVendorID.setSelectedIndex(cmbVendorIDModel.getIndexOf(jTable1.getValueAt(curRow, 5)));
             datPurchaseDate.setDate((Date) jTable1.getValueAt(curRow, 6));
+            datExpiryDate.setDate((Date) jTable1.getValueAt(curRow, 7));
         }
     }
     
@@ -112,7 +98,7 @@ public class FoodItems extends javax.swing.JPanel implements ListSelectionListen
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtQty = new javax.swing.JTextField();
+        txtQuantity = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtPrice = new javax.swing.JTextField();
         datPurchaseDate = new com.toedter.calendar.JDateChooser();
@@ -152,7 +138,7 @@ public class FoodItems extends javax.swing.JPanel implements ListSelectionListen
         jLabel4.setForeground(new java.awt.Color(238, 238, 238));
         jLabel4.setText("Quantity");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 120, -1, -1));
-        jPanel1.add(txtQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 120, 75, -1));
+        jPanel1.add(txtQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 120, 75, -1));
 
         jLabel5.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(238, 238, 238));
@@ -234,7 +220,7 @@ public class FoodItems extends javax.swing.JPanel implements ListSelectionListen
         txtFoodName.setRows(5);
         jScrollPane2.setViewportView(txtFoodName);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 240, 50));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 190, 50));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 50, 870, -1));
 
@@ -268,12 +254,13 @@ public class FoodItems extends javax.swing.JPanel implements ListSelectionListen
         if(foodName.trim().equals("")) {
             JOptionPane.showMessageDialog(this, "An item name cannot be blank"
                     + " or consist of only whitespace characters.", "Invalid item name",
-                    JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
         
         if(cmbUnit.getSelectedIndex() == -1) {
             JOptionPane.showMessageDialog(this, "Select a unit.", "No unit selected", JOptionPane.WARNING_MESSAGE);
+            cmbUnit.requestFocus();
             return;
         } else {
             unit = NonDBFunctions.getUnitFromCmb(cmbUnit);
@@ -282,6 +269,8 @@ public class FoodItems extends javax.swing.JPanel implements ListSelectionListen
         if(cmbVendorID.getSelectedIndex() == -1) {
             JOptionPane.showMessageDialog(this, "Select the vendor ID this item belongs to.",
                     "No vendor ID selected", JOptionPane.ERROR_MESSAGE);
+            cmbVendorID.requestFocus();
+            return;
         } else {
             vendorID = cmbVendorID.getSelectedItem().toString();
         }
@@ -296,10 +285,38 @@ public class FoodItems extends javax.swing.JPanel implements ListSelectionListen
         }
         
         try {
+            purDate = datPurchaseDate.getDate();
+            purDate.getTime();
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "You have entered an invalid purchase date.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        try {
+            qty = Integer.parseInt(txtQuantity.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "You have not entered a valid integer for the quantity.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            txtQuantity.requestFocus();
+            return;
+        }
+        
+        try {
+            expDate = datExpiryDate.getDate();
+            expDate.getTime();
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "You have entered an invalid expiry date.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        try {
             String foodID = DBFunctions.generateIDForRecord("F", "Stock_Food_Items");
-            String insert = "'"+foodID+"'";
+            String insert = "'"+foodID+"', '"+foodName+"', "+qty+", '"+unit+"'";
             
             DBFunctions.insertRecord("Stock_Food_Items", insert);
+            loadTableAndComboBox();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "An error occurred while inserting the record:\n\n"+e.getMessage(), "Error",
                     JOptionPane.ERROR_MESSAGE);
@@ -307,17 +324,85 @@ public class FoodItems extends javax.swing.JPanel implements ListSelectionListen
     }//GEN-LAST:event_btnAddMouseClicked
 
     private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
-        try {
-            DBFunctions.deleteRecord("Stock_Food_Items", "");
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "An error occurred while deleting the selected record:\n\n"+e.getMessage(),
-                    "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        NonDBFunctions.deleteConfirmation(this, "Stock_Food_Items",
+                "`Food ID`='"+jTable1.getValueAt(jTable1.getSelectedRow(), 0)+"'");
+        loadTableAndComboBox();
     }//GEN-LAST:event_btnDeleteMouseClicked
 
     private void btnUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseClicked
+        String foodName, unit, vendorID;
+        int qty;
+        float price;
+        java.util.Date purDate, expDate;
+        
+        foodName = txtFoodName.getText();
+        if(foodName.trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "An item name cannot be blank"
+                    + " or consist of only whitespace characters.", "Invalid item name",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        if(cmbUnit.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(this, "Select a unit.", "No unit selected", JOptionPane.WARNING_MESSAGE);
+            cmbUnit.requestFocus();
+            return;
+        } else {
+            unit = NonDBFunctions.getUnitFromCmb(cmbUnit);
+        }
+        
+        if(cmbVendorID.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(this, "Select the vendor ID this item belongs to.",
+                    "No vendor ID selected", JOptionPane.ERROR_MESSAGE);
+            cmbVendorID.requestFocus();
+            return;
+        } else {
+            vendorID = cmbVendorID.getSelectedItem().toString();
+        }
+        
         try {
-            DBFunctions.updateRecord("Stock_Food_Items", "", "");
+            price = Float.parseFloat(txtPrice.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "You have not entered a valid floating point number for the price"
+                    + ", or it has too many decimal points.", "Error", JOptionPane.ERROR_MESSAGE);
+            txtPrice.requestFocus();
+            return;
+        }
+        
+        try {
+            purDate = datPurchaseDate.getDate();
+            purDate.getTime();
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "You have entered an invalid purchase date.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        try {
+            qty = Integer.parseInt(txtQuantity.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "You have not entered a valid integer for the quantity.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            txtQuantity.requestFocus();
+            return;
+        }
+        
+        try {
+            expDate = datExpiryDate.getDate();
+            expDate.getTime();
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "You have entered an invalid expiry date.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        String update = "`Food Name`='"+foodName+"', Quantity="+qty+", Unit='"+unit+"', Price="+price+", `Vendor ID`='"
+                +vendorID+"', `Purchase Date`='"+new Date(purDate.getTime())+"', `Expiry Date`='"
+                +new Date(expDate.getTime())+"'";
+        try {
+            DBFunctions.updateRecord("Stock_Food_Items", update,
+                    "`Food ID`='"+jTable1.getValueAt(jTable1.getSelectedRow(), 0)+"'");
+            loadTableAndComboBox();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "An error occurred while updating the selected record:\n\n"+e.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
@@ -329,7 +414,7 @@ public class FoodItems extends javax.swing.JPanel implements ListSelectionListen
         cmbUnit.setSelectedIndex(-1);
         cmbVendorID.setSelectedIndex(-1);
         txtPrice.setText("");
-        txtQty.setText("");
+        txtQuantity.setText("");
         datPurchaseDate.setDate(null);
         datExpiryDate.setDate(null);
     }//GEN-LAST:event_btnClearMouseClicked
@@ -358,6 +443,6 @@ public class FoodItems extends javax.swing.JPanel implements ListSelectionListen
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea txtFoodName;
     private javax.swing.JTextField txtPrice;
-    private javax.swing.JTextField txtQty;
+    private javax.swing.JTextField txtQuantity;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,8 +5,11 @@
  */
 package StockManagement;
 
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
@@ -20,6 +23,9 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
 
     private DefaultComboBoxModel<String> cmbVendorIDModel = new DefaultComboBoxModel<>();
     private DefaultComboBoxModel<String> cmbItemIDModel = new DefaultComboBoxModel<>();
+    
+    //Stores all purchasable item IDs and prices for fast access.
+    private HashMap<String, Float> purchasableItemIDPrice_Map = new HashMap<>();
     
     /**
      * Creates new form Payments
@@ -56,9 +62,9 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
             int curRow = jTable1.getSelectedRow();
             cmbVendorID.setSelectedIndex(cmbVendorIDModel.getIndexOf(jTable1.getValueAt(curRow, 1)));
             cmbItemID.setSelectedIndex(cmbItemIDModel.getIndexOf(jTable1.getValueAt(curRow, 2)));
-            txtQty.setText(jTable1.getValueAt(curRow, 3).toString());
+            txtQuantity.setText(jTable1.getValueAt(curRow, 3).toString());
             datPaymentDate.setDate((java.sql.Date) jTable1.getValueAt(curRow, 4));
-            txtPrice.setText(jTable1.getValueAt(curRow, 5).toString());
+            txtTotalPrice.setText(jTable1.getValueAt(curRow, 5).toString());
         }
     }
     
@@ -87,17 +93,16 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
         
         //Loads the IDs of cleaning and food items from their respective tables.
         try {
-            ResultSet cleaningItemIDs = DBFunctions.getSpecificFieldsFromTable("Stock_Cleaning"
-                    + "_Items", "`Item ID`");
-            cmbItemIDModel.removeAllElements();
-            while (cleaningItemIDs.next()) {
-                cmbItemIDModel.addElement(cleaningItemIDs.getString(1));
-            }
+            ResultSet purchasableItemIDsAndPrices = DBFunctions.getResultsFromUnionQuery("Stock_Cleaning_Items",
+                    "Stock_Food_Items", "`Item ID`, Price", "`Food ID` AS `Item ID`, Price");
             
-            ResultSet foodItemIDs = DBFunctions.getSpecificFieldsFromTable("Stock_Food_Items",
-                            "`Food ID`");
-            while (foodItemIDs.next()) {
-                cmbItemIDModel.addElement(foodItemIDs.getString(1));
+            cmbItemIDModel.removeAllElements();
+            purchasableItemIDPrice_Map.clear();
+            
+            while (purchasableItemIDsAndPrices.next()) {
+                String itemID = purchasableItemIDsAndPrices.getString(1);
+                cmbItemIDModel.addElement(itemID);
+                purchasableItemIDPrice_Map.put(itemID, purchasableItemIDsAndPrices.getFloat(2));
             }
             
             cmbItemID.setModel(cmbItemIDModel);
@@ -125,11 +130,11 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtQty = new javax.swing.JTextField();
+        txtQuantity = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         datPaymentDate = new com.toedter.calendar.JDateChooser();
         jLabel7 = new javax.swing.JLabel();
-        txtPrice = new javax.swing.JTextField();
+        txtTotalPrice = new javax.swing.JTextField();
         cmbVendorID = new javax.swing.JComboBox<>();
         cmbItemID = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -206,7 +211,7 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
         jLabel5.setForeground(new java.awt.Color(238, 238, 238));
         jLabel5.setText("Quantity");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, -1, -1));
-        jPanel1.add(txtQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, 77, -1));
+        jPanel1.add(txtQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, 77, -1));
 
         jLabel6.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(238, 238, 238));
@@ -216,9 +221,11 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
 
         jLabel7.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(238, 238, 238));
-        jLabel7.setText("Price (Rs.)");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 100, -1, -1));
-        jPanel1.add(txtPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 100, 90, -1));
+        jLabel7.setText("Total Price (Rs.)");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 100, -1, -1));
+
+        txtTotalPrice.setToolTipText("<html>\nSelecting a new item ID and/or changing the quantity<br>\nwill automatically recalculate the total price.\n</html>");
+        jPanel1.add(txtTotalPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 100, 90, -1));
 
         jPanel1.add(cmbVendorID, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, 130, -1));
 
@@ -264,11 +271,11 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
         }
         
         try {
-            qty = Integer.parseInt(txtQty.getText());
+            qty = Integer.parseInt(txtQuantity.getText());
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "You have not entered a valid integer for the quantity.",
                     "Error", JOptionPane.ERROR_MESSAGE);
-            txtQty.requestFocus();
+            txtQuantity.requestFocus();
             return;
         }
         
@@ -279,29 +286,104 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
             JOptionPane.showMessageDialog(this, "You have entered an invalid date.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        
+        try {
+            price = Float.parseFloat(txtTotalPrice.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "You have not entered a valid floating point number for the price"
+                    + ", or it has too many decimal points.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            txtTotalPrice.requestFocus();
+            return;
+        }
+        
+        try {
+            String paymentID = DBFunctions.generateIDForRecord("P", "Stock_Payments");
+            String insert = "'"+paymentID+"', '"+vendorID+"', '"+itemID+"', "+qty+", '"
+                    +new java.sql.Date(payDate.getTime())+"', "+price;
+            
+            DBFunctions.insertRecord("Stock_Payments", insert);
+            loadTableAndComboBoxes();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "An error occurred while inserting the record:\n\n"+e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnAddMouseClicked
 
     private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
-        try {
-            DBFunctions.deleteRecord("Stock_Payments", 
-                    "='"+jTable1.getValueAt(jTable1.getSelectedRow(), 0)+"'");
-            loadTableAndComboBoxes();
-        } catch(SQLException e) {
-            JOptionPane.showMessageDialog(this, "An error occurred while deleting the selected record:\n\n"+e.getMessage(),
-                    "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        NonDBFunctions.deleteConfirmation(this, "Stock_Payments", 
+                    "`Payment ID`='"+jTable1.getValueAt(jTable1.getSelectedRow(), 0)+"'");
+        loadTableAndComboBoxes();
     }//GEN-LAST:event_btnDeleteMouseClicked
 
     private void btnUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseClicked
-        // TODO add your handling code here:
+        String vendorID, itemID;
+        java.util.Date payDate;
+        int qty;
+        float price;
+        
+        if(cmbVendorID.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(this, "Select the vendor ID this item belongs to.",
+                    "Vendor ID not selected", JOptionPane.WARNING_MESSAGE);
+            cmbVendorID.requestFocus();
+            return;
+        } else {
+            vendorID = cmbVendorID.getSelectedItem().toString();
+        }
+        
+        if(cmbItemID.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(this, "Select an item ID.", "Item ID not selected", JOptionPane.WARNING_MESSAGE);
+            cmbItemID.requestFocus();
+            return;
+        } else {
+            itemID = cmbItemID.getSelectedItem().toString();
+        }
+        
+        try {
+            qty = Integer.parseInt(txtQuantity.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "You have not entered a valid integer for the quantity.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            txtQuantity.requestFocus();
+            return;
+        }
+        
+        try {
+            payDate = datPaymentDate.getDate();
+            payDate.getTime();
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "You have entered an invalid date.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        try {
+            price = Float.parseFloat(txtTotalPrice.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "You have not entered a valid floating point number for the price"
+                    + ", or it has too many decimal points.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            txtTotalPrice.requestFocus();
+            return;
+        }
+        
+        try {
+            String update = "`Vendor ID`='"+vendorID+"', `Item ID`='"+itemID+"', `Payment Date`='"
+                    +new java.sql.Date(payDate.getTime())+"', Quantity="+qty+", Price="+price;
+            DBFunctions.updateRecord("Stock_Payments", update,
+                    "`Payment ID`='"+jTable1.getValueAt(jTable1.getSelectedRow(), 0)+"'");
+            loadTableAndComboBoxes();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "An error occurred while updating the selected record:\n\n"+e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnUpdateMouseClicked
 
     private void btnClearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClearMouseClicked
         cmbVendorID.setSelectedIndex(-1);
         cmbItemID.setSelectedIndex(-1);
-        txtQty.setText("");
+        txtQuantity.setText("");
         datPaymentDate.setDate(null);
-        txtPrice.setText("");
+        txtTotalPrice.setText("");
     }//GEN-LAST:event_btnClearMouseClicked
 
 
@@ -322,7 +404,7 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtPrice;
-    private javax.swing.JTextField txtQty;
+    private javax.swing.JTextField txtQuantity;
+    private javax.swing.JTextField txtTotalPrice;
     // End of variables declaration//GEN-END:variables
 }

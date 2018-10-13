@@ -48,7 +48,7 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
             
             int curRow = jTable1.getSelectedRow();
             txtItemName.setText(jTable1.getValueAt(curRow, 1).toString());
-            txtQty.setText(jTable1.getValueAt(curRow, 2).toString());
+            txtQuantity.setText(jTable1.getValueAt(curRow, 2).toString());
         }
     }
     
@@ -71,8 +71,6 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         btnUpdate = new javax.swing.JButton();
@@ -81,24 +79,11 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
         btnClear = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtQty = new javax.swing.JTextField();
+        txtQuantity = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         txtItemName = new javax.swing.JTextArea();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(28, 48, 90));
         setMinimumSize(new java.awt.Dimension(0, 0));
@@ -167,7 +152,7 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
         jLabel4.setForeground(new java.awt.Color(238, 238, 238));
         jLabel4.setText("Quantity");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 70, -1, -1));
-        jPanel1.add(txtQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 70, 80, -1));
+        jPanel1.add(txtQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 70, 80, -1));
 
         txtItemName.setColumns(20);
         txtItemName.setRows(5);
@@ -177,7 +162,7 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 47, 880, 270));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -185,11 +170,9 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
                 "Item ID", "Item name", "Quantity"
             }
         ));
-        jTable2.setPreferredSize(new java.awt.Dimension(450, 0));
-        jScrollPane2.setViewportView(jTable2);
-        jTable2.getSelectionModel().addListSelectionListener(this);
+        jScrollPane1.setViewportView(jTable1);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 880, 220));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 880, 220));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
@@ -200,16 +183,16 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
         if(itemName.trim().equals("")) {
             JOptionPane.showMessageDialog(this, "An item name cannot be blank"
                     + " or consist of only whitespace characters.", "Invalid item name",
-                    JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
         
         try {
-            qty = Integer.parseInt(txtQty.getText());
+            qty = Integer.parseInt(txtQuantity.getText());
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "You have not entered a valid integer for the quantity.",
                     "Error", JOptionPane.ERROR_MESSAGE);
-            txtQty.requestFocus();
+            txtQuantity.requestFocus();
             return;
         }
         
@@ -218,6 +201,7 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
             String insert = "'"+itemID+"', '"+itemName+"', "+qty;
             
             DBFunctions.insertRecord("Stock_Kitchen_Items", insert);
+            loadTable();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "An error occurred while inserting the record:\n\n"+e.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
@@ -225,14 +209,8 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
     }//GEN-LAST:event_btnAddMouseClicked
 
     private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
-        try {
-            DBFunctions.deleteRecord("Stock_Kitchen_Items",
+        NonDBFunctions.deleteConfirmation(this, "Stock_Kitchen_Items",
                     "`Item ID`='"+jTable1.getValueAt(jTable1.getSelectedRow(), 0)+"'");
-            loadTable();
-        } catch(SQLException e) {
-            JOptionPane.showMessageDialog(this, "An error occurred while deleting the selected record:\n\n"+e.getMessage(),
-                    "Error", JOptionPane.ERROR_MESSAGE);
-        }
     }//GEN-LAST:event_btnDeleteMouseClicked
 
     private void btnUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseClicked
@@ -243,16 +221,16 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
         if(itemName.trim().equals("")) {
             JOptionPane.showMessageDialog(this, "An item name cannot be blank"
                     + " or consist of only whitespace characters.", "Invalid item name",
-                    JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
         
         try {
-            qty = Integer.parseInt(txtQty.getText());
+            qty = Integer.parseInt(txtQuantity.getText());
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "You have not entered a valid integer for the quantity.",
                     "Error", JOptionPane.ERROR_MESSAGE);
-            txtQty.requestFocus();
+            txtQuantity.requestFocus();
             return;
         }
         
@@ -260,6 +238,7 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
         try {
             DBFunctions.updateRecord("Stock_Kitchen_Items", update,
                     "`Item ID`='"+jTable1.getValueAt(jTable1.getSelectedRow(), 0)+"'");
+            loadTable();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "An error occurred while updating the selected record:\n\n"+e.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
@@ -268,7 +247,7 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
 
     private void btnClearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClearMouseClicked
         txtItemName.setText("");
-        txtQty.setText("");
+        txtQuantity.setText("");
     }//GEN-LAST:event_btnClearMouseClicked
 
 
@@ -282,11 +261,9 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextArea txtItemName;
-    private javax.swing.JTextField txtQty;
+    private javax.swing.JTextField txtQuantity;
     // End of variables declaration//GEN-END:variables
 }

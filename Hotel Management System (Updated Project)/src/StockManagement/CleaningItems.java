@@ -58,7 +58,7 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
             
             int curRow = jTable1.getSelectedRow();
             txtItemName.setText(jTable1.getValueAt(curRow, 1).toString());
-            txtQty.setText(jTable1.getValueAt(curRow, 2).toString());
+            txtQuantity.setText(jTable1.getValueAt(curRow, 2).toString());
             txtPrice.setText(jTable1.getValueAt(curRow, 3).toString());
             cmbVendorID.setSelectedIndex(cmbVendorIDModel.getIndexOf(jTable1.getValueAt(curRow, 4)));
             datPurchaseDate.setDate((java.util.Date) jTable1.getValueAt(curRow, 5));
@@ -104,9 +104,8 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        txtItemName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtQty = new javax.swing.JTextField();
+        txtQuantity = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtPrice = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -117,6 +116,8 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
         btnDelete = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtItemName = new javax.swing.JTextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
@@ -134,13 +135,12 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
         jLabel2.setForeground(new java.awt.Color(238, 238, 238));
         jLabel2.setText("Item name");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, -1, -1));
-        jPanel1.add(txtItemName, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 155, -1));
 
         jLabel3.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(238, 238, 238));
         jLabel3.setText("Quantity");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, -1, -1));
-        jPanel1.add(txtQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 70, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, -1, 20));
+        jPanel1.add(txtQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 70, 20));
 
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(238, 238, 238));
@@ -205,6 +205,12 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
         });
         jPanel1.add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 210, -1, 30));
 
+        txtItemName.setColumns(20);
+        txtItemName.setRows(5);
+        jScrollPane2.setViewportView(txtItemName);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 190, 50));
+
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 53, 860, 260));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -236,7 +242,7 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
         if (NonDBFunctions.isTextBlankOrWhitespace(txtItemName)) {
             JOptionPane.showMessageDialog(this, "An item name cannot be blank"
                     + " or consist of only whitespace characters.", "Invalid item name",
-                    JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.ERROR_MESSAGE);
             txtItemName.requestFocus();
             return;
         }
@@ -245,11 +251,11 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
         }
         
         try {
-            qty = Integer.parseInt(txtQty.getText());
+            qty = Integer.parseInt(txtQuantity.getText());
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "You have not entered a valid integer for the quantity.",
                     "Error", JOptionPane.ERROR_MESSAGE);
-            txtQty.requestFocus();
+            txtQuantity.requestFocus();
             return;
         }
         
@@ -294,14 +300,9 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
     }//GEN-LAST:event_btnAddMouseClicked
 
     private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
-        try {
-            StockManagement.DBFunctions.deleteRecord("Stock_Cleaning_Items",
+        NonDBFunctions.deleteConfirmation(this, "Stock_Cleaning_Items",
                     "`Item ID`='"+jTable1.getValueAt(jTable1.getSelectedRow(), 0)+"'");
-            loadTableAndComboBox();
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "An error occurred while deleting the selected record:\n\n"+e.getMessage(),
-                    "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        loadTableAndComboBox();
     }//GEN-LAST:event_btnDeleteMouseClicked
 
     private void btnUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseClicked
@@ -313,7 +314,8 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
         if (txtItemName.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(this, "An item name cannot be blank"
                     + " or consist of only whitespace characters.", "Invalid item name",
-                    JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.ERROR_MESSAGE);
+            txtItemName.requestFocus();
             return;
         }
         else {
@@ -321,11 +323,11 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
         }
         
         try {
-            qty = Integer.parseInt(txtQty.getText());
+            qty = Integer.parseInt(txtQuantity.getText());
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "You have not entered a valid integer for the quantity.",
                     "Error", JOptionPane.ERROR_MESSAGE);
-            txtQty.requestFocus();
+            txtQuantity.requestFocus();
             return;
         }
         
@@ -335,11 +337,13 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
             JOptionPane.showMessageDialog(this, "You have not entered a valid floating point number for the price"
                     + ", or it has too many decimal points.",
                     "Error", JOptionPane.ERROR_MESSAGE);
+            txtPrice.requestFocus();
             return;
         }
         
         if (cmbVendorID.getSelectedIndex() == -1) {
             JOptionPane.showMessageDialog(this, "Select a vendor ID.", "Vendor ID not selected", JOptionPane.WARNING_MESSAGE);
+            cmbVendorID.requestFocus();
             return;
         } else {
             vendorID = cmbVendorID.getSelectedItem().toString();
@@ -366,7 +370,7 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
 
     private void btnClearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClearMouseClicked
         txtItemName.setText("");
-        txtQty.setText("");
+        txtQuantity.setText("");
         txtPrice.setText("");
         cmbVendorID.setSelectedIndex(-1);
         datPurchaseDate.setDate(null);
@@ -388,9 +392,10 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtItemName;
+    private javax.swing.JTextArea txtItemName;
     private javax.swing.JTextField txtPrice;
-    private javax.swing.JTextField txtQty;
+    private javax.swing.JTextField txtQuantity;
     // End of variables declaration//GEN-END:variables
 }

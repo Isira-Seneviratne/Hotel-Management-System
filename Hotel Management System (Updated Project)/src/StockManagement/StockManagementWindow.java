@@ -5,12 +5,9 @@
  */
 package StockManagement;
 
-import Main.Login;
 import Main.MainWindow;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.sql.SQLException;
-import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -189,7 +186,7 @@ public class StockManagementWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogoutMouseClicked
-        NonDBFunctions.logoutConfirmation(curEID);
+        NonDBFunctions.logoutConfirmation(this, curEID);
     }//GEN-LAST:event_btnLogoutMouseClicked
 
     private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked

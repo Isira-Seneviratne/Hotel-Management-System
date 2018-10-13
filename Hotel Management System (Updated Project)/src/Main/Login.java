@@ -26,7 +26,7 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         
         try {
-            DBFunctions.createConnectionAndStatement();
+            DBFunctions.createConnection();
         }  catch(SQLException e) {
             JOptionPane.showMessageDialog(Login.this, "A database connection could not be established."
                     + "\nMake sure that MySQL is running and that the database has been properly set up."
@@ -34,6 +34,12 @@ public class Login extends javax.swing.JFrame {
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
         
+        /* The following code was based on code included in the the following tutorial:
+         *
+         * Tsagklis, Ilias, Window closing event handling. November 11, 2012.
+         * https://examples.javacodegeeks.com/desktop-java/awt/event/window-closing-event-handling/
+         * Accessed October 5, 2018.
+         */
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent evt) {

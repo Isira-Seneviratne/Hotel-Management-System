@@ -51,7 +51,7 @@ public class RoomItems extends javax.swing.JPanel implements ListSelectionListen
             int curRow = jTable1.getSelectedRow();
             txtItemName.setText(jTable1.getValueAt(curRow, 1).toString());
             txtRoomNum.setText(jTable1.getValueAt(curRow, 2).toString());
-            txtQty.setText(jTable1.getValueAt(curRow, 3).toString());
+            txtQuantity.setText(jTable1.getValueAt(curRow, 3).toString());
         }
     }
     
@@ -83,9 +83,10 @@ public class RoomItems extends javax.swing.JPanel implements ListSelectionListen
         jLabel3 = new javax.swing.JLabel();
         txtRoomNum = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtItemName = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtQty = new javax.swing.JTextField();
+        txtQuantity = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtItemName = new javax.swing.JTextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -157,13 +158,18 @@ public class RoomItems extends javax.swing.JPanel implements ListSelectionListen
         jLabel4.setForeground(new java.awt.Color(238, 238, 238));
         jLabel4.setText("Item name");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, -1, -1));
-        jPanel1.add(txtItemName, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 193, -1));
 
         jLabel5.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(238, 238, 238));
         jLabel5.setText("Quantity");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 60, -1, -1));
-        jPanel1.add(txtQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 60, 70, -1));
+        jPanel1.add(txtQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 60, 70, -1));
+
+        txtItemName.setColumns(20);
+        txtItemName.setRows(5);
+        jScrollPane2.setViewportView(txtItemName);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 200, 50));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 53, 870, 260));
 
@@ -204,11 +210,11 @@ public class RoomItems extends javax.swing.JPanel implements ListSelectionListen
         }
         
         try {
-            qty = Integer.parseInt(txtQty.getText());
+            qty = Integer.parseInt(txtQuantity.getText());
         } catch(NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "You have entered an invalid integer value for the quantity.", "Error",
                     JOptionPane.ERROR_MESSAGE);
-            txtQty.requestFocus();
+            txtQuantity.requestFocus();
             return;
         }
         
@@ -217,6 +223,7 @@ public class RoomItems extends javax.swing.JPanel implements ListSelectionListen
             String insert = "'"+itemID+"', '"+itemName+"', "+roomNum+","+qty;
             
             DBFunctions.insertRecord("Stock_Room_Items", insert);
+            loadTable();
         } catch(SQLException e) {
             JOptionPane.showMessageDialog(this, "An error occurred while inserting the record:\n\n"+e.getMessage(), "Error",
                     JOptionPane.ERROR_MESSAGE);
@@ -224,8 +231,8 @@ public class RoomItems extends javax.swing.JPanel implements ListSelectionListen
     }//GEN-LAST:event_btnAddMouseClicked
 
     private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
-        NonDBFunctions.deleteConfirmation("Stock_Room_Items", "`Item ID`='"
-                +jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+        NonDBFunctions.deleteConfirmation(this, "Stock_Room_Items",
+                "`Item ID`='"+jTable1.getValueAt(jTable1.getSelectedRow(), 0)+"'");
     }//GEN-LAST:event_btnDeleteMouseClicked
 
     private void btnUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseClicked
@@ -251,18 +258,19 @@ public class RoomItems extends javax.swing.JPanel implements ListSelectionListen
         }
         
         try {
-            qty = Integer.parseInt(txtQty.getText());
+            qty = Integer.parseInt(txtQuantity.getText());
         } catch(NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "You have entered an invalid integer value for the quantity.", "Error",
                     JOptionPane.ERROR_MESSAGE);
-            txtQty.requestFocus();
+            txtQuantity.requestFocus();
             return;
         }
         
         String update = "`Item Name`='"+itemName+"', `Room Number`="+roomNum+", Quantity="+qty;
         try {
             DBFunctions.updateRecord("Stock_Room_Items", update,
-                    "`Room ID`='"+jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+                    "`Room ID`='"+jTable1.getValueAt(jTable1.getSelectedRow(), 0)+"'");
+            loadTable();
         } catch(SQLException e) {
             JOptionPane.showMessageDialog(this, "An error occurred while updating the selected record:\n\n"+e.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
@@ -272,7 +280,7 @@ public class RoomItems extends javax.swing.JPanel implements ListSelectionListen
     private void btnClearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClearMouseClicked
         txtItemName.setText("");
         txtRoomNum.setText("");
-        txtQty.setText("");
+        txtQuantity.setText("");
     }//GEN-LAST:event_btnClearMouseClicked
 
 
@@ -287,9 +295,10 @@ public class RoomItems extends javax.swing.JPanel implements ListSelectionListen
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtItemName;
-    private javax.swing.JTextField txtQty;
+    private javax.swing.JTextArea txtItemName;
+    private javax.swing.JTextField txtQuantity;
     private javax.swing.JTextField txtRoomNum;
     // End of variables declaration//GEN-END:variables
 }

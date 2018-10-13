@@ -18,7 +18,7 @@ import javax.swing.event.ListSelectionListener;
  */
 public class PendingOrders extends javax.swing.JPanel implements ListSelectionListener {
 
-    private ResultSet itemIDsAndNames, vendorIDs;
+    private ResultSet purchasableItemIDsAndNames, vendorIDs;
     private DefaultComboBoxModel<String> cmbVendorIDModel = new DefaultComboBoxModel<>();
     private DefaultComboBoxModel<String> cmbItemIDModel = new DefaultComboBoxModel<>();
     /**
@@ -55,11 +55,26 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
             btnDelete.setToolTipText(null);
             
             int curRow = jTable1.getSelectedRow();
-            //cmbVendorID.
-            cmbItemID.setSelectedIndex(cmbItemIDModel.getIndexOf(jTable1.getValueAt(curRow, 2)));
-            txtItemName.setText(jTable1.getValueAt(curRow, 3).toString());
-            txtQty.setText(jTable1.getValueAt(curRow, 4).toString());
+            String itemID = jTable1.getValueAt(curRow, 1).toString();
+            cmbItemID.setSelectedIndex(cmbItemIDModel.getIndexOf(itemID));
             
+            try {
+                while (purchasableItemIDsAndNames.next()) {
+                    if (purchasableItemIDsAndNames.getString(1).equals(itemID)) {
+                        txtItemName.setText(purchasableItemIDsAndNames.getString(2));
+                        break;
+                    }
+                }
+                purchasableItemIDsAndNames.beforeFirst();
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(this, "An error occurred while setting the item name:\n\n"+e.getMessage(),
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            
+            cmbVendorID.setSelectedIndex(cmbVendorIDModel.getIndexOf(jTable1.getValueAt(curRow, 2)));
+            txtQuantity.setText(jTable1.getValueAt(curRow, 3).toString());
+            NonDBFunctions.setCmbToUnit(cmbUnit, jTable1, 4);
+            datOrderDate.setDate((java.sql.Date) jTable1.getValueAt(curRow, 5));
         }
     }
     
@@ -74,11 +89,14 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
         
         //Loads the stored item IDs and adds them to the Item ID combo box.
         try {
-            itemIDsAndNames = DBFunctions.getResultsFromUnionQuery("Stock_Food_Items",
-                    "Stock_Cleaning_Items", "`Food ID` as `Item ID`, `Food Name` as `Item Name`", "`Item ID`, `Item Name`");
+            purchasableItemIDsAndNames = DBFunctions.getResultsFromUnionQuery("Stock_Food_Items",
+                    "Stock_Cleaning_Items", "`Food ID` AS `Item ID`, `Food Name` AS `Item Name`", "`Item ID`, `Item Name`");
+            
             cmbItemIDModel.removeAllElements();
-            while(itemIDsAndNames.next())
-                cmbItemIDModel.addElement(itemIDsAndNames.getString(1));
+            while(purchasableItemIDsAndNames.next())
+                cmbItemIDModel.addElement(purchasableItemIDsAndNames.getString(1));
+            purchasableItemIDsAndNames.beforeFirst();
+            
             cmbItemID.setModel(cmbItemIDModel);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "An error occurred while retrieving all purchasable items:\n\n"
@@ -117,7 +135,7 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtQty = new javax.swing.JTextField();
+        txtQuantity = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         cmbUnit = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
@@ -201,7 +219,7 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
         jLabel4.setForeground(new java.awt.Color(238, 238, 238));
         jLabel4.setText("Quantity");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, -1));
-        jPanel1.add(txtQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 70, -1));
+        jPanel1.add(txtQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 70, -1));
 
         jLabel5.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(238, 238, 238));
@@ -229,7 +247,9 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
         jScrollPane3.setPreferredSize(new java.awt.Dimension(250, 50));
         jScrollPane3.setRequestFocusEnabled(false);
 
+        txtItemName.setBackground(new java.awt.Color(28, 48, 90));
         txtItemName.setColumns(20);
+        txtItemName.setForeground(new java.awt.Color(238, 238, 238));
         txtItemName.setRows(5);
         jScrollPane3.setViewportView(txtItemName);
 
@@ -264,11 +284,12 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
             itemID = cmbItemID.getSelectedItem().toString();
         }
         
-        if (NonDBFunctions.isTextBlankOrWhitespace(txtItemName)) {
-            JOptionPane.showMessageDialog(this, "An item name cannot be blank"
-                    + " or consist of only whitespace characters.", "Invalid item name",
-                    JOptionPane.WARNING_MESSAGE);
-            txtItemName.requestFocus();
+        try {
+            qty = Integer.parseInt(txtQuantity.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "You have not entered a valid integer for the quantity.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            txtQuantity.requestFocus();
             return;
         }
         
@@ -280,22 +301,97 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
             vendorID = cmbVendorID.getSelectedItem().toString();
         }
         
+        if (cmbUnit.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(this, "Select a unit.", "No unit selected", JOptionPane.WARNING_MESSAGE);
+            cmbUnit.requestFocus();
+            return;
+        } else {
+            unit = NonDBFunctions.getUnitFromCmb(cmbUnit);
+        }
         
+        try {
+            orderDate = datOrderDate.getDate();
+            orderDate.getTime();
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "You have entered an invalid date.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        try {
+            String orderID = DBFunctions.generateIDForRecord("O", "Stock_Pending_Orders");
+            String insert = "'"+orderID+"', '"+itemID+"', '"+vendorID+"', "+qty+", '"+unit+"', '"
+                    +new java.sql.Date(orderDate.getTime())+"'";
+            
+            DBFunctions.insertRecord("Stock_Pending_Orders", insert);
+            loadTableAndComboBoxes();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "An error occurred while inserting the record:\n\n"+e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnAddMouseClicked
 
     private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
-        try {
-            DBFunctions.deleteRecord("Stock_Pending_Orders",
-                    "='"+jTable1.getValueAt(jTable1.getSelectedRow(), 0)+"'");
-            loadTableAndComboBoxes();
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "An error occurred while deleting the selected record:\n\n"+e.getMessage(),
-                    "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        NonDBFunctions.deleteConfirmation(this, "Stock_Pending_Orders",
+                "`Order ID`='"+jTable1.getValueAt(jTable1.getSelectedRow(), 0)+"'");
+        loadTableAndComboBoxes();
     }//GEN-LAST:event_btnDeleteMouseClicked
 
     private void btnUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseClicked
-        // TODO add your handling code here:
+        String itemID, vendorID, unit;
+        java.util.Date orderDate;
+        int qty;
+        
+        if (cmbItemID.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(this, "Select an item ID.", "Item ID not selected", JOptionPane.WARNING_MESSAGE);
+            cmbItemID.requestFocus();
+            return;
+        } else {
+            itemID = cmbItemID.getSelectedItem().toString();
+        }
+        
+        try {
+            qty = Integer.parseInt(txtQuantity.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "You have not entered a valid integer for the quantity.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            txtQuantity.requestFocus();
+            return;
+        }
+        
+        if (cmbVendorID.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(this, "Select a vendor ID.", "Vendor ID not selected", JOptionPane.WARNING_MESSAGE);
+            cmbVendorID.requestFocus();
+            return;
+        } else {
+            vendorID = cmbVendorID.getSelectedItem().toString();
+        }
+        
+        if (cmbUnit.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(this, "Select a unit.", "No unit selected", JOptionPane.WARNING_MESSAGE);
+            cmbUnit.requestFocus();
+            return;
+        } else {
+            unit = NonDBFunctions.getUnitFromCmb(cmbUnit);
+        }
+        
+        try {
+            orderDate = datOrderDate.getDate();
+            orderDate.getTime();
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "You have entered an invalid date.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        try {
+            String update = "`Item ID`='"+itemID+"', `Vendor ID`='"+vendorID+"', Quantity="+qty+", Unit='"+unit+"', "
+                    + "`Date of order`='"+new java.sql.Date(orderDate.getTime())+"'";
+            DBFunctions.updateRecord("Stock_Pending_Orders", update,
+                    "`Order ID`='"+jTable1.getValueAt(jTable1.getSelectedRow(), 0)+"'");
+            loadTableAndComboBoxes();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "An error occurred while updating the selected record:\n\n"+e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnUpdateMouseClicked
 
     private void btnClearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClearMouseClicked
@@ -303,11 +399,11 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
         cmbVendorID.setSelectedIndex(-1);
         cmbUnit.setSelectedIndex(-1);
         txtItemName.setText("");
-        txtQty.setText("");
+        txtQuantity.setText("");
         datOrderDate.setDate(null);
     }//GEN-LAST:event_btnClearMouseClicked
 
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnClear;
@@ -329,6 +425,6 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea txtItemName;
-    private javax.swing.JTextField txtQty;
+    private javax.swing.JTextField txtQuantity;
     // End of variables declaration//GEN-END:variables
 }

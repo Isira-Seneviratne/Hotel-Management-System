@@ -12,8 +12,6 @@ import StockManagement.NonDBFunctions;
 import StockManagement.StockManagementWindow;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.sql.SQLException;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -42,7 +40,7 @@ public class MainWindow extends javax.swing.JFrame {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent evt) {
-                NonDBFunctions.logoutConfirmation(curEID);
+                NonDBFunctions.logoutConfirmation(MainWindow.this, curEID);
             }
         });
     }
@@ -208,7 +206,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnStockManagementMouseClicked
 
     private void btnLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogoutMouseClicked
-        NonDBFunctions.logoutConfirmation(curEID);
+        NonDBFunctions.logoutConfirmation(this, curEID);
     }//GEN-LAST:event_btnLogoutMouseClicked
 
     private void jPanel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel11MouseClicked

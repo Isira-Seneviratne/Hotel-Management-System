@@ -37,7 +37,7 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
     @Override
     public void valueChanged(ListSelectionEvent lse) {
         String tooltip = "A table record must be selected to use this button.";
-        if(jTable2.getSelectionModel().isSelectionEmpty()) {
+        if(jTable1.getSelectionModel().isSelectionEmpty()) {
             btnUpdate.setEnabled(false);
             btnDelete.setEnabled(false);
             btnUpdate.setToolTipText(tooltip);
@@ -48,18 +48,18 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
             btnUpdate.setToolTipText(null);
             btnDelete.setToolTipText(null);
             
-            int curRow = jTable2.getSelectedRow();
-            txtVendorName.setText(jTable2.getValueAt(curRow, 1).toString());
-            txtAddress.setText(jTable2.getValueAt(curRow, 2).toString());
-            txtTelNumber.setText(jTable2.getValueAt(curRow, 3).toString());
-            txtEmail.setText(jTable2.getValueAt(curRow, 4).toString());
+            int curRow = jTable1.getSelectedRow();
+            txtVendorName.setText(jTable1.getValueAt(curRow, 1).toString());
+            txtAddress.setText(jTable1.getValueAt(curRow, 2).toString());
+            txtTelNumber.setText(jTable1.getValueAt(curRow, 3).toString());
+            txtEmail.setText(jTable1.getValueAt(curRow, 4).toString());
         }
     }
     
     public void loadTable() {
         //Loads the up-to-date table corresponding to this particular panel.
         try {
-            jTable2.setModel(DBFunctions.getTableRecords("Stock_Vendor_Details"));
+            jTable1.setModel(DBFunctions.getTableRecords("Stock_Vendor_Details"));
         } catch(SQLException e) {
             JOptionPane.showMessageDialog(null, "An error occurred while loading the table:\n\n"+e.getMessage()
                     , "Error", JOptionPane.ERROR_MESSAGE);
@@ -82,7 +82,7 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
         btnClear = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
         txtAddress = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -90,8 +90,8 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
         txtTelNumber = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(28, 48, 90));
         setMinimumSize(new java.awt.Dimension(0, 0));
@@ -157,9 +157,9 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
 
         txtAddress.setColumns(20);
         txtAddress.setRows(5);
-        jScrollPane2.setViewportView(txtAddress);
+        jScrollPane1.setViewportView(txtAddress);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, 140, 140));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, 140, 140));
 
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(238, 238, 238));
@@ -181,7 +181,7 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 53, 870, 270));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -189,9 +189,10 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
                 "Vendor ID", "Vendor Name", "Address", "Telephone Number", "Email"
             }
         ));
-        jScrollPane3.setViewportView(jTable2);
+        jScrollPane2.setViewportView(jTable1);
+        jTable1.getSelectionModel().addListSelectionListener(this);
 
-        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 870, 200));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 870, 200));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
@@ -216,6 +217,7 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
             JOptionPane.showMessageDialog(this, "You have entered an invalid phone number.\n\nA phone number starts with 0"
                     + " and has 9 other numeric characters.",
                     "Invalid phone number", JOptionPane.ERROR_MESSAGE);
+            txtTelNumber.requestFocus();
             return;
         }
         
@@ -223,14 +225,16 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
         if (!email.matches("[A-Za-z]([A-Za-z0-9]*)@([a-z]*)\\.[a-z]{2,3}")) {
             JOptionPane.showMessageDialog(this, "You have entered an invalid email.",
                     "Invalid email", JOptionPane.ERROR_MESSAGE);
+            txtEmail.requestFocus();
             return;
         }
         
         try {
             String vendorID = DBFunctions.generateIDForRecord("V", "Stock_Vendor_Details");
-            String insert = "";
+            String insert = "'"+vendorID+"', '"+vendorName+"', '"+address+"', '"+phoneNo+"', '"+email+"'";
             
             DBFunctions.insertRecord("Stock_Vendor_Details", insert);
+            loadTable();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "An error occurred while inserting the record:\n\n"+e.getMessage(), "Error",
                     JOptionPane.ERROR_MESSAGE);
@@ -238,14 +242,8 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
     }//GEN-LAST:event_btnAddMouseClicked
 
     private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
-        try {
-            DBFunctions.deleteRecord("Stock_Vendor_Details", "='"
-                    +jTable2.getValueAt(jTable2.getSelectedRow(), 0)+"'");
-            loadTable();
-        } catch(SQLException e) {
-            JOptionPane.showMessageDialog(this, "An error occurred while deleting the selected record:\n\n"+e.getMessage(),
-                    "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        NonDBFunctions.deleteConfirmation(this, "Stock_Vendor_Details",
+                "`Vendor ID`='"+jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString()+"'");
     }//GEN-LAST:event_btnDeleteMouseClicked
 
     private void btnUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseClicked
@@ -280,10 +278,12 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
             return;
         }
         
-        String update = "";
+        String update = "`Vendor Name`='"+vendorName+"', Address='"+address+"', `Telephone Number`='"+phoneNo+"', Email='"
+                + email+"'";
         try {
             DBFunctions.updateRecord("Stock_Vendor_Details", update,
-                    "`Vendor ID`='"+jTable2.getValueAt(jTable2.getSelectedRow(), 0));
+                    "`Vendor ID`='"+jTable1.getValueAt(jTable1.getSelectedRow(), 0)+"'");
+            loadTable();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "An error occurred while updating the selected record:\n\n"+e.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
@@ -309,9 +309,9 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextArea txtAddress;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtTelNumber;
