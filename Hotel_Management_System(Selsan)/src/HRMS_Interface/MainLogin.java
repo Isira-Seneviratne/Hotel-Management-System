@@ -182,6 +182,10 @@ public class MainLogin extends javax.swing.JInternalFrame {
         Date stdat = new Date();
         UserManagement m1 = new UserManagement();
         MHome h = new MHome();
+        
+        // Most of the lines below were commented in order to allow the system to be navigated without
+        // exceptions being thrown. They can be uncommented to allow the code below to run.
+        
 //        try {
 //            String sql = "SELECT * from login where UserName='" + txt_loginuserName.getText() + "'";
 //            pst = conn.prepareStatement(sql);
