@@ -7,6 +7,7 @@ package FinanceManagement;
 
 import Main.Login;
 import Main.MainWindow;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -30,7 +31,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
     private static FinanceManagementWindow instance;
     
     // JDBC driver name and database URL
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+    //static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     static final String DB_URL = "jdbc:mysql://localhost:3306/hotel_db";
 
     //  Database credentials
@@ -44,6 +45,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
     public FinanceManagementWindow(String eID) {
         initComponents();
         curEID = eID;
+        RepNoAutoGenerate();
     }
     
     //This code was added by Isira for the sake of consistency between the main windows.
@@ -260,20 +262,74 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         jLabel22.setText("Discount  :");
         jPanel11.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 90, 80, -1));
         jPanel11.add(txtReNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(139, 77, 170, 26));
+
+        paytype.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                paytypeMouseClicked(evt);
+            }
+        });
+        paytype.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                paytypeActionPerformed(evt);
+            }
+        });
         jPanel11.add(paytype, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 170, 26));
+
+        billType.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                billTypeMouseClicked(evt);
+            }
+        });
         jPanel11.add(billType, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 170, 26));
 
         dep.setText("Finance Department");
         jPanel11.add(dep, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, 170, 26));
+
+        amnt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                amntMouseClicked(evt);
+            }
+        });
+        amnt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                amntActionPerformed(evt);
+            }
+        });
+        amnt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                amntKeyReleased(evt);
+            }
+        });
         jPanel11.add(amnt, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, 170, 26));
 
         cmbPayM.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cash", "Cheque" }));
         jPanel11.add(cmbPayM, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 120, 170, 27));
+
+        subT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                subTMouseClicked(evt);
+            }
+        });
+        subT.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                subTKeyReleased(evt);
+            }
+        });
         jPanel11.add(subT, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 160, 170, 26));
 
+        disc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                discMouseClicked(evt);
+            }
+        });
         disc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 discActionPerformed(evt);
+            }
+        });
+        disc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                discKeyReleased(evt);
             }
         });
         jPanel11.add(disc, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 80, 180, 26));
@@ -288,6 +344,12 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         jLabel23.setForeground(new java.awt.Color(255, 255, 255));
         jLabel23.setText("Total       :");
         jPanel11.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 130, 80, -1));
+
+        total.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                totalMouseClicked(evt);
+            }
+        });
         jPanel11.add(total, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 120, 180, 26));
 
         jButton15.setBackground(new java.awt.Color(0, 102, 0));
@@ -398,7 +460,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Date", "Reciept No", "Payment Type", "Bill Type", "Department", "Amount", "Payment Method", "Sub Total", "Tax", "Discount", "Total"
+                "Date", "Reciept No", "Payment Type", "Bill Type", "Department", "Amount", "Payment Method", "Sub Total", "Discount", "Total"
             }
         ));
         jTablePayments.setSelectionBackground(new java.awt.Color(255, 204, 204));
@@ -743,6 +805,17 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         jLabel56.setForeground(new java.awt.Color(255, 255, 255));
         jLabel56.setText("Cash Flow :");
         jPanel15.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 33, -1, -1));
+
+        txtCFSValue.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtCFSValueMouseClicked(evt);
+            }
+        });
+        txtCFSValue.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCFSValueKeyReleased(evt);
+            }
+        });
         jPanel15.add(txtCFSValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(352, 29, 181, 25));
 
         jLabel57.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
@@ -1199,35 +1272,37 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
                 || (this.billType.getText().equals(""))
                 || (this.dep.getText().equals(""))
                 || (this.amnt.getText().equals(""))
-                || (this.cmbPayM.getSelectedItem().equals("Select"))
+                || (this.cmbPayM.getSelectedItem().equals(""))
                 || (this.subT.getText().equals(""))
-                || (this.tax.getText().equals(""))
+              //  || (this.tax.getText().equals(""))
                 || (this.disc.getText().equals(""))
                 || (this.total.getText().equals(""))) {
             JOptionPane.showMessageDialog(this, "Please Fill All The Informations!");
         } else {
             //Calling to AddPayment Method
             AddPayment();
-
+            
+            
+//                DefaultTableModel dtm = (DefaultTableModel) jTablePayments.getModel();
+//                dtm.setNumRows(0);
             //Clearing Textfields
             this.DatePickPayDate.setDate(null);
             this.txtReNo.setText("");
             this.paytype.setText("");
             this.billType.setText("");
-            this.dep.setText("");
+            //this.dep.setText("");
             this.amnt.setText("");
             this.cmbPayM.setSelectedItem("");
             this.subT.setText("");
-            this.tax.setText("");
+          //  this.tax.setText("");
             this.disc.setText("");
-            this.percent.setText("");
+           // this.percent.setText("");
             this.total.setText("");
             
 
             //Clearing jTable & Calling to Loadpaytable
             try {
-                DefaultTableModel dtm = (DefaultTableModel) jTablePayments.getModel();
-                dtm.setNumRows(0);
+                
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Payments Table Data Connot Clear");
@@ -1393,16 +1468,16 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         //############Date Validation & Loading tables#############
         //Getting Date from DatePicker
         Date RecDate = this.DatePickPayDate.getDate();
-        DateFormat RecDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String RecDateString = RecDateFormat.format(RecDate);
+//        DateFormat RecDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//        String RecDateString = RecDateFormat.format(RecDate);
 
         //Getting Current date
         Date todayDate = new Date();
-        DateFormat todayFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String todayDateString = todayFormat.format(todayDate);
+//        DateFormat todayFormat = new SimpleDateFormat("yyyy-MM-dd");
+//        String todayDateString = todayFormat.format(todayDate);
 
         //Checking Date
-        if ((todayDateString.equals(RecDateString)) || (RecDate.before(todayDate))) {
+        if ((todayDate.equals(RecDate)) || (RecDate.before(todayDate))) {
             //Load Payments Table
             LoadPayTable();
         } else {
@@ -1611,11 +1686,11 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         Statement stmt = null;
 
         //********Step - 2 : JDBC Driver Register **********
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Driver Loading Failed : " + e);
-        }
+//        try {
+//            Class.forName("com.mysql.jdbc.Driver");
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, "Driver Loading Failed : " + e);
+//        }
 
         //********Step - 3 : DB Connection Opening **********
         try {
@@ -1687,11 +1762,11 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         Statement stmt = null;
 
         //********Step - 2 : JDBC Driver Register **********
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Driver Loading Failed : " + e);
-        }
+//        try {
+//            Class.forName("com.mysql.jdbc.Driver");
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, "Driver Loading Failed : " + e);
+//        }
 
         //********Step - 3 : DB Connection Opening **********
         try {
@@ -2372,7 +2447,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         String rs = null;
         String Payby = null;
         String Subtotal = null;
-        String Paytax = null;
+        //String Paytax = null;
         String Discount = null;
         String Total = null;
 
@@ -2381,11 +2456,11 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         Statement stmt = null;
 
         //********Step - 2 : JDBC Driver Register **********
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "JDBC Driver Loading Failed");
-        }
+//        try {
+//            Class.forName("com.mysql.jdbc.Driver");
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, "JDBC Driver Loading Failed");
+//        }
 
         //********Step - 3 : DB Connection Opening **********
         try {
@@ -2410,7 +2485,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         rs = amnt.getText();
         Payby = cmbPayM.getSelectedItem().toString();
         Subtotal = subT.getText();
-        Paytax = tax.getText();
+        //Paytax = tax.getText();
         Discount = disc.getText();
         Total = total.getText();
 
@@ -2419,16 +2494,19 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
             //Adding Data To Payments Table
             stmt = conn.createStatement();
             String sqlAddPayment = "INSERT INTO fms_payments VALUES ('" + Date + "','" + Repno + "','" + Payto + "', '" + Payfor + "', '"
-                    + Parfrom + "', '" + rs + "', '" + Payby + "', '" + Subtotal + "', '" + Paytax + "', '" + Discount + "', '" + Total + "')";
+                    + Parfrom + "', '" + rs + "', '" + Payby + "', '" + Subtotal + "', '" + Discount + "', '" + Total + "')";
             stmt.executeUpdate(sqlAddPayment);
 
             //Adding Data To Receipts Table
             stmt = conn.createStatement();
             String sqlAddRep = "INSERT INTO fms_receipts VALUES ('" + Date + "','" + Repno + "','" + RepType + "', '" + Department + "', '', '"
-                    + Payfor + "', '" + Payby + "', '" + Subtotal + "', '" + Paytax + "', '" + Discount + "', '" + Total + "')";
+                    + Payfor + "', '" + Payby + "', '" + Subtotal + "', '" + Discount + "', '" + Total + "')";
             stmt.executeUpdate(sqlAddRep);
-            JOptionPane.showMessageDialog(this, "\"Payment Receipt\" Added to the\n\"Receipts Account & Payments Account\"");
+            JOptionPane.showMessageDialog(this, "Data successfully added to the Receipts Account & Payments Account");
 
+            DefaultTableModel dtm = (DefaultTableModel) jTablePayments.getModel();
+            dtm.setNumRows(0);
+            
             //STEP 5: Clean-up environment
             stmt.close();
             conn.close();
@@ -2467,11 +2545,11 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         Statement stmt = null;
 
         //********Step - 2 : JDBC Driver Register **********
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "JDBC Driver Loading Failed");
-        }
+//        try {
+//            Class.forName("com.mysql.jdbc.Driver");
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, "JDBC Driver Loading Failed");
+//        }
 
         //********Step - 3 : DB Connection Opening **********
         try {
@@ -2530,11 +2608,11 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         Statement stmt = null;
 
         //********Step - 2 : JDBC Driver Register **********
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "JDBC Driver Loading Failed");
-        }
+//        try {
+//            Class.forName("com.mysql.jdbc.Driver");
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, "JDBC Driver Loading Failed");
+//        }
 
         //********Step - 3 : DB Connection Opening **********
         try {
@@ -2602,11 +2680,11 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         Statement stmt = null;
 
         //********Step - 2 : JDBC Driver Register **********
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "JDBC Driver Loading Failed");
-        }
+//        try {
+//            Class.forName("com.mysql.jdbc.Driver");
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, "JDBC Driver Loading Failed");
+//        }
 
         //********Step - 3 : DB Connection Opening **********
         try {
@@ -2618,12 +2696,12 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         //********Step - 4 : Execute Select Query, Retrieving Data & Printing **********
         //Getting Date from DatePicker
         Date RecDate = this.DatePickPayTable.getDate();
-        DateFormat RecDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String RecDateString = RecDateFormat.format(RecDate);
+//        DateFormat RecDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//        String RecDateString = RecDateFormat.format(RecDate);
         try {
             stmt = conn.createStatement();
             String sql;
-            sql = "SELECT Date,RepNo,PayTo,PayFor,PayFrom,Rs,PayBy,Subtotal,Paytax,Discount,Total FROM fms_payments WHERE Date = '" + RecDateString + "'";
+            sql = "SELECT Date,RepNo,PayTo,PayFor,PayFrom,Rs,PayBy,Subtotal,Discount,Total FROM fms_payments WHERE Date = '" + RecDate + "'";
             ResultSet rs = stmt.executeQuery(sql);
 
             //******** Retrieving Data **********
@@ -2642,11 +2720,11 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
                     String Rs = rs.getString("Rs");
                     String PayBy = rs.getString("PayBy");
                     String Subtotal = rs.getString("Subtotal");
-                    String Paytax = rs.getString("PayTax");
+                    //String Paytax = rs.getString("PayTax");
                     String Discount = rs.getString("Discount");
                     String Total = rs.getString("Total");
 
-                    Object[] row = {Date, Repno, PayTo, PayFor, PayFrom, Rs, PayBy, Subtotal, Paytax, Discount, Total};
+                    Object[] row = {Date, Repno, PayTo, PayFor, PayFrom, Rs, PayBy, Subtotal, Discount, Total};
                     DefaultTableModel model = (DefaultTableModel) this.jTablePayments.getModel();
                     model.addRow(row);
                 }
@@ -2700,11 +2778,11 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         String Total = null;
 
         //********Step - 2 : JDBC Driver Register **********
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "JDBC Driver Loading Failed");
-        }
+//        try {
+//            Class.forName("com.mysql.jdbc.Driver");
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, "JDBC Driver Loading Failed");
+//        }
 
         //********Step - 3 : DB Connection Opening **********
         try {
@@ -2920,11 +2998,11 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         Statement stmt = null;
 
         //********Step - 2 : JDBC Driver Register **********
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "JDBC Driver Loading Failed");
-        }
+//        try {
+//            Class.forName("com.mysql.jdbc.Driver");
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, "JDBC Driver Loading Failed");
+//        }
 
         //********Step - 3 : DB Connection Opening **********
         try {
@@ -3357,7 +3435,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         String jtPayrs = jTablePayments.getModel().getValueAt(jtRow, 5).toString();
         String jtPayby = jTablePayments.getModel().getValueAt(jtRow, 6).toString();
         String jtPaysub = jTablePayments.getModel().getValueAt(jtRow, 7).toString();
-        String jtPaytax = jTablePayments.getModel().getValueAt(jtRow, 8).toString();
+        //String jtPaytax = jTablePayments.getModel().getValueAt(jtRow, 8).toString();
         String jtPayDis = jTablePayments.getModel().getValueAt(jtRow, 9).toString();
         String jtPaytot = jTablePayments.getModel().getValueAt(jtRow, 10).toString();
 
@@ -3376,7 +3454,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         this.amnt.setText(jtPayrs);
         this.cmbPayM.setSelectedItem(jtPayby);
         this.subT.setText(jtPaysub);
-        this.tax.setText(jtPaytax);
+        //this.tax.setText(jtPaytax);
         this.disc.setText(jtPayDis);
         this.total.setText(jtPaytot);
 
@@ -3451,11 +3529,11 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         Statement stmt = null;
 
         //********Step - 2 : JDBC Driver Register **********
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            JOptionPane.showMessageDialog(this, "Driver Loading Failed");
-        }
+//        try {
+//            Class.forName("com.mysql.jdbc.Driver");
+//        } catch (ClassNotFoundException e) {
+//            JOptionPane.showMessageDialog(this, "Driver Loading Failed");
+//        }
 
         //********Step - 3 : DB Connection Opening **********
         try {
@@ -3776,6 +3854,159 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton46ActionPerformed
 
+    private void subTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_subTMouseClicked
+        // TODO add your handling code here:
+        if (subT.getText().equals("Enter Subtotal") || subT.getText().equals("Please Enter Numeric Value")) {
+            subT.setForeground(Color.black);
+            subT.setText("");
+        }
+    }//GEN-LAST:event_subTMouseClicked
+
+    private void subTKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_subTKeyReleased
+        // TODO add your handling code here:
+        //Checking Numeric or Letter
+        if ((this.subT.getText().charAt(0) == '0')
+                || (this.subT.getText().charAt(0) == '1')
+                || (this.subT.getText().charAt(0) == '2')
+                || (this.subT.getText().charAt(0) == '3')
+                || (this.subT.getText().charAt(0) == '4')
+                || (this.subT.getText().charAt(0) == '5')
+                || (this.subT.getText().charAt(0) == '6')
+                || (this.subT.getText().charAt(0) == '7')
+                || (this.subT.getText().charAt(0) == '8')
+                || (this.subT.getText().charAt(0) == '9')) {
+        } else {
+            this.subT.setForeground(Color.red);
+            this.subT.setText("Please Enter Numeric Value");
+        }
+    }//GEN-LAST:event_subTKeyReleased
+
+    private void discMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_discMouseClicked
+        // TODO add your handling code here:
+        if (disc.getText().equals("Enter Subtotal") || disc.getText().equals("Please Enter Numeric Value")) {
+            disc.setForeground(Color.black);
+            disc.setText("");
+    }//GEN-LAST:event_discMouseClicked
+    }
+    private void discKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_discKeyReleased
+        // TODO add your handling code here:
+        if ((this.disc.getText().charAt(0) == '0')
+                || (this.disc.getText().charAt(0) == '1')
+                || (this.disc.getText().charAt(0) == '2')
+                || (this.disc.getText().charAt(0) == '3')
+                || (this.disc.getText().charAt(0) == '4')
+                || (this.disc.getText().charAt(0) == '5')
+                || (this.disc.getText().charAt(0) == '6')
+                || (this.disc.getText().charAt(0) == '7')
+                || (this.disc.getText().charAt(0) == '8')
+                || (this.disc.getText().charAt(0) == '9')) {
+        } else {
+            this.disc.setForeground(Color.red);
+            this.disc.setText("Please Enter Numeric Value");
+        }
+    }//GEN-LAST:event_discKeyReleased
+
+    private void totalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_totalMouseClicked
+        // TODO add your handling code here:
+         if (subT.getText().equals("") || disc.getText().equals("")) {
+            disc.setForeground(Color.red);
+            disc.setText("Enter Discount");
+        } else {
+            //Calculating Total
+            double paysub = Double.parseDouble(this.subT.getText());
+            //double paytax = Double.parseDouble(this.txtPayTax.getText());
+            double paydis = Double.parseDouble(this.disc.getText());
+            double total = (paysub - paydis);
+            this.total.setText(String.valueOf(total));
+        }
+    }//GEN-LAST:event_totalMouseClicked
+
+    private void amntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amntActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_amntActionPerformed
+
+    private void amntMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_amntMouseClicked
+        // TODO add your handling code here:
+        //Cheking BillType is Empty
+        if (amnt.getText().equals("")) {
+            amnt.setForeground(Color.red);
+            amnt.setText("Please Enter Bill Type");
+        }
+
+        //Clear Textfield
+        if (amnt.getText().equals("Enter Rupees") || amnt.getText().equals("Please Enter Letters")) {
+            amnt.setForeground(Color.black);
+            amnt.setText("");
+        }
+    }//GEN-LAST:event_amntMouseClicked
+
+    private void amntKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amntKeyReleased
+        // TODO add your handling code here:
+        if ((this.amnt.getText().charAt(0) == '0')
+                || (this.amnt.getText().charAt(0) == '1')
+                || (this.amnt.getText().charAt(0) == '2')
+                || (this.amnt.getText().charAt(0) == '3')
+                || (this.amnt.getText().charAt(0) == '4')
+                || (this.amnt.getText().charAt(0) == '5')
+                || (this.amnt.getText().charAt(0) == '6')
+                || (this.amnt.getText().charAt(0) == '7')
+                || (this.amnt.getText().charAt(0) == '8')
+                || (this.amnt.getText().charAt(0) == '9')) {
+            this.amnt.setForeground(Color.red);
+            this.amnt.setText("Please Enter Letters");
+        }
+    }//GEN-LAST:event_amntKeyReleased
+
+    private void paytypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paytypeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_paytypeActionPerformed
+
+    private void paytypeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paytypeMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_paytypeMouseClicked
+
+    private void billTypeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_billTypeMouseClicked
+        // TODO add your handling code here:
+        //Cheking Paytype is Empty
+        if (paytype.getText().equals("")) {
+            paytype.setForeground(Color.red);
+            paytype.setText("Enter Payment Type");
+        }
+
+        //Clear Textfield
+        if (paytype.getText().equals("Enter For")) {
+            paytype.setForeground(Color.black);
+            paytype.setText("");
+        }
+    }//GEN-LAST:event_billTypeMouseClicked
+
+    private void txtCFSValueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCFSValueMouseClicked
+        // TODO add your handling code here:
+        if (subT.getText().equals("Enter Value") || subT.getText().equals("Please Enter Numeric Value")) {
+            subT.setForeground(Color.black);
+            subT.setText("");
+        }
+    }//GEN-LAST:event_txtCFSValueMouseClicked
+
+    private void txtCFSValueKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCFSValueKeyReleased
+        // TODO add your handling code here:
+        if ((this.txtCFSValue.getText().charAt(0) == '0')
+                || (this.txtCFSValue.getText().charAt(0) == '1')
+                || (this.txtCFSValue.getText().charAt(0) == '2')
+                || (this.txtCFSValue.getText().charAt(0) == '3')
+                || (this.txtCFSValue.getText().charAt(0) == '4')
+                || (this.txtCFSValue.getText().charAt(0) == '5')
+                || (this.txtCFSValue.getText().charAt(0) == '6')
+                || (this.txtCFSValue.getText().charAt(0) == '7')
+                || (this.txtCFSValue.getText().charAt(0) == '8')
+                || (this.txtCFSValue.getText().charAt(0) == '9')) {
+        } else {
+            this.txtCFSValue.setForeground(Color.red);
+            this.txtCFSValue.setText("Please Enter Numeric Value");
+        }
+    }//GEN-LAST:event_txtCFSValueKeyReleased
+    
     /**
      * @param args the command line arguments
      */
