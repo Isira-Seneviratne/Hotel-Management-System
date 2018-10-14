@@ -314,7 +314,8 @@ public class FoodItems extends javax.swing.JPanel implements ListSelectionListen
         
         try {
             String foodID = DBFunctions.generateIDForRecord("F", "Stock_Food_Items");
-            String insert = "'"+foodID+"', '"+foodName+"', "+qty+", '"+unit+"'";
+            String insert = "'"+foodID+"', '"+foodName+"', "+qty+", '"+unit+"', "+price+", '"+vendorID+"', '"
+                    +new java.sql.Date(purDate.getTime())+"', '"+new java.sql.Date(expDate.getTime())+"'";
             
             DBFunctions.insertRecord("Stock_Food_Items", insert);
             loadTableAndComboBox();
@@ -398,8 +399,8 @@ public class FoodItems extends javax.swing.JPanel implements ListSelectionListen
         }
         
         String update = "`Food Name`='"+foodName+"', Quantity="+qty+", Unit='"+unit+"', Price="+price+", `Vendor ID`='"
-                +vendorID+"', `Purchase Date`='"+new Date(purDate.getTime())+"', `Expiry Date`='"
-                +new Date(expDate.getTime())+"'";
+                +vendorID+"', `Purchase Date`='"+new Date(purDate.getTime())+"', `Expiry Date`='"+new Date(expDate.getTime())
+                +"'";
         try {
             DBFunctions.updateRecord("Stock_Food_Items", update,
                     "`Food ID`='"+jTable1.getValueAt(jTable1.getSelectedRow(), 0)+"'");

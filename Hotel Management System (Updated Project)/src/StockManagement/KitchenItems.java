@@ -213,6 +213,7 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
     private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
         NonDBFunctions.deleteConfirmation(this, "Stock_Kitchen_Items",
                     "`Item ID`='"+jTable1.getValueAt(jTable1.getSelectedRow(), 0)+"'");
+        loadTable();
     }//GEN-LAST:event_btnDeleteMouseClicked
 
     private void btnUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseClicked

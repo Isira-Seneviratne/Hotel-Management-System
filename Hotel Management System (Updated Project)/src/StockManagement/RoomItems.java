@@ -270,7 +270,7 @@ public class RoomItems extends javax.swing.JPanel implements ListSelectionListen
         String update = "`Item Name`='"+itemName+"', `Room Number`="+roomNum+", Quantity="+qty;
         try {
             DBFunctions.updateRecord("Stock_Room_Items", update,
-                    "`Room ID`='"+jTable1.getValueAt(jTable1.getSelectedRow(), 0)+"'");
+                    "`Item ID`='"+jTable1.getValueAt(jTable1.getSelectedRow(), 0)+"'");
             loadTable();
         } catch(SQLException e) {
             JOptionPane.showMessageDialog(this, "An error occurred while updating the selected record:\n\n"+e.getMessage(),

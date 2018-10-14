@@ -5,8 +5,11 @@
  */
 package StockManagement;
 
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
@@ -16,11 +19,13 @@ import javax.swing.event.ListSelectionListener;
  *
  * @author Isira
  */
-public class PendingOrders extends javax.swing.JPanel implements ListSelectionListener {
+public class PendingOrders extends javax.swing.JPanel implements ListSelectionListener, ItemListener {
 
-    private ResultSet purchasableItemIDsAndNames, vendorIDs;
+    private ResultSet vendorIDs;
     private DefaultComboBoxModel<String> cmbVendorIDModel = new DefaultComboBoxModel<>();
     private DefaultComboBoxModel<String> cmbItemIDModel = new DefaultComboBoxModel<>();
+    
+    private HashMap<String, String> itemIDsAndNames_Map = new HashMap<>();
     /**
      * Creates new form PendingOrders
      */
@@ -56,26 +61,23 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
             
             int curRow = jTable1.getSelectedRow();
             String itemID = jTable1.getValueAt(curRow, 1).toString();
-            cmbItemID.setSelectedIndex(cmbItemIDModel.getIndexOf(itemID));
             
-            try {
-                while (purchasableItemIDsAndNames.next()) {
-                    if (purchasableItemIDsAndNames.getString(1).equals(itemID)) {
-                        txtItemName.setText(purchasableItemIDsAndNames.getString(2));
-                        break;
-                    }
-                }
-                purchasableItemIDsAndNames.beforeFirst();
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(this, "An error occurred while setting the item name:\n\n"+e.getMessage(),
-                        "Error", JOptionPane.ERROR_MESSAGE);
-            }
+            cmbItemID.removeItemListener(this);
+            cmbItemID.setSelectedIndex(cmbItemIDModel.getIndexOf(itemID));
+            cmbItemID.addItemListener(this);
+            
+            txtItemName.setText(itemIDsAndNames_Map.get(itemID));
             
             cmbVendorID.setSelectedIndex(cmbVendorIDModel.getIndexOf(jTable1.getValueAt(curRow, 2)));
             txtQuantity.setText(jTable1.getValueAt(curRow, 3).toString());
             NonDBFunctions.setCmbToUnit(cmbUnit, jTable1, 4);
             datOrderDate.setDate((java.sql.Date) jTable1.getValueAt(curRow, 5));
         }
+    }
+    
+    @Override
+    public void itemStateChanged(ItemEvent ie) {
+        txtItemName.setText(itemIDsAndNames_Map.get(cmbItemID.getSelectedItem().toString()));
     }
     
     public void loadTableAndComboBoxes() {
@@ -89,15 +91,25 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
         
         //Loads the stored item IDs and adds them to the Item ID combo box.
         try {
-            purchasableItemIDsAndNames = DBFunctions.getResultsFromUnionQuery("Stock_Food_Items",
-                    "Stock_Cleaning_Items", "`Food ID` AS `Item ID`, `Food Name` AS `Item Name`", "`Item ID`, `Item Name`");
+            ResultSet purchasableItemIDsAndNames = DBFunctions.getResultsFromUnionQuery("Stock_Food_Items",
+                    "Stock_Cleaning_Items", "`Food ID` AS `Item ID`, `Food Name` AS `Item Name`",
+                    "`Item ID`, `Item Name`");
+            
+            cmbItemID.removeItemListener(this);
             
             cmbItemIDModel.removeAllElements();
-            while(purchasableItemIDsAndNames.next())
-                cmbItemIDModel.addElement(purchasableItemIDsAndNames.getString(1));
-            purchasableItemIDsAndNames.beforeFirst();
+            while (purchasableItemIDsAndNames.next()) {
+                String itemID = purchasableItemIDsAndNames.getString(1);
+                
+                cmbItemIDModel.addElement(itemID);
+                
+                itemIDsAndNames_Map.put(itemID, purchasableItemIDsAndNames.getString(2));
+            }
             
             cmbItemID.setModel(cmbItemIDModel);
+            cmbItemID.setSelectedIndex(-1);
+            
+            cmbItemID.addItemListener(this);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "An error occurred while retrieving all purchasable items:\n\n"
                     +e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

@@ -245,6 +245,7 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
     private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
         NonDBFunctions.deleteConfirmation(this, "Stock_Vendor_Details",
                 "`Vendor ID`='"+jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString()+"'");
+        loadTable();
     }//GEN-LAST:event_btnDeleteMouseClicked
 
     private void btnUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseClicked
