@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 13, 2018 at 10:35 AM
+-- Generation Time: Oct 14, 2018 at 07:15 AM
 -- Server version: 8.0.12
 -- PHP Version: 7.2.11
 
@@ -105,7 +105,7 @@ CREATE TABLE `Stock_Cleaning_Items` (
 --
 
 INSERT INTO `Stock_Cleaning_Items` (`Item ID`, `Item Name`, `Quantity`, `Price`, `Vendor ID`, `Purchase Date`) VALUES
-('C000000001', 'Mop', 10, 500, 'V000000001', '2018-10-01'),
+('C000000001', 'Mops', 10, 500, 'V000000001', '2018-10-01'),
 ('C000000002', 'Broom', 100, 100, 'V000000001', '2018-10-01'),
 ('C000000003', 'Bucket', 55, 105.5, 'V000000001', '2018-10-01');
 
@@ -126,13 +126,6 @@ CREATE TABLE `Stock_Food_Items` (
   `Expiry Date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
---
--- Dumping data for table `Stock_Food_Items`
---
-
-INSERT INTO `Stock_Food_Items` (`Food ID`, `Food Name`, `Quantity`, `Unit`, `Price`, `Vendor ID`, `Purchase Date`, `Expiry Date`) VALUES
-('F000000001', 'Donut with Strawberry Icing and Sprinkles', 100, 'kg', 50, 'V000000002', '2018-10-01', '2018-12-01');
-
 -- --------------------------------------------------------
 
 --
@@ -150,7 +143,8 @@ CREATE TABLE `Stock_Kitchen_Items` (
 --
 
 INSERT INTO `Stock_Kitchen_Items` (`Item ID`, `Item Name`, `Quantity`) VALUES
-('K000000001', 'Non-stick frying pan', 10);
+('K000000001', 'Non-stick frying pan', 10),
+('K000000002', 'Microwave oven', 5);
 
 -- --------------------------------------------------------
 
@@ -172,7 +166,8 @@ CREATE TABLE `Stock_Payments` (
 --
 
 INSERT INTO `Stock_Payments` (`Payment ID`, `Vendor ID`, `Item ID`, `Quantity`, `Payment Date`, `Price`) VALUES
-('P000000001', 'V000000001', 'C000000001', 10, '2018-10-03', 5000);
+('P000000001', 'V000000001', 'C000000001', 11, '2018-10-03', 5500),
+('P000000002', 'V000000002', 'C000000003', 15, '2018-10-03', 1582.5);
 
 -- --------------------------------------------------------
 

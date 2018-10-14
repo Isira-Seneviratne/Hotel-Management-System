@@ -163,7 +163,7 @@ public class RoomItems extends javax.swing.JPanel implements ListSelectionListen
         jLabel5.setForeground(new java.awt.Color(238, 238, 238));
         jLabel5.setText("Quantity");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 60, -1, -1));
-        jPanel1.add(txtQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 60, 70, -1));
+        jPanel1.add(txtQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 60, 70, 30));
 
         txtItemName.setColumns(20);
         txtItemName.setRows(5);
@@ -181,6 +181,7 @@ public class RoomItems extends javax.swing.JPanel implements ListSelectionListen
                 "Item ID", "Item name", "Room number", "Quantity"
             }
         ));
+        jTable1.setToolTipText("Select a table row to have its values displayed in the above controls.");
         jScrollPane1.setViewportView(jTable1);
         jTable1.getSelectionModel().addListSelectionListener(this);
 

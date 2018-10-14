@@ -152,7 +152,7 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
         jLabel4.setForeground(new java.awt.Color(238, 238, 238));
         jLabel4.setText("Quantity");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 70, -1, -1));
-        jPanel1.add(txtQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 70, 80, -1));
+        jPanel1.add(txtQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 70, 80, 30));
 
         txtItemName.setColumns(20);
         txtItemName.setRows(5);
@@ -170,7 +170,9 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
                 "Item ID", "Item name", "Quantity"
             }
         ));
+        jTable1.setToolTipText("Select a table row to have its values displayed in the above controls.");
         jScrollPane1.setViewportView(jTable1);
+        jTable1.getSelectionModel().addListSelectionListener(this);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 880, 220));
     }// </editor-fold>//GEN-END:initComponents
@@ -197,7 +199,7 @@ public class KitchenItems extends javax.swing.JPanel implements ListSelectionLis
         }
         
         try {
-            String itemID = DBFunctions.generateIDForRecord("K", "Kitchen_Items");
+            String itemID = DBFunctions.generateIDForRecord("K", "Stock_Kitchen_Items");
             String insert = "'"+itemID+"', '"+itemName+"', "+qty;
             
             DBFunctions.insertRecord("Stock_Kitchen_Items", insert);

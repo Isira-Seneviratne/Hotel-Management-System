@@ -192,9 +192,12 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="txtQuantity">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="// Listens for any changes in the contents of the text field.&#xa;txtQuantity.getDocument().addDocumentListener(this);"/>
+          </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="210" y="150" width="77" height="-1"/>
+              <AbsoluteConstraints x="210" y="150" width="77" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -269,6 +272,7 @@
             </Property>
           </Properties>
           <AuxValues>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="// Listens for any changes in the item selection.&#xa;cmbItemID.addItemListener(this);"/>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
           <Constraints>
@@ -285,7 +289,7 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="10" y="340" width="880" height="220"/>
+          <AbsoluteConstraints x="10" y="330" width="880" height="220"/>
         </Constraint>
       </Constraints>
 
@@ -303,6 +307,7 @@
                 <Column editable="true" title="Price" type="java.lang.Object"/>
               </Table>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Select a table row to have its values displayed in the above controls."/>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">

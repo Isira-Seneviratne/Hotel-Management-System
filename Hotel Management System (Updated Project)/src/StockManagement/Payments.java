@@ -12,6 +12,8 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -19,12 +21,17 @@ import javax.swing.event.ListSelectionListener;
  *
  * @author Isira
  */
-public class Payments extends javax.swing.JPanel implements ListSelectionListener {
+public class Payments extends javax.swing.JPanel implements ListSelectionListener, DocumentListener, ItemListener {
 
     private DefaultComboBoxModel<String> cmbVendorIDModel = new DefaultComboBoxModel<>();
     private DefaultComboBoxModel<String> cmbItemIDModel = new DefaultComboBoxModel<>();
     
-    //Stores all purchasable item IDs and prices for fast access.
+    /* This field is required to prevent the combo box and text field listener
+     * events firing when a table cell is clicked on.
+     */
+    private boolean loadingFromTable = false;
+    
+    // Stores all purchasable item IDs and prices for fast access.
     private HashMap<String, Float> purchasableItemIDPrice_Map = new HashMap<>();
     
     /**
@@ -38,8 +45,8 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
 
     /* Checks to see if a table record is selected or not.
      *
-     * The following code is based on code from the following tutorial (this is the case for the other
-     * panels under the StockManagement package as well):
+     * The following code is based on code from the following tutorial (this is
+     * the case for the other panels under the StockManagement package as well):
      *
      * Oracle. How to Write a List Selection Listener.
      * https://docs.oracle.com/javase/tutorial/uiswing/events/listselectionlistener.html
@@ -54,6 +61,8 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
             btnUpdate.setToolTipText(tooltip);
             btnDelete.setToolTipText(tooltip);
         } else {
+            loadingFromTable = true;
+            
             btnUpdate.setEnabled(true);
             btnDelete.setEnabled(true);
             btnUpdate.setToolTipText(null);
@@ -61,11 +70,50 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
             
             int curRow = jTable1.getSelectedRow();
             cmbVendorID.setSelectedIndex(cmbVendorIDModel.getIndexOf(jTable1.getValueAt(curRow, 1)));
+            
+            cmbItemID.removeItemListener(this);
             cmbItemID.setSelectedIndex(cmbItemIDModel.getIndexOf(jTable1.getValueAt(curRow, 2)));
+            cmbItemID.addItemListener(this);
+            
             txtQuantity.setText(jTable1.getValueAt(curRow, 3).toString());
             datPaymentDate.setDate((java.sql.Date) jTable1.getValueAt(curRow, 4));
             txtTotalPrice.setText(jTable1.getValueAt(curRow, 5).toString());
+            
+            loadingFromTable = false;
         }
+    }
+    
+    /* The following three methods are implementations of the methods in the DocumentListener interface,
+     * which allows an event to be fired when the Document object in the JTextField is changed, i.e. by
+     * changing the text in the text field.
+     *
+     * This was done with the help of the following Java documentation pages:
+     *
+     * JTextComponent:
+     * https://docs.oracle.com/javase/10/docs/api/javax/swing/text/JTextComponent.html#getDocument()
+     * (JTextComponent is the parent class of the JTextField class)
+     *
+     * Document:
+     * https://docs.oracle.com/javase/10/docs/api/javax/swing/text/Document.html#addDocumentListener(javax.swing.event.DocumentListener)
+     */
+    @Override
+    public void insertUpdate(DocumentEvent de) {
+        calculateTotalPrice();
+    }
+
+    @Override
+    public void removeUpdate(DocumentEvent de) {
+        calculateTotalPrice();
+    }
+
+    @Override
+    public void changedUpdate(DocumentEvent de) {
+        calculateTotalPrice();
+    }
+    
+    @Override
+    public void itemStateChanged(ItemEvent ie) {
+        calculateTotalPrice();
     }
     
     public void loadTableAndComboBoxes() {
@@ -73,11 +121,12 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
         try {
             jTable1.setModel(DBFunctions.getTableRecords("Stock_Payments"));
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "An error occurred while loading the table:\n\n"+e.getMessage()
+            JOptionPane.showMessageDialog(null, "An error occurred while"
+                    + " loading the table:\n\n"+e.getMessage()
                     , "Error", JOptionPane.ERROR_MESSAGE);
         }
         
-        //Loads the vendor IDs from the Vendor_Details table.
+        // Loads the vendor IDs from the Vendor_Details table.
         try {
             ResultSet vendorIDs = DBFunctions.getSpecificFieldsFromTable("Stock_Vendor_Details",
                     "`Vendor ID`");
@@ -87,14 +136,20 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
             }
             cmbVendorID.setModel(cmbVendorIDModel);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "An error occurred while loading the vendor IDs:\n\n"+e.getMessage(),
+            JOptionPane.showMessageDialog(null, "An error occurred while loading"
+                    + " the vendor IDs:\n\n"+e.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
         
-        //Loads the IDs of cleaning and food items from their respective tables.
+        // Loads the IDs of cleaning and food items from their respective tables.
         try {
             ResultSet purchasableItemIDsAndPrices = DBFunctions.getResultsFromUnionQuery("Stock_Cleaning_Items",
                     "Stock_Food_Items", "`Item ID`, Price", "`Food ID` AS `Item ID`, Price");
+            
+            /* If the listener is not removed, it will cause the combo box to not load properly
+             * and throw a NullPointerException when attempting to select an item.
+             */
+            cmbItemID.removeItemListener(this);
             
             cmbItemIDModel.removeAllElements();
             purchasableItemIDPrice_Map.clear();
@@ -106,9 +161,35 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
             }
             
             cmbItemID.setModel(cmbItemIDModel);
+            
+            /* The listener can be safely re-added to the combo box at this point,
+             * to detect any changes in the currently-selected item when the user
+             * makes a selection.
+             */
+            cmbItemID.addItemListener(this);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "An error occurred while loading the item IDs:\n\n"+e.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    // Calculates the total price based on the price of the selected item and the quantity.
+    public void calculateTotalPrice() {
+        /* The first condition below prevents issues occurring with the quantity text field
+         * when data is loaded into it from the table when a record is selected.
+         *
+         * The second condition was added to prevent an error popping up the moment the user
+         * selects an item ID, so that they can enter the quantity.
+         */
+        if (!loadingFromTable && !txtQuantity.getText().equals("")) {
+            try {
+                float totalPrice = purchasableItemIDPrice_Map.get(cmbItemID.getSelectedItem().toString())
+                        * Integer.parseInt(txtQuantity.getText());
+                txtTotalPrice.setText("" + totalPrice);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "You have entered an invalid integer value for the quantity.",
+                        "Invalid quantity", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
     
@@ -211,7 +292,9 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
         jLabel5.setForeground(new java.awt.Color(238, 238, 238));
         jLabel5.setText("Quantity");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, -1, -1));
-        jPanel1.add(txtQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, 77, -1));
+        jPanel1.add(txtQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, 77, 30));
+        // Listens for any changes in the contents of the text field.
+        txtQuantity.getDocument().addDocumentListener(this);
 
         jLabel6.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(238, 238, 238));
@@ -230,6 +313,8 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
         jPanel1.add(cmbVendorID, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, 130, -1));
 
         jPanel1.add(cmbItemID, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 130, -1));
+        // Listens for any changes in the item selection.
+        cmbItemID.addItemListener(this);
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 47, 880, 270));
 
@@ -241,10 +326,11 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
                 "Payment ID", "Vendor ID", "Item ID", "Quantity", "Date", "Price"
             }
         ));
+        jTable1.setToolTipText("Select a table row to have its values displayed in the above controls.");
         jScrollPane1.setViewportView(jTable1);
         jTable1.getSelectionModel().addListSelectionListener(this);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 880, 220));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 880, 220));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
@@ -253,7 +339,7 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
         int qty;
         float price;
         
-        if(cmbVendorID.getSelectedIndex() == -1) {
+        if (cmbVendorID.getSelectedIndex() == -1) {
             JOptionPane.showMessageDialog(this, "Select the vendor ID this item belongs to.",
                     "Vendor ID not selected", JOptionPane.WARNING_MESSAGE);
             cmbVendorID.requestFocus();
@@ -262,8 +348,9 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
             vendorID = cmbVendorID.getSelectedItem().toString();
         }
         
-        if(cmbItemID.getSelectedIndex() == -1) {
-            JOptionPane.showMessageDialog(this, "Select an item ID.", "Item ID not selected", JOptionPane.WARNING_MESSAGE);
+        if (cmbItemID.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(this, "Select an item ID.", "Item ID not selected",
+                    JOptionPane.WARNING_MESSAGE);
             cmbItemID.requestFocus();
             return;
         } else {
@@ -322,8 +409,9 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
         int qty;
         float price;
         
-        if(cmbVendorID.getSelectedIndex() == -1) {
-            JOptionPane.showMessageDialog(this, "Select the vendor ID this item belongs to.",
+        if (cmbVendorID.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(this, "Select the vendor ID this item"
+                    + " belongs to.",
                     "Vendor ID not selected", JOptionPane.WARNING_MESSAGE);
             cmbVendorID.requestFocus();
             return;
@@ -331,8 +419,9 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
             vendorID = cmbVendorID.getSelectedItem().toString();
         }
         
-        if(cmbItemID.getSelectedIndex() == -1) {
-            JOptionPane.showMessageDialog(this, "Select an item ID.", "Item ID not selected", JOptionPane.WARNING_MESSAGE);
+        if (cmbItemID.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(this, "Select an item ID.",
+                    "Item ID not selected", JOptionPane.WARNING_MESSAGE);
             cmbItemID.requestFocus();
             return;
         } else {
@@ -342,7 +431,8 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
         try {
             qty = Integer.parseInt(txtQuantity.getText());
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "You have not entered a valid integer for the quantity.",
+            JOptionPane.showMessageDialog(this, "You have not entered a valid"
+                    + " integer for the quantity.",
                     "Error", JOptionPane.ERROR_MESSAGE);
             txtQuantity.requestFocus();
             return;
@@ -352,14 +442,16 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
             payDate = datPaymentDate.getDate();
             payDate.getTime();
         } catch (NullPointerException e) {
-            JOptionPane.showMessageDialog(this, "You have entered an invalid date.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "You have entered an invalid date.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
         try {
             price = Float.parseFloat(txtTotalPrice.getText());
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "You have not entered a valid floating point number for the price"
+            JOptionPane.showMessageDialog(this, "You have not entered a valid"
+                    + " floating point number for the price"
                     + ", or it has too many decimal points.",
                     "Error", JOptionPane.ERROR_MESSAGE);
             txtTotalPrice.requestFocus();
@@ -367,10 +459,13 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
         }
         
         try {
-            String update = "`Vendor ID`='"+vendorID+"', `Item ID`='"+itemID+"', `Payment Date`='"
-                    +new java.sql.Date(payDate.getTime())+"', Quantity="+qty+", Price="+price;
+            String update = "`Vendor ID`='"+vendorID+"', `Item ID`='"+itemID
+                    +"', `Payment Date`='"+new java.sql.Date(payDate.getTime())
+                    +"', Quantity="+qty+", Price="+price;
+            
             DBFunctions.updateRecord("Stock_Payments", update,
                     "`Payment ID`='"+jTable1.getValueAt(jTable1.getSelectedRow(), 0)+"'");
+            
             loadTableAndComboBoxes();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "An error occurred while updating the selected record:\n\n"+e.getMessage(),
@@ -380,7 +475,16 @@ public class Payments extends javax.swing.JPanel implements ListSelectionListene
 
     private void btnClearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClearMouseClicked
         cmbVendorID.setSelectedIndex(-1);
+        
+        /* Prevents a NullPointerException being thrown after the current selected
+         * item is set to -1, which causes the listener to execute and throw a
+         * NullPointerException as a result. After the selected index is set to -1,
+         * the listener can be added again.
+         */
+        cmbItemID.removeItemListener(this);
         cmbItemID.setSelectedIndex(-1);
+        cmbItemID.addItemListener(this);
+        
         txtQuantity.setText("");
         datPaymentDate.setDate(null);
         txtTotalPrice.setText("");

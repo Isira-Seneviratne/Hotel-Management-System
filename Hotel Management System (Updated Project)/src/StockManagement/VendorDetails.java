@@ -189,6 +189,7 @@ public class VendorDetails extends javax.swing.JPanel implements ListSelectionLi
                 "Vendor ID", "Vendor Name", "Address", "Telephone Number", "Email"
             }
         ));
+        jTable1.setToolTipText("Select a table row to have its values displayed in the above controls.");
         jScrollPane2.setViewportView(jTable1);
         jTable1.getSelectionModel().addListSelectionListener(this);
 

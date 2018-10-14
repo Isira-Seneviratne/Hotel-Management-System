@@ -202,7 +202,7 @@
         <Component class="javax.swing.JTextField" name="txtQuantity">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="740" y="60" width="70" height="-1"/>
+              <AbsoluteConstraints x="740" y="60" width="70" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -250,6 +250,7 @@
                 <Column editable="true" title="Quantity" type="java.lang.Object"/>
               </Table>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Select a table row to have its values displayed in the above controls."/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jTable1.getSelectionModel().addListSelectionListener(this);"/>

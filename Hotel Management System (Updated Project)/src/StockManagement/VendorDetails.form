@@ -273,6 +273,7 @@
                 <Column editable="true" title="Email" type="java.lang.Object"/>
               </Table>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Select a table row to have its values displayed in the above controls."/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jTable1.getSelectionModel().addListSelectionListener(this);"/>

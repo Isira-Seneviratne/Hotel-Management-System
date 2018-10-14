@@ -140,7 +140,7 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
         jLabel3.setForeground(new java.awt.Color(238, 238, 238));
         jLabel3.setText("Quantity");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, -1, 20));
-        jPanel1.add(txtQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 70, 20));
+        jPanel1.add(txtQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 70, 30));
 
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(238, 238, 238));
@@ -221,6 +221,7 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
                 "Item ID", "Item Name", "Quantity", "Price", "Vendor ID", "Purchase Date"
             }
         ));
+        jTable1.setToolTipText("Select a table row to have its values displayed in the above controls.");
         jScrollPane1.setViewportView(jTable1);
         jTable1.getSelectionModel().addListSelectionListener(this);
 
@@ -358,9 +359,10 @@ public class CleaningItems extends javax.swing.JPanel implements ListSelectionLi
         }
         
         try {
-            StockManagement.DBFunctions.updateRecord("Stock_Cleaning_Items",
-                    "`Item Name`='"+itemName+"',"+qty+","+price+",'"+vendorID+"','"+new java.sql.Date(purDate.getTime())+"'",
-                    "`Item ID`='"+jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+            String update = "`Item Name`='"+itemName+"', Quantity="+qty+", Price="+price+", `Vendor ID`='"+vendorID+"',"
+                    + "`Purchase Date`='"+new java.sql.Date(purDate.getTime())+"'";
+            StockManagement.DBFunctions.updateRecord("Stock_Cleaning_Items", update,
+                    "`Item ID`='"+jTable1.getValueAt(jTable1.getSelectedRow(), 0)+"'");
             loadTableAndComboBox();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "An error occurred while updating the selected record:\n\n"+e.getMessage(),

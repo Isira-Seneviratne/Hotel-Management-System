@@ -219,7 +219,7 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
         jLabel4.setForeground(new java.awt.Color(238, 238, 238));
         jLabel4.setText("Quantity");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, -1));
-        jPanel1.add(txtQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 70, -1));
+        jPanel1.add(txtQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 70, 30));
 
         jLabel5.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(238, 238, 238));
@@ -265,6 +265,7 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
                 "Order ID", "Vendor ID", "Item ID", "Item name", "Quantity", "Unit", "Company", "Date of Order"
             }
         ));
+        jTable1.setToolTipText("Select a table row to have its values displayed in the above controls.");
         jScrollPane1.setViewportView(jTable1);
         jTable1.getSelectionModel().addListSelectionListener(this);
 
