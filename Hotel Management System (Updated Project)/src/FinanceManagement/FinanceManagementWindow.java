@@ -7,7 +7,11 @@ package FinanceManagement;
 
 import Main.Login;
 import Main.MainWindow;
+import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -38,6 +42,8 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
     static final String USER = "root";
     static final String PASS = "";
     
+    private Date RecDate;
+    
     /**
      * Creates new form FinanceManagement
      * @param eID
@@ -46,6 +52,8 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         initComponents();
         curEID = eID;
         RepNoAutoGenerate();
+        
+        
     }
     
     //This code was added by Isira for the sake of consistency between the main windows.
@@ -104,6 +112,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTablePayments = new javax.swing.JTable();
+        jButton13 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
@@ -111,7 +120,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         jPanel21 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         DatepickReceipts = new com.toedter.calendar.JDateChooser();
-        jButton1 = new javax.swing.JButton();
+        jButton14 = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableExpense = new javax.swing.JTable();
@@ -138,10 +147,11 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         jButton40 = new javax.swing.JButton();
         jPanel19 = new javax.swing.JPanel();
         jLabel54 = new javax.swing.JLabel();
-        cmbCFSperiod = new javax.swing.JComboBox<>();
         jLabel55 = new javax.swing.JLabel();
-        DatePickCFS = new com.toedter.calendar.JDateChooser();
         jPanel24 = new javax.swing.JPanel();
+        DatePickCFS = new com.toedter.calendar.JDateChooser();
+        cmbCFSperiod = new javax.swing.JComboBox<>();
+        jButton17 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
         txtCFSRecord = new javax.swing.JTextField();
@@ -180,6 +190,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         DatePickProfitFrom = new com.toedter.calendar.JDateChooser();
         cmbCFSperiod1 = new javax.swing.JComboBox<>();
         jcmbProfitPeriod = new javax.swing.JComboBox<>();
+        jButton2 = new javax.swing.JButton();
         jPanel13 = new javax.swing.JPanel();
         jPanel28 = new javax.swing.JPanel();
         jLabel42 = new javax.swing.JLabel();
@@ -196,6 +207,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         btnHome = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Finance Management");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel14.setBackground(new java.awt.Color(0, 20, 60));
@@ -224,32 +236,32 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
 
         jLabel16.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel16.setText("Department         :");
+        jLabel16.setText("Department          :");
         jPanel11.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 130, 31));
 
         jLabel17.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setText("Payment Type   :");
+        jLabel17.setText("Pay To             :");
         jPanel11.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 120, 120, 20));
 
         jLabel18.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel18.setText("Bill Type           :");
+        jLabel18.setText("Pay For            :");
         jPanel11.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 156, 111, 29));
 
         jLabel11.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Amount               :");
-        jPanel11.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 130, -1));
+        jLabel11.setText("Amount(In Letters):");
+        jPanel11.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 120, -1));
 
         jLabel19.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel19.setText("Payment Method  :");
+        jLabel19.setText("Payment Method    :");
         jPanel11.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, 121, 26));
 
         jLabel20.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel20.setText("Sub Total            :");
+        jLabel20.setText("Sub Total              :");
         jPanel11.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, -1, -1));
 
         jLabel21.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
@@ -376,6 +388,11 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         jButton16.setMaximumSize(new java.awt.Dimension(97, 25));
         jButton16.setMinimumSize(new java.awt.Dimension(97, 25));
         jButton16.setPreferredSize(new java.awt.Dimension(97, 25));
+        jButton16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton16MouseEntered(evt);
+            }
+        });
         jButton16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton16ActionPerformed(evt);
@@ -412,6 +429,11 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         jButton12.setText("Update");
         jButton12.setBorder(null);
         jButton12.setEnabled(false);
+        jButton12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton12MouseEntered(evt);
+            }
+        });
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton12ActionPerformed(evt);
@@ -471,6 +493,15 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         });
         jScrollPane5.setViewportView(jTablePayments);
 
+        jButton13.setBackground(new java.awt.Color(153, 153, 153));
+        jButton13.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jButton13.setText("Search");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
         jPanel20.setLayout(jPanel20Layout);
         jPanel20Layout.setHorizontalGroup(
@@ -478,8 +509,10 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
             .addGroup(jPanel20Layout.createSequentialGroup()
                 .addGap(307, 307, 307)
                 .addComponent(jLabel10)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(DatePickPayTable, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(jButton13)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel20Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -490,11 +523,16 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel20Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(DatePickPayTable, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel20Layout.createSequentialGroup()
+                        .addComponent(jButton13)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel20Layout.createSequentialGroup()
+                        .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(DatePickPayTable, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -538,15 +576,15 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         jPanel21.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, -1, 22));
         jPanel21.add(DatepickReceipts, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 140, 22));
 
-        jButton1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButton1.setText("Receipts Report");
-        jButton1.setBorder(null);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButton14.setBackground(new java.awt.Color(153, 153, 153));
+        jButton14.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jButton14.setText("Search");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButton14ActionPerformed(evt);
             }
         });
-        jPanel21.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 10, 120, 20));
+        jPanel21.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 10, -1, -1));
 
         jPanel8.add(jPanel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 920, 180));
 
@@ -635,7 +673,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         jPanel10.setBounds(480, 230, 460, 310);
 
         jPanel9.setBackground(new java.awt.Color(28, 48, 90));
-        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Add Expense Account", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Add Income Account", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel9.setMinimumSize(new java.awt.Dimension(580, 394));
         jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -688,6 +726,11 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         jButton5.setMaximumSize(new java.awt.Dimension(97, 25));
         jButton5.setMinimumSize(new java.awt.Dimension(97, 25));
         jButton5.setPreferredSize(new java.awt.Dimension(97, 25));
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton5MouseEntered(evt);
+            }
+        });
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -750,33 +793,55 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         jLabel54.setText("Cash Flow Duration :");
         jPanel19.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 29, -1, 25));
 
-        cmbCFSperiod.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Day", "Week", "Year" }));
-        jPanel19.add(cmbCFSperiod, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 29, 186, 23));
-
         jLabel55.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel55.setForeground(new java.awt.Color(255, 255, 255));
         jLabel55.setText("End Date               :");
         jPanel19.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 72, 130, 25));
+
+        jPanel24.setBackground(new java.awt.Color(28, 48, 90));
+        jPanel24.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         DatePickCFS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 DatePickCFSMouseClicked(evt);
             }
         });
-        jPanel19.add(DatePickCFS, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 77, 186, -1));
 
-        jPanel24.setBackground(new java.awt.Color(28, 48, 90));
-        jPanel24.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        cmbCFSperiod.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select a duration", "Day", "Week", "Year" }));
+
+        jButton17.setBackground(new java.awt.Color(153, 153, 153));
+        jButton17.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jButton17.setText("Search");
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
         jPanel24.setLayout(jPanel24Layout);
         jPanel24Layout.setHorizontalGroup(
             jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 346, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel24Layout.createSequentialGroup()
+                .addContainerGap(130, Short.MAX_VALUE)
+                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cmbCFSperiod, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel24Layout.createSequentialGroup()
+                        .addComponent(DatePickCFS, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(2, 2, 2)
+                        .addComponent(jButton17)))
+                .addContainerGap())
         );
         jPanel24Layout.setVerticalGroup(
             jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 86, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel24Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(cmbCFSperiod, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(DatePickCFS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jPanel19.add(jPanel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 350, 90));
@@ -879,6 +944,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         jPanel26.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel26.setPreferredSize(new java.awt.Dimension(854, 300));
 
+        jTableCFSOperating.setFont(new java.awt.Font("Verdana", 1, 11)); // NOI18N
         jTableCFSOperating.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -894,6 +960,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         });
         jScrollPane19.setViewportView(jTableCFSOperating);
 
+        jTableCFSFinancing.setFont(new java.awt.Font("Verdana", 1, 11)); // NOI18N
         jTableCFSFinancing.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -914,6 +981,11 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         jButton48.setText("Update");
         jButton48.setBorder(null);
         jButton48.setEnabled(false);
+        jButton48.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton48MouseEntered(evt);
+            }
+        });
         jButton48.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton48ActionPerformed(evt);
@@ -928,6 +1000,11 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         jButton47.setMaximumSize(new java.awt.Dimension(97, 25));
         jButton47.setMinimumSize(new java.awt.Dimension(97, 25));
         jButton47.setPreferredSize(new java.awt.Dimension(97, 25));
+        jButton47.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton47MouseEntered(evt);
+            }
+        });
         jButton47.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton47ActionPerformed(evt);
@@ -949,6 +1026,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
             }
         });
 
+        jTableCFSInvesting.setFont(new java.awt.Font("Verdana", 1, 11)); // NOI18N
         jTableCFSInvesting.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -1110,10 +1188,19 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
 
         cmbCFSperiod1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jcmbProfitPeriod.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Day", "Week", "Year" }));
+        jcmbProfitPeriod.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select a duration", "Day", "Week", "Year" }));
         jcmbProfitPeriod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcmbProfitPeriodActionPerformed(evt);
+            }
+        });
+
+        jButton2.setBackground(new java.awt.Color(153, 153, 153));
+        jButton2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jButton2.setText("Search");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -1125,12 +1212,14 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jcmbProfitPeriod, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69)
+                .addComponent(jcmbProfitPeriod, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
                 .addComponent(jLabel40)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(DatePickProfitFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(387, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addComponent(jButton2)
+                .addContainerGap(286, Short.MAX_VALUE))
             .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel27Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -1142,6 +1231,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
             .addGroup(jPanel27Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2)
                     .addComponent(DatePickProfitFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1360,6 +1450,16 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
             this.txtCFSRecord.setText("");
             this.txtCFSValue.setText("");
             this.cmbCFSAddTo.setSelectedItem("");
+            
+            DatePickPayTable.addPropertyChangeListener(new PropertyChangeListener() {
+                @Override
+                public void propertyChange(PropertyChangeEvent evt) {
+                    if("lastSelectedDate".equals(evt.getPropertyName())) {
+                        RecDate = DatePickPayTable.getDate();
+                        LoadPayTable();
+                    }  
+                }
+            });
         }
     }//GEN-LAST:event_jButton44ActionPerformed
 
@@ -1373,6 +1473,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
+        AddExpenseTable();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -1381,6 +1482,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
+        AddIncomeTable();
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton52ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton52ActionPerformed
@@ -1398,10 +1500,6 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
     private void txtProfTotProfitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProfTotProfitActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtProfTotProfitActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
         // TODO add your handling code here:
@@ -1573,7 +1671,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         if (this.txtReNo.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Please Select Record From \"Finance Department Receipts\" Table");
         } else {
-            RemovePayment();
+            
 
             //Clearing jTable & Calling to Loadpaytable
             try {
@@ -1604,11 +1702,11 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         Statement stmt = null;
 
         //********Step - 2 : JDBC Driver Register **********
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "JDBC Driver Loading Failed");
-        }
+//        try {
+//            Class.forName("com.mysql.jdbc.Driver");
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, "JDBC Driver Loading Failed");
+//        }
 
         //********Step - 3 : DB Connection Opening **********
         try {
@@ -1620,12 +1718,13 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         //********Step - 4 : Execute Select Query, Retrieving Data & Printing **********
         //Getting Date from DatePicke
         Date RecDate = DatepickReceipts.getDate();
-        DateFormat RecDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String RecDateString = RecDateFormat.format(RecDate);
+//        DateFormat RecDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//        String RecDateString = RecDateFormat.format(RecDate);
         try {
             stmt = conn.createStatement();
             String sql;
-            sql = "SELECT Date,RepNo,RepType,Department,Sale,Payment,PayMethod,Subtotal,SalesTax,Discount,Total FROM fms_receipts WHERE Date = '" + RecDateString + "'";
+            java.sql.Date sqlDate = new java.sql.Date(RecDate.getTime());
+            sql = "SELECT Date,RepNo,RepType,Department,Sale,Payment,PayMethod,Subtotal,Discount,Total FROM fms_receipts WHERE Date = '" + sqlDate + "'";
             ResultSet rs = stmt.executeQuery(sql);
 
             //******** Retrieving Data **********
@@ -1636,7 +1735,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
                 rs.beforeFirst();
                 while (rs.next()) {
                     //Retrieve data by column name
-                    String Date = rs.getString("Date");
+                    Date Date = rs.getDate("Date");
                     String Repno = rs.getString("RepNo");
                     String Reptype = rs.getString("RepType");
                     String Department = rs.getString("Department");
@@ -1644,11 +1743,11 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
                     String Payment = rs.getString("Payment");
                     String Paymethod = rs.getString("PayMethod");
                     String Subtotal = rs.getString("Subtotal");
-                    String Salestax = rs.getString("SalesTax");
+                    //String Salestax = rs.getString("SalesTax");
                     String Discount = rs.getString("Discount");
                     String Total = rs.getString("Total");
 
-                    Object[] row = {Date, Repno, Reptype, Department, Sale, Payment, Paymethod, Subtotal, Salestax, Discount, Total};
+                    Object[] row = {Date, Repno, Reptype, Department, Sale, Payment, Paymethod, Subtotal, Discount, Total};
                     DefaultTableModel model = (DefaultTableModel) jTableReceipts.getModel();
                     model.addRow(row);
                 }
@@ -1702,20 +1801,21 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         //********Step - 4 : Execute Select Query, Retrieving Data & Printing **********
         //Getting Date from DatePicker
         Date RecDate = DatepickReceipts.getDate();
-        DateFormat RecDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String RecDateString = RecDateFormat.format(RecDate);
+//        DateFormat RecDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//        String RecDateString = RecDateFormat.format(RecDate);
 
         try {
             stmt = conn.createStatement();
             String sql;
-            sql = "SELECT Date,RepNo,Sale,Subtotal,SalesTax,Discount,Total FROM fms_income WHERE Date = '" + RecDateString + "'";
+            java.sql.Date sqlDate = new java.sql.Date(RecDate.getTime());
+            sql = "SELECT Date,RepNo,Sale,Subtotal,SalesTax,Discount,Total FROM fms_income WHERE Date = '" + sqlDate + "'";
             ResultSet rs = stmt.executeQuery(sql);
 
             //******** Retrieving Data **********
             //varibale for un pw incorrect message
             while (rs.next()) {
                 //Retrieve data by column name
-                String Date = rs.getString("Date");
+                Date Date = rs.getDate("Date");
                 String Repno = rs.getString("RepNo");
                 String Sale = rs.getString("Sale");
                 String Subtotal = rs.getString("Subtotal");
@@ -1777,20 +1877,21 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
 
         //********Step - 4 : Execute Select Query, Retrieving Data & Printing **********
         //Getting Date from DatePicker
-        Date RecDate = DatepickReceipts.getDate();
-        DateFormat RecDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String RecDateString = RecDateFormat.format(RecDate);
+          RecDate = DatepickReceipts.getDate();
+//        DateFormat RecDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//        String RecDateString = RecDateFormat.format(RecDate);
         try {
             stmt = conn.createStatement();
             String sql;
-            sql = "SELECT Date,RepNo,Payment,Subtotal,PayTax,Discount,Total FROM fms_expense WHERE Date = '" + RecDateString + "'";
+            java.sql.Date sqlDate = new java.sql.Date(RecDate.getTime());
+            sql = "SELECT Date,RepNo,Payment,Subtotal,PayTax,Discount,Total FROM fms_expense WHERE Date = '" + sqlDate + "'";
             ResultSet rs = stmt.executeQuery(sql);
 
             //******** Retrieving Data **********
             //varibale for un pw incorrect message
             while (rs.next()) {
                 //Retrieve data by column name
-                String Date = rs.getString("Date");
+                Date Date = rs.getDate("Date");
                 String Repno = rs.getString("RepNo");
                 String Payment = rs.getString("Payment");
                 String Subtotal = rs.getString("Subtotal");
@@ -1845,11 +1946,11 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         Statement stmt = null;
 
         //********Step - 2 : JDBC Driver Register **********
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "JDBC Driver Loading Failed");
-        }
+//        try {
+//            Class.forName("com.mysql.jdbc.Driver");
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, "JDBC Driver Loading Failed");
+//        }
 
         //********Step - 3 : DB Connection Opening **********
         try {
@@ -1863,6 +1964,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         try {
             stmt = conn.createStatement();
             String sql;
+            java.sql.Date sqlDate = new java.sql.Date(RecDate.getTime());
             sql = "SELECT Date,RepNo,Payment,Subtotal,SalesTax,Discount,Total FROM fms_receipts WHERE RepNo = '" + RepsNo + "'";
             ResultSet rs = stmt.executeQuery(sql);
 
@@ -1923,7 +2025,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
     //*****************************Add All Expense Table ****************************************************************
     public void AddAllExpenseTable() {
         //varibale for get data
-        String Date = null;
+        Date Date = null;
         String Repno = null;
         String Payment = null;
         String Subtotal = null;
@@ -1952,6 +2054,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         try {
             stmt = conn.createStatement();
             String sql;
+            java.sql.Date sqlDate = new java.sql.Date(RecDate.getTime());
             sql = "SELECT Date,RepNo,Payment,Subtotal,SalesTax,Discount,Total FROM fms_receipts WHERE RepType = 'Payment'";
             ResultSet rs = stmt.executeQuery(sql);
 
@@ -1959,7 +2062,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
             //Checking table is Empty & Getting Data
             while (rs.next()) {
                 //Retrieve data by column name
-                Date = rs.getString("Date");
+                Date = rs.getDate("Date");
                 Repno = rs.getString("RepNo");
                 Payment = rs.getString("Payment");
                 Subtotal = rs.getString("Subtotal");
@@ -2013,7 +2116,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
     //*****************************Add Income Table ****************************************************************
     public void AddIncomeTable() {
         //varibale for get data
-        String Date = null;
+        Date Date = null;
         String Repno = null;
         String Sale = null;
         String Subtotal = null;
@@ -2025,11 +2128,11 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         Statement stmt = null;
 
         //********Step - 2 : JDBC Driver Register **********
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "JDBC Driver Loading Failed");
-        }
+//        try {
+//            Class.forName("com.mysql.jdbc.Driver");
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, "JDBC Driver Loading Failed");
+//        }
 
         //********Step - 3 : DB Connection Opening **********
         try {
@@ -2043,13 +2146,14 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         try {
             stmt = conn.createStatement();
             String sql;
+            java.sql.Date sqlDate = new java.sql.Date(RecDate.getTime());
             sql = "SELECT Date,RepNo,Sale,Subtotal,SalesTax,Discount,Total FROM fms_receipts WHERE RepNo = '" + RepsNo + "'";
             ResultSet rs = stmt.executeQuery(sql);
 
             //******** Retrieving Data **********    
             while (rs.next()) {
                 //Retrieve data by column name
-                Date = rs.getString("Date");
+                Date = rs.getDate("Date");
                 Repno = rs.getString("RepNo");
                 Sale = rs.getString("Sale");
                 Subtotal = rs.getString("Subtotal");
@@ -2102,7 +2206,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
     //*****************************Add All Income Table ****************************************************************
     public void AddAllIncomeTable() {
         //varibale for get data
-        String Date = null;
+        Date Date = null;
         String Repno = null;
         String Sale = null;
         String Subtotal = null;
@@ -2114,11 +2218,11 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         Statement stmt = null;
 
         //********Step - 2 : JDBC Driver Register **********
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Driver Loading Failed : " + e);
-        }
+//        try {
+//            Class.forName("com.mysql.jdbc.Driver");
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, "Driver Loading Failed : " + e);
+//        }
 
         //********Step - 3 : DB Connection Opening **********
         try {
@@ -2131,6 +2235,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         try {
             stmt = conn.createStatement();
             String sql;
+            java.sql.Date sqlDate = new java.sql.Date(RecDate.getTime());
             sql = "SELECT Date,RepNo,Sale,Subtotal,SalesTax,Discount,Total FROM fms_receipts WHERE RepType = 'Sale'";
             ResultSet rs = stmt.executeQuery(sql);
 
@@ -2138,7 +2243,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
             //Checking table is Empty & Getting Data
             while (rs.next()) {
                 //Retrieve data by column name
-                Date = rs.getString("Date");
+                Date = rs.getDate("Date");
                 Repno = rs.getString("RepNo");
                 Sale = rs.getString("Sale");
                 Subtotal = rs.getString("Subtotal");
@@ -2190,24 +2295,24 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
     //*****************************End****************************************************************
 
     //*****************************Remove Income Table ****************************************************************
-    public void RemoveIncomeTable() {
-        //***** Step - 1 : Declaring Connection Variables ********
-        Connection conn = null;
-        Statement stmt = null;
-
-        //********Step - 2 : JDBC Driver Register **********
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "JDBC Driver Loading Failed");
-        }
-
-        //********Step - 3 : DB Connection Opening **********
-        try {
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "DB Connection Failed");
-        }
+//    public void RemoveIncomeTable() {
+//        //***** Step - 1 : Declaring Connection Variables ********
+//        Connection conn = null;
+//        Statement stmt = null;
+//
+//        //********Step - 2 : JDBC Driver Register **********
+//        try {
+//            Class.forName("com.mysql.jdbc.Driver");
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, "JDBC Driver Loading Failed");
+//        }
+//
+//        //********Step - 3 : DB Connection Opening **********
+//        try {
+//            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, "DB Connection Failed");
+//        }
 
         //Get textField data to String Variables
         //String RmvIncomeRecNo = txtIncomeRepNo.getText();
@@ -2301,52 +2406,112 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
 //            }//end finally try
 //        }//end try
 
-        try {
-            DefaultTableModel dtm = (DefaultTableModel) jTableIncome.getModel();
-            dtm.setNumRows(0);
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Income Table Data Connot Clear");
-        }
-        LoadIncomeTable();
-    }
+//        try {
+//            DefaultTableModel dtm = (DefaultTableModel) jTableIncome.getModel();
+//            dtm.setNumRows(0);
+//
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, "Income Table Data Connot Clear");
+//        }
+//        LoadIncomeTable();
+//}
     //*****************************End****************************************************************
 
     //*****************************Remove Expense Table ****************************************************************
-    public void RemoveExpenseTable() {
-        //***** Step - 1 : Declaring Connection Variables ********
-        Connection conn = null;
-        Statement stmt = null;
-
-        //********Step - 2 : JDBC Driver Register **********
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "JDBC Driver Loading Failed");
-        }
-
-        //********Step - 3 : DB Connection Opening **********
-        try {
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "DB Connection Failed");
-        }
-
-        //Get textField data to String Variables
-        //String RmvExpenseRecNo = txtExpenseRepNo.getText();
-        //********Step - 4 : Execute Select Query, Retrieving Data & Printing **********
+//    public void RemoveExpenseTable() {
+//        //***** Step - 1 : Declaring Connection Variables ********
+//        Connection conn = null;
+//        Statement stmt = null;
+//
+//        //********Step - 2 : JDBC Driver Register **********
+//        try {
+//            Class.forName("com.mysql.jdbc.Driver");
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, "JDBC Driver Loading Failed");
+//        }
+//
+//        //********Step - 3 : DB Connection Opening **********
+//        try {
+//            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, "DB Connection Failed");
+//        }
+//
+//        //Get textField data to String Variables
+//        //String RmvExpenseRecNo = txtExpenseRepNo.getText();
+//        //********Step - 4 : Execute Select Query, Retrieving Data & Printing **********
+////        try {
+////            //STEP 4: Execute a query
+////            stmt = conn.createStatement();
+////            String sql = "DELETE FROM fms_expense WHERE RepNo = '" + RmvExpenseRecNo + "'";
+////            stmt.executeUpdate(sql);
+////            JOptionPane.showMessageDialog(this, "\"Expense Account\" Record Removed Succesfully!");
+////            //STEP 5: Clean-up environment
+////            stmt.close();
+////            conn.close();
+////
+////        } catch (SQLException se) {
+////            JOptionPane.showMessageDialog(this, "Query Execution Error\nCheck Error Message Below\n" + se);
+////
+////        } finally {
+////            //finally block used to close resources
+////            try {
+////                if (stmt != null) {
+////                    stmt.close();
+////                }
+////            } catch (SQLException se2) {
+////            }// nothing we can do
+////            try {
+////                if (conn != null) {
+////                    conn.close();
+////                }
+////            } catch (SQLException se) {
+////                se.printStackTrace();
+////            }//end finally try
+////        }//end try
+//
+//        LoadExpenseTable();
+//    }
+//    //*****************************End****************************************************************   
+//
+//    //*****************************Remove All Expense Table ****************************************************************
+//    public void RemoveAllExpenseTable() {
+//        //***** Step - 1 : Declaring Connection Variables ********
+//        Connection conn = null;
+//        Statement stmt = null;
+//
+//        //********Step - 2 : JDBC Driver Register **********
+//        try {
+//            Class.forName("com.mysql.jdbc.Driver");
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, "Driver Loading Failed : " + e);
+//        }
+//
+//        //********Step - 3 : DB Connection Opening **********
+//        try {
+//            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+//        } catch (Exception e) {
+////            JOptionPane.showMessageDialog(this, "DB Connecting Failed : " + e);
+//        }
+//
+//        //Getting Date from DatePicker
+//        Date RecDate = DatepickReceipts.getDate();
+//        DateFormat RecDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//        String RecDateString = RecDateFormat.format(RecDate);
+//
+//        //********Step - 4 : Execute Select Query, Retrieving Data & Printing **********
 //        try {
 //            //STEP 4: Execute a query
 //            stmt = conn.createStatement();
-//            String sql = "DELETE FROM fms_expense WHERE RepNo = '" + RmvExpenseRecNo + "'";
+//            String sql = "DELETE FROM fms_expense WHERE Date = '" + RecDateString + "'";
 //            stmt.executeUpdate(sql);
-//            JOptionPane.showMessageDialog(this, "\"Expense Account\" Record Removed Succesfully!");
+//            JOptionPane.showMessageDialog(this, "All the \"Expense Account\" Records Removed Succesfully!");
 //            //STEP 5: Clean-up environment
 //            stmt.close();
 //            conn.close();
 //
 //        } catch (SQLException se) {
-//            JOptionPane.showMessageDialog(this, "Query Execution Error\nCheck Error Message Below\n" + se);
+//            JOptionPane.showMessageDialog(this, "Query Not Executed \n" + se);
 //
 //        } finally {
 //            //finally block used to close resources
@@ -2364,77 +2529,17 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
 //                se.printStackTrace();
 //            }//end finally try
 //        }//end try
-
-        LoadExpenseTable();
-    }
-    //*****************************End****************************************************************   
-
-    //*****************************Remove All Expense Table ****************************************************************
-    public void RemoveAllExpenseTable() {
-        //***** Step - 1 : Declaring Connection Variables ********
-        Connection conn = null;
-        Statement stmt = null;
-
-        //********Step - 2 : JDBC Driver Register **********
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Driver Loading Failed : " + e);
-        }
-
-        //********Step - 3 : DB Connection Opening **********
-        try {
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "DB Connecting Failed : " + e);
-        }
-
-        //Getting Date from DatePicker
-        Date RecDate = DatepickReceipts.getDate();
-        DateFormat RecDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String RecDateString = RecDateFormat.format(RecDate);
-
-        //********Step - 4 : Execute Select Query, Retrieving Data & Printing **********
-        try {
-            //STEP 4: Execute a query
-            stmt = conn.createStatement();
-            String sql = "DELETE FROM fms_expense WHERE Date = '" + RecDateString + "'";
-            stmt.executeUpdate(sql);
-            JOptionPane.showMessageDialog(this, "All the \"Expense Account\" Records Removed Succesfully!");
-            //STEP 5: Clean-up environment
-            stmt.close();
-            conn.close();
-
-        } catch (SQLException se) {
-            JOptionPane.showMessageDialog(this, "Query Not Executed \n" + se);
-
-        } finally {
-            //finally block used to close resources
-            try {
-                if (stmt != null) {
-                    stmt.close();
-                }
-            } catch (SQLException se2) {
-            }// nothing we can do
-            try {
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException se) {
-                se.printStackTrace();
-            }//end finally try
-        }//end try
-
-        try {
-            DefaultTableModel dtm = (DefaultTableModel) jTableExpense.getModel();
-            dtm.setNumRows(0);
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Expesne Table Data Connot Clear");
-        }
-        
-        LoadExpenseTable();
-    }
+//
+//        try {
+//            DefaultTableModel dtm = (DefaultTableModel) jTableExpense.getModel();
+//            dtm.setNumRows(0);
+//
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, "Expesne Table Data Connot Clear");
+//        }
+//        
+//        LoadExpenseTable();
+    
     public void AddPayment() {
         //varibale for get data
         String Date = null;
@@ -2539,66 +2644,66 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
     //*****************************End****************************************************************
 
 //*****************************Remove Payment Method ****************************************************************
-    public void RemovePayment() {
-        //***** Step - 1 : Declaring Connection Variables ********
-        Connection conn = null;
-        Statement stmt = null;
-
-        //********Step - 2 : JDBC Driver Register **********
+//    public void RemovePayment() {
+//        //***** Step - 1 : Declaring Connection Variables ********
+//        Connection conn = null;
+//        Statement stmt = null;
+//
+//        //********Step - 2 : JDBC Driver Register **********
+////        try {
+////            Class.forName("com.mysql.jdbc.Driver");
+////        } catch (Exception e) {
+////            JOptionPane.showMessageDialog(this, "JDBC Driver Loading Failed");
+////        }
+//
+//        //********Step - 3 : DB Connection Opening **********
 //        try {
-//            Class.forName("com.mysql.jdbc.Driver");
+//            conn = DriverManager.getConnection(DB_URL, USER, PASS);
 //        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(this, "JDBC Driver Loading Failed");
+//            JOptionPane.showMessageDialog(this, "DB Connection Failed");
 //        }
-
-        //********Step - 3 : DB Connection Opening **********
-        try {
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "DB Connection Failed");
-        }
-
-        //Get textField data to String Variables
-        String RmvPaymentRecNo = this.txtReNo.getText();
-        //********Step - 4 : Execute Select Query, Retrieving Data & Printing **********  
-        try {
-            //STEP 4: Execute a query
-            //Removing Record from Payments table
-            stmt = conn.createStatement();
-            String sqlRmvPayments = "DELETE FROM fms_payments WHERE RepNo = '" + RmvPaymentRecNo + "'";
-            stmt.executeUpdate(sqlRmvPayments);
-
-            //Removing Record from Receipts table
-            stmt = conn.createStatement();
-            String sqlRmvReceipts = "DELETE FROM fms_receipts WHERE RepNo = '" + RmvPaymentRecNo + "'";
-            stmt.executeUpdate(sqlRmvReceipts);
-
-            JOptionPane.showMessageDialog(this, "Record Removed From\n\"Payments Account & Receipts Account\"");
-            //STEP 5: Clean-up environment
-            stmt.close();
-            conn.close();
-
-        } catch (SQLException se) {
-            JOptionPane.showMessageDialog(this, "Query Execution Error\nCheck Error Message Below\n" + se);
-
-        } finally {
-            //finally block used to close resources
-            try {
-                if (stmt != null) {
-                    stmt.close();
-                }
-            } catch (SQLException se2) {
-            }// nothing we can do
-            try {
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException se) {
-                se.printStackTrace();
-            }//end finally try
-        }//end try
-        LoadIncomeTable();
-    }
+//
+//        //Get textField data to String Variables
+//        String RmvPaymentRecNo = this.txtReNo.getText();
+//        //********Step - 4 : Execute Select Query, Retrieving Data & Printing **********  
+//        try {
+//            //STEP 4: Execute a query
+//            //Removing Record from Payments table
+//            stmt = conn.createStatement();
+//            String sqlRmvPayments = "DELETE FROM fms_payments WHERE RepNo = '" + RmvPaymentRecNo + "'";
+//            stmt.executeUpdate(sqlRmvPayments);
+//
+//            //Removing Record from Receipts table
+//            stmt = conn.createStatement();
+//            String sqlRmvReceipts = "DELETE FROM fms_receipts WHERE RepNo = '" + RmvPaymentRecNo + "'";
+//            stmt.executeUpdate(sqlRmvReceipts);
+//
+//            JOptionPane.showMessageDialog(this, "Record Removed From\n\"Payments Account & Receipts Account\"");
+//            //STEP 5: Clean-up environment
+//            stmt.close();
+//            conn.close();
+//
+//        } catch (SQLException se) {
+//            JOptionPane.showMessageDialog(this, "Query Execution Error\nCheck Error Message Below\n" + se);
+//
+//        } finally {
+//            //finally block used to close resources
+//            try {
+//                if (stmt != null) {
+//                    stmt.close();
+//                }
+//            } catch (SQLException se2) {
+//            }// nothing we can do
+//            try {
+//                if (conn != null) {
+//                    conn.close();
+//                }
+//            } catch (SQLException se) {
+//                se.printStackTrace();
+//            }//end finally try
+//        }//end try
+//        LoadIncomeTable();
+//    }
 //*****************************End****************************************************************   
 
 //*****************************RepNoAutoGenerate Method****************************************************************
@@ -2701,9 +2806,10 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         try {
             stmt = conn.createStatement();
             String sql;
-            sql = "SELECT Date,RepNo,PayTo,PayFor,PayFrom,Rs,PayBy,Subtotal,Discount,Total FROM fms_payments WHERE Date = '" + RecDate + "'";
+            java.sql.Date sqlDate = new java.sql.Date(RecDate.getTime());
+            sql = "SELECT Date,RepNo,PayTo,PayFor,PayFrom,Rs,PayBy,Subtotal,Discount,Total FROM fms_payments WHERE Date = '" + sqlDate + "'";
             ResultSet rs = stmt.executeQuery(sql);
-
+            DefaultTableModel model = (DefaultTableModel) this.jTablePayments.getModel();
             //******** Retrieving Data **********
             //Checking table is Empty & Getting Data
             if (rs == null || !rs.first()) {
@@ -2712,7 +2818,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
                 rs.beforeFirst();
                 while (rs.next()) {
                     //Retrieve data by column name
-                    String Date = rs.getString("Date");
+                    Date Date = rs.getDate("Date");
                     String Repno = rs.getString("RepNo");
                     String PayTo = rs.getString("PayTo");
                     String PayFor = rs.getString("PayFor");
@@ -2725,7 +2831,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
                     String Total = rs.getString("Total");
 
                     Object[] row = {Date, Repno, PayTo, PayFor, PayFrom, Rs, PayBy, Subtotal, Discount, Total};
-                    DefaultTableModel model = (DefaultTableModel) this.jTablePayments.getModel();
+                    
                     model.addRow(row);
                 }
             }
@@ -2733,7 +2839,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
             rs.close();
             stmt.close();
             conn.close();
-
+            jTablePayments.setModel(model);
         } catch (SQLException se) {
             JOptionPane.showMessageDialog(this, "Query Execution Error\nCheck Error Message Below\n" + se);
 
@@ -2894,26 +3000,26 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         //********Step - 4 : Execute Select Query, Retrieving Data & Printing **********
         //Getting Date from DatePicker
         Date RecDate = this.DatePickCFS.getDate();
-        DateFormat RecDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String RecDateString = RecDateFormat.format(RecDate);
-
+//        DateFormat RecDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//        String RecDateString = RecDateFormat.format(RecDate);
+        java.sql.Date sqlDate = new java.sql.Date(RecDate.getTime());
         //varibale for get data
-        String Date = RecDateString;
+        //String Date = RecDateString;
         String Period = this.cmbCFSperiod.getSelectedItem().toString();
         try {
             stmt = conn.createStatement();
             String sql;
-            sql = "SELECT Record,Value FROM fms_cash_flow WHERE Date = '" + Date + "' AND RecType = 'Operating Activities'  AND Period = '" + Period + "'";
+            sql = "SELECT Record,Value FROM fms_cash_flow WHERE Date = '" + sqlDate + "' AND RecType = 'Operating Activities'  AND Period = '" + Period + "'";
             ResultSet rs = stmt.executeQuery(sql);
 
             stmt1 = conn.createStatement();
             String sql1;
-            sql1 = "SELECT Record,Value FROM fms_cash_flow WHERE Date = '" + Date + "' AND RecType = 'Investing Activities'  AND Period = '" + Period + "'";
+            sql1 = "SELECT Record,Value FROM fms_cash_flow WHERE Date = '" + sqlDate + "' AND RecType = 'Investing Activities'  AND Period = '" + Period + "'";
             ResultSet rs1 = stmt1.executeQuery(sql1);
 
             stmt2 = conn.createStatement();
             String sql2;
-            sql2 = "SELECT Record,Value FROM fms_cash_flow WHERE Date = '" + Date + "' AND RecType = 'Financing Activities'  AND Period = '" + Period + "'";
+            sql2 = "SELECT Record,Value FROM fms_cash_flow WHERE Date = '" + sqlDate + "' AND RecType = 'Financing Activities'  AND Period = '" + Period + "'";
             ResultSet rs2 = stmt2.executeQuery(sql2);
 
             //******** Retrieving Data **********
@@ -3545,9 +3651,9 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         //********Step - 4 : Execute Select Query, Retrieving Data & Printing **********
         //Getting Date from DatePicker
         Date RecDate = DatePickProfitFrom.getDate();
-        DateFormat RecDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String RecDateString = RecDateFormat.format(RecDate);
-        
+//        DateFormat RecDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//        String RecDateString = RecDateFormat.format(RecDate);
+        java.sql.Date sqlDate = new java.sql.Date(RecDate.getTime());
         //Calculating Weekly Date
         Calendar c = Calendar.getInstance(); 
         c.setTime(RecDate); 
@@ -3577,13 +3683,13 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
             String sql=null;
             String cmbPeriod = this.jcmbProfitPeriod.getSelectedItem().toString();
             if(cmbPeriod.equals("Daily")){
-                sql = "SELECT Date,RepNo,Payment,Subtotal,PayTax,Discount,Total FROM fms_expense WHERE Date = '" + RecDateString + "'";
+                sql = "SELECT Date,RepNo,Payment,Subtotal,PayTax,Discount,Total FROM fms_expense WHERE Date = '" + sqlDate + "'";
             }else if(cmbPeriod.equals("Weekly")){
-                sql = "SELECT Date,RepNo,Payment,Subtotal,PayTax,Discount,Total FROM fms_expense WHERE Date BETWEEN '" + RecDateString + "' AND '" + weeklyDate + "'";
+                sql = "SELECT Date,RepNo,Payment,Subtotal,PayTax,Discount,Total FROM fms_expense WHERE Date BETWEEN '" + sqlDate + "' AND '" + weeklyDate + "'";
             }else if(cmbPeriod.equals("Monthly")){
-                sql = "SELECT Date,RepNo,Payment,Subtotal,PayTax,Discount,Total FROM fms_expense WHERE Date BETWEEN '" + RecDateString + "' AND '" + MonthlyDate + "'";
+                sql = "SELECT Date,RepNo,Payment,Subtotal,PayTax,Discount,Total FROM fms_expense WHERE Date BETWEEN '" + sqlDate + "' AND '" + MonthlyDate + "'";
             }else if(cmbPeriod.equals("Annual")){
-                sql = "SELECT Date,RepNo,Payment,Subtotal,PayTax,Discount,Total FROM fms_expense WHERE Date BETWEEN '" + RecDateString + "' AND '" + AnnualDate + "'";
+                sql = "SELECT Date,RepNo,Payment,Subtotal,PayTax,Discount,Total FROM fms_expense WHERE Date BETWEEN '" + sqlDate + "' AND '" + AnnualDate + "'";
             }
             
             ResultSet rs = stmt.executeQuery(sql);
@@ -3655,8 +3761,8 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         //********Step - 4 : Execute Select Query, Retrieving Data & Printing **********
         //Getting Date from DatePicker
         Date RecDate = DatePickProfitFrom.getDate();
-        DateFormat RecDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String RecDateString = RecDateFormat.format(RecDate);
+        java.sql.Date sqlDate = new java.sql.Date(RecDate.getTime());
+        
         
         //Calculating Weekly Date
         Calendar c = Calendar.getInstance(); 
@@ -3689,13 +3795,13 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
             String sql=null;
             String cmbPeriod = this.jcmbProfitPeriod.getSelectedItem().toString();
             if(cmbPeriod.equals("Daily")){
-                sql = "SELECT Date,RepNo,Sale,Subtotal,SalesTax,Discount,Total FROM fms_income WHERE Date = '" + RecDateString + "'";
+                sql = "SELECT Date,RepNo,Sale,Subtotal,SalesTax,Discount,Total FROM fms_income WHERE Date = '" + sqlDate + "'";
             }else if(cmbPeriod.equals("Weekly")){
-                sql = "SELECT Date,RepNo,Sale,Subtotal,SalesTax,Discount,Total FROM fms_income WHERE Date BETWEEN '" + RecDateString + "' AND '" + weeklyDate + "'";
+                sql = "SELECT Date,RepNo,Sale,Subtotal,SalesTax,Discount,Total FROM fms_income WHERE Date BETWEEN '" + sqlDate + "' AND '" + weeklyDate + "'";
             }else if(cmbPeriod.equals("Monthly")){
-                sql = "SELECT Date,RepNo,Sale,Subtotal,SalesTax,Discount,Total FROM fms_income WHERE Date BETWEEN '" + RecDateString + "' AND '" + MonthlyDate + "'";
+                sql = "SELECT Date,RepNo,Sale,Subtotal,SalesTax,Discount,Total FROM fms_income WHERE Date BETWEEN '" + sqlDate+ "' AND '" + MonthlyDate + "'";
             }else if(cmbPeriod.equals("Annual")){
-                sql = "SELECT Date,RepNo,Sale,Subtotal,SalesTax,Discount,Total FROM fms_income WHERE Date BETWEEN '" + RecDateString + "' AND '" + AnnualDate + "'";
+                sql = "SELECT Date,RepNo,Sale,Subtotal,SalesTax,Discount,Total FROM fms_income WHERE Date BETWEEN '" + sqlDate + "' AND '" + AnnualDate + "'";
             }
             
             ResultSet rs = stmt.executeQuery(sql);
@@ -3704,7 +3810,7 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
             //varibale for un pw incorrect message
             while (rs.next()) {
                 //Retrieve data by column name
-                String Date = rs.getString("Date");
+                Date Date = rs.getDate("Date");
                 String Repno = rs.getString("RepNo");
                 String Sale = rs.getString("Sale");
                 String Subtotal = rs.getString("Subtotal");
@@ -3750,10 +3856,11 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         //varibale for get data
         //Getting Date from DatePicker
         Date RecDate = DatePickProfitFrom.getDate();
-        DateFormat RecDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String RecDateString = RecDateFormat.format(RecDate);
+//        DateFormat RecDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//        String RecDateString = RecDateFormat.format(RecDate);
+java.sql.Date sqlDate = new java.sql.Date(RecDate.getTime());
         
-        String Date = null;
+        Date Date = null;
         String Repno = null;
         String Sale = null;
         String Subtotal = null;
@@ -3782,14 +3889,14 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
         try {
             stmt = conn.createStatement();
             String sql;
-            sql = "SELECT Date,RepNo,Sale,Subtotal,SalesTax,Discount,Total FROM fms_income WHERE Date = '"+RecDateString+"'";
+            sql = "SELECT Date,RepNo,Sale,Subtotal,SalesTax,Discount,Total FROM fms_income WHERE Date = '"+sqlDate+"'";
             ResultSet rs = stmt.executeQuery(sql);            
 
             //******** Retrieving Data **********
             //Checking table is Empty & Getting Data
             while (rs.next()) {
                 //Retrieve data by column name
-                Date = rs.getString("Date");
+                Date = rs.getDate("Date");
                 Repno = rs.getString("RepNo");
                 Sale = rs.getString("Sale");
                 Subtotal = rs.getString("Subtotal");
@@ -3840,10 +3947,12 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
+        AddAllExpenseTable();
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        AddAllIncomeTable();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -4006,6 +4115,52 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
             this.txtCFSValue.setText("Please Enter Numeric Value");
         }
     }//GEN-LAST:event_txtCFSValueKeyReleased
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        // TODO add your handling code here:
+        
+        LoadPayTable();
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        // TODO add your handling code here:
+        LoadReceiptsTable();
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton17ActionPerformed
+
+    private void jButton16MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton16MouseEntered
+        // TODO add your handling code here:
+        jButton16.setToolTipText("This button is only enable for admin user only." );
+    }//GEN-LAST:event_jButton16MouseEntered
+
+    private void jButton12MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MouseEntered
+        // TODO add your handling code here:
+        jButton12.setToolTipText("This button is only enable for admin user only." );
+    }//GEN-LAST:event_jButton12MouseEntered
+
+    private void jButton5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseEntered
+        // TODO add your handling code here:
+        jButton5.setToolTipText("This button is only enable for admin user only." );
+    }//GEN-LAST:event_jButton5MouseEntered
+
+    private void jButton48MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton48MouseEntered
+        // TODO add your handling code here:
+        jButton48.setToolTipText("This button is only enable for admin user only." );
+    }//GEN-LAST:event_jButton48MouseEntered
+
+    private void jButton47MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton47MouseEntered
+        // TODO add your handling code here:
+        jButton47.setToolTipText("This button is only enable for admin user only." );
+    }//GEN-LAST:event_jButton47MouseEntered
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        LoadExpenseTable();
+        LoadIncomeTable();
+    }//GEN-LAST:event_jButton2ActionPerformed
     
     /**
      * @param args the command line arguments
@@ -4061,12 +4216,15 @@ public class FinanceManagementWindow extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbPayM;
     private javax.swing.JTextField dep;
     private javax.swing.JTextField disc;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
+    private javax.swing.JButton jButton17;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton24;
     private javax.swing.JButton jButton28;
     private javax.swing.JButton jButton3;
