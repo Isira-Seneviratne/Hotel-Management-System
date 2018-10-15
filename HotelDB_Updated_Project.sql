@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 14, 2018 at 10:03 AM
+-- Generation Time: Oct 15, 2018 at 09:41 AM
 -- Server version: 8.0.12
 -- PHP Version: 7.2.11
 
@@ -485,45 +485,29 @@ INSERT INTO `candidate` (`candidateID`, `full_name`, `name_with_Initial`, `gende
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Customer`
+-- Table structure for table `customer`
 --
 
-CREATE TABLE `Customer` (
-  `Customer_ID` int(4) NOT NULL,
-  `Booking_ID` int(11) NOT NULL,
-  `Customer_name` varchar(20) NOT NULL,
-  `NIC` varchar(10) NOT NULL,
-  `Contact_no` int(10) NOT NULL,
-  `email` varchar(20) NOT NULL
+CREATE TABLE `customer` (
+  `name` varchar(50) NOT NULL,
+  `address` varchar(60) NOT NULL,
+  `phone` int(10) NOT NULL,
+  `email` varchar(20) NOT NULL,
+  `nic` varchar(10) NOT NULL,
+  `nationality` varchar(50) NOT NULL,
+  `gender` varchar(10) NOT NULL,
+  `Regular` varchar(10) NOT NULL,
+  `Backlisted` varchar(10) NOT NULL,
+  `comment` varchar(100) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `Customer`
+-- Dumping data for table `customer`
 --
 
-INSERT INTO `Customer` (`Customer_ID`, `Booking_ID`, `Customer_name`, `NIC`, `Contact_no`, `email`) VALUES
-(2012, 2002, 'himali', '691216428V', 759778912, 'himali@gmail.com'),
-(2010, 2001, 'keerthika', '987582658V', 777778912, 'keerthi@gmail.com'),
-(1024, 1010, 'kamila', '778965429V', 116587596, 'kamila@gmail.com'),
-(1022, 1009, 'cheshan', '942546859V', 759078912, 'cheshan@gmail.com'),
-(1020, 1008, 'yasas', '568521025V', 114569852, 'yasas@gmail.com'),
-(1018, 1007, 'chathura', '856240236V', 118654826, 'chathura@yahoo.com'),
-(1012, 1006, 'lahiru', '658942583V', 115364852, 'lahiru@yahoo.com'),
-(1006, 1005, 'isuru', '658754635V', 778965482, 'isuru@yahoo.com'),
-(1007, 1004, 'Tharaka', '897525426V', 116856982, 'tharaka@yahoo.com'),
-(1004, 1003, 'Prabash', '946523583V', 115698526, 'prabash@yahoo.com'),
-(1003, 1002, 'Samintha', '956320106V', 112365879, 'Sami@gmail.com'),
-(1002, 1001, 'Oshitha', '943510806V', 752037737, 'oshithar@gmail.com'),
-(2016, 2003, 'mahendra', '964520108V', 755024244, 'mlr@gmail.com'),
-(2018, 2004, 'sampath', '886585629V', 777778915, 'sam@gmail.com'),
-(2022, 2005, 'nirosha', '886585629V', 382237735, 'niro@gmail.com'),
-(2024, 2006, 'ajith', '786512950V', 382234432, 'ajith@gmail.com'),
-(2026, 2006, 'upeksha', '956816280V', 118945365, 'upeksha@gmail.com'),
-(2020, 2012, 'thilini', '756980156v', 115698753, 'thilini@gmail.com'),
-(2025, 2016, 'upeksha', '756982549v', 772681358, 'upekshai@gmail.com'),
-(2027, 2018, 'dinaya', '146982654v', 114658264, 'dina@gmail.com'),
-(234, 123, 'Oshithaaa', '951236547V', 712387754, '951236547V'),
-(5656, 8585, 'tharaka', '256589635V', 112654789, 'thara@gmail.com');
+INSERT INTO `customer` (`name`, `address`, `phone`, `email`, `nic`, `nationality`, `gender`, `Regular`, `Backlisted`, `comment`) VALUES
+('Oshitha', 'panadura', 719999999, 'Oshith@gmail.com', '942365187v', 'Australian', 'male', '', '', 'dddddd'),
+('upeksha', 'colombo', 12365478, 'upeksha@gmail.com', '940253671v', 'Australian', 'female', '', '', 'www');
 
 -- --------------------------------------------------------
 
@@ -801,6 +785,48 @@ INSERT INTO `fms_receipts` (`Date`, `RepNo`, `RepType`, `Department`, `Sale`, `P
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `hall`
+--
+
+CREATE TABLE `hall` (
+  `Booking_ID` varchar(10) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `Reserve_date` date NOT NULL,
+  `Hall_name` varchar(10) NOT NULL,
+  `description` varchar(100) NOT NULL,
+  `Total Amount` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `hall`
+--
+
+INSERT INTO `hall` (`Booking_ID`, `name`, `Reserve_date`, `Hall_name`, `description`, `Total Amount`) VALUES
+('H001', 'Upeksha', '2017-11-08', 'Pearl', 'welcome drinks included', 50000),
+('H002', 'Saman', '2017-11-02', 'Ruby', 'welcome drinks included', 80000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hall&room_avalability`
+--
+
+CREATE TABLE `hall&room_avalability` (
+  `Type` varchar(20) NOT NULL,
+  `Avalability` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `hall&room_avalability`
+--
+
+INSERT INTO `hall&room_avalability` (`Type`, `Avalability`) VALUES
+('DoubleRoom', 15),
+('SingleRoom ', 10);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `interview_details`
 --
 
@@ -939,6 +965,30 @@ CREATE TABLE `Login` (
 
 INSERT INTO `Login` (`eID`, `Username`, `Password`, `Logged in?`) VALUES
 ('E000000001', 'isira123', 'abcd1234', 'No');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `room`
+--
+
+CREATE TABLE `room` (
+  `bookingID` varchar(20) NOT NULL,
+  `customerName` varchar(100) NOT NULL,
+  `remarks` varchar(500) NOT NULL,
+  `singleBed` int(11) NOT NULL,
+  `doubleBed` int(11) NOT NULL,
+  `extraBed` int(11) NOT NULL,
+  `totalAmonut` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `room`
+--
+
+INSERT INTO `room` (`bookingID`, `customerName`, `remarks`, `singleBed`, `doubleBed`, `extraBed`, `totalAmonut`) VALUES
+('R001', 'Dilshan', 'fffffffffffffff', 2, 1, 0, 500000),
+('R002', 'Upeksha', 'fffffff', 2, 0, 0, 200000);
 
 -- --------------------------------------------------------
 
@@ -1112,6 +1162,12 @@ ALTER TABLE `candidate`
   ADD PRIMARY KEY (`candidateID`);
 
 --
+-- Indexes for table `customer`
+--
+ALTER TABLE `customer`
+  ADD PRIMARY KEY (`name`);
+
+--
 -- Indexes for table `department`
 --
 ALTER TABLE `department`
@@ -1148,6 +1204,19 @@ ALTER TABLE `fms_receipts`
   ADD PRIMARY KEY (`RepNo`);
 
 --
+-- Indexes for table `hall`
+--
+ALTER TABLE `hall`
+  ADD PRIMARY KEY (`Booking_ID`),
+  ADD UNIQUE KEY `Booking_ID` (`Booking_ID`);
+
+--
+-- Indexes for table `hall&room_avalability`
+--
+ALTER TABLE `hall&room_avalability`
+  ADD PRIMARY KEY (`Type`);
+
+--
 -- Indexes for table `interview_details`
 --
 ALTER TABLE `interview_details`
@@ -1174,6 +1243,12 @@ ALTER TABLE `job`
 --
 ALTER TABLE `Login`
   ADD PRIMARY KEY (`eID`);
+
+--
+-- Indexes for table `room`
+--
+ALTER TABLE `room`
+  ADD PRIMARY KEY (`bookingID`);
 
 --
 -- Indexes for table `Stock_Cleaning_Items`
