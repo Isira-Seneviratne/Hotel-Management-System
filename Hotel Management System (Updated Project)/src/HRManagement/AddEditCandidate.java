@@ -5,6 +5,13 @@
  */
 package HRManagement;
 
+import com.mysql.jdbc.Connection;
+import java.awt.HeadlessException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Irushi salwathura
@@ -12,6 +19,16 @@ package HRManagement;
 public class AddEditCandidate extends javax.swing.JFrame {
 
     private String curEID;
+    HRModel c = new HRModel();
+    HRController hrm = new HRController();
+    Connection conn = null;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
+
+    java.util.Date date;
+    String sql = "";
+
+
     /**
      * Creates new form AddEditCandidate
      * @param eID
@@ -19,6 +36,8 @@ public class AddEditCandidate extends javax.swing.JFrame {
     public AddEditCandidate(String eID) {
         initComponents();
         curEID = eID;
+        conn = (Connection) Main.MyDBConnection.Myconnect();
+        hrm.AutoGeneratePrimaryKey(lbl_cid, txt_canID, 'c', "candidate", "candidateID");
     }
 
     /**
@@ -33,51 +52,58 @@ public class AddEditCandidate extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txt_canID = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        txt_fname = new javax.swing.JTextField();
+        txt_initialName = new javax.swing.JTextField();
+        txt_nic = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
+        cmb_gender = new javax.swing.JComboBox<>();
+        dc_birth = new com.toedter.calendar.JDateChooser();
+        dc_birth1 = new com.toedter.calendar.JDateChooser();
+        dc_birth2 = new com.toedter.calendar.JDateChooser();
+        dc_birth3 = new com.toedter.calendar.JDateChooser();
+        dc_birth4 = new com.toedter.calendar.JDateChooser();
+        dc_dob = new com.toedter.calendar.JDateChooser();
+        lbl_cid = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
+        txt_mail = new javax.swing.JTextField();
+        txt_mno = new javax.swing.JTextField();
+        txt_hno = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtA_address = new javax.swing.JTextArea();
         jPanel5 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jTextField13 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cmb_department = new javax.swing.JComboBox<>();
+        cmb_designation = new javax.swing.JComboBox<>();
         jLabel15 = new javax.swing.JLabel();
-        jTextField14 = new javax.swing.JTextField();
+        txtA_qualification = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        jTextField15 = new javax.swing.JTextField();
+        txt_degree = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
-        jTextField16 = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        dc_aplicantDate = new com.toedter.calendar.JDateChooser();
+        txt_exp = new javax.swing.JTextField();
+        saveButton = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         backtButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        lbl_canID = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Add/Edit Candidate Details");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 20, 60));
@@ -89,11 +115,11 @@ public class AddEditCandidate extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Employee ID          :");
+        jLabel1.setText("Candidate ID          :");
         jPanel6.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 33, -1, -1));
 
-        jTextField1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jPanel6.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 30, 168, -1));
+        txt_canID.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jPanel6.add(txt_canID, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 30, 110, -1));
 
         jLabel2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -120,40 +146,29 @@ public class AddEditCandidate extends javax.swing.JFrame {
         jLabel6.setText("Date of Birth           :");
         jPanel6.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 234, -1, -1));
 
-        jTextField2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jPanel6.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 70, 168, -1));
+        txt_fname.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jPanel6.add(txt_fname, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 70, 168, -1));
 
-        jTextField3.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jPanel6.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 110, 168, -1));
+        txt_initialName.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jPanel6.add(txt_initialName, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 110, 168, -1));
 
-        jTextField4.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jPanel6.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 150, 168, -1));
-
-        jTextField6.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jPanel6.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 231, 168, -1));
-
-        jRadioButton1.setBackground(new java.awt.Color(28, 48, 90));
-        jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton1.setText("Male");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
-            }
-        });
-        jPanel6.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 190, -1, -1));
-
-        jRadioButton2.setBackground(new java.awt.Color(28, 48, 90));
-        jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton2.setText("Female");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
-            }
-        });
-        jPanel6.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 190, -1, -1));
+        txt_nic.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jPanel6.add(txt_nic, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 150, 168, -1));
 
         jPanel3.setBackground(new java.awt.Color(28, 48, 90));
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        cmb_gender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Gender", "Male", "Female" }));
+        jPanel3.add(cmb_gender, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 170, 20));
+        jPanel3.add(dc_birth, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, 130, -1));
+        jPanel3.add(dc_birth1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, 130, -1));
+        jPanel3.add(dc_birth2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, 130, -1));
+        jPanel3.add(dc_birth3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, 130, -1));
+        jPanel3.add(dc_birth4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, 130, -1));
+        jPanel3.add(dc_dob, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 170, 20));
+        jPanel3.add(lbl_cid, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 50, 20));
+
         jPanel6.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 370, 260));
 
         jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 390, 290));
@@ -182,18 +197,18 @@ public class AddEditCandidate extends javax.swing.JFrame {
         jLabel10.setText("Email                  :");
         jPanel7.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 233, -1, -1));
 
-        jTextField7.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jPanel7.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 230, 168, -1));
+        txt_mail.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jPanel7.add(txt_mail, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 230, 168, -1));
 
-        jTextField8.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jPanel7.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 190, 168, -1));
+        txt_mno.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jPanel7.add(txt_mno, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 190, 168, -1));
 
-        jTextField9.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jPanel7.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 150, 168, -1));
+        txt_hno.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jPanel7.add(txt_hno, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 150, 168, -1));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtA_address.setColumns(20);
+        txtA_address.setRows(5);
+        jScrollPane1.setViewportView(txtA_address);
 
         jPanel7.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 43, 160, -1));
 
@@ -222,54 +237,64 @@ public class AddEditCandidate extends javax.swing.JFrame {
         jLabel13.setText("Applicant Date    :");
         jPanel9.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
-        jTextField13.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jPanel9.add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 168, -1));
+        cmb_department.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Department", "HR Department", "Finance Department", " " }));
+        jPanel9.add(cmb_department, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 170, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Department", "HR Department", "Finance Department", " " }));
-        jPanel9.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 170, -1));
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Role" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        cmb_designation.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Role" }));
+        cmb_designation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                cmb_designationActionPerformed(evt);
             }
         });
-        jPanel9.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 170, -1));
+        jPanel9.add(cmb_designation, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 170, -1));
 
         jLabel15.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Qualifications      :");
         jPanel9.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
 
-        jTextField14.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jPanel9.add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 168, -1));
+        txtA_qualification.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jPanel9.add(txtA_qualification, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 168, -1));
 
         jLabel16.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Degree               :");
         jPanel9.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
 
-        jTextField15.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jPanel9.add(jTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 168, -1));
+        txt_degree.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jPanel9.add(txt_degree, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 168, -1));
 
         jLabel17.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Experience          :");
         jPanel9.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
 
-        jTextField16.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jPanel9.add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, 168, -1));
-
         jPanel4.setBackground(new java.awt.Color(28, 48, 90));
         jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel4.add(dc_aplicantDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 170, 20));
+
+        txt_exp.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        txt_exp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_expActionPerformed(evt);
+            }
+        });
+        jPanel4.add(txt_exp, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 168, -1));
+
         jPanel9.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 350, 260));
 
         jPanel1.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 370, 290));
 
-        jButton1.setBackground(new java.awt.Color(0, 102, 0));
-        jButton1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButton1.setText("Save");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 630, 90, -1));
+        saveButton.setBackground(new java.awt.Color(0, 102, 0));
+        saveButton.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        saveButton.setText("Save");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(saveButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 630, 90, -1));
 
         jButton2.setBackground(new java.awt.Color(0, 102, 255));
         jButton2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -291,26 +316,38 @@ public class AddEditCandidate extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(28, 48, 90));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Add/Edit Candidate", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 790, 630));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel2.add(lbl_canID, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 604, 310, 20));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 700));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 790, 640));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 710));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
-
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
-
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    public void setCandidate() {
+        c.setCandidateID(txt_canID.getText());
+        c.setFullname(txt_fname.getText());
+        c.setIname(txt_initialName.getText());
+        c.setGender(cmb_gender.getSelectedItem().toString());
+        c.setNic(txt_nic.getText());
+        c.setDob(((JTextField) dc_dob.getDateEditor().getUiComponent()).getText());
+        c.setAddress(txtA_address.getText());
+        c.setHno(txt_hno.getText());
+        c.setMno(txt_mno.getText());
+        c.setMail(txt_mail.getText());
+        c.setApplicantDate(((JTextField) dc_aplicantDate.getDateEditor().getUiComponent()).getText());
+        c.setDepartment(cmb_department.getSelectedItem().toString());
+        c.setDesignation(cmb_designation.getSelectedItem().toString());
+        c.setQulification(txtA_qualification.getText());
+        c.setDegree(txt_degree.getText());
+        c.setExperience(txt_exp.getText());
+    }
+    private void cmb_designationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_designationActionPerformed
         // TODO add your handling code here:
        
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_cmb_designationActionPerformed
 
     private void backtButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backtButtonActionPerformed
         // TODO add your handling code here:
@@ -318,6 +355,30 @@ public class AddEditCandidate extends javax.swing.JFrame {
         HRManagementWindow hr = new HRManagementWindow(curEID);
         hr.setVisible(true);
     }//GEN-LAST:event_backtButtonActionPerformed
+
+    private void txt_expActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_expActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_expActionPerformed
+
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+        // TODO add your handling code here:
+        this.setCandidate();
+        try {
+            //insert data to database
+            boolean status = HRController.InsertCandidate(c.getCandidateID(),c.getFullname(),c.getIname(),c.getEmpgender(),c.getEmpnic(),
+                    c.getEmpdob(),c.getEmpaddress(),c.getHno(),c.getMno(),c.getMail(),c.getApplicantDate(),c.getDepartment() ,c.getDesignation(),c.getQulification(),c.getDegree(),c.getExperience());
+            if (status = true) {
+                JOptionPane.showMessageDialog(null, "Candidate Record Saved Successfully");
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Candidate Record cant save");
+            }
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(null, "Can't save record..Check fields and try again");
+        }
+                                                
+
+    }//GEN-LAST:event_saveButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -356,11 +417,18 @@ public class AddEditCandidate extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backtButton;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> cmb_department;
+    private javax.swing.JComboBox<String> cmb_designation;
+    private javax.swing.JComboBox<String> cmb_gender;
+    public com.toedter.calendar.JDateChooser dc_aplicantDate;
+    public com.toedter.calendar.JDateChooser dc_birth;
+    public com.toedter.calendar.JDateChooser dc_birth1;
+    public com.toedter.calendar.JDateChooser dc_birth2;
+    public com.toedter.calendar.JDateChooser dc_birth3;
+    public com.toedter.calendar.JDateChooser dc_birth4;
+    public com.toedter.calendar.JDateChooser dc_dob;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -385,21 +453,20 @@ public class AddEditCandidate extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField16;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JLabel lbl_canID;
+    private javax.swing.JLabel lbl_cid;
+    private javax.swing.JButton saveButton;
+    private javax.swing.JTextArea txtA_address;
+    private javax.swing.JTextField txtA_qualification;
+    private javax.swing.JTextField txt_canID;
+    private javax.swing.JTextField txt_degree;
+    private javax.swing.JTextField txt_exp;
+    private javax.swing.JTextField txt_fname;
+    private javax.swing.JTextField txt_hno;
+    private javax.swing.JTextField txt_initialName;
+    private javax.swing.JTextField txt_mail;
+    private javax.swing.JTextField txt_mno;
+    private javax.swing.JTextField txt_nic;
     // End of variables declaration//GEN-END:variables
 }

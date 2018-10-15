@@ -5,36 +5,77 @@
  */
 package HRManagement;
 
+
 import Main.Login;
 import Main.MainWindow;
+import com.mysql.jdbc.Connection;
+import java.awt.Color;
+import java.awt.HeadlessException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
  * @author Irushi
  */
 public class HRManagementWindow extends javax.swing.JFrame {
-    
     private String curEID;
     private static HRManagementWindow instance;
     /**
      * Creates new form HRManagementWindow
      * @param eID
      */
+    HRModel c = new HRModel();
+    HRController hrm = new HRController();
+    Connection conn = null;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
+
+    java.util.Date date;
+    String sql = "";
+
+
     
     public HRManagementWindow(String eID) {
         initComponents();
         curEID = eID;
         //jTabbedPane1.addTab("User", new User());
+        this.setLocationRelativeTo(null);
+        hrm.AutoGeneratePrimaryKey(lbl_eid, txt_empID, 'e', "employee", "Emp_ID");
+        hrm.AutoGeneratePrimaryKey(lbl_iidVal, txt_interID, 'i', "interview_schedule", "interID");
+        conn = (Connection) Main.MyDBConnection.Myconnect();
+        HRController.loadTable(tbl_employee, "employee", "Emp_ID");
+        HRController.loadTable(tbl_candidate, "candidate", "candidateID");
+        HRController.loadTable(tbl_interview_schedule, "interview_schedule", "date");
+        HRController.loadTable(tbl_attendance, "attendence", "attID");
+        HRController.loadTable(tbl_job, "job", "jobid");
     }
+    
 
-    //This code was added by Isira.
+        public void setEmployee() {
+        c.setEmpID(txt_empID.getText());
+        c.setFname(txt_fname.getText());
+        c.setEmpgender(cmb_empgender.getSelectedItem().toString());
+        c.setEmpnic(txt_nic.getText());
+        c.setEmpdob(((JTextField) dc_startdate.getDateEditor().getUiComponent()).getText());
+        c.setEmpaddress(txtA_address.getText());
+        c.setMno(txt_mno.getText());
+        c.setEmpmail(txt_mail.getText());
+        c.setSdate(((JTextField) dc_startdate.getDateEditor().getUiComponent()).getText());
+        c.setEmpdepartment(txt_dptn.getText());
+        c.setEmpdesignation(txt_dsgn.getText());
+        c.setUserName(txt_usrnme.getText());
+        c.setPassword(pwd_password.getPassword());
+    }
+    
     public static HRManagementWindow getInstance(String eID) {
         if(instance == null) {
             instance = new HRManagementWindow(eID);
         }
         return instance;
     }
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -53,57 +94,51 @@ public class HRManagementWindow extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jPanel19 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jTextField6 = new javax.swing.JTextField();
-        jPanel7 = new javax.swing.JPanel();
-        jPanel20 = new javax.swing.JPanel();
+        txt_empID = new javax.swing.JTextField();
+        txt_nic = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jTextField36 = new javax.swing.JTextField();
+        txtA_address = new javax.swing.JTextArea();
+        txt_mno = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        txt_mail = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        txt_dptn = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        txt_dsgn = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        dc_startdate = new com.toedter.calendar.JDateChooser();
+        dc_birth = new com.toedter.calendar.JDateChooser();
+        lbl_eid = new javax.swing.JLabel();
+        txt_fname = new javax.swing.JTextField();
+        cmb_empgender = new javax.swing.JComboBox<>();
         jPanel8 = new javax.swing.JPanel();
         jPanel24 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jTextField14 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
+        txt_usrnme = new javax.swing.JTextField();
+        pwd_password = new javax.swing.JPasswordField();
         jPanel22 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Addbutton = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jPanel9 = new javax.swing.JPanel();
-        jPanel21 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
-        jTextField13 = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        jTextField37 = new javax.swing.JTextField();
+        updateButton = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl_employee = new javax.swing.JTable();
         jPanel23 = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
-        jTextField5 = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        btn_empSearch = new javax.swing.JButton();
+        txt_empSearch = new javax.swing.JTextField();
+        btn_viewallemp = new javax.swing.JButton();
+        btn_remove = new javax.swing.JButton();
+        cmb_empSearch = new javax.swing.JComboBox<>();
+        lbl_SearchValidate = new javax.swing.JLabel();
+        lbl_btntblvalidate = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jTabbedPane3 = new javax.swing.JTabbedPane();
         jPanel25 = new javax.swing.JPanel();
@@ -112,15 +147,15 @@ public class HRManagementWindow extends javax.swing.JFrame {
         jButton37 = new javax.swing.JButton();
         jPanel27 = new javax.swing.JPanel();
         jScrollPane8 = new javax.swing.JScrollPane();
-        jTable7 = new javax.swing.JTable();
-        jComboBox7 = new javax.swing.JComboBox<>();
-        jTextField38 = new javax.swing.JTextField();
+        tbl_candidate = new javax.swing.JTable();
+        Combobox_search = new javax.swing.JComboBox<>();
+        candidate_text = new javax.swing.JTextField();
         jButton31 = new javax.swing.JButton();
         jButton32 = new javax.swing.JButton();
         jButton38 = new javax.swing.JButton();
         jPanel29 = new javax.swing.JPanel();
         jPanel30 = new javax.swing.JPanel();
-        jTextField39 = new javax.swing.JTextField();
+        txt_interID = new javax.swing.JTextField();
         jPanel31 = new javax.swing.JPanel();
         jLabel37 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
@@ -130,21 +165,20 @@ public class HRManagementWindow extends javax.swing.JFrame {
         jTextField42 = new javax.swing.JTextField();
         jTextField40 = new javax.swing.JTextField();
         jLabel35 = new javax.swing.JLabel();
-        jTextField43 = new javax.swing.JTextField();
         jLabel36 = new javax.swing.JLabel();
         jTextField44 = new javax.swing.JTextField();
-        jButton39 = new javax.swing.JButton();
-        jButton40 = new javax.swing.JButton();
         jButton41 = new javax.swing.JButton();
+        jDateChooser4 = new com.toedter.calendar.JDateChooser();
+        lbl_iidVal = new javax.swing.JLabel();
+        jButton47 = new javax.swing.JButton();
+        jButton48 = new javax.swing.JButton();
         jPanel32 = new javax.swing.JPanel();
         jComboBox8 = new javax.swing.JComboBox<>();
         jTextField45 = new javax.swing.JTextField();
         jButton42 = new javax.swing.JButton();
         jButton45 = new javax.swing.JButton();
         jScrollPane10 = new javax.swing.JScrollPane();
-        jTable9 = new javax.swing.JTable();
-        jButton47 = new javax.swing.JButton();
-        jButton48 = new javax.swing.JButton();
+        tbl_interview_schedule = new javax.swing.JTable();
         jButton49 = new javax.swing.JButton();
         jPanel34 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -153,7 +187,7 @@ public class HRManagementWindow extends javax.swing.JFrame {
         jButton27 = new javax.swing.JButton();
         jPanel13 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        tbl_attendance = new javax.swing.JTable();
         jComboBox4 = new javax.swing.JComboBox<>();
         jTextField23 = new javax.swing.JTextField();
         jButton25 = new javax.swing.JButton();
@@ -199,15 +233,16 @@ public class HRManagementWindow extends javax.swing.JFrame {
         jButton21 = new javax.swing.JButton();
         jButton22 = new javax.swing.JButton();
         jScrollPane7 = new javax.swing.JScrollPane();
-        jTable6 = new javax.swing.JTable();
+        tbl_job = new javax.swing.JTable();
         jPanel26 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("HR Management");
         setMinimumSize(new java.awt.Dimension(970, 660));
-        setPreferredSize(new java.awt.Dimension(970, 660));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel28.setBackground(new java.awt.Color(0, 20, 60));
+        jPanel28.setToolTipText("");
         jPanel28.setMinimumSize(new java.awt.Dimension(970, 660));
         jPanel28.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -250,9 +285,6 @@ public class HRManagementWindow extends javax.swing.JFrame {
         jPanel19.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel19.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextField1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jPanel19.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 130, -1));
-
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -265,153 +297,112 @@ public class HRManagementWindow extends javax.swing.JFrame {
         jLabel2.setText("Full Name            :");
         jPanel19.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
 
-        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Name with Initial :");
-        jPanel19.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
-
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("NIC                     :");
-        jPanel19.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
+        jPanel19.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Gender               :");
-        jPanel19.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
+        jPanel19.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Date of Birth       :");
-        jPanel19.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, -1));
+        jPanel19.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, -1, -1));
 
-        jTextField2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txt_empID.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        txt_empID.setToolTipText("");
+        txt_empID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txt_empIDActionPerformed(evt);
             }
         });
-        jPanel19.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 130, -1));
+        jPanel19.add(txt_empID, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 150, -1));
 
-        jTextField3.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jPanel19.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 130, -1));
-
-        jTextField4.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jPanel19.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 130, -1));
-
-        jRadioButton1.setBackground(new java.awt.Color(28, 48, 90));
-        jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton1.setText("Male");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
-            }
-        });
-        jPanel19.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, -1, -1));
-
-        jRadioButton2.setBackground(new java.awt.Color(28, 48, 90));
-        jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton2.setText("Female");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
-            }
-        });
-        jPanel19.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, -1, -1));
-
-        jTextField6.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jPanel19.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 130, -1));
-
-        jPanel6.add(jPanel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 280, 240));
-
-        jPanel5.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 300, 270));
-
-        jPanel7.setBackground(new java.awt.Color(28, 48, 90));
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Contact Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 0, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel20.setBackground(new java.awt.Color(28, 48, 90));
-        jPanel20.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        txt_nic.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jPanel19.add(txt_nic, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 150, -1));
 
         jLabel7.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Address               :");
+        jLabel7.setText("Address              :");
+        jPanel19.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Home Number    :");
+        txtA_address.setColumns(20);
+        txtA_address.setRows(5);
+        jScrollPane1.setViewportView(txtA_address);
+
+        jPanel19.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 150, 40));
+
+        txt_mno.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jPanel19.add(txt_mno, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 130, -1));
 
         jLabel9.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Mobile Number   :");
+        jPanel19.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, -1, -1));
+
+        txt_mail.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        txt_mail.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txt_mailMouseExited(evt);
+            }
+        });
+        jPanel19.add(txt_mail, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, 130, -1));
 
         jLabel10.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Email                  :");
+        jPanel19.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, -1, -1));
 
-        jTextField7.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Department        :");
+        jPanel19.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, -1, -1));
 
-        jTextField8.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        txt_dptn.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jPanel19.add(txt_dptn, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, 130, -1));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jLabel12.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Designation        :");
+        jPanel19.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 170, -1, -1));
 
-        jTextField36.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        txt_dsgn.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        txt_dsgn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_dsgnActionPerformed(evt);
+            }
+        });
+        jPanel19.add(txt_dsgn, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, 130, -1));
 
-        javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
-        jPanel20.setLayout(jPanel20Layout);
-        jPanel20Layout.setHorizontalGroup(
-            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel20Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel20Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField7))
-                    .addGroup(jPanel20Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField8))
-                    .addGroup(jPanel20Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField36))
-                    .addGroup(jPanel20Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel20Layout.setVerticalGroup(
-            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel20Layout.createSequentialGroup()
-                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jTextField36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(31, Short.MAX_VALUE))
-        );
+        jLabel13.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Start Date          :");
+        jPanel19.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, -1, -1));
+        jPanel19.add(dc_startdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 210, 130, -1));
+        jPanel19.add(dc_birth, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, 130, -1));
+        jPanel19.add(lbl_eid, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 150, 20));
 
-        jPanel7.add(jPanel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 280, 240));
+        txt_fname.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        txt_fname.setToolTipText("");
+        txt_fname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_fnameActionPerformed(evt);
+            }
+        });
+        jPanel19.add(txt_fname, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 150, -1));
 
-        jPanel5.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, 300, 270));
+        cmb_empgender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Gender", "Male", "Female" }));
+        jPanel19.add(cmb_empgender, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 150, 20));
+
+        jPanel6.add(jPanel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 570, 240));
+
+        jPanel5.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 590, 260));
 
         jPanel8.setBackground(new java.awt.Color(28, 48, 90));
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "User Login Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 0, 14), new java.awt.Color(255, 255, 255))); // NOI18N
@@ -428,24 +419,27 @@ public class HRManagementWindow extends javax.swing.JFrame {
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Password            :");
 
-        jTextField14.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-
-        jTextField10.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        txt_usrnme.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        txt_usrnme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_usrnmeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
         jPanel24.setLayout(jPanel24Layout);
         jPanel24Layout.setHorizontalGroup(
             jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel24Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel24Layout.createSequentialGroup()
+                .addContainerGap(29, Short.MAX_VALUE)
                 .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel14)
                     .addComponent(jLabel15))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField14, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-                    .addComponent(jTextField10))
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(txt_usrnme, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                    .addComponent(pwd_password))
+                .addContainerGap())
         );
         jPanel24Layout.setVerticalGroup(
             jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -453,15 +447,15 @@ public class HRManagementWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
-                    .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_usrnme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel15)
+                    .addComponent(pwd_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        jPanel8.add(jPanel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 290, 80));
+        jPanel8.add(jPanel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 310, 80));
 
         jPanel22.setBackground(new java.awt.Color(0, 0, 102));
         jPanel22.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -479,71 +473,45 @@ public class HRManagementWindow extends javax.swing.JFrame {
 
         jPanel8.add(jPanel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(-300, -110, 300, 110));
 
-        jPanel5.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 180, 310, 110));
+        jPanel5.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 20, 330, 110));
 
-        jButton1.setBackground(new java.awt.Color(0, 102, 0));
-        jButton1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButton1.setText("Add");
-        jPanel5.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 300, 90, -1));
-
-        jButton2.setBackground(new java.awt.Color(0, 102, 255));
-        jButton2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButton2.setText("Update");
-        jPanel5.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 300, -1, -1));
+        Addbutton.setBackground(new java.awt.Color(0, 102, 0));
+        Addbutton.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        Addbutton.setText("Add");
+        Addbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddbuttonActionPerformed(evt);
+            }
+        });
+        jPanel5.add(Addbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 240, 80, -1));
 
         jButton3.setBackground(new java.awt.Color(153, 153, 153));
         jButton3.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton3.setText("Reset");
-        jPanel5.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 300, -1, -1));
-
-        jPanel9.setBackground(new java.awt.Color(28, 48, 90));
-        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Employment Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 0, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel21.setBackground(new java.awt.Color(28, 48, 90));
-        jPanel21.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel21.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel12.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("Designation        :");
-        jPanel21.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
-
-        jLabel13.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("Start Date          :");
-        jPanel21.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
-
-        jTextField11.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jTextField11.addActionListener(new java.awt.event.ActionListener() {
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField11ActionPerformed(evt);
+                jButton3ActionPerformed(evt);
             }
         });
-        jPanel21.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 140, -1));
+        jPanel5.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 240, -1, -1));
 
-        jTextField13.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jPanel21.add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 140, -1));
+        updateButton.setBackground(new java.awt.Color(0, 102, 255));
+        updateButton.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        updateButton.setText("Update");
+        updateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateButtonActionPerformed(evt);
+            }
+        });
+        jPanel5.add(updateButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 240, -1, -1));
 
-        jLabel11.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Department        :");
-        jPanel21.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
-
-        jTextField37.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jPanel21.add(jTextField37, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 140, -1));
-
-        jPanel9.add(jPanel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 290, 130));
-
-        jPanel5.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 20, 310, 160));
-
-        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 960, 330));
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 960, -1));
 
         jPanel10.setBackground(new java.awt.Color(28, 48, 90));
         jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Employee Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_employee.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -559,87 +527,75 @@ public class HRManagementWindow extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(3).setHeaderValue("JobName");
-            jTable1.getColumnModel().getColumn(4).setHeaderValue("Type");
-            jTable1.getColumnModel().getColumn(5).setHeaderValue("Date");
-            jTable1.getColumnModel().getColumn(6).setHeaderValue("Time");
-            jTable1.getColumnModel().getColumn(7).setHeaderValue("Interviewer");
-            jTable1.getColumnModel().getColumn(8).setHeaderValue("Status");
-            jTable1.getColumnModel().getColumn(9).setHeaderValue("email");
-            jTable1.getColumnModel().getColumn(10).setHeaderValue("Department");
-            jTable1.getColumnModel().getColumn(11).setHeaderValue("Designation");
-            jTable1.getColumnModel().getColumn(12).setHeaderValue("start_date");
+        jScrollPane2.setViewportView(tbl_employee);
+        if (tbl_employee.getColumnModel().getColumnCount() > 0) {
+            tbl_employee.getColumnModel().getColumn(3).setHeaderValue("JobName");
+            tbl_employee.getColumnModel().getColumn(4).setHeaderValue("Type");
+            tbl_employee.getColumnModel().getColumn(5).setHeaderValue("Date");
+            tbl_employee.getColumnModel().getColumn(6).setHeaderValue("Time");
+            tbl_employee.getColumnModel().getColumn(7).setHeaderValue("Interviewer");
+            tbl_employee.getColumnModel().getColumn(8).setHeaderValue("Status");
+            tbl_employee.getColumnModel().getColumn(9).setHeaderValue("email");
+            tbl_employee.getColumnModel().getColumn(10).setHeaderValue("Department");
+            tbl_employee.getColumnModel().getColumn(11).setHeaderValue("Designation");
+            tbl_employee.getColumnModel().getColumn(12).setHeaderValue("start_date");
         }
 
-        jPanel10.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 900, 90));
+        jPanel10.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 910, 100));
 
         jPanel23.setBackground(new java.awt.Color(28, 48, 90));
         jPanel23.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel23.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton4.setBackground(new java.awt.Color(153, 153, 153));
-        jButton4.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButton4.setText("Search");
-
-        jTextField5.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-
-        jButton5.setBackground(new java.awt.Color(204, 204, 204));
-        jButton5.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButton5.setText("View All Employees");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btn_empSearch.setBackground(new java.awt.Color(153, 153, 153));
+        btn_empSearch.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        btn_empSearch.setText("Search");
+        btn_empSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btn_empSearchActionPerformed(evt);
             }
         });
+        jPanel23.add(btn_empSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(284, 13, -1, -1));
 
-        jButton6.setBackground(new java.awt.Color(102, 0, 0));
-        jButton6.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButton6.setText("Remove Employee");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        txt_empSearch.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jPanel23.add(txt_empSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(178, 14, 100, -1));
+
+        btn_viewallemp.setBackground(new java.awt.Color(204, 204, 204));
+        btn_viewallemp.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        btn_viewallemp.setText("View All Employees");
+        btn_viewallemp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btn_viewallempActionPerformed(evt);
             }
         });
+        jPanel23.add(btn_viewallemp, new org.netbeans.lib.awtextra.AbsoluteConstraints(608, 13, -1, -1));
 
-        jComboBox1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Search by", "Employee Id", "Employee Name" }));
+        btn_remove.setBackground(new java.awt.Color(102, 0, 0));
+        btn_remove.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        btn_remove.setText("Remove Employee");
+        btn_remove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_removeActionPerformed(evt);
+            }
+        });
+        jPanel23.add(btn_remove, new org.netbeans.lib.awtextra.AbsoluteConstraints(771, 13, -1, -1));
 
-        javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
-        jPanel23.setLayout(jPanel23Layout);
-        jPanel23Layout.setHorizontalGroup(
-            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel23Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 249, Short.MAX_VALUE)
-                .addComponent(jButton5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton6)
-                .addContainerGap())
-        );
-        jPanel23Layout.setVerticalGroup(
-            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel23Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton5)
-                        .addComponent(jButton6))
-                    .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton4)))
-                .addContainerGap(110, Short.MAX_VALUE))
-        );
+        cmb_empSearch.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        cmb_empSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Search by", "Search by ID", "Search by Name" }));
+        cmb_empSearch.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmb_empSearchItemStateChanged(evt);
+            }
+        });
+        jPanel23.add(cmb_empSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 14, 130, -1));
+        jPanel23.add(lbl_SearchValidate, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 14, 100, 20));
 
-        jPanel10.add(jPanel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 930, 150));
+        jPanel10.add(jPanel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 930, 160));
 
-        jPanel1.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 960, 180));
+        lbl_btntblvalidate.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel10.add(lbl_btntblvalidate, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 360, 20));
+
+        jPanel1.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 960, 220));
 
         jTabbedPane1.addTab("Employee", jPanel1);
 
@@ -669,13 +625,18 @@ public class HRManagementWindow extends javax.swing.JFrame {
         jButton37.setBackground(new java.awt.Color(102, 0, 0));
         jButton37.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton37.setText("Remove Candidates");
+        jButton37.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton37ActionPerformed(evt);
+            }
+        });
         jPanel11.add(jButton37, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 330, -1, -1));
 
         jPanel27.setBackground(new java.awt.Color(28, 48, 90));
         jPanel27.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel27.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable7.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_candidate.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -691,20 +652,25 @@ public class HRManagementWindow extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane8.setViewportView(jTable7);
+        jScrollPane8.setViewportView(tbl_candidate);
 
         jPanel27.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 890, 170));
 
-        jComboBox7.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Search by", "Employee Id", "Employee Name" }));
-        jPanel27.add(jComboBox7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 110, -1));
+        Combobox_search.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        Combobox_search.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Search by", "Employee Id", "Employee Name" }));
+        jPanel27.add(Combobox_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 110, -1));
 
-        jTextField38.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jPanel27.add(jTextField38, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 100, -1));
+        candidate_text.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jPanel27.add(candidate_text, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 100, -1));
 
         jButton31.setBackground(new java.awt.Color(153, 153, 153));
         jButton31.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton31.setText("Search");
+        jButton31.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton31ActionPerformed(evt);
+            }
+        });
         jPanel27.add(jButton31, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, -1, -1));
 
         jButton32.setBackground(new java.awt.Color(204, 204, 204));
@@ -740,8 +706,8 @@ public class HRManagementWindow extends javax.swing.JFrame {
         jPanel30.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Add Interview Schedule", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel30.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextField39.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jPanel30.add(jTextField39, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 168, -1));
+        txt_interID.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jPanel30.add(txt_interID, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 120, -1));
 
         jPanel31.setBackground(new java.awt.Color(28, 48, 90));
         jPanel31.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -786,9 +752,6 @@ public class HRManagementWindow extends javax.swing.JFrame {
         jLabel35.setText("Date                       :");
         jPanel31.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, -1, -1));
 
-        jTextField43.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jPanel31.add(jTextField43, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 50, 168, -1));
-
         jLabel36.setBackground(new java.awt.Color(28, 48, 90));
         jLabel36.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel36.setForeground(new java.awt.Color(255, 255, 255));
@@ -798,20 +761,32 @@ public class HRManagementWindow extends javax.swing.JFrame {
         jTextField44.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jPanel31.add(jTextField44, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 90, 168, -1));
 
-        jButton39.setBackground(new java.awt.Color(0, 102, 0));
-        jButton39.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButton39.setText("Add");
-        jPanel31.add(jButton39, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 10, 90, -1));
-
-        jButton40.setBackground(new java.awt.Color(0, 102, 255));
-        jButton40.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButton40.setText("Update");
-        jPanel31.add(jButton40, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 50, 90, -1));
-
         jButton41.setBackground(new java.awt.Color(153, 153, 153));
         jButton41.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton41.setText("Reset");
-        jPanel31.add(jButton41, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 90, 90, -1));
+        jPanel31.add(jButton41, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 90, 180, -1));
+        jPanel31.add(jDateChooser4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 50, 170, -1));
+        jPanel31.add(lbl_iidVal, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 50, 20));
+
+        jButton47.setBackground(new java.awt.Color(0, 102, 0));
+        jButton47.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jButton47.setText("Add  Interview Schedule");
+        jButton47.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton47ActionPerformed(evt);
+            }
+        });
+        jPanel31.add(jButton47, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, -1, -1));
+
+        jButton48.setBackground(new java.awt.Color(0, 102, 255));
+        jButton48.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jButton48.setText("Update Schedule");
+        jButton48.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton48ActionPerformed(evt);
+            }
+        });
+        jPanel31.add(jButton48, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 50, 180, -1));
 
         jPanel30.add(jPanel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 900, 140));
 
@@ -843,7 +818,7 @@ public class HRManagementWindow extends javax.swing.JFrame {
         });
         jPanel32.add(jButton45, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 30, -1, -1));
 
-        jTable9.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_interview_schedule.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -859,37 +834,17 @@ public class HRManagementWindow extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane10.setViewportView(jTable9);
-        if (jTable9.getColumnModel().getColumnCount() > 0) {
-            jTable9.getColumnModel().getColumn(3).setHeaderValue("JobName");
-            jTable9.getColumnModel().getColumn(4).setHeaderValue("Type");
-            jTable9.getColumnModel().getColumn(5).setHeaderValue("Date");
-            jTable9.getColumnModel().getColumn(6).setHeaderValue("Time");
-            jTable9.getColumnModel().getColumn(7).setHeaderValue("Interviewer");
-            jTable9.getColumnModel().getColumn(8).setHeaderValue("Status");
+        jScrollPane10.setViewportView(tbl_interview_schedule);
+        if (tbl_interview_schedule.getColumnModel().getColumnCount() > 0) {
+            tbl_interview_schedule.getColumnModel().getColumn(3).setHeaderValue("JobName");
+            tbl_interview_schedule.getColumnModel().getColumn(4).setHeaderValue("Type");
+            tbl_interview_schedule.getColumnModel().getColumn(5).setHeaderValue("Date");
+            tbl_interview_schedule.getColumnModel().getColumn(6).setHeaderValue("Time");
+            tbl_interview_schedule.getColumnModel().getColumn(7).setHeaderValue("Interviewer");
+            tbl_interview_schedule.getColumnModel().getColumn(8).setHeaderValue("Status");
         }
 
         jPanel32.add(jScrollPane10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 870, 150));
-
-        jButton47.setBackground(new java.awt.Color(0, 102, 0));
-        jButton47.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButton47.setText("Add  Interview Schedule");
-        jButton47.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton47ActionPerformed(evt);
-            }
-        });
-        jPanel32.add(jButton47, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 220, -1, -1));
-
-        jButton48.setBackground(new java.awt.Color(0, 102, 255));
-        jButton48.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButton48.setText("Update Schedule");
-        jButton48.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton48ActionPerformed(evt);
-            }
-        });
-        jPanel32.add(jButton48, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 220, -1, -1));
 
         jButton49.setBackground(new java.awt.Color(102, 0, 0));
         jButton49.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -945,7 +900,7 @@ public class HRManagementWindow extends javax.swing.JFrame {
         jPanel13.setBackground(new java.awt.Color(28, 48, 90));
         jPanel13.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_attendance.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -961,7 +916,7 @@ public class HRManagementWindow extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane5.setViewportView(jTable4);
+        jScrollPane5.setViewportView(tbl_attendance);
 
         jComboBox4.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Search by", "Today's Attendance", "All Attendance" }));
@@ -1229,7 +1184,7 @@ public class HRManagementWindow extends javax.swing.JFrame {
         });
         jPanel18.add(jButton22, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 30, -1, -1));
 
-        jTable6.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_job.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -1245,7 +1200,7 @@ public class HRManagementWindow extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane7.setViewportView(jTable6);
+        jScrollPane7.setViewportView(tbl_job);
 
         jPanel18.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 870, 160));
 
@@ -1269,25 +1224,21 @@ public class HRManagementWindow extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Job Analysis", jPanel4);
 
-        jPanel28.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 970, 560));
+        jPanel28.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 970, 560));
 
-        getContentPane().add(jPanel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 970, 640));
+        getContentPane().add(jPanel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 970, 620));
+        jPanel28.getAccessibleContext().setAccessibleName("HR Management");
+
+        getAccessibleContext().setAccessibleName("HR Management");
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void btn_viewallempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_viewallempActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
-
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+        HRController.loadTable(tbl_employee, "employee", "Emp_ID");
+    }//GEN-LAST:event_btn_viewallempActionPerformed
 
     private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
         // TODO add your handling code here:
@@ -1308,27 +1259,33 @@ public class HRManagementWindow extends javax.swing.JFrame {
         Login log = new Login();
         log.setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+       
+    private void txt_empIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_empIDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+        txt_empID.setToolTipText("gshsfh");
+    }//GEN-LAST:event_txt_empIDActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void btn_removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_removeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+        hrm.Remove(tbl_employee, lbl_btntblvalidate, "employee", "Emp_ID");
+        HRController.loadTable(tbl_employee, "employee", "Emp_ID");
+    }//GEN-LAST:event_btn_removeActionPerformed
 
-    private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField11ActionPerformed
+    private void txt_dsgnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_dsgnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField11ActionPerformed
+    }//GEN-LAST:event_txt_dsgnActionPerformed
 
     private void jButton32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton32ActionPerformed
         // TODO add your handling code here:
+        HRController.loadTable(tbl_candidate, "candidate", "candidateID");
     }//GEN-LAST:event_jButton32ActionPerformed
 
     private void jButton36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton36ActionPerformed
+        // TODO add your handling code here:
         dispose();
-        AddEditCandidate ae = new AddEditCandidate(curEID);
+        AddEditCandidate ae = new AddEditCandidate("");
         ae.setVisible(true);
+        
     }//GEN-LAST:event_jButton36ActionPerformed
 
     private void jButton38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton38ActionPerformed
@@ -1350,6 +1307,132 @@ public class HRManagementWindow extends javax.swing.JFrame {
     private void jButton49ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton49ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton49ActionPerformed
+
+    private void txt_usrnmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_usrnmeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_usrnmeActionPerformed
+
+    private void txt_fnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_fnameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_fnameActionPerformed
+
+    private void AddbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddbuttonActionPerformed
+        // TODO add your handling code here:
+        this.setEmployee();
+        try {
+            //insert data to database
+            boolean status = HRController.InsertEmployee(c.getEmpID(),c.getFname(),c.getEmpgender(),c.getEmpnic(),
+                    c.getEmpdob(),c.getEmpaddress(),c.getMno(),c.getEmpmail(),c.getEmpdepartment(),c.getEmpdesignation(),c.getSdate(),
+                    c.getUserName(),c.getPassword().toString());
+            if (status == true) {
+                JOptionPane.showMessageDialog(null, "Employee Record Saved Successfully");
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Employee Record cant save");
+            }
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(null, "Can't save record..Check fields and try again");
+        }
+                                           
+            
+    }//GEN-LAST:event_AddbuttonActionPerformed
+
+    private void btn_empSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_empSearchActionPerformed
+        // TODO add your handling code here:
+             String select = cmb_empSearch.getSelectedItem().toString();
+        if (select.equals("Search by ID")) {
+            sql = "select * from employee where Emp_ID LIKE '" + txt_empSearch.getText() + "%'";
+            hrm.Search(tbl_employee, txt_empSearch, lbl_SearchValidate, sql, "", "Emp_ID");
+        } else if (select.equals("Search by Name")) {
+            sql = "select * from employee where full_name LIKE '" + txt_empSearch.getText() + "%'";
+            hrm.Search(tbl_employee, txt_empSearch, lbl_SearchValidate, sql, "", "full_name");
+        }
+    }//GEN-LAST:event_btn_empSearchActionPerformed
+
+    private void cmb_empSearchItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmb_empSearchItemStateChanged
+        // TODO add your handling code here:
+             String select = cmb_empSearch.getSelectedItem().toString();
+        if (select.equals("Search by ID")) {
+            txt_empSearch.setText("Employee ID");
+            Color grayColor = new Color(153, 153, 153);
+            txt_empSearch.setForeground(grayColor);
+        } else if (select.equals("Search by Name")) {
+            txt_empSearch.setText("Employee Name");
+            Color grayColor = new Color(153, 153, 153);
+            txt_empSearch.setForeground(grayColor);
+        }
+    }//GEN-LAST:event_cmb_empSearchItemStateChanged
+
+    private void txt_mailMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_mailMouseExited
+        // TODO add your handling code here:
+        boolean status = Validation.emailValidate(txt_mail.getText());
+        
+        if(status == true) {
+            lbl_btntblvalidate.setText( "Valid Email Address");
+        } else {
+           lbl_btntblvalidate.setText("Invalid Email Address");
+        }
+    }//GEN-LAST:event_txt_mailMouseExited
+
+    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
+        // TODO add your handling code here:
+         this.setEmployee();
+        try {
+            //insert data to database
+            boolean status = HRController.UpdateEmployee(c.getEmpID(),c.getFname(),c.getEmpgender(),c.getEmpnic(),
+                    c.getEmpdob(),c.getEmpaddress(),c.getMno(),c.getEmpmail(),c.getEmpdepartment(),c.getEmpdesignation(),c.getSdate(),
+                    c.getUserName(),c.getPassword().toString());
+            if (status == true) {
+                JOptionPane.showMessageDialog(null, "Employee Record Saved Successfully");
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Employee Record cant save");
+            }
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(null, "Can't save record..Check fields and try again");
+        }
+           
+        
+        
+    }//GEN-LAST:event_updateButtonActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        this.txt_empID.setText("");
+        this.txt_fname.setText("");
+	this.cmb_empgender.setSelectedItem("");
+	this.txt_nic.setText("");
+	//String dob = ((JTextField) dc_birth.getDateEditor().getUiComponent()).setText("");
+	this.txtA_address.setText("");
+	this.txt_mno.setText("");
+	this.txt_mail.setText("");
+	//String sdate = ((JTextField) dc_startdate.getDateEditor().getUiComponent()).getText();
+	this.txt_dptn.setText("");
+	this.txt_dsgn.setText("");
+	this.txt_usrnme.setText("");
+	this.pwd_password.setName("");
+			
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton31ActionPerformed
+        // TODO add your handling code here:
+        HRController hm1 = new HRController();
+        String select = Combobox_search.getSelectedItem().toString();
+        if (select.equals("Search by ID")) {
+            sql = "select * from candidate where candidateID LIKE '" + candidate_text.getText() + "%'";
+            hm1.Search(tbl_candidate, candidate_text, lbl_SearchValidate, sql, "", "Candidate ID");
+        } else if (select.equals("Search by Name")) {
+            sql = "select * from candidate where full_name LIKE '" + candidate_text.getText() + "%'";
+            hm1.Search(tbl_candidate, candidate_text, lbl_SearchValidate, sql, "", "Candidate Name");
+        }
+    }//GEN-LAST:event_jButton31ActionPerformed
+
+    private void jButton37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton37ActionPerformed
+        // TODO add your handling code here:
+        HRController hm = new HRController();
+        hm.Remove(tbl_candidate, lbl_btntblvalidate, "candidate", "candidateID");
+        HRController.loadTable(tbl_candidate, "candidate", "candidateID");
+    }//GEN-LAST:event_jButton37ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1389,12 +1472,20 @@ public class HRManagementWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Addbutton;
+    private javax.swing.JComboBox<String> Combobox_search;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnLogout;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btn_empSearch;
+    private javax.swing.JButton btn_remove;
+    private javax.swing.JButton btn_viewallemp;
+    private javax.swing.JTextField candidate_text;
+    private javax.swing.JComboBox<String> cmb_empSearch;
+    private javax.swing.JComboBox<String> cmb_empgender;
+    public com.toedter.calendar.JDateChooser dc_birth;
+    public com.toedter.calendar.JDateChooser dc_startdate;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton22;
@@ -1411,23 +1502,17 @@ public class HRManagementWindow extends javax.swing.JFrame {
     private javax.swing.JButton jButton36;
     private javax.swing.JButton jButton37;
     private javax.swing.JButton jButton38;
-    private javax.swing.JButton jButton39;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton40;
     private javax.swing.JButton jButton41;
     private javax.swing.JButton jButton42;
     private javax.swing.JButton jButton45;
     private javax.swing.JButton jButton47;
     private javax.swing.JButton jButton48;
     private javax.swing.JButton jButton49;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JComboBox<String> jComboBox6;
-    private javax.swing.JComboBox<String> jComboBox7;
     private javax.swing.JComboBox<String> jComboBox8;
+    private com.toedter.calendar.JDateChooser jDateChooser4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1444,7 +1529,6 @@ public class HRManagementWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
@@ -1458,7 +1542,6 @@ public class HRManagementWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
@@ -1472,8 +1555,6 @@ public class HRManagementWindow extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel20;
-    private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel24;
@@ -1490,11 +1571,7 @@ public class HRManagementWindow extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane2;
@@ -1504,19 +1581,7 @@ public class HRManagementWindow extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane3;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
-    private javax.swing.JTable jTable6;
-    private javax.swing.JTable jTable7;
-    private javax.swing.JTable jTable9;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField23;
     private javax.swing.JTextField jTextField24;
     private javax.swing.JTextField jTextField25;
@@ -1524,27 +1589,38 @@ public class HRManagementWindow extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField27;
     private javax.swing.JTextField jTextField28;
     private javax.swing.JTextField jTextField29;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField30;
     private javax.swing.JTextField jTextField31;
     private javax.swing.JTextField jTextField32;
     private javax.swing.JTextField jTextField33;
     private javax.swing.JTextField jTextField34;
     private javax.swing.JTextField jTextField35;
-    private javax.swing.JTextField jTextField36;
-    private javax.swing.JTextField jTextField37;
-    private javax.swing.JTextField jTextField38;
-    private javax.swing.JTextField jTextField39;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField40;
     private javax.swing.JTextField jTextField41;
     private javax.swing.JTextField jTextField42;
-    private javax.swing.JTextField jTextField43;
     private javax.swing.JTextField jTextField44;
     private javax.swing.JTextField jTextField45;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+    private javax.swing.JLabel lbl_SearchValidate;
+    private javax.swing.JLabel lbl_btntblvalidate;
+    private javax.swing.JLabel lbl_eid;
+    private javax.swing.JLabel lbl_iidVal;
+    private javax.swing.JPasswordField pwd_password;
+    private javax.swing.JTable tbl_attendance;
+    private javax.swing.JTable tbl_candidate;
+    private javax.swing.JTable tbl_employee;
+    private javax.swing.JTable tbl_interview_schedule;
+    private javax.swing.JTable tbl_job;
+    public javax.swing.JTextArea txtA_address;
+    public javax.swing.JTextField txt_dptn;
+    public javax.swing.JTextField txt_dsgn;
+    public javax.swing.JTextField txt_empID;
+    private javax.swing.JTextField txt_empSearch;
+    public javax.swing.JTextField txt_fname;
+    private javax.swing.JTextField txt_interID;
+    public javax.swing.JTextField txt_mail;
+    public javax.swing.JTextField txt_mno;
+    public javax.swing.JTextField txt_nic;
+    public javax.swing.JTextField txt_usrnme;
+    private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
 }
