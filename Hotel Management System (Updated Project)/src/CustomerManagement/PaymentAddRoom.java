@@ -89,6 +89,7 @@ public class PaymentAddRoom extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Add Room Information");
 
         jPanel1.setBackground(new java.awt.Color(28, 48, 90));
 

@@ -81,6 +81,7 @@ public class PaymentEditHall extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Update Hall Booking Information");
 
         jPanel1.setBackground(new java.awt.Color(28, 48, 90));
 
@@ -407,7 +408,7 @@ public class PaymentEditHall extends javax.swing.JFrame {
             || Txtadescription.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please Enter Valid Inputs.");
         } else {
-            cus.setbookingID(Integer.parseInt(TxtbookingId.getText()));
+            cus.setbookingID(TxtbookingId.getText().toString());
             cus.setcustomerName(TxtName.getText().toString());
             cus.setdescription(Txtadescription.getText().toString());
             // cus.setHallType(Txtadescription.getText().toString());

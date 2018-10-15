@@ -7,6 +7,7 @@ package CustomerManagement;
 
 //import com.mysql.jdbc.Connection;
 import Main.DatabaseBasicOps;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,7 +23,7 @@ public class CustomerEdit extends javax.swing.JFrame {
     /**
      * Creates new form CustomerAdd
      */
-   // Connection conn = null;
+    private Connection conn = null;
     /*PreparedStatement pst = null;
     ResultSet rs = null;
 
@@ -34,12 +35,13 @@ public class CustomerEdit extends javax.swing.JFrame {
     static final String USERNAME = "root";
     static final String PASSWORD = "";
     private String rbtngenderCAND;*/
+    
 
     
     public CustomerEdit() {
         initComponents();
          try{
-             DatabaseBasicOps.createConnection();
+            conn = DatabaseBasicOps.createConnection();
          }
          catch(SQLException e){
              
@@ -81,12 +83,11 @@ public class CustomerEdit extends javax.swing.JFrame {
         BtnSave = new javax.swing.JButton();
         BtnClear = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
-        RbnMale = new javax.swing.JRadioButton();
+        gender = new javax.swing.JRadioButton();
         RbnFemale = new javax.swing.JRadioButton();
-        RbnRegular = new javax.swing.JRadioButton();
-        RbnBlacklist = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Update Customer Details");
 
         jPanel1.setBackground(new java.awt.Color(28, 48, 90));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -188,25 +189,15 @@ public class CustomerEdit extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Customer Information");
 
-        RbnMale.setBackground(new java.awt.Color(28, 48, 90));
-        buttonGroup2.add(RbnMale);
-        RbnMale.setForeground(new java.awt.Color(255, 255, 255));
-        RbnMale.setText("Male");
+        gender.setBackground(new java.awt.Color(28, 48, 90));
+        buttonGroup2.add(gender);
+        gender.setForeground(new java.awt.Color(255, 255, 255));
+        gender.setText("Male");
 
         RbnFemale.setBackground(new java.awt.Color(28, 48, 90));
         buttonGroup2.add(RbnFemale);
         RbnFemale.setForeground(new java.awt.Color(255, 255, 255));
         RbnFemale.setText("Female");
-
-        RbnRegular.setBackground(new java.awt.Color(28, 48, 90));
-        buttonGroup1.add(RbnRegular);
-        RbnRegular.setForeground(new java.awt.Color(255, 255, 255));
-        RbnRegular.setText("Regular");
-
-        RbnBlacklist.setBackground(new java.awt.Color(28, 48, 90));
-        buttonGroup1.add(RbnBlacklist);
-        RbnBlacklist.setForeground(new java.awt.Color(255, 255, 255));
-        RbnBlacklist.setText("Backlisted");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -229,38 +220,32 @@ public class CustomerEdit extends javax.swing.JFrame {
                             .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 26, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(RbnRegular)
-                                .addGap(37, 37, 37)
-                                .addComponent(RbnBlacklist)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel7)
-                                    .addGap(46, 46, 46))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(RbnMale)
-                                            .addGap(26, 26, 26)
-                                            .addComponent(RbnFemale))
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(Txtphone, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(TxtNIC, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(30, 30, 30)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(TxtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(CmbNationality, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(TxtName, javax.swing.GroupLayout.Alignment.LEADING)))
-                                    .addContainerGap()))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(46, 46, 46))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(gender)
+                                        .addGap(26, 26, 26)
+                                        .addComponent(RbnFemale))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(Txtphone, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(TxtNIC, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGap(30, 30, 30)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(TxtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(CmbNationality, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(TxtName, javax.swing.GroupLayout.Alignment.LEADING)))
+                                .addContainerGap())))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -301,7 +286,7 @@ public class CustomerEdit extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(RbnMale)
+                            .addComponent(gender)
                             .addComponent(RbnFemale)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -310,11 +295,7 @@ public class CustomerEdit extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(RbnRegular)
-                    .addComponent(RbnBlacklist))
-                .addGap(9, 9, 9)
+                .addGap(50, 50, 50)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(58, 58, 58))
         );
@@ -339,8 +320,9 @@ void clearFields() {
         TxtEmail.setText(null);
         TxtNIC.setText(null);
         CmbNationality.setAction(null);
-        RbnMale.setAction(null);
-       TxtaComments.setText(null);
+        gender.setSelected(false);
+        RbnFemale.setSelected(false);
+        TxtaComments.setText(null);
        
 
     }
@@ -354,40 +336,45 @@ void clearFields() {
           Customer cus = new Customer();
 
         if (TxtName.getText().isEmpty() || TxtaAddress.getText().isEmpty() || Txtphone.getText().isEmpty() || TxtEmail.getText().isEmpty()|| TxtNIC.getText().isEmpty()|| 
-               RbnMale.getText().isEmpty() || TxtaComments.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Please Enter Valid Inputs.");
+                gender.getText().isEmpty() || TxtaComments.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Fields can't Empty");
         } else {
             //cus.setCustomerId(Integer.parseInt(txt_CustomerID.getText()));
-            if(CustomerValidation.isLetter(TxtName.getText())){
+            if((Main.Validationfor_customer_HR.isLetter(TxtName.getText()))){
             cus.setcustomerName(TxtName.getText().toString());}
-            else{JOptionPane.showMessageDialog(null, "Invalid Inputs");}
+            else{JOptionPane.showMessageDialog(null, "Customer name should be letters");}
             
             cus.setaddress(TxtaAddress.getText().toString());
             cus.setCustomerType(buttonGroup1.getSelection().toString());
                     
-            if(CustomerValidation.isNumeric(Txtphone.getText())){
+            if((Main.Validationfor_customer_HR.isphone(Txtphone.getText()))){
             cus.setphone(Txtphone.getText().toString());
             }else{
-                JOptionPane.showMessageDialog(null, "Invalid Inputs");
+                JOptionPane.showMessageDialog(null, "Phone number should have 10 integers");
             }
-            if(CustomerValidation.emailValidate(TxtEmail.getText())){
+            if((Main.Validationfor_customer_HR.emailValidate(TxtEmail.getText()))){
             cus.setemail(TxtEmail.getText().toString());}
-            else{JOptionPane.showMessageDialog(null, "Invalid Inputs");}
+            else{
+                JOptionPane.showMessageDialog(null, "Enetr valid Email");
+            }
             
-            if(CustomerValidation.nicValidation(TxtNIC.getText())){
+            if(Main.Validationfor_customer_HR.nicValidation(TxtNIC.getText())){
             cus.setnic(TxtNIC.getText().toString());}
-            else{JOptionPane.showMessageDialog(null, "Invalid Inputs");}
+            else{
+                JOptionPane.showMessageDialog(null, "Enter valid NIC");
+            }
             
             cus.setnationality(CmbNationality.getSelectedItem().toString());
             
-            if(CustomerValidation.isLetter(RbnMale.getText())){
-            cus.setgender(RbnMale.getText().toString());}
-            else{JOptionPane.showMessageDialog(null, "Invalid Inputs");}
+            if(Main.Validationfor_customer_HR.isLetter(gender.getText())){
+            cus.setgender(gender.getText().toString());}
+            else{
+                JOptionPane.showMessageDialog(null,"Invalid Inputs");
+            }
             
             cus.setcomment(TxtaComments.getText().toString());
             
-
-            new CusDBOperations().addUser(cus);
+            new CusDBOperations().UserUpdate(cus);
             clearFields();
             dispose();
             
@@ -399,7 +386,7 @@ void clearFields() {
 
     private void BtnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnClearActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+      clearFields();
     }//GEN-LAST:event_BtnClearActionPerformed
 
     /**
@@ -456,10 +443,7 @@ void clearFields() {
     private javax.swing.JButton BtnClear;
     private javax.swing.JButton BtnSave;
     private javax.swing.JComboBox<String> CmbNationality;
-    private javax.swing.JRadioButton RbnBlacklist;
     private javax.swing.JRadioButton RbnFemale;
-    private javax.swing.JRadioButton RbnMale;
-    private javax.swing.JRadioButton RbnRegular;
     private javax.swing.JTextField TxtEmail;
     private javax.swing.JTextField TxtNIC;
     private javax.swing.JTextField TxtName;
@@ -468,6 +452,7 @@ void clearFields() {
     private javax.swing.JTextField Txtphone;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JRadioButton gender;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

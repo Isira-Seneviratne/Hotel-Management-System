@@ -6,6 +6,7 @@
 package CustomerManagement;
 
 //import com.mysql.jdbc.Connection;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
@@ -20,14 +21,14 @@ public class PaymentAddHall extends javax.swing.JFrame {
     /**
      * Creates new form CustomerAdd
      */
-   // Connection conn = null;
+    Connection con = Main.MyDBConnection.Myconnect();
     PreparedStatement pst = null;
     ResultSet rs = null;
+    
 
     java.util.Date date;
 
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost:3306/hotel_management_system";
+    
 
     static final String USERNAME = "root";
     static final String PASSWORD = "";
@@ -81,6 +82,7 @@ public class PaymentAddHall extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Add Hall Information");
 
         jPanel1.setBackground(new java.awt.Color(28, 48, 90));
 
@@ -122,6 +124,9 @@ public class PaymentAddHall extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Reservation Date :");
+
+        jDateChooser1.setToolTipText("");
+        jDateChooser1.setDateFormatString(" y-MM-d");
 
         jRadioButton1.setBackground(new java.awt.Color(28, 48, 90));
         jRadioButton1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -407,16 +412,16 @@ public class PaymentAddHall extends javax.swing.JFrame {
             || Txtadescription.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please Enter Valid Inputs.");
         } else {
-            cus.setbookingID(Integer.parseInt(TxtbookingId.getText()));
+            cus.setbookingID(TxtbookingId.getText().toString());
             cus.setcustomerName(TxtName.getText().toString());
             cus.setdescription(Txtadescription.getText().toString());
-            // cus.setHallType(Txtadescription.getText().toString());
+            cus.setHallType(Txtadescription.getText().toString());
             cus.settotalamount(Integer.parseInt(TxtTotalAmount.getText()));
-            //            cus.setReservationdate(((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText());
+            cus.setReservationdate(((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText());
 
             new PayDBOperations().addHall(cus);
-            clearFields();
-            dispose();
+           // clearFields();
+           // dispose();
 
         }
     }//GEN-LAST:event_BtnSaveActionPerformed
@@ -426,14 +431,11 @@ public class PaymentAddHall extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_BtnCancleActionPerformed
 void clearFields() {
-      /*  TxtName.setText(null);
-        TxtaAddress.setText(null);
-        Txtphone.setText(null);
-        TxtEmail.setText(null);
-        TxtNIC.setText(null);
-        CmbNationality.setAction(null);
-        TxtGender.setText(null);
-       TxtaComments.setText(null);*/
+       TxtName.setText(null);
+        TxtbookingId.setText(null);
+        TxtTotalAmount.setText(null);
+        Txtadescription.setText(null);
+       
  
 
     }

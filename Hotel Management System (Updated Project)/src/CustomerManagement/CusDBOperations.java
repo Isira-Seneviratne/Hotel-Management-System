@@ -18,6 +18,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import Main.DatabaseBasicOps;
+import net.proteanit.sql.DbUtils;
 //import net.proteanit.sql.DbUtils;
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -30,16 +31,16 @@ import Main.DatabaseBasicOps;
  * @author Upeksha
  */
 public class CusDBOperations {
-  
-   Connection con;
+    
+    Connection con = Main.MyDBConnection.Myconnect();
     PreparedStatement pst = null;
     ResultSet rs = null;
 
+    
     String url =  "jdbc:mysql://localhost:3306/hotel_db";
-    String user = "root";
-    String password = "";
-
-          
+   String user = "root";
+   String password = "";
+      
     
     
      public boolean addUser(Customer ad){
@@ -47,16 +48,16 @@ public class CusDBOperations {
      
         try {
             con = (Connection) DriverManager.getConnection(url, user, password);
-            pst = (PreparedStatement) con.prepareStatement("INSERT INTO customer VALUES(?,?,?,?,?,?,?,?)");
+            pst = (PreparedStatement) con.prepareStatement("INSERT INTO customer VALUES(?,?,?,?,?,?,?,?,?)");
             pst.setString(1, ad.getcustomerName());
             pst.setString(2, ad.getaddress());
             pst.setString(3, ad.getphone());
             pst.setString(4, ad.getemail());
             pst.setString(5, ad.getnic());
             pst.setString(6, ad.getnationality());
-             pst.setString(6, ad.getCustomerType());
             pst.setString(7, ad.getgender());
-            pst.setString(8, ad.getcomment());
+            pst.setString(8, ad.getCustomerType());
+            pst.setString(9, ad.getcomment());
            /* pst.setString(9, ad.getTo_date());
             pst.setString(10, ad.getFrom_date());*/
          
@@ -101,6 +102,7 @@ finally {
 
         try {
             con = (Connection) DriverManager.getConnection(url, user, password);
+            con = DatabaseBasicOps.createConnection();
             pst = (PreparedStatement) con.prepareStatement("UPDATE customer SET name=? ,address=? ,phone=? ,email=?, nic=?, gender=?, nationality=?, comment=?");
             pst.setString(1, up.getcustomerName());
             pst.setString(2, up.getaddress());
@@ -158,6 +160,7 @@ finally {
         }else{
               String tbl_click = (table.getModel().getValueAt(rw, 0).toString());
             con = (Connection) DriverManager.getConnection(url, user, password);
+            con = DatabaseBasicOps.createConnection();
             pst = (PreparedStatement) con.prepareStatement("DELETE  FROM customer WHERE name='"+tbl_click+"'");
         
         // pst.setInt(1,a);
@@ -202,6 +205,7 @@ finally {
             model.setRowCount(0);
         } else {
             try {
+                con = DatabaseBasicOps.createConnection();
                 pst = con.prepareStatement(sql);
                 rs = pst.executeQuery();
 
@@ -209,7 +213,7 @@ finally {
                     JOptionPane.showMessageDialog(null, "no data");
                     model.setRowCount(0);
                 } else {
-//                    table.setModel(DbUtils.resultSetToTableModel(rs));
+                    table.setModel(DbUtils.resultSetToTableModel(rs));
                 }
 
             } catch (HeadlessException | SQLException e) {
