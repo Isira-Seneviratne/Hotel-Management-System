@@ -7,6 +7,7 @@ package CustomerManagement;
 
 //import com.mysql.jdbc.Connection;
 import Main.DatabaseBasicOps;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
@@ -21,17 +22,13 @@ public class CustomerAdd extends javax.swing.JFrame {
     /**
      * Creates new form CustomerAdd
      */
-   // Connection conn = null;
+    Connection con = Main.MyDBConnection.Myconnect();
     PreparedStatement pst = null;
     ResultSet rs = null;
 
     java.util.Date date;
 
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost:3306/hotel_db";
-
-    static final String USERNAME = "root";
-    static final String PASSWORD = "";
+    
     private String rbtngenderCAND;
 
     
@@ -74,12 +71,11 @@ public class CustomerAdd extends javax.swing.JFrame {
         BtnSave = new javax.swing.JButton();
         BtnClear = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
-        RbnRegular = new javax.swing.JRadioButton();
-        RbnBlacklist = new javax.swing.JRadioButton();
         RbnMale = new javax.swing.JRadioButton();
         RbnFemale = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Add Customer Information");
 
         jPanel1.setBackground(new java.awt.Color(28, 48, 90));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -182,16 +178,6 @@ public class CustomerAdd extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Customer Information");
 
-        RbnRegular.setBackground(new java.awt.Color(28, 48, 90));
-        buttonGroup3.add(RbnRegular);
-        RbnRegular.setForeground(new java.awt.Color(255, 255, 255));
-        RbnRegular.setText("Regular");
-
-        RbnBlacklist.setBackground(new java.awt.Color(28, 48, 90));
-        buttonGroup3.add(RbnBlacklist);
-        RbnBlacklist.setForeground(new java.awt.Color(255, 255, 255));
-        RbnBlacklist.setText("Backlisted");
-
         RbnMale.setBackground(new java.awt.Color(28, 48, 90));
         buttonGroup1.add(RbnMale);
         RbnMale.setForeground(new java.awt.Color(255, 255, 255));
@@ -225,41 +211,33 @@ public class CustomerAdd extends javax.swing.JFrame {
                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 26, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(RbnRegular)
-                                .addGap(28, 28, 28)
-                                .addComponent(RbnBlacklist)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(RbnMale)
-                                        .addGap(26, 26, 26)
-                                        .addComponent(RbnFemale))
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(Txtphone, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(TxtNIC, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGap(30, 30, 30)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(TxtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(CmbNationality, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(TxtName, javax.swing.GroupLayout.Alignment.LEADING)))))
+                                .addComponent(RbnMale)
+                                .addGap(26, 26, 26)
+                                .addComponent(RbnFemale))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(Txtphone, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(TxtNIC, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(30, 30, 30)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(TxtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(CmbNationality, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(TxtName, javax.swing.GroupLayout.Alignment.LEADING)))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 244, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -311,11 +289,7 @@ public class CustomerAdd extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(RbnRegular)
-                    .addComponent(RbnBlacklist))
-                .addGap(9, 9, 9)
+                .addGap(50, 50, 50)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(58, 58, 58))
         );
@@ -357,41 +331,53 @@ void clearFields() {
 
         if (TxtName.getText().isEmpty() || TxtaAddress.getText().isEmpty() || Txtphone.getText().isEmpty() || TxtEmail.getText().isEmpty()|| TxtNIC.getText().isEmpty()|| 
                 RbnMale.getText().isEmpty() || TxtaComments.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Please Enter Valid Inputs.");
+            JOptionPane.showMessageDialog(null, "Fields can't Empty");
         } else {
             //cus.setCustomerId(Integer.parseInt(txt_CustomerID.getText()));
-            if(CustomerValidation.isLetter(TxtName.getText())){
-            cus.setcustomerName(TxtName.getText().toString());}
-            else{JOptionPane.showMessageDialog(null, "Invalid Inputs");}
+            if(Main.Validationfor_customer_HR.isLetter(TxtName.getText())){
+                cus.setcustomerName(TxtName.getText().toString());
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Customer name should be letters");
+            }
             
             cus.setaddress(TxtaAddress.getText().toString());
             cus.setCustomerType(buttonGroup3.getSelection().toString());
                     
-            if(CustomerValidation.isNumeric(Txtphone.getText())){
+            if(Main.Validationfor_customer_HR.isphone(Txtphone.getText())){
             cus.setphone(Txtphone.getText().toString());
-            }else{
-                JOptionPane.showMessageDialog(null, "Invalid Inputs");
             }
-            if(CustomerValidation.emailValidate(TxtEmail.getText())){
-            cus.setemail(TxtEmail.getText().toString());}
-            else{JOptionPane.showMessageDialog(null, "Invalid Inputs");}
+            else{
+                JOptionPane.showMessageDialog(null, "Phone number should have 10 integers");
+            }
+            if(Main.Validationfor_customer_HR.emailValidate(TxtEmail.getText())){
+            cus.setemail(TxtEmail.getText().toString());
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Enetr valid Email");
+            }
             
-            if(CustomerValidation.nicValidation(TxtNIC.getText())){
+            if(Main.Validationfor_customer_HR.nicValidation(TxtNIC.getText())){
             cus.setnic(TxtNIC.getText().toString());}
-            else{JOptionPane.showMessageDialog(null, "Invalid Inputs");}
+            else{
+                JOptionPane.showMessageDialog(null, "Enter valid NIC");
+            }
             
             cus.setnationality(CmbNationality.getSelectedItem().toString());
             
-            if(CustomerValidation.isLetter(RbnMale.getText())){
-            cus.setgender(RbnMale.getText().toString());}
-            else{JOptionPane.showMessageDialog(null,"Invalid Inputs");}
+            if(Main.Validationfor_customer_HR.isLetter(RbnMale.getText()))
+            {
+            cus.setgender(RbnMale.getText().toString());
+            }
+            else{
+                JOptionPane.showMessageDialog(null,"Invalid Inputs");
+            }
             
             cus.setcomment(TxtaComments.getText().toString());
             
-
             new CusDBOperations().addUser(cus);
-            clearFields();
-            dispose();
+            //clearFields();
+            //idispose();
             
             
 
@@ -454,10 +440,8 @@ void clearFields() {
     private javax.swing.JButton BtnClear;
     private javax.swing.JButton BtnSave;
     private javax.swing.JComboBox<String> CmbNationality;
-    private javax.swing.JRadioButton RbnBlacklist;
     private javax.swing.JRadioButton RbnFemale;
     private javax.swing.JRadioButton RbnMale;
-    private javax.swing.JRadioButton RbnRegular;
     private javax.swing.JTextField TxtEmail;
     private javax.swing.JTextField TxtNIC;
     private javax.swing.JTextField TxtName;

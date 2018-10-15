@@ -37,8 +37,8 @@ public class PayDBOperations {
     public boolean addroom(Customer rm){
     try{
      con = (Connection) DriverManager.getConnection(url, user, password);
-            pst = (PreparedStatement) con.prepareStatement("INSERT INTO cus_payment VALUES(?,?,?,?,?,?,?,?,?)");
-            pst.setInt(1, rm.getbookingID());
+            pst = (PreparedStatement) con.prepareStatement("INSERT INTO room VALUES(?,?,?,?,?,?,?,?,?)");
+            pst.setString(1, rm.getbookingID());
             pst.setString(2, rm.getcustomerName());
             pst.setString(3, rm.getTo_date());
             pst.setString(4, rm.getFrom_date());
@@ -81,10 +81,10 @@ public class PayDBOperations {
 
         try {
             con = (Connection) DriverManager.getConnection(url, user, password);
-            pst = (PreparedStatement) con.prepareStatement("UPDATE cus_payment SET bookingID=?, name=? ,"
-                    + "todate=? ,fromdate=?, singleroom=?,doubleroom=?,extrabed=?, description=?, TotalAmount=?");
+            pst = (PreparedStatement) con.prepareStatement("UPDATE room SET bookingID=?, customerName=? ,"
+                    + "todate=? ,fromdate=?, singleroom=?,doubleroom=?,extrabed=?, remarks=?, TotalAmount=?");
 //            pst.setInt(1, up.getbId());
-            pst.setInt(1, rup.getbookingID());
+            pst.setString(1, rup.getbookingID());
             pst.setString(2, rup.getcustomerName());
             pst.setString(3, rup.getTo_date());
             pst.setString(4, rup.getFrom_date());
@@ -137,12 +137,12 @@ public class PayDBOperations {
           try {
             int rw = table.getSelectedRow();
         if (rw == -1) {
-            JOptionPane.showMessageDialog(null, "Select cus_payment from table");
+            JOptionPane.showMessageDialog(null, "Select room from table");
             //validateLable.setText("**Select a raw from table to Remove data**");
         }else{
               String tbl_click = (table.getModel().getValueAt(rw, 0).toString());
             con = (Connection) DriverManager.getConnection(url, user, password);
-            pst = (PreparedStatement) con.prepareStatement("DELETE  FROM cus_payment WHERE name='"+tbl_click+"'");
+            pst = (PreparedStatement) con.prepareStatement("DELETE  FROM room WHERE bookingID='"+tbl_click+"'");
         
         // pst.setInt(1,a);
 
@@ -188,7 +188,7 @@ finally {
         try {
             con = (Connection) DriverManager.getConnection(url, user, password);
             pst = (PreparedStatement) con.prepareStatement("INSERT INTO hall VALUES(?,?,?,?,?,?)");
-            pst.setInt(1, ad.getbookingID());
+            pst.setString(1, ad.getbookingID());
             pst.setString(2, ad.getcustomerName());
             pst.setString(3, ad.getReservationdate());
             pst.setString(4, ad.getHallType());
@@ -240,7 +240,7 @@ finally {
             con = (Connection) DriverManager.getConnection(url, user, password);
             pst = (PreparedStatement) con.prepareStatement("UPDATE hall SET Booking_ID=?, name=? ,Reserve_date=? , Hall_name=?, description=?, TotalAmount=?");
 //            pst.setInt(1, up.getbId());
-            pst.setInt(1, up.getbookingID());
+            pst.setString(1, up.getbookingID());
             pst.setString(2, up.getcustomerName());
             pst.setString(3, up.getReservationdate());
             pst.setString(4, up.getHallType());

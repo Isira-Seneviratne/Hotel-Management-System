@@ -18,7 +18,7 @@ import java.util.Date;
 
 public class Customer {
  
-    private int bookingID;
+    private String bookingID;
     private int cid;
     private String customerName;
     private String address;
@@ -64,10 +64,10 @@ public class Customer {
     public void setFrom_date(String x) {
         From_date = x;
     }
-    public void setbookingID(int x) {
+    public void setbookingID(String x) {
         bookingID = x;
     }
-    public int getbookingID() {
+    public String getbookingID() {
         return bookingID;
     }
 

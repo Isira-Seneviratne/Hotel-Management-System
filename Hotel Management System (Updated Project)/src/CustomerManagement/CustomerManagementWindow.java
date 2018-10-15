@@ -8,13 +8,14 @@ package CustomerManagement;
 import Main.DatabaseBasicOps;
 import Main.Login;
 import Main.MainWindow;
+import StockManagement.DBFunctions;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
-
+import net.proteanit.sql.DbUtils;
 /**
  *
  * @author Upeksha
@@ -22,14 +23,11 @@ import javax.swing.event.ListSelectionEvent;
 public class CustomerManagementWindow extends javax.swing.JFrame {
     private String curEID;
     private static CustomerManagementWindow instance;
-    private static Connection con;
-     PreparedStatement pst = null;
+   
+    Connection con = Main.MyDBConnection.Myconnect();
+    PreparedStatement pst = null;
     ResultSet rs = null;
     
-    public static void createConnection() throws SQLException {
-        con = DatabaseBasicOps.createConnection();
-    }
-   
     /**
      * Creates new form CustomerManagementWindow
      * @param eID
@@ -41,11 +39,12 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
     
     public void LoadCustomerTable() {
         try {
-            String sql = "Select * from customer";
+          
+            String sql = "Select * from Customer";
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();
             
-//            jTable_cus.setModel(DbUtils.resultSetToTableModel(rs));
+            jTable_cus.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Cant load Customer Table");
         }
@@ -53,10 +52,11 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
     
     public void LoadbookingTablepearl() {
         try {
+            con = DatabaseBasicOps.createConnection();
             String sql = "SELECT * FROM `hall` WHERE Hall_name= \"pearl\"";
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();
-            //jTableHall.setModel(DbUtils.resultSetToTableModel(rs));
+            jTableHall.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Cant load Booking Table");
         }
@@ -64,10 +64,11 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
     
      public void LoadbookingTableRuby(){
         try {
+            con = DatabaseBasicOps.createConnection();
             String sql = "SELECT * FROM `hall` WHERE Hall_name= \"Ruby\"";
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();
-//            jTableHall.setModel(DbUtils.resultSetToTableModel(rs));
+            jTableHall.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Cant load Booking Table");
         }
@@ -75,10 +76,23 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
 
     public void LoadbookingTable() {
         try {
+            con = DatabaseBasicOps.createConnection();
             String sql = "Select * from hall";
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();
-//            jTableHall.setModel(DbUtils.resultSetToTableModel(rs));
+            jTableHall.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Cant load Booking Table");
+        }
+    }
+    
+     public void LoadRoomTable() {
+        try {
+            con = DatabaseBasicOps.createConnection();
+            String sql = "Select * from room";
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+            jTableRoom.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Cant load Booking Table");
         }
@@ -101,6 +115,9 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonGroup3 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         btnHome = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
@@ -159,6 +176,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         jLabel32 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Customer Management");
         setBackground(new java.awt.Color(0, 0, 102));
         setMinimumSize(new java.awt.Dimension(970, 660));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -233,6 +251,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         jPanel19.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jRadioButton7.setBackground(new java.awt.Color(28, 48, 90));
+        buttonGroup1.add(jRadioButton7);
         jRadioButton7.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jRadioButton7.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton7.setText("Room");
@@ -245,6 +264,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         jPanel19.add(jRadioButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
         jRadioButton8.setBackground(new java.awt.Color(28, 48, 90));
+        buttonGroup1.add(jRadioButton8);
         jRadioButton8.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jRadioButton8.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton8.setText("Hall");
@@ -257,6 +277,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         jPanel19.add(jRadioButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 52, -1, -1));
 
         jRadioButton9.setBackground(new java.awt.Color(28, 48, 90));
+        buttonGroup1.add(jRadioButton9);
         jRadioButton9.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jRadioButton9.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton9.setText("All ");
@@ -279,19 +300,19 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         jTable_cus.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jTable_cus.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Name and surname / Company name", "Address", "Phone", "E-mail", "Gender", "NIC/ Passport", "Nationality", "Regular", "Blacklisted", "Comments"
+                "Name and surname / Company name", "Address", "Phone", "E-mail", "Gender", "NIC/ Passport", "Nationality", "Comments"
             }
         ));
         jScrollPane4.setViewportView(jTable_cus);
@@ -413,6 +434,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         jPanel25.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jRadioButton10.setBackground(new java.awt.Color(28, 48, 90));
+        buttonGroup2.add(jRadioButton10);
         jRadioButton10.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jRadioButton10.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton10.setText("Single Room");
@@ -425,6 +447,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         jPanel25.add(jRadioButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
         jRadioButton11.setBackground(new java.awt.Color(28, 48, 90));
+        buttonGroup2.add(jRadioButton11);
         jRadioButton11.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jRadioButton11.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton11.setText("Double Room");
@@ -437,6 +460,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         jPanel25.add(jRadioButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
 
         jRadioButton12.setBackground(new java.awt.Color(28, 48, 90));
+        buttonGroup2.add(jRadioButton12);
         jRadioButton12.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jRadioButton12.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton12.setText("All ");
@@ -511,7 +535,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         });
         jScrollPane6.setViewportView(jTableRoom);
 
-        jPanel26.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 900, 270));
+        jPanel26.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 900, 270));
 
         jPanel3.add(jPanel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 940, 370));
 
@@ -552,7 +576,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(jTableHall);
 
-        jPanel14.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 29, 910, 270));
+        jPanel14.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 910, 270));
 
         jButton3.setBackground(new java.awt.Color(0, 102, 0));
         jButton3.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -622,6 +646,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jRadioButtonAll.setBackground(new java.awt.Color(28, 48, 90));
+        buttonGroup3.add(jRadioButtonAll);
         jRadioButtonAll.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jRadioButtonAll.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButtonAll.setText("All");
@@ -634,6 +659,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         jPanel8.add(jRadioButtonAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 60, -1));
 
         jRadioButtonRuby.setBackground(new java.awt.Color(28, 48, 90));
+        buttonGroup3.add(jRadioButtonRuby);
         jRadioButtonRuby.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jRadioButtonRuby.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButtonRuby.setText("Hall Ruby");
@@ -646,6 +672,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         jPanel8.add(jRadioButtonRuby, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 90, -1));
 
         jRadioButtonPearl.setBackground(new java.awt.Color(28, 48, 90));
+        buttonGroup3.add(jRadioButtonPearl);
         jRadioButtonPearl.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jRadioButtonPearl.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButtonPearl.setText("Hall Pearl");
@@ -791,14 +818,14 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
     private void BtnSerch4BtnSerchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSerch4BtnSerchActionPerformed
         // TODO add your handling code here:
          CusDBOperations ser = new CusDBOperations ();
-        String select = cmbsearch.getSelectedItem().toString();
-        if (select.equals("Find a Customer by name")) {
-            String sql = "Select * from customer where name LIKE '"+Txtsearch.getText()+"%'";
-            ser.SearchData(jTable_cus,  Txtsearch, sql, "");
-
-        } else if (select.equals("Find a Customer by address")) {
-            String sql = "Select * from customer where address LIKE '"+Txtsearch.getText()+"%'";
-            ser.SearchData(jTable_cus,  Txtsearch, sql, "");
+        String select = cmbsearch4.getSelectedItem().toString();
+        if (select.equals(" Find a Room by Customer Name")) {
+            String sql = "Select * from room where customerName LIKE '"+Txtsearch4.getText()+"%'";
+            ser.SearchData(jTableRoom,  Txtsearch4, sql, "");
+            
+        } else if (select.equals("Find a Room by Booking ID")) {
+            String sql = "Select * from room where bookingID LIKE '"+Txtsearch4.getText()+"%'";
+            ser.SearchData(jTableRoom,  Txtsearch4, sql, "");
         }
     }//GEN-LAST:event_BtnSerch4BtnSerchActionPerformed
 
@@ -812,7 +839,7 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
 
     private void jRadioButton12jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton12jRadioButton3ActionPerformed
         // TODO add your handling code here:
-        LoadCustomerTable();
+       LoadRoomTable();
     }//GEN-LAST:event_jRadioButton12jRadioButton3ActionPerformed
 
     private void jButton13jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13jButton1ActionPerformed
@@ -845,6 +872,16 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
 
     private void BtnSerch1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSerch1ActionPerformed
         // TODO add your handling code here:
+         CusDBOperations ser = new CusDBOperations ();
+        String select = cmbsearch2.getSelectedItem().toString();
+        if (select.equals("Find a Hall by name")) {
+            String sql = "Select * from hall where Hall_name LIKE '"+Txtsearch1.getText()+"%'";
+            ser.SearchData(jTableHall,  Txtsearch1, sql, "");
+
+        } else if (select.equals("Find a Hall by ID")) {
+            String sql = "Select * from hall where Booking_ID LIKE '"+Txtsearch1.getText()+"%'";
+            ser.SearchData(jTableHall,  Txtsearch1, sql, "");
+        }
     }//GEN-LAST:event_BtnSerch1ActionPerformed
 
     private void jRadioButtonAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonAllActionPerformed
@@ -861,11 +898,6 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
          LoadbookingTablepearl();
     }//GEN-LAST:event_jRadioButtonPearlActionPerformed
-
-    private void jTableRoomMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableRoomMouseClicked
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jTableRoomMouseClicked
    
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         // TODO add your handling code here:
@@ -892,6 +924,11 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
     private void cmbsearch2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbsearch2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbsearch2ActionPerformed
+
+    private void jTableRoomMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableRoomMouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jTableRoomMouseClicked
 
     /**
      * @param args the command line arguments
@@ -955,6 +992,9 @@ public class CustomerManagementWindow extends javax.swing.JFrame {
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JComboBox<String> cmbsearch;
     private javax.swing.JComboBox<String> cmbsearch2;
     private javax.swing.JComboBox<String> cmbsearch4;
