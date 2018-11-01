@@ -220,41 +220,41 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
         jLabel2.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(238, 238, 238));
         jLabel2.setText("Item ID");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(238, 238, 238));
         jLabel3.setText("Item name");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(238, 238, 238));
         jLabel4.setText("Quantity");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, -1));
-        jPanel1.add(txtQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 70, 30));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, -1, -1));
+        jPanel1.add(txtQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 70, 30));
 
         jLabel5.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(238, 238, 238));
         jLabel5.setText("Unit");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 100, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 100, -1, -1));
 
         cmbUnit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kilograms (kg)", "Grams (g)", "None" }));
-        jPanel1.add(cmbUnit, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 100, 150, -1));
+        jPanel1.add(cmbUnit, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 100, 150, -1));
 
         jLabel6.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(238, 238, 238));
         jLabel6.setText("Vendor ID");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 30, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 30, -1, -1));
 
-        jPanel1.add(cmbVendorID, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 30, 151, -1));
+        jPanel1.add(cmbVendorID, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 30, 151, -1));
 
         jLabel7.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(238, 238, 238));
         jLabel7.setText("Date of order");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 160, -1, -1));
-        jPanel1.add(datOrderDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 160, 150, 30));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 160, -1, -1));
+        jPanel1.add(datOrderDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 160, 150, 30));
 
-        jPanel1.add(cmbItemID, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 130, -1));
+        jPanel1.add(cmbItemID, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 130, -1));
 
         jScrollPane3.setPreferredSize(new java.awt.Dimension(250, 50));
         jScrollPane3.setRequestFocusEnabled(false);
@@ -265,7 +265,7 @@ public class PendingOrders extends javax.swing.JPanel implements ListSelectionLi
         txtItemName.setRows(5);
         jScrollPane3.setViewportView(txtItemName);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 170, 50));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 170, 50));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 59, 870, 270));
 
